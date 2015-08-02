@@ -21,6 +21,16 @@ public class Chessboard {
 	
 	private static long r = 0L, n = 0L, b = 0L, q = 0L, k = 0L, p = 0L;
 	private static long R = 0L, N = 0L, B = 0L, Q = 0L, K = 0L, P = 0L;
+	private static char[][] chessboard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};;
 	
 	public static void arrayToBitBoards(char[][] chessboard) {
 		String binary;
@@ -142,17 +152,66 @@ public class Chessboard {
 		System.out.println("    A   B   C   D   E   F   G   H");
 	}
 	
+	public static boolean movePiece(String command) {
+		boolean moveResult;
+		if (command.length() != 4) {
+			return false;
+		}
+		int startCol, startRow, endCol, endRow;
+		startCol = (int)command.charAt(0) - 65;
+		startRow = 8 - Integer.parseInt(command.substring(1, 2));
+		endCol = (int)command.charAt(2) - 65;
+		endRow = 8 - Integer.parseInt(command.substring(3));
+		boolean error = startCol < 0 || startCol > 7 ||
+				startRow < 0 || startRow > 7 ||
+				endCol < 0 || endCol > 7 ||
+				endRow < 0 || endRow > 7;
+		if (error) {
+			return error;
+		}
+		switch(chessboard[startRow][startCol]) {
+			case 'P': return movePawn(startRow, startCol, endRow, endCol);
+			case 'R': return moveRook(startRow, startCol, endRow, endCol);
+			case 'N': return moveKnight(startRow, startCol, endRow, endCol);
+			case 'B': return moveBishop(startRow, startCol, endRow, endCol);
+			case 'Q': return moveQueen(startRow, startCol, endRow, endCol);
+			case 'K': return moveKing(startRow, startCol, endRow, endCol);
+			default: return false;
+		}
+	}
+	
+	public static boolean movePawn(int startRow, int startCol, int endRow, int endCol) {
+		if (startRow == 6) {
+			if (endRow >= 4) {
+				
+			} else {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public static boolean moveRook(int startRow, int startCol, int endRow, int endCol) {
+		return true;
+	}
+	
+	public static boolean moveKnight(int startRow, int startCol, int endRow, int endCol) {
+		return true;
+	}
+	
+	public static boolean moveBishop(int startRow, int startCol, int endRow, int endCol) {
+		return true;
+	}
+	
+	public static boolean moveQueen(int startRow, int startCol, int endRow, int endCol) {
+		return true;
+	}
+	
+	public static boolean moveKing(int startRow, int startCol, int endRow, int endCol) {
+		return true;
+	}
+	
 	public static void main(String[] args) {
-		char[][] chessboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
-		};
 		System.out.println("Ennen konversiota:");
 		draw(chessboard);
 		arrayToBitBoards(chessboard);
