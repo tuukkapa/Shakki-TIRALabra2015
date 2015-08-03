@@ -30,73 +30,9 @@ public class Chessboard {
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
-		};;
+		};
 	
-	public static void arrayToBitBoards(char[][] chessboard) {
-		String binary;
-		for (int i = 0; i < 64; i++) {
-			binary = "0000000000000000000000000000000000000000000000000000000000000000";
-			binary = binary.substring(i+1) + "1" + binary.substring(0, i);
-			switch(chessboard[i/8][i%8]) {
-				case 'r': r += convertStringToBitboard(binary);
-					break;
-				case 'n': n += convertStringToBitboard(binary);
-					break;
-				case 'b': b += convertStringToBitboard(binary);
-					break;
-				case 'q': q += convertStringToBitboard(binary);
-					break;
-				case 'k': k += convertStringToBitboard(binary);
-					break;
-				case 'p': p += convertStringToBitboard(binary);
-					break;
-				case 'R': R += convertStringToBitboard(binary);
-					break;
-				case 'N': N += convertStringToBitboard(binary);
-					break;
-				case 'B': B += convertStringToBitboard(binary);
-					break;
-				case 'Q': Q += convertStringToBitboard(binary);
-					break;
-				case 'K': K += convertStringToBitboard(binary);
-					break;
-				case 'P': P += convertStringToBitboard(binary);
-					break;
-			}
-		}
-	}
-	
-	public static char[][] bitboardsToArray() {
-        char[][] newboard = new char[8][8];
-        for (int i=0; i < 64; i++) {
-            newboard[i/8][i%8] = ' ';
-        }
-        for (int i=0;i<64;i++) {
-            if (((P>>i)&1)==1) {newboard[i/8][i%8] = 'P';}
-            if (((N>>i)&1)==1) {newboard[i/8][i%8] = 'N';}
-            if (((B>>i)&1)==1) {newboard[i/8][i%8] = 'B';}
-            if (((R>>i)&1)==1) {newboard[i/8][i%8] = 'R';}
-            if (((Q>>i)&1)==1) {newboard[i/8][i%8] = 'Q';}
-            if (((K>>i)&1)==1) {newboard[i/8][i%8] = 'K';}
-            if (((p>>i)&1)==1) {newboard[i/8][i%8] = 'p';}
-            if (((n>>i)&1)==1) {newboard[i/8][i%8] = 'n';}
-            if (((b>>i)&1)==1) {newboard[i/8][i%8] = 'b';}
-            if (((r>>i)&1)==1) {newboard[i/8][i%8] = 'r';}
-            if (((q>>i)&1)==1) {newboard[i/8][i%8] = 'q';}
-            if (((k>>i)&1)==1) {newboard[i/8][i%8] = 'k';}
-        }
-		return newboard;
-    }
-	
-	public static long convertStringToBitboard(String binary) {
-		if (binary.charAt(0) == '0') { // is the number positive
-			return Long.parseLong(binary, 2);
-		} else {
-			return Long.parseLong("1" + binary.substring(2), 2) * 2;
-		}
-	}
-	
-	public static void draw(char[][] chessboard) {
+	public static void draw() {
 		for (int i = 0; i < 17; i++) {
 			for (int j = 0; j < 33; j++) {
 				// Draw chess board's top and bottom edge
@@ -153,7 +89,6 @@ public class Chessboard {
 	}
 	
 	public static boolean movePiece(String command) {
-		boolean moveResult;
 		if (command.length() != 4) {
 			return false;
 		}
@@ -180,31 +115,160 @@ public class Chessboard {
 		}
 	}
 	
+	/**
+	 * Moves white pawn and possibly captures a black piece, if allowed by chess rules.
+	 * 
+	 * @param startRow Row where the piece to be moved is
+	 * @param startCol Column where the piece to be moved is
+	 * @param endRow Row where the piece is to be moved
+	 * @param endCol Column where the piece is to be moved
+	 * @return boolean value, whether the move is successfully done
+	 */
 	public static boolean movePawn(int startRow, int startCol, int endRow, int endCol) {
-		if (startRow == 6) {
-			if (endRow >= 4) {
-				
+		// Move forward
+		if (startCol == endCol) {
+			if (((startRow == 6 && endRow >= 4 && chessboard[endRow+1][endCol] == ' ') || startRow - endRow == 1) && chessboard[endRow][endCol] == ' ') {
+				chessboard[startRow][startCol] = ' ';
+				chessboard[endRow][endCol] = 'P';
+				return true;
 			} else {
 				return false;
 			}
+		// Capture
+		} else if (Math.abs(startCol - endCol) == 1 && 
+				startRow - endRow == 1 && 
+				Character.isLowerCase(chessboard[endRow][endCol])) {
+			chessboard[startRow][startCol] = ' ';
+			chessboard[endRow][endCol] = 'P';
+			return true;
+		} else {
+			return false;
 		}
-		return true;
 	}
 	
+	/**
+	 * Moves white rook and possibly captures a black piece, if allowed by chess rules.
+	 * @param startRow Row where the piece to be moved is
+	 * @param startCol Column where the piece to be moved is
+	 * @param endRow Row where the piece is to be moved
+	 * @param endCol Column where the piece is to be moved
+	 * @return boolean value, whether the move is successfully done
+	 */
 	public static boolean moveRook(int startRow, int startCol, int endRow, int endCol) {
-		return true;
+		// Check route vertically
+		if (startCol == endCol) {
+			for (int i = startRow; i < endRow; i++) {
+				if (chessboard[i][startCol] != ' ') {
+					return false;
+				}
+			}	
+		// Check route horizontally
+		} else if (startRow == endRow) {
+			for (int i = startCol; i < endCol; i++) {
+				if (chessboard[startRow][i] != ' ') {
+					return false;
+				}
+			}
+		} else if (startRow != endRow && startCol != endCol) {
+			return false;
+		}
+		
+		if (chessboard[endRow][endCol] == ' ' || Character.isLowerCase(chessboard[endRow][endCol])) {
+			chessboard[startRow][startCol] = ' ';
+			chessboard[endRow][endCol] = 'R';
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public static boolean moveKnight(int startRow, int startCol, int endRow, int endCol) {
-		return true;
+		if ((Math.abs(startCol-endCol) == 1 && Math.abs(startRow-endRow) == 2) || 
+				Math.abs(startCol-endCol) == 2 && Math.abs(startRow-endRow) == 1) {
+			if (chessboard[endRow][endCol] == ' ' || Character.isLowerCase(chessboard[endRow][endCol])) {
+				chessboard[startRow][startCol] = ' ';
+				chessboard[endRow][endCol] = 'N';
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public static boolean moveBishop(int startRow, int startCol, int endRow, int endCol) {
-		return true;
+		if (Math.abs(startCol-endCol) == Math.abs(startRow-endRow)) {
+			for (int i = 0; i < Math.abs(endRow-startRow); i++) {
+				if (endRow>startRow && endCol>startCol) {
+					if (chessboard[startRow+i][startCol+i] != ' ') {
+						return false;
+					}
+				} else if (endRow>startRow && endCol<startCol) {
+					if (chessboard[startRow+i][startCol-i] != ' ') {
+						return false;
+					}
+				} else if (endRow<startRow && endCol>startCol) {
+					if (chessboard[startRow-i][startCol+i] != ' ') {
+						return false;
+					}
+				} else {
+					if (chessboard[startRow-i][endRow-i] != ' ') {
+						return false;
+					}
+				}
+			}
+			if (chessboard[endRow][endCol] == ' ' || Character.isLowerCase(chessboard[endRow][endCol])) {
+				chessboard[startRow][startCol] = ' ';
+				chessboard[endRow][endCol] = 'B';
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public static boolean moveQueen(int startRow, int startCol, int endRow, int endCol) {
-		return true;
+		// Check route diagonally
+		if (Math.abs(startCol-endCol) == Math.abs(startRow-endRow)) {
+			for (int i = 0; i < Math.abs(endRow-startRow); i++) {
+				if (endRow>startRow && endCol>startCol) {
+					if (chessboard[startRow+i][startCol+i] != ' ') {
+						return false;
+					}
+				} else if (endRow>startRow && endCol<startCol) {
+					if (chessboard[startRow+i][startCol-i] != ' ') {
+						return false;
+					}
+				} else if (endRow<startRow && endCol>startCol) {
+					if (chessboard[startRow-i][startCol+i] != ' ') {
+						return false;
+					}
+				} else {
+					if (chessboard[startRow-i][endRow-i] != ' ') {
+						return false;
+					}
+				}
+			}
+		// Check route vertically
+		} else if (startCol == endCol) {
+			for (int i = startRow; i < endRow; i++) {
+				if (chessboard[i][startCol] != ' ') {
+					return false;
+				}
+			}	
+		
+		// Check route horizontally
+		} else if (startRow == endRow) {
+			for (int i = startCol; i < endCol; i++) {
+				if (chessboard[startRow][i] != ' ') {
+					return false;
+				}
+			}
+		}
+		
+		if (chessboard[endRow][endCol] == ' ' || Character.isLowerCase(chessboard[endRow][endCol])) {
+			chessboard[startRow][startCol] = ' ';
+			chessboard[endRow][endCol] = 'Q';
+			return true;
+		}	
+		return false;
 	}
 	
 	public static boolean moveKing(int startRow, int startCol, int endRow, int endCol) {
@@ -212,12 +276,7 @@ public class Chessboard {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println("Ennen konversiota:");
-		draw(chessboard);
-		arrayToBitBoards(chessboard);
-		char[][] uusi = bitboardsToArray();
-		System.out.println("\nJa konversion jälkeen:");
-		draw(uusi);
+		draw();
 	}
 	
 }
