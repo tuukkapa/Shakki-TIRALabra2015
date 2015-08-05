@@ -283,16 +283,17 @@ public class Chessboard {
 	}
 	
 	public static boolean moveKing(int startRow, int startCol, int endRow, int endCol) {
-		char tempChar;
+		char oldSquareContents;
 		if (Math.abs(endRow-startRow) <= 1 && Math.abs(endCol-startCol) <= 1 && canMoveToTargetSquare(endRow, endCol)) {
 			chessboard[startRow][startCol] = ' ';
-			tempChar = chessboard[endRow][endCol];
+			oldSquareContents = chessboard[endRow][endCol];
 			chessboard[endRow][endCol] = 'K';
 			if (!isItCheck(true)) {
+				updateWhiteKingPosition();
 				return true;
 			} else {
 				chessboard[startRow][startCol] = 'K';
-				chessboard[endRow][endCol] = tempChar;
+				chessboard[endRow][endCol] = oldSquareContents;
 				return false;
 			}
 		}
