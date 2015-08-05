@@ -339,15 +339,6 @@ public class Chessboard {
 		int kCol;
 		
 		if (checkedIsWhite) {
-			pawn = 'P';
-			rook = 'R';
-			knight = 'N';
-			bishop = 'B';
-			queen = 'Q';
-			king = 'K';
-			kRow = blackKingPosition/8;
-			kCol = blackKingPosition%8;
-		} else {
 			pawn = 'p';
 			rook = 'r';
 			knight = 'n';
@@ -356,6 +347,16 @@ public class Chessboard {
 			king = 'k';
 			kRow = whiteKingPosition/8;
 			kCol = whiteKingPosition%8;
+			
+		} else {
+			pawn = 'P';
+			rook = 'R';
+			knight = 'N';
+			bishop = 'B';
+			queen = 'Q';
+			king = 'K';
+			kRow = blackKingPosition/8;
+			kCol = blackKingPosition%8;
 		}
 		
 		
