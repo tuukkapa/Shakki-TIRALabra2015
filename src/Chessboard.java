@@ -31,6 +31,7 @@ public class Chessboard {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
+	private static int whiteKingPosition, blackKingPosition;
 	
 	public static void draw() {
 		for (int i = 0; i < 17; i++) {
@@ -89,6 +90,7 @@ public class Chessboard {
 	}
 	
 	public static boolean movePiece(String command) {
+		boolean movedone;
 		if (command.length() != 4) {
 			return false;
 		}
@@ -104,15 +106,24 @@ public class Chessboard {
 		if (error) {
 			return error;
 		}
+		char[][] tempboard = chessboard;
 		switch(chessboard[startRow][startCol]) {
-			case 'P': return movePawn(startRow, startCol, endRow, endCol);
-			case 'R': return moveRook(startRow, startCol, endRow, endCol);
-			case 'N': return moveKnight(startRow, startCol, endRow, endCol);
-			case 'B': return moveBishop(startRow, startCol, endRow, endCol);
-			case 'Q': return moveQueen(startRow, startCol, endRow, endCol);
-			case 'K': return moveKing(startRow, startCol, endRow, endCol);
-			default: return false;
+			case 'P': movedone = movePawn(startRow, startCol, endRow, endCol);
+			case 'R': movedone = moveRook(startRow, startCol, endRow, endCol);
+			case 'N': movedone = moveKnight(startRow, startCol, endRow, endCol);
+			case 'B': movedone = moveBishop(startRow, startCol, endRow, endCol);
+			case 'Q': movedone = moveQueen(startRow, startCol, endRow, endCol);
+			case 'K': movedone = moveKing(startRow, startCol, endRow, endCol);
+			default: movedone = false;
 		}
+		if (!movedone) {
+			return false;
+		}
+		if (isItCheck(true)) {
+			chessboard = tempboard;
+			return false;
+		}
+		return true;
 	}
 	
 	/**
@@ -272,7 +283,166 @@ public class Chessboard {
 	}
 	
 	public static boolean moveKing(int startRow, int startCol, int endRow, int endCol) {
-		return true;
+		char tempChar;
+		if (Math.abs(endRow-startRow) <= 1 && Math.abs(endCol-startCol) <= 1 && canMoveToTargetSquare(endRow, endCol)) {
+			chessboard[startRow][startCol] = ' ';
+			tempChar = chessboard[endRow][endCol];
+			chessboard[endRow][endCol] = 'K';
+			if (!isItCheck(true)) {
+				return true;
+			} else {
+				chessboard[startRow][startCol] = 'K';
+				chessboard[endRow][endCol] = tempChar;
+				return false;
+			}
+		}
+		return false;
+	}
+	
+	public static boolean canMoveToTargetSquare(int endRow, int endCol) {
+		return chessboard[endRow][endCol] == ' ' || Character.isLowerCase(chessboard[endRow][endCol]);
+	}
+
+	public static void updateBlackKingPosition() {
+		for (int i = 0; i < 64; i++) {
+			if (chessboard[i/8][i%8] == 'k') {
+				blackKingPosition = i;
+				break;
+			}
+		}
+	}
+	
+	public static void updateWhiteKingPosition() {
+		for (int i = 0; i < 64; i++) {
+			if (chessboard[i/8][i%8] == 'K') {
+				whiteKingPosition = i;
+				break;
+			}
+		}
+	}
+	
+	/**
+	 * Returns boolean value, if the game situation is chess. This method
+	 * can be used with either side of the player by using boolean parameter
+	 * checkedIsWhite.
+	 * @param checkedIsWhite True, if the checked player is white, false otherwise
+	 * @return True if game situation is check, false otherwise
+	 */
+	public static boolean isItCheck(boolean checkedIsWhite) {
+		char pawn;
+		char rook;
+		char knight;
+		char bishop;
+		char queen;
+		char king;
+		int kRow;
+		int kCol;
+		
+		if (checkedIsWhite) {
+			pawn = 'P';
+			rook = 'R';
+			knight = 'N';
+			bishop = 'B';
+			queen = 'Q';
+			king = 'K';
+			kRow = blackKingPosition/8;
+			kCol = blackKingPosition%8;
+		} else {
+			pawn = 'p';
+			rook = 'r';
+			knight = 'n';
+			bishop = 'b';
+			queen = 'q';
+			king = 'k';
+			kRow = whiteKingPosition/8;
+			kCol = whiteKingPosition%8;
+		}
+		
+		
+		for (int i = 0; i < 64; i++) {
+			// is Pawn threatening
+			// TODO change this to use Math.abs(kRow-(i/8) == 1 etc to be usable for both colours
+			if ((i/8 == kRow -1 && i%8 == kCol - 1) || (i/8 == kRow - 1 && i%8 == kCol +1)) {
+				if (chessboard[i/8][i%8] == pawn) {
+					return true;
+				}
+			}
+			
+			// is Knight threatening
+			if ((Math.abs(kRow-(i/8)) == 2 && Math.abs(kCol-(i%8)) == 1) || 
+					(Math.abs(kRow-(i/8)) == 1 && Math.abs(kCol-(i%8)) == 2)) {
+				if (chessboard[i/8][i%8] == knight) {
+					return true;
+				}
+			}
+			
+			// is Bishop threatening or Queen threatening diagonally
+			if (Math.abs(kRow -(i/8)) == Math.abs(kCol -(i%8)) && (chessboard[i/8][i%8] == bishop || chessboard[i/8][i%8] == queen)) {
+				boolean routeFree = true;
+				for (int j = 0; j < Math.abs(kRow -(i/8)); j++) {
+					if (i/8 < kRow && i%8 < kCol && chessboard[kRow-i][kCol-i] != ' ') {
+						routeFree = false;
+					}
+					if (i/8 > kRow && i%8 < kCol && chessboard[kRow+i][kCol-i] != ' ') {
+						routeFree = false;
+					}
+					if (i/8 < kRow && i%8 > kCol && chessboard[kRow-i][kCol+i] != ' ') {
+						routeFree = false;
+					}
+					if (i/8 > kRow && i%8 > kCol && chessboard[kRow+i][kCol+i] != ' ') {
+						routeFree = false;
+					}
+				}
+				if (routeFree) {
+					return true;
+				}
+			}
+			
+			
+			// is Rook or Queen threatening horizontally
+			if (kRow == i/8 && (chessboard[i/8][i%8] == rook || chessboard[i/8][i%8] == queen)) {
+				boolean routeFree = true;
+				for (int j = 0; j < Math.abs(kCol - (i%8)); j++) {
+					if (kCol < i%8) {
+						if (chessboard[kRow][kCol+i] != ' ') {
+							routeFree = false;
+						}
+					} else {
+						if (chessboard[kRow][kCol-i] != ' ') {
+							routeFree = false;
+						}
+					}	
+				}
+				if (routeFree) {
+					return true;
+				}
+			}
+			
+			// is Rook or Queen threatening vertically
+			if (kCol == i%8 && (chessboard[i/8][i%8] == rook || chessboard[i/8][i%8] == queen)) {
+				boolean routeFree = true;
+				for (int j = 0; j < Math.abs(kRow - (i/8)); j++) {
+					if (kRow < i/8) {
+						if (chessboard[kRow+i][kCol] != ' ') {
+							routeFree = false;
+						}
+					} else {
+						if (chessboard[kRow-i][kCol] != ' ') {
+							routeFree = false;
+						}
+					}
+				}
+				if (routeFree) {
+					return true;
+				}
+			}
+			
+			// is opponent's King threatening
+			if (chessboard[i/8][i%8] == king && (Math.abs((i/8) - kRow) <= 1 && Math.abs((i%8) - kCol) <= 1)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public static void main(String[] args) {
