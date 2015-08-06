@@ -39,7 +39,7 @@ public class ChessboardTest {
 	}
 
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of movePiece method with correct input, of class Chessboard.
 	 */
 	@Test
 	public void testMovePieceCorrectInput() {
@@ -50,6 +50,9 @@ public class ChessboardTest {
 		assertEquals(expResult, result);
 	}
 	
+	/**
+	 * Test of movePiece method with incorrect input string, of class Chessboard. 
+	*/
 	@Test
 	public void testMovePieceWrongInputString() {
 		System.out.println("movePiece wrong input string");
@@ -59,6 +62,10 @@ public class ChessboardTest {
 		assertEquals(expResult, result);
 	}
 	
+	
+	/**
+	 *  Test of movePiece method with incorrect input coordinates, of class Chessboard. 
+	*/
 	@Test
 	public void testMovePieceWrongInputCoordinates() {
 		System.out.println("movePiece wrong input coordinates");
@@ -69,7 +76,8 @@ public class ChessboardTest {
 	}
 
 	/**
-	 * Test of movePawn method, of class Chessboard.
+	 * Test of movePawn method with correct input, of class Chessboard.
+	 * Move piece two squares forward.
 	 */
 	@Test
 	public void testMovePawnCorrectInput1() {
@@ -84,7 +92,8 @@ public class ChessboardTest {
 	}
 	
 	/**
-	 * Test of movePawn method, of class Chessboard.
+	 * Test of movePawn method with correct input, of class Chessboard.
+	 * Move piece one square forward.
 	 */
 	@Test
 	public void testMovePawnCorrectInput2() {
@@ -100,6 +109,7 @@ public class ChessboardTest {
 
 	/**
 	 * Test of moveRook method, of class Chessboard.
+	 * Move rook vertically.
 	 */
 	@Test
 	public void testMoveRookVertically() {
@@ -113,8 +123,9 @@ public class ChessboardTest {
 		assertEquals(expResult, result);
 	}
 	
-		/**
+	/**
 	 * Test of moveRook method, of class Chessboard.
+	 * Move rook horizontally.
 	 */
 	@Test
 	public void testMoveRookHorizontally() {
@@ -129,7 +140,8 @@ public class ChessboardTest {
 	}
 
 	/**
-	 * Test of moveKnight method, of class Chessboard.
+	 * Test of moveKnight method with correct input, of class Chessboard.
+	 * Move knight north-west-west.
 	 */
 	@Test
 	public void testMoveKnightCorrectNWW() {
@@ -145,6 +157,7 @@ public class ChessboardTest {
 	
 	/**
 	 * Test of moveKnight method, of class Chessboard.
+	 * Move knight north-north-west.
 	 */
 	@Test
 	public void testMoveKnightNNW() {
@@ -159,7 +172,8 @@ public class ChessboardTest {
 	}
 	
 	/**
-	 * Test of moveKnight method, of class Chessboard.
+	 * Test of moveKnight method with correct input, of class Chessboard.
+	 * Move knight north-north-east.
 	 */
 	@Test
 	public void testMoveKnightNNE() {
@@ -173,7 +187,8 @@ public class ChessboardTest {
 		assertEquals(expResult, result);
 	}
 	/**
-	 * Test of moveKnight method, of class Chessboard.
+	 * Test of moveKnight method with correct input, of class Chessboard.
+	 * Move knight north-east-east.
 	 */
 	@Test
 	public void testMoveKnightNEE() {
@@ -188,7 +203,8 @@ public class ChessboardTest {
 	}
 	
 	/**
-	 * Test of moveKnight method, of class Chessboard.
+	 * Test of moveKnight method with correct input, of class Chessboard.
+	 * Move knight south-east-east.
 	 */
 	@Test
 	public void testMoveKnightSEE() {
@@ -203,7 +219,8 @@ public class ChessboardTest {
 	}
 	
 	/**
-	 * Test of moveKnight method, of class Chessboard.
+	 * Test of moveKnight method with correct input, of class Chessboard.
+	 * Move knight south-south-east.
 	 */
 	@Test
 	public void testMoveKnightSSE() {
@@ -218,7 +235,8 @@ public class ChessboardTest {
 	}
 
 	/**
-	 * Test of moveKnight method, of class Chessboard.
+	 * Test of moveKnight method with correct input, of class Chessboard.
+	 * Move knight south-south-west.
 	 */
 	@Test
 	public void testMoveKnightSSW() {
@@ -233,7 +251,8 @@ public class ChessboardTest {
 	}
 
 	/**
-	 * Test of moveKnight method, of class Chessboard.
+	 * Test of moveKnight method with correct input, of class Chessboard.
+	 * Move knight south-west-west.
 	 */
 	@Test
 	public void testMoveKnightSWW() {
@@ -248,7 +267,8 @@ public class ChessboardTest {
 	}
 	
 	/**
-	 * Test of moveBishop method, of class Chessboard.
+	 * Test of moveBishop method with correct input, of class Chessboard.
+	 * Move bishop north-west.
 	 */
 	@Test
 	public void testMoveBishopNW() {
@@ -263,7 +283,8 @@ public class ChessboardTest {
 	}
 
 	/**
-	 * Test of moveBishop method, of class Chessboard.
+	 * Test of moveBishop method with correct input, of class Chessboard.
+	 * Move bishop north-east.
 	 */
 	@Test
 	public void testMoveBishopNE() {
@@ -278,7 +299,8 @@ public class ChessboardTest {
 	}
 
 	/**
-	 * Test of moveBishop method, of class Chessboard.
+	 * Test of moveBishop method with correct input, of class Chessboard.
+	 * Move bishop south-east.
 	 */
 	@Test
 	public void testMoveBishopSE() {
@@ -293,7 +315,8 @@ public class ChessboardTest {
 	}
 
 	/**
-	 * Test of moveBishop method, of class Chessboard.
+	 * Test of moveBishop method with correct input, of class Chessboard.
+	 * Move bishop south-west.
 	 */
 	@Test
 	public void testMoveBishopSW() {
@@ -308,7 +331,8 @@ public class ChessboardTest {
 	}
 	
 	/**
-	 * Test of moveQueen method, of class Chessboard.
+	 * Test of moveQueen method with correct input, of class Chessboard.
+	 * Move queen north.
 	 */
 	@Test
 	public void testMoveQueenN() {
@@ -323,7 +347,8 @@ public class ChessboardTest {
 	}
 
 	/**
-	 * Test of moveQueen method, of class Chessboard.
+	 * Test of moveQueen method with correct input, of class Chessboard.
+	 * Move queen north-east.
 	 */
 	@Test
 	public void testMoveQueenNE() {
@@ -338,7 +363,8 @@ public class ChessboardTest {
 	}
 	
 	/**
-	 * Test of moveQueen method, of class Chessboard.
+	 * Test of moveQueen method with correct input, of class Chessboard.
+	 * Move queen east.
 	 */
 	@Test
 	public void testMoveQueenE() {
@@ -353,7 +379,8 @@ public class ChessboardTest {
 	}
 	
 	/**
-	 * Test of moveQueen method, of class Chessboard.
+	 * Test of moveQueen method with correct input, of class Chessboard.
+	 * Move queen south-east.
 	 */
 	@Test
 	public void testMoveQueenSE() {
@@ -368,7 +395,8 @@ public class ChessboardTest {
 	}
 	
 	/**
-	 * Test of moveQueen method, of class Chessboard.
+	 * Test of moveQueen method with correct input, of class Chessboard.
+	 * Move queen south.
 	 */
 	@Test
 	public void testMoveQueenS() {
@@ -383,7 +411,8 @@ public class ChessboardTest {
 	}
 	
 	/**
-	 * Test of moveQueen method, of class Chessboard.
+	 * Test of moveQueen method with correct input, of class Chessboard.
+	 * Move queen south-west.
 	 */
 	@Test
 	public void testMoveQueenSW() {
@@ -398,7 +427,8 @@ public class ChessboardTest {
 	}
 	
 	/**
-	 * Test of moveQueen method, of class Chessboard.
+	 * Test of moveQueen method with correct input, of class Chessboard.
+	 * Move queen west.
 	 */
 	@Test
 	public void testMoveQueenW() {
@@ -413,7 +443,8 @@ public class ChessboardTest {
 	}
 	
 	/**
-	 * Test of moveQueen method, of class Chessboard.
+	 * Test of moveQueen method with correct input, of class Chessboard.
+	 * Move queen north-west.
 	 */
 	@Test
 	public void testMoveQueenNW() {
@@ -428,7 +459,8 @@ public class ChessboardTest {
 	}
 	
 	/**
-	 * Test of moveKing method, of class Chessboard.
+	 * Test of moveKing method with correct input, of class Chessboard.
+	 * Move king north.
 	 */
 	@Test
 	public void testMoveKing() {
@@ -444,6 +476,7 @@ public class ChessboardTest {
 
 	/**
 	 * Test of canMoveToTargetSquare method, of class Chessboard.
+	 * Tests when the target square is empty.
 	 */
 	@Test
 	public void testCanMoveToTargetSquareSuccessEmpty() {
@@ -457,6 +490,7 @@ public class ChessboardTest {
 	
 	/**
 	 * Test of canMoveToTargetSquare method, of class Chessboard.
+	 * Tests when the target square contains an enemy piece.
 	 */
 	@Test
 	public void testCanMoveToTargetSquareSuccessEnemyPiece() {
@@ -471,6 +505,7 @@ public class ChessboardTest {
 	
 	/**
 	 * Test of canMoveToTargetSquare method, of class Chessboard.
+	 * Tests when the target square contains player's own piece.
 	 */
 	@Test
 	public void testCanMoveToTargetSquareFail() {
@@ -510,6 +545,7 @@ public class ChessboardTest {
 
 	/**
 	 * Test of isItCheck method, of class Chessboard.
+	 * Tests when the game situation is check against white.
 	 */
 	@Test
 	public void testIsItCheckWithCheckSituation() {
@@ -523,6 +559,7 @@ public class ChessboardTest {
 	
 	/**
 	 * Test of isItCheck method, of class Chessboard.
+	 * Tests when the game situation isn't check against white.
 	 */
 	@Test
 	public void testIsItCheckWithoutCheckSituation() {
