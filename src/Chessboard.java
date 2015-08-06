@@ -1,6 +1,10 @@
 
 import java.util.Arrays;
 
+/**
+ * This class does everything related to the chess board and it's pieces' movement.
+ * @author Tuukka Paukkunen
+ */
 public class Chessboard {
 	/*
 		Rook (R, r) = torni
@@ -31,8 +35,42 @@ public class Chessboard {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-	private static int whiteKingPosition, blackKingPosition;
+	private static int whiteKingPosition = 60, blackKingPosition = 4;
 	
+	public static void makeTestBoard(boolean check) {
+		if (check) {
+			char[][] newboard = {
+				{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+				{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+				{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+				{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+				{' ', ' ', ' ', ' ', 'r', ' ', ' ', ' '},
+				{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
+				{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
+				{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
+			};
+			chessboard = newboard;
+			updateWhiteKingPosition();
+			updateBlackKingPosition();
+			return;
+		}
+		char[][] newboard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
+			{'Q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
+			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
+		};
+		chessboard = newboard;
+	}
+	
+	/**
+	 * Method uses the char-array of this class as an input and outputs human
+	 * readable ASCII-character version of the chess board.
+	 */
 	public static void draw() {
 		for (int i = 0; i < 17; i++) {
 			for (int j = 0; j < 33; j++) {
@@ -58,8 +96,8 @@ public class Chessboard {
 						// Draw the lines between squaress
 						if (j%4 == 0) {
 							if (j == 0) {
-								// (i-1)/2 + 1 calculates board's rownumber from i
-								System.out.print((i-1)/2 + 1 + " |");
+								// 9-((i-1)/2 + 1) calculates board's rownumber from i
+								System.out.print(9-((i-1)/2 + 1) + " |");
 							} else {
 								System.out.print("|");
 							}
@@ -89,8 +127,17 @@ public class Chessboard {
 		System.out.println("    A   B   C   D   E   F   G   H");
 	}
 	
+	/**
+	 * Method receives move commands from human user, parses those into coordinates,
+	 * check's the validity of the command (coordinates are not outside the board
+	 * and the command obeys chess's rules. If the move command is valid, method
+	 * updates the char-array and outputs "true" boolean value.
+	 * @param command Move command received from the human user, such as "c4e5".
+	 * @return True if command is valid and successful, false otherwise.
+	 */
 	public static boolean movePiece(String command) {
 		boolean movedone;
+		command = command.toUpperCase();
 		if (command.length() != 4) {
 			return false;
 		}
@@ -104,17 +151,24 @@ public class Chessboard {
 				endCol < 0 || endCol > 7 ||
 				endRow < 0 || endRow > 7;
 		if (error) {
-			return error;
+			return false;
 		}
 		char[][] tempboard = chessboard;
 		switch(chessboard[startRow][startCol]) {
 			case 'P': movedone = movePawn(startRow, startCol, endRow, endCol);
+				break;
 			case 'R': movedone = moveRook(startRow, startCol, endRow, endCol);
+				break;
 			case 'N': movedone = moveKnight(startRow, startCol, endRow, endCol);
+				break;
 			case 'B': movedone = moveBishop(startRow, startCol, endRow, endCol);
+				break;
 			case 'Q': movedone = moveQueen(startRow, startCol, endRow, endCol);
+				break;
 			case 'K': movedone = moveKing(startRow, startCol, endRow, endCol);
+				break;
 			default: movedone = false;
+				break;
 		}
 		if (!movedone) {
 			return false;
@@ -128,17 +182,16 @@ public class Chessboard {
 	
 	/**
 	 * Moves white pawn and possibly captures a black piece, if allowed by chess rules.
-	 * 
-	 * @param startRow Row where the piece to be moved is
-	 * @param startCol Column where the piece to be moved is
-	 * @param endRow Row where the piece is to be moved
-	 * @param endCol Column where the piece is to be moved
-	 * @return boolean value, whether the move is successfully done
+	 * @param startRow Row where the piece to be moved is.
+	 * @param startCol Column where the piece to be moved is.
+	 * @param endRow Row where the piece is to be moved.
+	 * @param endCol Column where the piece is to be moved.
+	 * @return boolean value, whether the move is successfully done.
 	 */
 	public static boolean movePawn(int startRow, int startCol, int endRow, int endCol) {
 		// Move forward
 		if (startCol == endCol) {
-			if (((startRow == 6 && endRow >= 4 && chessboard[endRow+1][endCol] == ' ') || startRow - endRow == 1) && chessboard[endRow][endCol] == ' ') {
+			if (((startRow == 6 && endRow == 4) || startRow - endRow == 1) && chessboard[endRow][endCol] == ' ') {
 				chessboard[startRow][startCol] = ' ';
 				chessboard[endRow][endCol] = 'P';
 				return true;
@@ -159,11 +212,11 @@ public class Chessboard {
 	
 	/**
 	 * Moves white rook and possibly captures a black piece, if allowed by chess rules.
-	 * @param startRow Row where the piece to be moved is
-	 * @param startCol Column where the piece to be moved is
-	 * @param endRow Row where the piece is to be moved
-	 * @param endCol Column where the piece is to be moved
-	 * @return boolean value, whether the move is successfully done
+	 * @param startRow Row where the piece to be moved is.
+	 * @param startCol Column where the piece to be moved is.
+	 * @param endRow Row where the piece is to be moved.
+	 * @param endCol Column where the piece is to be moved.
+	 * @return True, if move is successfully done, false otherwise.
 	 */
 	public static boolean moveRook(int startRow, int startCol, int endRow, int endCol) {
 		// Check route vertically
@@ -193,6 +246,14 @@ public class Chessboard {
 		}
 	}
 	
+	/**
+	 * Moves white knight and possibly captures a black piece, if allowed by chess rules.
+	 * @param startRow Row where the piece to be moved is.
+	 * @param startCol Column where the piece to be moved is.
+	 * @param endRow Row where the piece is to be moved.
+	 * @param endCol Column where the piece is to be moved.
+	 * @return True, if move is successfully done, false otherwise.
+	 */
 	public static boolean moveKnight(int startRow, int startCol, int endRow, int endCol) {
 		if ((Math.abs(startCol-endCol) == 1 && Math.abs(startRow-endRow) == 2) || 
 				Math.abs(startCol-endCol) == 2 && Math.abs(startRow-endRow) == 1) {
@@ -205,9 +266,17 @@ public class Chessboard {
 		return false;
 	}
 	
+	/**
+	 * Moves white bishop and possibly captures a black piece, if allowed by chess rules.
+	 * @param startRow Row where the piece to be moved is.
+	 * @param startCol Column where the piece to be moved is.
+	 * @param endRow Row where the piece is to be moved.
+	 * @param endCol Column where the piece is to be moved.
+	 * @return True, if move is successfully done, false otherwise.
+	 */
 	public static boolean moveBishop(int startRow, int startCol, int endRow, int endCol) {
 		if (Math.abs(startCol-endCol) == Math.abs(startRow-endRow)) {
-			for (int i = 0; i < Math.abs(endRow-startRow); i++) {
+			for (int i = 1; i < Math.abs(endRow-startRow); i++) {
 				if (endRow>startRow && endCol>startCol) {
 					if (chessboard[startRow+i][startCol+i] != ' ') {
 						return false;
@@ -235,10 +304,18 @@ public class Chessboard {
 		return false;
 	}
 	
+	/**
+	 * Moves white queen and possibly captures a black piece, if allowed by chess rules.
+	 * @param startRow Row where the piece to be moved is.
+	 * @param startCol Column where the piece to be moved is.
+	 * @param endRow Row where the piece is to be moved.
+	 * @param endCol Column where the piece is to be moved.
+	 * @return True, if move is successfully done, false otherwise.
+	 */
 	public static boolean moveQueen(int startRow, int startCol, int endRow, int endCol) {
 		// Check route diagonally
 		if (Math.abs(startCol-endCol) == Math.abs(startRow-endRow)) {
-			for (int i = 0; i < Math.abs(endRow-startRow); i++) {
+			for (int i = 1; i < Math.abs(endRow-startRow); i++) {
 				if (endRow>startRow && endCol>startCol) {
 					if (chessboard[startRow+i][startCol+i] != ' ') {
 						return false;
@@ -259,16 +336,16 @@ public class Chessboard {
 			}
 		// Check route vertically
 		} else if (startCol == endCol) {
-			for (int i = startRow; i < endRow; i++) {
-				if (chessboard[i][startCol] != ' ') {
+			for (int i = 1; i < Math.abs(endRow-startRow); i++) {
+				if (chessboard[startRow+i][startCol] != ' ') {
 					return false;
 				}
 			}	
 		
 		// Check route horizontally
 		} else if (startRow == endRow) {
-			for (int i = startCol; i < endCol; i++) {
-				if (chessboard[startRow][i] != ' ') {
+			for (int i = 1; i < Math.abs(endCol-startCol); i++) {
+				if (chessboard[startRow][startCol+i] != ' ') {
 					return false;
 				}
 			}
@@ -282,6 +359,14 @@ public class Chessboard {
 		return false;
 	}
 	
+	/**
+	 * Moves white king and possibly captures a black piece, if allowed by chess rules.
+	 * @param startRow Row where the piece to be moved is.
+	 * @param startCol Column where the piece to be moved is.
+	 * @param endRow Row where the piece is to be moved.
+	 * @param endCol Column where the piece is to be moved.
+	 * @return True, if move is successfully done, false otherwise.
+	 */
 	public static boolean moveKing(int startRow, int startCol, int endRow, int endCol) {
 		char oldSquareContents;
 		if (Math.abs(endRow-startRow) <= 1 && Math.abs(endCol-startCol) <= 1 && canMoveToTargetSquare(endRow, endCol)) {
@@ -300,10 +385,19 @@ public class Chessboard {
 		return false;
 	}
 	
+	/**
+	 * Determines if chess piece can be moved into the given coordinates by chess rules.
+	 * @param endRow Row where the piece is to be moved.
+	 * @param endCol Column where the piece is to be moved.
+	 * @return True, if piece can be moved to the coordinates, false otherwise.
+	 */
 	public static boolean canMoveToTargetSquare(int endRow, int endCol) {
 		return chessboard[endRow][endCol] == ' ' || Character.isLowerCase(chessboard[endRow][endCol]);
 	}
 
+	/**
+	 * Method updates black king's position at the char array.
+	 */
 	public static void updateBlackKingPosition() {
 		for (int i = 0; i < 64; i++) {
 			if (chessboard[i/8][i%8] == 'k') {
@@ -313,6 +407,10 @@ public class Chessboard {
 		}
 	}
 	
+	
+	/**
+	 * Method updates white king's position at the char array.
+	 */
 	public static void updateWhiteKingPosition() {
 		for (int i = 0; i < 64; i++) {
 			if (chessboard[i/8][i%8] == 'K') {
@@ -323,11 +421,11 @@ public class Chessboard {
 	}
 	
 	/**
-	 * Returns boolean value, if the game situation is chess. This method
+	 * Determines, if the game situation is chess. This method
 	 * can be used with either side of the player by using boolean parameter
 	 * checkedIsWhite.
-	 * @param checkedIsWhite True, if the checked player is white, false otherwise
-	 * @return True if game situation is check, false otherwise
+	 * @param checkedIsWhite True, if the checked player is white, false otherwise.
+	 * @return True if game situation is check, false otherwise.
 	 */
 	public static boolean isItCheck(boolean checkedIsWhite) {
 		char pawn;
@@ -381,17 +479,17 @@ public class Chessboard {
 			// is Bishop threatening or Queen threatening diagonally
 			if (Math.abs(kRow -(i/8)) == Math.abs(kCol -(i%8)) && (chessboard[i/8][i%8] == bishop || chessboard[i/8][i%8] == queen)) {
 				boolean routeFree = true;
-				for (int j = 0; j < Math.abs(kRow -(i/8)); j++) {
-					if (i/8 < kRow && i%8 < kCol && chessboard[kRow-i][kCol-i] != ' ') {
+				for (int j = 1; j < Math.abs(kRow -(i/8)); j++) {
+					if (i/8 < kRow && i%8 < kCol && chessboard[kRow-j][kCol-j] != ' ') {
 						routeFree = false;
 					}
-					if (i/8 > kRow && i%8 < kCol && chessboard[kRow+i][kCol-i] != ' ') {
+					if (i/8 > kRow && i%8 < kCol && chessboard[kRow+j][kCol-j] != ' ') {
 						routeFree = false;
 					}
-					if (i/8 < kRow && i%8 > kCol && chessboard[kRow-i][kCol+i] != ' ') {
+					if (i/8 < kRow && i%8 > kCol && chessboard[kRow-j][kCol+j] != ' ') {
 						routeFree = false;
 					}
-					if (i/8 > kRow && i%8 > kCol && chessboard[kRow+i][kCol+i] != ' ') {
+					if (i/8 > kRow && i%8 > kCol && chessboard[kRow+j][kCol+j] != ' ') {
 						routeFree = false;
 					}
 				}
@@ -404,13 +502,13 @@ public class Chessboard {
 			// is Rook or Queen threatening horizontally
 			if (kRow == i/8 && (chessboard[i/8][i%8] == rook || chessboard[i/8][i%8] == queen)) {
 				boolean routeFree = true;
-				for (int j = 0; j < Math.abs(kCol - (i%8)); j++) {
+				for (int j = 1; j < Math.abs(kCol - (i%8)); j++) {
 					if (kCol < i%8) {
-						if (chessboard[kRow][kCol+i] != ' ') {
+						if (chessboard[kRow][kCol+j] != ' ') {
 							routeFree = false;
 						}
 					} else {
-						if (chessboard[kRow][kCol-i] != ' ') {
+						if (chessboard[kRow][kCol-j] != ' ') {
 							routeFree = false;
 						}
 					}	
@@ -423,13 +521,13 @@ public class Chessboard {
 			// is Rook or Queen threatening vertically
 			if (kCol == i%8 && (chessboard[i/8][i%8] == rook || chessboard[i/8][i%8] == queen)) {
 				boolean routeFree = true;
-				for (int j = 0; j < Math.abs(kRow - (i/8)); j++) {
+				for (int j = 1; j < Math.abs(kRow - (i/8)); j++) {
 					if (kRow < i/8) {
-						if (chessboard[kRow+i][kCol] != ' ') {
+						if (chessboard[kRow+j][kCol] != ' ') {
 							routeFree = false;
 						}
 					} else {
-						if (chessboard[kRow-i][kCol] != ' ') {
+						if (chessboard[kRow-j][kCol] != ' ') {
 							routeFree = false;
 						}
 					}
@@ -447,8 +545,28 @@ public class Chessboard {
 		return false;
 	}
 	
-	public static void main(String[] args) {
-		draw();
+	/**
+	 * Returns contents of one chess board square.
+	 * @param row Row of the square.
+	 * @param col Column of the square.
+	 * @return Character, contents of the square.
+	 */
+	public static char getSquareContents(int row, int col) {
+		return chessboard[row][col];
+	}
+	
+	/**
+	 * Moves king's position for testing purposes.
+	 * @param row Row of the new position.
+	 * @param col Column of the new position.
+	 * @param colour Colour of the king, true = white, false = black.
+	 */
+	public static void moveKingForTest(int row, int col, boolean colour) {
+		if (colour) {
+			chessboard[row][col] = 'K';
+		} else {
+			chessboard[row][col] = 'k';
+		}
 	}
 	
 }
