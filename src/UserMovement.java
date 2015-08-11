@@ -38,18 +38,21 @@ public class UserMovement {
 			return false;
 		}
 		char[][] tempboard = chessboard.getBoard();
+		if (Character.isLowerCase(tempboard[startCol][endCol])) {
+			return false;
+		}
 		switch(tempboard[startRow][startCol]) {
-			case 'P': movedone = chessboard.movePawn(true, startRow, startCol, endRow, endCol);
+			case 'P': movedone = chessboard.movePawn(startRow, startCol, endRow, endCol);
 				break;
-			case 'R': movedone = chessboard.moveRook(true, startRow, startCol, endRow, endCol);
+			case 'R': movedone = chessboard.moveRook(startRow, startCol, endRow, endCol);
 				break;
-			case 'N': movedone = chessboard.moveKnight(true, startRow, startCol, endRow, endCol);
+			case 'N': movedone = chessboard.moveKnight(startRow, startCol, endRow, endCol);
 				break;
-			case 'B': movedone = chessboard.moveBishop(true, startRow, startCol, endRow, endCol);
+			case 'B': movedone = chessboard.moveBishop(startRow, startCol, endRow, endCol);
 				break;
-			case 'Q': movedone = chessboard.moveQueen(true, startRow, startCol, endRow, endCol);
+			case 'Q': movedone = chessboard.moveQueen(startRow, startCol, endRow, endCol);
 				break;
-			case 'K': movedone = chessboard.moveKing(true, startRow, startCol, endRow, endCol);
+			case 'K': movedone = chessboard.moveKing(startRow, startCol, endRow, endCol);
 				break;
 			default: movedone = false;
 				break;
