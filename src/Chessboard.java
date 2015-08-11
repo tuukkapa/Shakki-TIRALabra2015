@@ -1,6 +1,3 @@
-
-import java.util.Arrays;
-
 /**
  * This class does everything related to the chess board and it's pieces' movement.
  * @author Tuukka Paukkunen
@@ -86,13 +83,22 @@ public class Chessboard {
 		return chessboard;
 	}
 	
-	public boolean areCoordinatesOutsideBoard(int startRow, int startCol, int endRow, int endCol) {
+	/**
+	 * Class's private method, which tells whether the given coordinates are outside
+	 * the chess board.
+	 * @param startRow Row where the piece to be moved is.
+	 * @param startCol Column where the piece to be moved is.
+	 * @param endRow Row where the piece is to be moved.
+	 * @param endCol Column where the piece is to be moved.
+	 * @return True, if one of the coordinates is outside the board, false otherwise.
+	 */
+	private boolean areCoordinatesOutsideBoard(int startRow, int startCol, int endRow, int endCol) {
 		return startRow < 0 || startRow > 7 || startCol < 0 || startCol > 7 || endRow < 0 || endRow > 7 || endCol < 0 || endCol > 7;
 	}
 	
 	/**
-	 * Moves white pawn and possibly captures a black piece, if allowed by chess rules.
-	 * @param colour True if white piece is moved, false otherwise.
+	 * Moves pawn and possibly captures an enemy piece, if allowed by chess rules.
+	 * @param colour True, if the piece to be moved is white, false otherwise.
 	 * @param startRow Row where the piece to be moved is.
 	 * @param startCol Column where the piece to be moved is.
 	 * @param endRow Row where the piece is to be moved.
@@ -131,7 +137,7 @@ public class Chessboard {
 	}
 	
 	/**
-	 * Moves white rook and possibly captures a black piece, if allowed by chess rules.
+	 * Moves rook and possibly captures an enemy piece, if allowed by chess rules.
 	 * @param colour True, if the piece to be moved is white, false otherwise.
 	 * @param startRow Row where the piece to be moved is.
 	 * @param startCol Column where the piece to be moved is.
@@ -177,7 +183,7 @@ public class Chessboard {
 	}
 	
 	/**
-	 * Moves white knight and possibly captures a black piece, if allowed by chess rules.
+	 * Moves knight and possibly captures an enemy piece, if allowed by chess rules.
 	 * @param colour True, if the piece to be moved is white, false otherwise.
 	 * @param startRow Row where the piece to be moved is.
 	 * @param startCol Column where the piece to be moved is.
@@ -208,7 +214,8 @@ public class Chessboard {
 	}
 	
 	/**
-	 * Moves white bishop and possibly captures a black piece, if allowed by chess rules.
+	 * Moves bishop and possibly captures an enemy piece, if allowed by chess rules.
+	 * @param colour True, if the piece to be moved is white, false otherwise.
 	 * @param startRow Row where the piece to be moved is.
 	 * @param startCol Column where the piece to be moved is.
 	 * @param endRow Row where the piece is to be moved.
@@ -256,7 +263,8 @@ public class Chessboard {
 	}
 	
 	/**
-	 * Moves white queen and possibly captures a black piece, if allowed by chess rules.
+	 * Moves queen and possibly captures an enemy piece, if allowed by chess rules.
+	 * @param colour True, if the piece to be moved is white, false otherwise.
 	 * @param startRow Row where the piece to be moved is.
 	 * @param startCol Column where the piece to be moved is.
 	 * @param endRow Row where the piece is to be moved.
@@ -321,7 +329,8 @@ public class Chessboard {
 	}
 	
 	/**
-	 * Moves white king and possibly captures a black piece, if allowed by chess rules.
+	 * Moves king and possibly captures an enemy piece, if allowed by chess rules.
+	 * @param colour True, if the piece to be moved is white, false otherwise.
 	 * @param startRow Row where the piece to be moved is.
 	 * @param startCol Column where the piece to be moved is.
 	 * @param endRow Row where the piece is to be moved.
@@ -339,12 +348,13 @@ public class Chessboard {
 		if (Math.abs(endRow-startRow) <= 1 && Math.abs(endCol-startCol) <= 1 && this.canMoveToTargetSquare(colour, endRow, endCol)) {
 			chessboard[startRow][startCol] = ' ';
 			chessboard[endRow][endCol] = king;
+			updateKingPosition(colour);
 			if (!isItCheck(colour)) {
-				updateKingPosition(colour);
 				return true;
 			}
 		}
 		chessboard = tempBoard;
+		updateKingPosition(colour);
 		return false;
 	}
 	
@@ -360,9 +370,9 @@ public class Chessboard {
 		return chessboard[endRow][endCol] == ' ' || onTargetSquareIsEnemyPiece;
 	}
 
-	/*
+	/**
 	 * Method updates king's position at the char array.
-	 * @param white True, if piece to be moved is white, false otherwise.
+	 * @param colour True, if piece to be moved is white, false otherwise.
 	 */
 	public void updateKingPosition(boolean colour) {
 		char king = colour ? 'K' : 'k';
@@ -386,14 +396,8 @@ public class Chessboard {
 	 * @return True if game situation is check, false otherwise.
 	 */
 	public boolean isItCheck(boolean checkedIsWhite) {
-		char pawn;
-		char rook;
-		char knight;
-		char bishop;
-		char queen;
-		char king;
-		int kRow;
-		int kCol;
+		char pawn, rook, knight, bishop, queen, king;
+		int kRow, kCol;
 		
 		if (checkedIsWhite) {
 			pawn = 'p';

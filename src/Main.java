@@ -38,7 +38,6 @@ public class Main {
 				}
 			}
 		} while (continueGame);
-		
 	}
-	
+
 }
