@@ -14,11 +14,11 @@ public class Main {
 	 * @param args 
 	 */
 	public static void main(String[] args) {
+		Chessboard chessboard = new Chessboard();
 		Scanner input = new Scanner(System.in);
 		String command;
 		boolean continueGame = true;
-		Chessboard.makeTestBoard(false);
-		Chessboard.draw();
+		UserInterface.draw(chessboard.getBoard());
 		System.out.println("Peli vastaanottaa siirtokomennot koordinaatteina.\n"
 				+ "Esimerkiksi komento c2c4 siirtää koordinaateissa c2\n"
 				+ "olevan nappulan koordinaatteihin c4. Peli tarkistaa, ettei\n"
@@ -31,8 +31,8 @@ public class Main {
 			if (command.equals("stop")) {
 				continueGame = false;
 			} else {
-				if (Chessboard.movePiece(command)) {
-					Chessboard.draw();
+				if (UserMovement.movePiece(command, chessboard)) {
+					UserInterface.draw(chessboard.getBoard());
 				} else {
 					System.out.println("Virheellinen komento.");
 				}

@@ -31,7 +31,6 @@ public class ChessboardTest {
 	
 	@Before
 	public void setUp() {
-		Chessboard.makeTestBoard(false);
 	}
 	
 	@After
@@ -43,10 +42,12 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testMovePieceCorrectInput() {
+		Chessboard testboard = new Chessboard();
+		testboard.makeTestBoard(false);
 		System.out.println("movePiece correct input");
 		String command = "c2c3";
 		boolean expResult = true;
-		boolean result = Chessboard.movePiece(command);
+		boolean result = UserMovement.movePiece(command);
 		assertEquals(expResult, result);
 	}
 	
@@ -55,10 +56,12 @@ public class ChessboardTest {
 	*/
 	@Test
 	public void testMovePieceWrongInputString() {
+		Chessboard testboard = new Chessboard();
+		testboard.makeTestBoard(false);
 		System.out.println("movePiece wrong input string");
 		String command = "hello";
 		boolean expResult = false;
-		boolean result = Chessboard.movePiece(command);
+		boolean result = UserMovement.movePiece(command);
 		assertEquals(expResult, result);
 	}
 	
@@ -68,10 +71,12 @@ public class ChessboardTest {
 	*/
 	@Test
 	public void testMovePieceWrongInputCoordinates() {
+		Chessboard testboard = new Chessboard();
+		testboard.makeTestBoard(false);
 		System.out.println("movePiece wrong input coordinates");
 		String command = "c9u9";
 		boolean expResult = false;
-		boolean result = Chessboard.movePiece(command);
+		boolean result = UserMovement.movePiece(command);
 		assertEquals(expResult, result);
 	}
 
@@ -523,7 +528,7 @@ public class ChessboardTest {
 	@Test
 	public void testUpdateBlackKingPosition() {
 		System.out.println("updateBlackKingPosition");
-		Chessboard.moveKingForTest(5, 5, false);
+		Chessboard.moveKingForTest(false, 5, 5);
 		Chessboard.updateBlackKingPosition();
 		char expResult = 'k';
 		char result = Chessboard.getSquareContents(5, 5);
@@ -536,7 +541,7 @@ public class ChessboardTest {
 	@Test
 	public void testUpdateWhiteKingPosition() {
 		System.out.println("updateWhiteKingPosition");
-		Chessboard.moveKingForTest(6, 6, true);
+		Chessboard.moveKingForTest(true, 6, 6);
 		Chessboard.updateWhiteKingPosition();
 		char expResult = 'K';
 		char result = Chessboard.getSquareContents(6, 6);
