@@ -38,35 +38,19 @@ public class AI {
 		if (depth == 0 || chessboard.isItCheckMate()) {
 			return chessboard.getValue(true);
 		}
-		if (maximizingPlayer) {
-			bestValue = Integer.MAX_VALUE;
-			Piece[] pieces = chessboard.getPieces(false);
-			for (int i = 0; i < pieces.length; i++) {
-				int[] movements = pieces[i].getPossibleMovements(chessboard);
-				for (int j = 0; j < movements.length; j++) {
-					Chessboard clone = new Chessboard();
-					clone.setBoard(chessboard.getBoard());
-					pieces[i].move(clone, pieces[i].getPosition(), movements[j]);
-					value = minimax(clone, depth - 1, false);
-					bestValue = Math.max(bestValue, value);
-				}
+		bestValue = maximizingPlayer ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+		Piece[] pieces = maximizingPlayer ? chessboard.getPieces(false) : chessboard.getPieces(true);
+		for (int i = 0; i < pieces.length; i++) {
+			int[] movements = pieces[i].getPossibleMovements(chessboard);
+			for (int j = 0; j < movements.length; j++) {
+				Chessboard clone = new Chessboard();
+				clone.setBoard(chessboard.getBoard());
+				pieces[i].move(clone, pieces[i].getPosition(), movements[j]);
+				value = minimax(clone, depth - 1, false);
+				bestValue = maximizingPlayer ? Math.max(bestValue, value) : Math.min(bestValue, value);
 			}
-			return bestValue;
-		} else {
-			bestValue = Integer.MIN_VALUE;
-			Piece[] pieces = chessboard.getPieces(true);
-			for (int i = 0; i < pieces.length; i++) {
-				int[] movements = pieces[i].getPossibleMovements(chessboard);
-				for (int j = 0; j < movements.length; j++) {
-					Chessboard clone = new Chessboard();
-					clone.setBoard(chessboard.getBoard());
-					pieces[i].move(clone, pieces[i].getPosition(), movements[j]);
-					value = minimax(clone, depth - 1, true);
-					bestValue = Math.min(bestValue, value);
-				}
-			}
-			return bestValue;
 		}
+		return bestValue;
 	}
 	
 }
