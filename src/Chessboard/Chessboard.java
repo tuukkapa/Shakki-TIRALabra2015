@@ -1,3 +1,7 @@
+package Chessboard;
+
+import Chessboard.pieces.*;
+
 /**
  * This class does everything related to the chess board and it's pieces' movement.
  * @author Tuukka Paukkunen
@@ -22,6 +26,7 @@ public class Chessboard {
 	
 	private char[][] chessboard;
 	private int whiteKingPosition, blackKingPosition;
+	private Piece[] whitePieces, blackPieces;
 	
 	public Chessboard() {
 		char[][] newboard = {
@@ -37,6 +42,13 @@ public class Chessboard {
 		chessboard = newboard;
 		whiteKingPosition = 60;
 		blackKingPosition= 4;
+		whitePieces = new Piece[16];
+		blackPieces = new Piece[16];
+		for (int i = 0; i < whitePieces.length; i++) {
+			whitePieces[i] = new Pawn(true, 48 + i);
+			blackPieces[i] = new Pawn(false, 7 + i);
+		}
+		// TODO create the rest of the pieces
 	}
 	
 	/**
@@ -73,6 +85,10 @@ public class Chessboard {
 		chessboard = newboard;
 		updateKingPosition(true);
 		updateKingPosition(false);
+	}
+	
+	public Piece[] getPieces(boolean white) {
+		return white ? whitePieces : blackPieces;
 	}
 	
 	/**
@@ -399,7 +415,7 @@ public class Chessboard {
 	 * @param endCol Column where the piece is to be moved.
 	 * @return True, if square contains enemy, false otherwise.
 	 */
-	private boolean endSquareContainsEnemy(boolean colour, int endRow, int endCol) {
+	public boolean endSquareContainsEnemy(boolean colour, int endRow, int endCol) {
 		return colour ? Character.isLowerCase(chessboard[endRow][endCol]) : Character.isUpperCase(chessboard[endRow][endCol]);	
 	}
 
@@ -552,6 +568,21 @@ public class Chessboard {
 		return false;
 	}
 	
+	public boolean isItCheckMate() {
+		// TODO
+		return true;
+	}
+	
+	/**
+	 * Returns the value of the game situation at the chessboard.
+	 * @param True if computer plays black pieces, false otherwise.
+	 * @return Integer, higher means better chances at winning.
+	 */
+	public int getValue(boolean computerIsBlack) {
+		// TODO
+		return 1;
+	}
+	
 	/**
 	 * Returns contents of one chess board square.
 	 * @param row Row of the square.
@@ -560,6 +591,10 @@ public class Chessboard {
 	 */
 	public char getSquareContents(int row, int col) {
 		return chessboard[row][col];
+	}
+	
+	public void setSquare(int position, char contents) {
+		chessboard[position/8][position%8] = contents;
 	}
 	
 	/**
