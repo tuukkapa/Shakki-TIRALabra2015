@@ -85,6 +85,8 @@ public class Chessboard {
 	
 	public void setBoard(char[][] newboard) {
 		chessboard = newboard;
+		this.updateKingPosition(true);
+		this.updateKingPosition(false);
 	}
 	
 	/**
@@ -102,7 +104,7 @@ public class Chessboard {
 		
 		if (Character.toUpperCase(chessboard[startRow][startCol]) != 'P') {
 			return false;
-		}	
+		}
 		boolean colour = Character.isUpperCase(chessboard[startRow][startCol]);
 		char pawn = colour ? 'P' : 'p';
 		int homeRow = colour ? 6 : 1;
@@ -451,37 +453,50 @@ public class Chessboard {
 			kCol = blackKingPosition%8;
 		}
 		
+		// is piece past enemy's king, e.g. pawn
+		boolean pieceIsPastKing;
 		
 		for (int i = 0; i < 64; i++) {
 			// is Pawn threatening
-			// TODO change this to use Math.abs(kRow-(i/8) == 1 etc to be usable for both colours
-			if ((i/8 == kRow -1 && i%8 == kCol - 1) || (i/8 == kRow - 1 && i%8 == kCol +1)) {
-				if (chessboard[i/8][i%8] == pawn) {
+			if (Math.abs(kRow - (i/8)) == 1 && Math.abs(kCol - (i%8)) == 1) {
+				pieceIsPastKing = checkedIsWhite ? kRow < i/8 : kRow > i/8;
+				if (chessboard[i/8][i%8] == pawn && !pieceIsPastKing) {
 					return true;
 				}
 			}
 			
 			// is Knight threatening
-			if ((Math.abs(kRow-(i/8)) == 2 && Math.abs(kCol-(i%8)) == 1) || 
-					(Math.abs(kRow-(i/8)) == 1 && Math.abs(kCol-(i%8)) == 2)) {
+			if ((Math.abs(kRow - (i/8)) == 2 && Math.abs(kCol - (i%8)) == 1) || 
+					(Math.abs(kRow - (i/8)) == 1 && Math.abs(kCol - (i%8)) == 2)) {
 				if (chessboard[i/8][i%8] == knight) {
 					return true;
 				}
 			}
 			
 			// is Bishop threatening or Queen threatening diagonally
-			if (Math.abs(kRow -(i/8)) == Math.abs(kCol -(i%8)) && (chessboard[i/8][i%8] == bishop || chessboard[i/8][i%8] == queen)) {
+			if (Math.abs(kRow - (i/8)) == Math.abs(kCol - (i%8)) && (chessboard[i/8][i%8] == bishop || chessboard[i/8][i%8] == queen)) {
 				boolean routeFree = true;
 				for (int j = 1; j < Math.abs(kRow -(i/8)); j++) {
+					/*	Index out of bounds doesn't happen because when either of the two first expressions are false
+						then the third one isn't checked. In other words, the first two prevent checking outside of
+						the array.
+					*/
+					/*	Check north-west:
+						current row is less than king's row
+						current column is less than stking's column
+					*/
 					if (i/8 < kRow && i%8 < kCol && chessboard[kRow-j][kCol-j] != ' ') {
 						routeFree = false;
 					}
+					// Check south-west
 					if (i/8 > kRow && i%8 < kCol && chessboard[kRow+j][kCol-j] != ' ') {
 						routeFree = false;
 					}
+					// Check north-east
 					if (i/8 < kRow && i%8 > kCol && chessboard[kRow-j][kCol+j] != ' ') {
 						routeFree = false;
 					}
+					// Check south-east
 					if (i/8 > kRow && i%8 > kCol && chessboard[kRow+j][kCol+j] != ' ') {
 						routeFree = false;
 					}
@@ -490,7 +505,6 @@ public class Chessboard {
 					return true;
 				}
 			}
-			
 			
 			// is Rook or Queen threatening horizontally
 			if (kRow == i/8 && (chessboard[i/8][i%8] == rook || chessboard[i/8][i%8] == queen)) {
