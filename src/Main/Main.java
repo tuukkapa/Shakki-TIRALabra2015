@@ -26,7 +26,7 @@ public class Main {
 		String command;
 		boolean continueGame = true;
 		UserInterface.draw(chessboard.getBoard());
-		Movement move = ai.minimax(chessboard, 1, true);
+		Movement move = ai.minimax(chessboard, 2, true);
 		System.out.println("Shakki? " + chessboard.isItCheck(true));
 		/*System.out.println("Peli vastaanottaa siirtokomennot koordinaatteina.\n"
 				+ "Esimerkiksi komento c2c4 siirtää koordinaateissa c2\n"

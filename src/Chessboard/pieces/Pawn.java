@@ -2,6 +2,7 @@ package Chessboard.pieces;
 
 import AI.Movement;
 import Chessboard.Chessboard;
+import java.util.ArrayList;
 
 public class Pawn extends Piece implements Cloneable {
 	
@@ -11,13 +12,13 @@ public class Pawn extends Piece implements Cloneable {
 	}
 	
 	@Override
-	public Movement[] getPossibleMovements(Chessboard chessboard) {
+	public ArrayList getPossibleMovements(Chessboard chessboard) {
 		int amountToMove = white ? -1 : 1;
 		int row = position/8 + amountToMove;
 		int col = position%8;
-		Movement[] movements = new Movement[1];
+		ArrayList<Movement> movements = new ArrayList<Movement>();
 		if (chessboard.getSquareContents(position/8 + amountToMove, position%8) == ' ') {
-			movements[0] = new Movement(0, position, position + amountToMove*8);
+			movements.add(new Movement(0, position, position + amountToMove*8));
 		}
 		// TODO captures
 		return movements;
@@ -42,7 +43,7 @@ public class Pawn extends Piece implements Cloneable {
 		int endCol = end%8;
 		char pawn = white ? 'P' : 'p';
 		int homeRow = white ? 6 : 1;
-		char[][] tempBoard = chessboard.getBoard();
+		char[][] tempBoard = chessboard.cloneBoard();
 		
 		if (white) {
 			if (startRow <= endRow) {

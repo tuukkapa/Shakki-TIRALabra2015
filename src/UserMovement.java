@@ -1,5 +1,6 @@
 
 import Chessboard.Chessboard;
+import Chessboard.pieces.Piece;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -28,25 +29,27 @@ public class UserMovement {
 		if (command.length() != 4) {
 			return false;
 		}
-		int startCol, startRow, endCol, endRow;
-		startCol = (int)command.charAt(0) - 65;
-		startRow = 8 - Integer.parseInt(command.substring(1, 2));
-		endCol = (int)command.charAt(2) - 65;
-		endRow = 8 - Integer.parseInt(command.substring(3));
-		boolean error = startCol < 0 || startCol > 7 ||
-				startRow < 0 || startRow > 7 ||
-				endCol < 0 || endCol > 7 ||
-				endRow < 0 || endRow > 7;
-		if (error) {
+		int start, end;
+		start = (((int)command.charAt(0) - 65 )* 8) + (8 - Integer.parseInt(command.substring(1, 2)));
+		end = ((int)command.charAt(2) - 65) + (8 - Integer.parseInt(command.substring(3)));
+		//startCol = (int)command.charAt(0) - 65;
+		//startRow = 8 - Integer.parseInt(command.substring(1, 2));
+		//endCol = (int)command.charAt(2) - 65;
+		//endRow = 8 - Integer.parseInt(command.substring(3));
+		if (0 > start && start > 63 && 0 > end && end > 63) {
+			return false;
+		}
+		Piece piece = chessboard.getUserPiece(start);
+		if (piece == null) {
 			return false;
 		}
 		char[][] tempboard = chessboard.getBoard();
-		if (Character.isLowerCase(tempboard[startCol][endCol])) {
+		if (Character.isLowerCase(tempboard[start/8][start%8])) {
 			return false;
 		}
-		switch(tempboard[startRow][startCol]) {
-			case 'P': movedone = chessboard.movePawn(startRow, startCol, endRow, endCol);
-				break;
+		switch(tempboard[start/8][start%8]) {
+			case 'P': movedone = piece.move(chessboard, end);
+				break;/*
 			case 'R': movedone = chessboard.moveRook(startRow, startCol, endRow, endCol);
 				break;
 			case 'N': movedone = chessboard.moveKnight(startRow, startCol, endRow, endCol);
@@ -56,7 +59,7 @@ public class UserMovement {
 			case 'Q': movedone = chessboard.moveQueen(startRow, startCol, endRow, endCol);
 				break;
 			case 'K': movedone = chessboard.moveKing(startRow, startCol, endRow, endCol);
-				break;
+				break;*/
 			default: movedone = false;
 				break;
 		}

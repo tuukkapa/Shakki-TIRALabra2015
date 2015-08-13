@@ -7,6 +7,7 @@ package Chessboard.pieces;
 
 import AI.Movement;
 import Chessboard.Chessboard;
+import java.util.ArrayList;
 
 /**
  *
@@ -25,7 +26,7 @@ public abstract class Piece implements Cloneable {
 		return white;
 	}
 	
-	public abstract Movement[] getPossibleMovements(Chessboard chessboard);
+	public abstract ArrayList getPossibleMovements(Chessboard chessboard);
 	
 	public abstract boolean move(Chessboard chessboard, int end);
 	
