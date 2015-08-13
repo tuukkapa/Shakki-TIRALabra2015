@@ -28,11 +28,11 @@ public class Pawn extends Piece implements Cloneable {
 	 * @return boolean value, whether the move is successfully done.
 	 */
 	@Override
-	public boolean move(Chessboard chessboard, int start, int end) {
-		if (!this.isCommandValid(start, end)) {
+	public boolean move(Chessboard chessboard, int end) {
+		if (!this.isCommandValid(end)) {
 			return false;
 		}
-		
+		int start = position;
 		int startRow = start/8;
 		int startCol = start%8;
 		int endRow = end/8;

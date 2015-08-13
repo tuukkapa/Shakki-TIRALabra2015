@@ -1,3 +1,5 @@
+package AI;
+
 
 import Chessboard.Chessboard;
 import Chessboard.pieces.Pawn;
@@ -38,15 +40,15 @@ public class AI {
 	public int minimax(Chessboard chessboard, int depth, boolean maximizingPlayer) throws CloneNotSupportedException {
 		int bestValue, value;
 		if (depth == 0 || chessboard.isItCheckMate()) {
-			return chessboard.getValue(true);
+			return chessboard.getValue();
 		}
 		bestValue = maximizingPlayer ? Integer.MAX_VALUE : Integer.MIN_VALUE;
 		Piece[] pieces = chessboard.getPieces();
-		for (int i = 0; i < pieces.length; i++) {
-			int[] movements = pieces[i].getPossibleMovements(chessboard);
+		for (Piece piece : pieces) {
+			int[] movements = piece.getPossibleMovements(chessboard);
 			for (int j = 0; j < movements.length; j++) {
 				Chessboard clone = this.cloneBoardAndPieces(chessboard);
-				pieces[i].move(clone, pieces[i].getPosition(), movements[j]);
+				piece.move(clone, movements[j]);
 				value = minimax(clone, depth - 1, false);
 				bestValue = maximizingPlayer ? Math.max(bestValue, value) : Math.min(bestValue, value);
 			}
@@ -57,9 +59,7 @@ public class AI {
 	private Chessboard cloneBoardAndPieces(Chessboard chessboard) throws CloneNotSupportedException {
 		Chessboard cloneBoard = new Chessboard();
 		cloneBoard.setBoard(chessboard.cloneBoard());
-		Piece[] clonePieces = null;
-		clonePieces = chessboard.clonePieces();
-		cloneBoard.setPieces(clonePieces);
+		cloneBoard.setPieces(chessboard.clonePieces());
 		return cloneBoard;
 	}
 	

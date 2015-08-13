@@ -593,10 +593,9 @@ public class Chessboard {
 	
 	/**
 	 * Returns the value of the game situation at the chessboard.
-	 * @param True if computer plays black pieces, false otherwise.
 	 * @return Integer, higher means better chances at winning.
 	 */
-	public int getValue(boolean computerIsBlack) {
+	public int getValue() {
 		// TODO
 		return 1;
 	}

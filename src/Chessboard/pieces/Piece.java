@@ -26,7 +26,7 @@ public abstract class Piece implements Cloneable {
 	
 	public abstract int[] getPossibleMovements(Chessboard chessboard);
 	
-	public abstract boolean move(Chessboard chessboard, int start, int end);
+	public abstract boolean move(Chessboard chessboard, int end);
 	
 	/**
 	 * Does the basic validation of given movement, i.e. is any of the coordinates
@@ -37,8 +37,8 @@ public abstract class Piece implements Cloneable {
 	 * @param endCol Column where the piece is to be moved.
 	 * @return True if coordinates are valid, false otherwise.
 	 */
-	protected boolean isCommandValid(int start, int end) {
-		return 0 <= start && start < 64 && 0 <= end && end < 64 && position == start;
+	protected boolean isCommandValid(int end) {
+		return 0 <= end && end < 64;
 	}
 	
 	@Override
