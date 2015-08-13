@@ -5,6 +5,7 @@
  */
 package Chessboard.pieces;
 
+import AI.Movement;
 import Chessboard.Chessboard;
 
 /**
@@ -24,7 +25,7 @@ public abstract class Piece implements Cloneable {
 		return white;
 	}
 	
-	public abstract int[] getPossibleMovements(Chessboard chessboard);
+	public abstract Movement[] getPossibleMovements(Chessboard chessboard);
 	
 	public abstract boolean move(Chessboard chessboard, int end);
 	

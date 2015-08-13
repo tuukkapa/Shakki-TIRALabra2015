@@ -1,5 +1,6 @@
 package Chessboard.pieces;
 
+import AI.Movement;
 import Chessboard.Chessboard;
 
 public class Pawn extends Piece implements Cloneable {
@@ -10,11 +11,11 @@ public class Pawn extends Piece implements Cloneable {
 	}
 	
 	@Override
-	public int[] getPossibleMovements(Chessboard chessboard) {
-		int movement = white ? 1 : -1;
-		int[] movements = new int[3];
-		if (chessboard.getSquareContents(position/8 + movement, position%8) == ' ') {
-			movements[0] = position + movement*8;
+	public Movement[] getPossibleMovements(Chessboard chessboard) {
+		int amountToMove = white ? 1 : -1;
+		Movement[] movements = new Movement[3];
+		if (chessboard.getSquareContents(position/8 + amountToMove, position%8) == ' ') {
+			movements[0] = new Movement(0, position, position + amountToMove*8);
 		}
 		// TODO captures
 		return movements;
