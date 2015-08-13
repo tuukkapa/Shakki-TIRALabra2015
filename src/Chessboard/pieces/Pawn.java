@@ -2,7 +2,7 @@ package Chessboard.pieces;
 
 import Chessboard.Chessboard;
 
-public class Pawn extends Piece {
+public class Pawn extends Piece implements Cloneable {
 	
 	public Pawn(boolean white, int position) {
 		this.position = position;
@@ -74,5 +74,12 @@ public class Pawn extends Piece {
 		}
 		chessboard.setBoard(tempBoard);
 		return false;
+	}
+	
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		Pawn newPawn = (Pawn) super.clone();
+		//… take care of any deep copies to be made here
+		return newPawn;
 	}
 }

@@ -26,7 +26,7 @@ public class Chessboard {
 	
 	private char[][] chessboard;
 	private int whiteKingPosition, blackKingPosition;
-	private Piece[] whitePieces, blackPieces;
+	private Piece[] pieces; // pieces are only black at this point
 	
 	public Chessboard() {
 		char[][] newboard = {
@@ -42,11 +42,9 @@ public class Chessboard {
 		chessboard = newboard;
 		whiteKingPosition = 60;
 		blackKingPosition= 4;
-		whitePieces = new Piece[16];
-		blackPieces = new Piece[16];
-		for (int i = 0; i < whitePieces.length; i++) {
-			whitePieces[i] = new Pawn(true, 48 + i);
-			blackPieces[i] = new Pawn(false, 7 + i);
+		pieces = new Piece[16];
+		for (int i = 0; i < pieces.length; i++) {
+			pieces[i] = new Pawn(false, 8 + i);
 		}
 		// TODO create the rest of the pieces
 	}
@@ -87,14 +85,34 @@ public class Chessboard {
 		updateKingPosition(false);
 	}
 	
-	public Piece[] getPieces(boolean white) {
-		return white ? whitePieces : blackPieces;
+	public Piece[] clonePieces() throws CloneNotSupportedException {
+		Piece[] newPieces = new Piece[16];
+		for (int i = 0; i < pieces.length; i++) {
+			newPieces[i] = (Pawn) pieces[i].clone();
+		}
+		return newPieces;
+	}
+	
+	public Piece[] getPieces() {
+		return pieces;
+	}
+	
+	public void setPieces(Piece[] newPieces) {
+		this.pieces = newPieces;
 	}
 	
 	/**
 	 * Returns the chessboard as char-array.
 	 * @return Returns the chessboard as char-array.
 	 */
+	public char[][] cloneBoard() {
+		char[][] newBoard = new char[8][8];
+		for (int i = 0; i < chessboard.length; i++) {
+			System.arraycopy(chessboard[i], 0, newBoard[i], 0, chessboard[i].length);
+		}
+		return newBoard;
+	}
+	
 	public char[][] getBoard() {
 		return chessboard;
 	}

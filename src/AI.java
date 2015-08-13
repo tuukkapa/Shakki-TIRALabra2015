@@ -2,6 +2,8 @@
 import Chessboard.Chessboard;
 import Chessboard.pieces.Pawn;
 import Chessboard.pieces.Piece;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -33,24 +35,32 @@ public class AI {
             bestValue := min(bestValue, val)
         return bestValue
 	*/
-	public int minimax(Chessboard chessboard, int depth, boolean maximizingPlayer) {
+	public int minimax(Chessboard chessboard, int depth, boolean maximizingPlayer) throws CloneNotSupportedException {
 		int bestValue, value;
 		if (depth == 0 || chessboard.isItCheckMate()) {
 			return chessboard.getValue(true);
 		}
 		bestValue = maximizingPlayer ? Integer.MAX_VALUE : Integer.MIN_VALUE;
-		Piece[] pieces = maximizingPlayer ? chessboard.getPieces(false) : chessboard.getPieces(true);
+		Piece[] pieces = chessboard.getPieces();
 		for (int i = 0; i < pieces.length; i++) {
 			int[] movements = pieces[i].getPossibleMovements(chessboard);
 			for (int j = 0; j < movements.length; j++) {
-				Chessboard clone = new Chessboard();
-				clone.setBoard(chessboard.getBoard());
+				Chessboard clone = this.cloneBoardAndPieces(chessboard);
 				pieces[i].move(clone, pieces[i].getPosition(), movements[j]);
 				value = minimax(clone, depth - 1, false);
 				bestValue = maximizingPlayer ? Math.max(bestValue, value) : Math.min(bestValue, value);
 			}
 		}
 		return bestValue;
+	}
+	
+	private Chessboard cloneBoardAndPieces(Chessboard chessboard) throws CloneNotSupportedException {
+		Chessboard cloneBoard = new Chessboard();
+		cloneBoard.setBoard(chessboard.cloneBoard());
+		Piece[] clonePieces = null;
+		clonePieces = chessboard.clonePieces();
+		cloneBoard.setPieces(clonePieces);
+		return cloneBoard;
 	}
 	
 }

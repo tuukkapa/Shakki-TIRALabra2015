@@ -1,4 +1,5 @@
 
+import UI.UserInterface;
 import Chessboard.Chessboard;
 import java.util.Scanner;
 

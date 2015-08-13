@@ -11,7 +11,7 @@ import Chessboard.Chessboard;
  *
  * @author tuukka
  */
-public abstract class Piece {
+public abstract class Piece implements Cloneable {
 	
 	protected int position;
 	protected boolean white;
@@ -38,6 +38,11 @@ public abstract class Piece {
 	 * @return True if coordinates are valid, false otherwise.
 	 */
 	protected boolean isCommandValid(int start, int end) {
-		return 0 <= start && start < 64 && 0 <= end && end < 64;
+		return 0 <= start && start < 64 && 0 <= end && end < 64 && position == start;
+	}
+	
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
 	}
 }
