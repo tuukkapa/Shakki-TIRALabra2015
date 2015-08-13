@@ -1,4 +1,8 @@
+package Main;
 
+
+import AI.AI;
+import AI.Movement;
 import UI.UserInterface;
 import Chessboard.Chessboard;
 import java.util.Scanner;
@@ -15,24 +19,14 @@ public class Main {
 	 * This method initiates the game.
 	 * @param args 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws CloneNotSupportedException {
 		Chessboard chessboard = new Chessboard();
+		AI ai = new AI();
 		Scanner input = new Scanner(System.in);
 		String command;
 		boolean continueGame = true;
-		//UserInterface.draw(chessboard.getBoard());
-		char[][] newboard = {
-				{' ', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-				{' ', ' ', 'p', 'p', 'p', 'p', 'p', 'p'},
-				{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-				{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-				{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-				{' ', ' ', ' ', 'K', ' ', 'b', ' ', 'R'},
-				{' ', ' ', ' ', ' ', ' ', ' ', 'P', ' '},
-				{'R', ' ', 'B', 'Q', ' ', 'B', 'N', ' '}
-			};
-		chessboard.setBoard(newboard);
 		UserInterface.draw(chessboard.getBoard());
+		Movement move = ai.minimax(chessboard, 1, true);
 		System.out.println("Shakki? " + chessboard.isItCheck(true));
 		/*System.out.println("Peli vastaanottaa siirtokomennot koordinaatteina.\n"
 				+ "Esimerkiksi komento c2c4 siirtää koordinaateissa c2\n"

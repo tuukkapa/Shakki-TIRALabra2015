@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package Chessboard;
 
 import Chessboard.Chessboard;
 import org.junit.After;
@@ -1541,9 +1542,19 @@ public class ChessboardTest {
 	public void testIsItCheckWithCheckSituation() {
 		Chessboard testboard = new Chessboard();
 		System.out.println("isItCheck: game situation is check");
+		char[][] newboard = {
+				{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+				{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+				{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+				{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+				{' ', ' ', ' ', ' ', 'r', ' ', ' ', ' '},
+				{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
+				{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
+				{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
+			};
+		testboard.setBoard(newboard);
 		boolean checkedIsWhite = true;
 		boolean expResult = true;
-		testboard.makeTestBoard(true);
 		boolean result = testboard.isItCheck(checkedIsWhite);
 		assertEquals(expResult, result);
 	}
@@ -1558,7 +1569,6 @@ public class ChessboardTest {
 		System.out.println("isItCheck: game situation is not check");
 		boolean checkedIsWhite = true;
 		boolean expResult = false;
-		testboard.makeTestBoard(false);
 		boolean result = testboard.isItCheck(checkedIsWhite);
 		assertEquals(expResult, result);
 	}

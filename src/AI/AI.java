@@ -19,31 +19,13 @@ import java.util.logging.Logger;
  */
 public class AI {
 	
-	/* Minimax in pseudocode copied from Wikipedia:
-	
-	function minimax(node, depth, maximizingPlayer)
-    if depth = 0 or node is a terminal node
-        return the heuristic value of node
-    if maximizingPlayer
-        bestValue := -∞
-        for each child of node
-            val := minimax(child, depth - 1, FALSE)
-            bestValue := max(bestValue, val)
-        return bestValue
-    else
-        bestValue := +∞
-        for each child of node
-            val := minimax(child, depth - 1, TRUE)
-            bestValue := min(bestValue, val)
-        return bestValue
-	*/
 	public Movement minimax(Chessboard chessboard, int depth, boolean maximizingPlayer) throws CloneNotSupportedException {
 		int bestValue, value;
 		Movement bestMove = null;
 		if (depth == 0 || chessboard.isItCheckMate()) {
 			return new Movement(chessboard.getValue(), 0, 0);
 		}
-		bestValue = maximizingPlayer ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+		bestValue = maximizingPlayer ? Integer.MIN_VALUE : Integer.MAX_VALUE;
 		Piece[] pieces = chessboard.getPieces();
 		for (int i = 0; i < pieces.length; i++) {
 			Movement[] movements = pieces[i].getPossibleMovements(chessboard);
@@ -54,11 +36,13 @@ public class AI {
 				value = minimax(clone, depth - 1, !maximizingPlayer).getScore();
 				if (maximizingPlayer) {
 					if (bestValue < value) {
-						bestMove = new Movement(clone.getValue(), clonePiece.getPosition(), movements[j].getEnd());
+						bestValue = value;
+						bestMove = new Movement(clone.getValue(), pieces[i].getPosition(), movements[j].getEnd());
 					}
 				} else {
 					if (bestValue > value) {
-						bestMove = new Movement(clone.getValue(), clonePiece.getPosition(), movements[j].getEnd());
+						bestValue = value;
+						bestMove = new Movement(clone.getValue(), pieces[i].getPosition(), movements[j].getEnd());
 					}
 				}
 				//bestValue = maximizingPlayer ? Math.max(bestValue, value) : Math.min(bestValue, value);

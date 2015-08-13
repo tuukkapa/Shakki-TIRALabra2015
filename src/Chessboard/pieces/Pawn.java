@@ -12,8 +12,10 @@ public class Pawn extends Piece implements Cloneable {
 	
 	@Override
 	public Movement[] getPossibleMovements(Chessboard chessboard) {
-		int amountToMove = white ? 1 : -1;
-		Movement[] movements = new Movement[3];
+		int amountToMove = white ? -1 : 1;
+		int row = position/8 + amountToMove;
+		int col = position%8;
+		Movement[] movements = new Movement[1];
 		if (chessboard.getSquareContents(position/8 + amountToMove, position%8) == ' ') {
 			movements[0] = new Movement(0, position, position + amountToMove*8);
 		}

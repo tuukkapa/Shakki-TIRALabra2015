@@ -35,58 +35,23 @@ public class Chessboard {
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{' ', ' ', ' ', ' ', 'p', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', ' ', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
 		chessboard = newboard;
 		whiteKingPosition = 60;
 		blackKingPosition= 4;
-		pieces = new Piece[16];
-		for (int i = 0; i < pieces.length; i++) {
+		pieces = new Piece[1];
+		/*for (int i = 0; i < pieces.length; i++) {
 			pieces[i] = new Pawn(false, 8 + i);
-		}
+		}*/
+		pieces[0] = new Pawn(false, 44);
 		// TODO create the rest of the pieces
 	}
 	
-	/**
-	 * Method creates a chessboard usable for testing.
-	 * @param check True, if the game situation is check, false otherwise.
-	 */
-	public void makeTestBoard(boolean check) {
-		if (check) {
-			char[][] newboard = {
-				{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-				{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-				{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-				{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-				{' ', ' ', ' ', ' ', 'r', ' ', ' ', ' '},
-				{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-				{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-				{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-			};
-			chessboard = newboard;
-			updateKingPosition(true);
-			updateKingPosition(false);
-			return;
-		}
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		chessboard = newboard;
-		updateKingPosition(true);
-		updateKingPosition(false);
-	}
-	
 	public Piece[] clonePieces() throws CloneNotSupportedException {
-		Piece[] newPieces = new Piece[16];
+		Piece[] newPieces = new Piece[1];
 		for (int i = 0; i < pieces.length; i++) {
 			newPieces[i] = (Pawn) pieces[i].clone();
 		}
@@ -588,7 +553,7 @@ public class Chessboard {
 	
 	public boolean isItCheckMate() {
 		// TODO
-		return true;
+		return false;
 	}
 	
 	/**
