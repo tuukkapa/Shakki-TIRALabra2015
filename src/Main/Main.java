@@ -1,10 +1,12 @@
 package Main;
 
 
+import User.UserMovement;
 import AI.AI;
 import AI.Movement;
 import UI.UserInterface;
 import Chessboard.Chessboard;
+import Chessboard.pieces.Piece;
 import java.util.Scanner;
 
 
@@ -26,9 +28,9 @@ public class Main {
 		String command;
 		boolean continueGame = true;
 		UserInterface.draw(chessboard.getBoard());
-		Movement move = ai.minimax(chessboard, 2, true);
-		System.out.println("Shakki? " + chessboard.isItCheck(true));
-		/*System.out.println("Peli vastaanottaa siirtokomennot koordinaatteina.\n"
+		//Movement move = ai.minimax(chessboard, 4, true);
+		//System.out.println("Shakki? " + chessboard.isItCheck(true));
+		System.out.println("Peli vastaanottaa siirtokomennot koordinaatteina.\n"
 				+ "Esimerkiksi komento c2c4 siirtää koordinaateissa c2\n"
 				+ "olevan nappulan koordinaatteihin c4. Peli tarkistaa, ettei\n"
 				+ "koordinaatit ole laudan ulkopuolella ja että siirtokomento\n"
@@ -42,11 +44,16 @@ public class Main {
 			} else {
 				if (UserMovement.movePiece(command, chessboard)) {
 					UserInterface.draw(chessboard.getBoard());
+					System.out.println("Tietokone tekee siirtonsa...");
+					Movement move = ai.minimax(chessboard, 3, true);
+					Piece piece = chessboard.getPiece(move.getStart());
+					piece.move(chessboard, move.getEnd());
+					UserInterface.draw(chessboard.getBoard());
 				} else {
 					System.out.println("Virheellinen komento.");
 				}
 			}
-		} while (continueGame);*/
+		} while (continueGame);
 	}
 
 }

@@ -1,3 +1,5 @@
+package User;
+
 
 import Chessboard.Chessboard;
 import Chessboard.pieces.Piece;
@@ -29,8 +31,8 @@ public class UserMovement {
 			return false;
 		}
 		int start, end;
-		start = (((int)command.charAt(0) - 65 )* 8) + (8 - Integer.parseInt(command.substring(1, 2)));
-		end = ((int)command.charAt(2) - 65) + (8 - Integer.parseInt(command.substring(3)));
+		start = ((8 - Integer.parseInt(command.substring(1, 2))) * 8) + (int)command.charAt(0) - 65;
+		end = ((8 - Integer.parseInt(command.substring(3))) * 8) + (int)command.charAt(2) - 65;
 		// Are coordinates inside the board
 		if (0 > start || start > 63 || 0 > end || end > 63) {
 			return false;

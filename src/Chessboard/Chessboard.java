@@ -3,6 +3,7 @@ package Chessboard;
 import AI.Movement;
 import Chessboard.pieces.*;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.TreeMap;
 
 /**
@@ -39,8 +40,8 @@ public class Chessboard {
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', 'r', ' ', ' ', ' ', ' ', ' ', ' '},
-			{'P', 'P', 'P', 'P', ' ', 'P', 'P', 'P'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{' ', ' ', ' ', ' ', 'K', ' ', ' ', ' '}
 		};
 		chessboard = newboard;
@@ -52,6 +53,8 @@ public class Chessboard {
 			blackPieces.put(8 + i, new Pawn(false, 8 + i));
 			whitePieces.put(48 + i, new Pawn(true, 48 + i));
 		}
+		whitePieces.put(60, new King(true, 60));
+		blackPieces.put(4, new King(false, 4));
 		//pieces[0] = new Pawn(false, 44);
 		// TODO create the rest of the pieces
 	}
@@ -60,14 +63,14 @@ public class Chessboard {
 		//Piece[] newPieces = new Piece[8];
 		TreeMap<Integer, Piece> newPieces = new TreeMap<>();
 		if (white) {
-			for (int i = 0; i < whitePieces.size(); i++) {
+			for (Map.Entry<Integer, Piece> piece : whitePieces.entrySet()) {
 				//newPieces[i] = (Pawn) whitePieces[i].clone();
-				newPieces.put(whitePieces.firstKey(), (Piece)whitePieces.get(whitePieces.firstKey()).clone());
+				newPieces.put(piece.getKey(), (Piece)piece.getValue().clone());
 			}
 		} else {
-			for (int i = 0; i < blackPieces.size(); i++) {
+			for (Map.Entry<Integer, Piece> piece : blackPieces.entrySet()) {
 				//newPieces[i] = (Pawn) blackPieces[i].clone();
-				newPieces.put(blackPieces.firstKey(), (Piece)blackPieces.get(blackPieces.firstKey()).clone());
+				newPieces.put(piece.getKey(), (Piece)piece.getValue().clone());
 			}
 		}
 		
@@ -93,6 +96,20 @@ public class Chessboard {
 		} else {
 			return piece;
 		}
+	}
+	
+	public boolean movePiece(int start, int end) {
+		if (whitePieces.containsKey(start)) {
+			whitePieces.put(end, whitePieces.get(start));
+			whitePieces.remove(start);
+			return true;
+		}
+		if (blackPieces.containsKey(start)) {
+			blackPieces.put(end, blackPieces.get(start));
+			blackPieces.remove(start);
+			return true;
+		}
+		return false;
 	}
 	
 	/**
@@ -529,8 +546,14 @@ public class Chessboard {
 	
 	public boolean isItCheckMate(boolean checkedIsWhite) {
 		Piece king = this.getPiece(checkedIsWhite ? whiteKingPosition : blackKingPosition);
-		ArrayList<Movement> movements = king.getPossibleMovements(this);
-		return movements.size() == 0;
+		if (king == null) {
+			System.out.println("Kunkku puuttuu");
+			System.out.println("pelaaja on musta: " + checkedIsWhite);
+			return false;
+		}
+		ArrayList<Movement> movements = new ArrayList<>();
+		movements = king.getPossibleMovements(this);
+		return this.isItCheck(checkedIsWhite) && movements.isEmpty();
 	}
 	
 	/**
@@ -538,8 +561,65 @@ public class Chessboard {
 	 * @return Integer, higher means better chances at winning.
 	 */
 	public int getValue() {
-		// TODO
-		return 1;
+		int points = 0;
+		int kingPoints = 200;
+		int queenPoints = 9;
+		int rookPoints = 5;
+		int knightPoints = 3;
+		int bishopPoints = 3;
+		int pawnPoints = 1;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard[i/8][i%8] == 'K') {
+				points += kingPoints;
+			}
+			if (chessboard[i/8][i%8] == 'Q') {
+				points += queenPoints;
+			}
+			if (chessboard[i/8][i%8] == 'R') {
+				points += rookPoints;
+			}
+			if (chessboard[i/8][i%8] == 'N') {
+				points += knightPoints;
+			}
+			if (chessboard[i/8][i%8] == 'B') {
+				points += bishopPoints;
+			}
+			if (chessboard[i/8][i%8] == 'P') {
+				points += pawnPoints;
+			}
+			if (chessboard[i/8][i%8] == 'k') {
+				points -= kingPoints;
+			}
+			if (chessboard[i/8][i%8] == 'q') {
+				points -= queenPoints;
+			}
+			if (chessboard[i/8][i%8] == 'r') {
+				points -= rookPoints;
+			}
+			if (chessboard[i/8][i%8] == 'n') {
+				points -= knightPoints;
+			}
+			if (chessboard[i/8][i%8] == 'b') {
+				points -= bishopPoints;
+			}
+			if (chessboard[i/8][i%8] == 'p') {
+				points -= pawnPoints;
+			}
+
+		}
+		if (this.isItCheck(true)) {
+			points += 1000;
+			if (this.isItCheckMate(true)) {
+				points = Integer.MAX_VALUE;
+			}
+		}
+		if (this.isItCheck(false)) {
+			points -= 1000;
+			if (this.isItCheckMate(false)) {
+				points = Integer.MIN_VALUE;
+			}
+		}
+		return points;
 	}
 	
 	/**

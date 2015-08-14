@@ -81,10 +81,12 @@ public class King extends Piece implements Cloneable {
 			}
 			chessboard.setSquare(position, ' ');
 			chessboard.setSquare(end, king);
-			return true;
-		} else {
-			return false;
+			if (chessboard.movePiece(position, end)) {
+				this.position = end;
+				return true;
+			}
 		}
+		return false;
 	}
 	
 	@Override

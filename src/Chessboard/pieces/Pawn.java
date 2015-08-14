@@ -90,10 +90,12 @@ public class Pawn extends Piece implements Cloneable {
 			}
 			chessboard.setSquare(position, ' ');
 			chessboard.setSquare(end, pawn);
-			return true;
-		} else {
-			return false;
+			if (chessboard.movePiece(position, end)) {
+				this.position = end;
+				return true;
+			}
 		}
+		return false;
 	}
 	
 	@Override

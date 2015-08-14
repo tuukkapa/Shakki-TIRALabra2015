@@ -1,4 +1,5 @@
 
+import User.UserMovement;
 import AI.Movement;
 import UI.UserInterface;
 import Chessboard.Chessboard;
@@ -25,7 +26,8 @@ public class Test {
 		Chessboard chessboard = new Chessboard();
 		Pawn pawn = (Pawn) chessboard.getPiece(48);
 		ArrayList<Movement> testi = pawn.getPossibleMovements(chessboard);
-		System.out.println("moi");
+		System.out.println(UserMovement.movePiece("a2a3", chessboard));
+		UserInterface.draw(chessboard.getBoard());
 	}
 	
 }
