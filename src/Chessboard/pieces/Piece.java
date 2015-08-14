@@ -17,9 +17,23 @@ public abstract class Piece implements Cloneable {
 	
 	protected int position;
 	protected boolean white;
+	protected char sign;
 	
 	public int getPosition() {
 		return position;
+	}
+	
+	public boolean setPosition(int position) {
+		if (0 <= position && position < 64) {
+			this.position = position;
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public char getSign() {
+		return sign;
 	}
 	
 	public boolean amIWhite() {
@@ -28,9 +42,7 @@ public abstract class Piece implements Cloneable {
 	
 	public abstract ArrayList getPossibleMovements(Chessboard chessboard);
 	
-	protected abstract boolean isMoveValid(Chessboard chessboard, int end);
-	
-	public abstract boolean move(Chessboard chessboard, int end);
+	public abstract boolean isMoveValid(Chessboard chessboard, int end);
 	
 	/**
 	 * Does the basic validation of given movement, i.e. is any of the coordinates
@@ -49,7 +61,7 @@ public abstract class Piece implements Cloneable {
 	 * @param endCol Column where the piece is to be moved.
 	 * @return True, if end square contains enemy or is empty, false otherwise.
 	 */
-	protected boolean endSquareContainsEnemyOrEmpty(Chessboard chessboard, int end) {
+	public boolean endSquareContainsEnemyOrEmpty(Chessboard chessboard, int end) {
 		if (end < 0 || end > 63) {
 			return false;
 		}
@@ -64,7 +76,7 @@ public abstract class Piece implements Cloneable {
 	 * @param endCol Column where the piece is to be moved.
 	 * @return True, if square contains enemy, false otherwise.
 	 */
-	protected boolean endSquareContainsEnemy(Chessboard chessboard, int end) {
+	public boolean endSquareContainsEnemy(Chessboard chessboard, int end) {
 		if (end < 0 || end > 63) {
 			return false;
 		}

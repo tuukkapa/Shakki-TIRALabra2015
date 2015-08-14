@@ -10,6 +10,7 @@ public class Pawn extends Piece implements Cloneable {
 	public Pawn(boolean white, int position) {
 		this.position = position;
 		this.white = white;
+		this.sign = white ? 'P' : 'p';
 	}
 	
 	@Override
@@ -28,6 +29,7 @@ public class Pawn extends Piece implements Cloneable {
 	
 	@Override
 	public boolean isMoveValid(Chessboard chessboard, int end) {
+		boolean success = false;
 		if (!this.isCommandValid(end)) {
 			return false;
 		}
@@ -37,6 +39,7 @@ public class Pawn extends Piece implements Cloneable {
 		int endCol = end % 8;
 		char pawn = white ? 'P' : 'p';
 		int homeRow = white ? 6 : 1;
+		char endSquareBackup = chessboard.getSquareContents(end);
 		
 		if (white) {
 			if (startRow <= endRow) {
@@ -47,55 +50,30 @@ public class Pawn extends Piece implements Cloneable {
 				return false;
 			}
 		}
+		
 		// move forward
 		if (startCol == endCol) {
 			if (((Math.abs(startRow - endRow) == 2 && startRow == homeRow) || Math.abs(startRow - endRow) == 1) && chessboard.getSquareContents(end) == ' ') {
 				chessboard.setSquare(position, ' ');
 				chessboard.setSquare(end, pawn);
 				if (!chessboard.isItCheck(white)) {
-					chessboard.setSquare(position, pawn);
-					chessboard.setSquare(end, ' ');
-					return true;
+					success = true;
 				}
 			}
+		
 		// capture
 		} else {
 			if ((Math.abs(startCol - endCol) == 1 && Math.abs(startRow - endRow) == 1) && this.endSquareContainsEnemy(chessboard, end)) {
-				char endSquareBackup = chessboard.getSquareContents(end);
 				chessboard.setSquare(position, ' ');
 				chessboard.setSquare(end, pawn);
 				if (!chessboard.isItCheck(white)) {
-					chessboard.setSquare(position, pawn);
-					chessboard.setSquare(end, endSquareBackup);
-					return true;
+					success = true;
 				}
 			}
 		}
-		return false;
-	}
-	
-	
-	/**
-	 * Moves pawn and possibly captures an enemy piece, if allowed by chess rules.
-	 * @param chessboard
-	 * @param end End position on the board between 0 and 63 (0 is top left, 63 is bottom right).
-	 * @return boolean value, whether the move is successfully done.
-	 */
-	@Override
-	public boolean move(Chessboard chessboard, int end) {
-		char pawn = white ? 'P' : 'p';
-		if (this.isMoveValid(chessboard, end)) {
-			if (this.endSquareContainsEnemy(chessboard, end)) {
-				chessboard.getPieces(white).remove(end);
-			}
-			chessboard.setSquare(position, ' ');
-			chessboard.setSquare(end, pawn);
-			if (chessboard.movePiece(position, end)) {
-				this.position = end;
-				return true;
-			}
-		}
-		return false;
+		chessboard.setSquare(position, pawn);
+		chessboard.setSquare(end, endSquareBackup);
+		return success;
 	}
 	
 	@Override

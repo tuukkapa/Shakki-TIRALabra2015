@@ -99,15 +99,35 @@ public class Chessboard {
 	}
 	
 	public boolean movePiece(int start, int end) {
+		boolean success = false;
+		Piece piece = null;
 		if (whitePieces.containsKey(start)) {
-			whitePieces.put(end, whitePieces.get(start));
-			whitePieces.remove(start);
-			return true;
+			piece = whitePieces.get(start);
+		} else {
+			piece = blackPieces.get(start);
 		}
-		if (blackPieces.containsKey(start)) {
-			blackPieces.put(end, blackPieces.get(start));
-			blackPieces.remove(start);
-			return true;
+		if (piece == null) {
+			return false;
+		}
+		if (piece.isMoveValid(this, end)) {
+			if (piece.endSquareContainsEnemy(this, end)) {
+				this.getPieces(!piece.amIWhite()).remove(end);
+			}
+			this.setSquare(start, ' ');
+			this.setSquare(end, piece.getSign());
+			if (piece.amIWhite()) {
+				whitePieces.put(end, whitePieces.get(start));
+				whitePieces.remove(start);
+				success = true;
+			} else {
+				blackPieces.put(end, blackPieces.get(start));
+				blackPieces.remove(start);
+				success = true;
+			}
+			if (success) {
+				piece.setPosition(end);
+				return true;
+			}
 		}
 		return false;
 	}
@@ -547,8 +567,6 @@ public class Chessboard {
 	public boolean isItCheckMate(boolean checkedIsWhite) {
 		Piece king = this.getPiece(checkedIsWhite ? whiteKingPosition : blackKingPosition);
 		if (king == null) {
-			System.out.println("Kunkku puuttuu");
-			System.out.println("pelaaja on musta: " + checkedIsWhite);
 			return false;
 		}
 		ArrayList<Movement> movements = new ArrayList<>();

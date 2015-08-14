@@ -44,7 +44,7 @@ public class UserMovement {
 		}
 		// Is the piece player's own piece (i.e. white) and is the move successful
 		if (piece.amIWhite()) {
-			return piece.move(chessboard, end);
+			return chessboard.movePiece(start, end);
 		} else {
 			return false;
 		}	

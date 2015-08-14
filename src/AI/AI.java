@@ -24,8 +24,7 @@ public class AI {
 			ArrayList<Movement> movements = piece.getValue().getPossibleMovements(chessboard);
 			for (int j = 0; j < movements.size(); j++) {
 				Chessboard clone = this.cloneBoardAndPieces(chessboard);
-				Piece clonePiece = clone.getPiece(movements.get(j).getStart());
-				clonePiece.move(clone, movements.get(j).getEnd());
+				clone.movePiece(movements.get(j).getStart(), movements.get(j).getEnd());
 				value = minimax(clone, depth - 1, !maximizingPlayer).getScore();
 				if (maximizingPlayer) {
 					if (bestValue < value) {

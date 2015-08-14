@@ -46,8 +46,7 @@ public class Main {
 					UserInterface.draw(chessboard.getBoard());
 					System.out.println("Tietokone tekee siirtonsa...");
 					Movement move = ai.minimax(chessboard, 3, true);
-					Piece piece = chessboard.getPiece(move.getStart());
-					piece.move(chessboard, move.getEnd());
+					chessboard.movePiece(move.getStart(), move.getEnd());
 					UserInterface.draw(chessboard.getBoard());
 				} else {
 					System.out.println("Virheellinen komento.");

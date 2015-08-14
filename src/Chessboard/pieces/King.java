@@ -18,6 +18,7 @@ public class King extends Piece implements Cloneable {
 	public King(boolean white, int position) {
 		this.position = position;
 		this.white = white;
+		this.sign = white ? 'K' : 'k';
 	}
 	
 	@Override
@@ -42,7 +43,8 @@ public class King extends Piece implements Cloneable {
 	 * @return
 	 */
 	@Override
-	protected boolean isMoveValid(Chessboard chessboard, int end) {
+	public boolean isMoveValid(Chessboard chessboard, int end) {
+		boolean success = false;
 		if (!this.isCommandValid(end)) {
 			return false;
 		}
@@ -51,42 +53,19 @@ public class King extends Piece implements Cloneable {
 		int endRow = end/8;
 		int endCol = end%8;
 		char king = white ? 'K' : 'k';
+		char endSquareBackup = chessboard.getSquareContents(end);
 		if (Math.abs(endRow-startRow) <= 1 && Math.abs(endCol-startCol) <= 1 && this.endSquareContainsEnemyOrEmpty(chessboard, end)) {
-			char endSquareBackup = chessboard.getSquareContents(end);
 			chessboard.setSquare(position, ' ');
 			chessboard.setSquare(end, king);
 			chessboard.updateKingPosition(white);
 			if (!chessboard.isItCheck(white)) {
-				chessboard.setSquare(position, king);
-				chessboard.setSquare(end, endSquareBackup);
-				chessboard.updateKingPosition(white);
-				return true;
+				success = true;
 			}
 		}
-		return false;
-	}
-	
-	/**
-	 * Moves king and possibly captures an enemy piece, if allowed by chess rules.
-	 * @param chessboard
-	 * @param end
-	 * @return True, if move is successfully done, false otherwise.
-	 */
-	@Override
-	public boolean move(Chessboard chessboard, int end) {
-		char king = white ? 'K' : 'k';
-		if (this.isMoveValid(chessboard, end)) {
-			if (this.endSquareContainsEnemy(chessboard, end)) {
-				chessboard.getPieces(white).remove(end);
-			}
-			chessboard.setSquare(position, ' ');
-			chessboard.setSquare(end, king);
-			if (chessboard.movePiece(position, end)) {
-				this.position = end;
-				return true;
-			}
-		}
-		return false;
+		chessboard.setSquare(position, king);
+		chessboard.setSquare(end, endSquareBackup);
+		chessboard.updateKingPosition(white);
+		return success;
 	}
 	
 	@Override
