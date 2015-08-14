@@ -29,8 +29,8 @@ public class Chessboard {
 	
 	private char[][] chessboard;
 	private int whiteKingPosition, blackKingPosition;
-	private Piece[] whitePieces, blackPieces;
-	private TreeMap<Integer, Piece> userPieces;
+	//private Piece[] whitePieces, blackPieces;
+	private TreeMap<Integer, Piece> whitePieces, blackPieces;
 	
 	public Chessboard() {
 		char[][] newboard = {
@@ -39,47 +39,46 @@ public class Chessboard {
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{'P', 'P', 'P', ' ', ' ', 'P', 'P', 'P'},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+			{' ', 'r', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', ' ', 'P', 'P', 'P'},
+			{' ', ' ', ' ', ' ', 'K', ' ', ' ', ' '}
 		};
 		chessboard = newboard;
 		whiteKingPosition = 60;
 		blackKingPosition= 4;
-		blackPieces = new Piece[8];
-		whitePieces = new Piece[8];
-		for (int i = 0; i < blackPieces.length; i++) {
-			blackPieces[i] = new Pawn(false, 8 + i);
-		}
-		userPieces = new TreeMap<Integer, Piece>();
-		for (int i = 0; i < whitePieces.length; i++) {
-			whitePieces[i] = new Pawn(true, 48 + i);
-			userPieces.put(48 + i, whitePieces[i]);
+		whitePieces = new TreeMap<>();
+		blackPieces = new TreeMap<>();
+		for (int i = 0; i < 8; i++) {
+			blackPieces.put(8 + i, new Pawn(false, 8 + i));
+			whitePieces.put(48 + i, new Pawn(true, 48 + i));
 		}
 		//pieces[0] = new Pawn(false, 44);
 		// TODO create the rest of the pieces
 	}
 	
-	public Piece[] clonePieces(boolean white) throws CloneNotSupportedException {
-		Piece[] newPieces = new Piece[8];
+	public TreeMap clonePieces(boolean white) throws CloneNotSupportedException {
+		//Piece[] newPieces = new Piece[8];
+		TreeMap<Integer, Piece> newPieces = new TreeMap<>();
 		if (white) {
-			for (int i = 0; i < whitePieces.length; i++) {
-				newPieces[i] = (Pawn) whitePieces[i].clone();
+			for (int i = 0; i < whitePieces.size(); i++) {
+				//newPieces[i] = (Pawn) whitePieces[i].clone();
+				newPieces.put(whitePieces.firstKey(), (Piece)whitePieces.get(whitePieces.firstKey()).clone());
 			}
 		} else {
-			for (int i = 0; i < blackPieces.length; i++) {
-				newPieces[i] = (Pawn) blackPieces[i].clone();
+			for (int i = 0; i < blackPieces.size(); i++) {
+				//newPieces[i] = (Pawn) blackPieces[i].clone();
+				newPieces.put(blackPieces.firstKey(), (Piece)blackPieces.get(blackPieces.firstKey()).clone());
 			}
 		}
 		
 		return newPieces;
 	}
 	
-	public Piece[] getPieces(boolean white) {
+	public TreeMap getPieces(boolean white) {
 		return white ? whitePieces : blackPieces;
 	}
 	
-	public void setPieces(boolean white, Piece[] newPieces) {
+	public void setPieces(boolean white, TreeMap newPieces) {
 		if (white) {
 			this.whitePieces = newPieces;
 		} else {
@@ -87,8 +86,13 @@ public class Chessboard {
 		}
 	}
 	
-	public Piece getUserPiece(int position) {
-		return userPieces.get(position);
+	public Piece getPiece(int position) {
+		Piece piece = whitePieces.get(position);
+		if (piece == null) {
+			return blackPieces.get(position);
+		} else {
+			return piece;
+		}
 	}
 	
 	/**
@@ -121,6 +125,7 @@ public class Chessboard {
 	 * @param endCol Column where the piece is to be moved.
 	 * @return boolean value, whether the move is successfully done.
 	 */
+	/*
 	public boolean movePawn(int startRow, int startCol, int endRow, int endCol) {
 		if (!this.isCommandValid(startRow, startCol, endRow, endCol)) {
 			return false;
@@ -166,7 +171,7 @@ public class Chessboard {
 		chessboard = tempBoard;
 		return false;
 	}
-	
+	*/
 	/**
 	 * Moves rook and possibly captures an enemy piece, if allowed by chess rules.
 	 * @param startRow Row where the piece to be moved is.
@@ -174,7 +179,7 @@ public class Chessboard {
 	 * @param endRow Row where the piece is to be moved.
 	 * @param endCol Column where the piece is to be moved.
 	 * @return True, if move is successfully done, false otherwise.
-	 */
+	 *//*
 	public boolean moveRook(int startRow, int startCol, int endRow, int endCol) {
 		if (!this.isCommandValid(startRow, startCol, endRow, endCol)) {
 			return false;
@@ -215,7 +220,7 @@ public class Chessboard {
 		chessboard = tempBoard;
 		return false;
 	}
-	
+	*/
 	/**
 	 * Moves knight and possibly captures an enemy piece, if allowed by chess rules.
 	 * @param startRow Row where the piece to be moved is.
@@ -223,7 +228,7 @@ public class Chessboard {
 	 * @param endRow Row where the piece is to be moved.
 	 * @param endCol Column where the piece is to be moved.
 	 * @return True, if move is successfully done, false otherwise.
-	 */
+	 */ /*
 	public boolean moveKnight(int startRow, int startCol, int endRow, int endCol) {
 		if (!this.isCommandValid(startRow, startCol, endRow, endCol)) {
 			return false;
@@ -248,7 +253,7 @@ public class Chessboard {
 		}
 		chessboard = tempBoard;
 		return false;
-	}
+	}*/
 	
 	/**
 	 * Moves bishop and possibly captures an enemy piece, if allowed by chess rules.
@@ -257,7 +262,7 @@ public class Chessboard {
 	 * @param endRow Row where the piece is to be moved.
 	 * @param endCol Column where the piece is to be moved.
 	 * @return True, if move is successfully done, false otherwise.
-	 */
+	 */ /*
 	public boolean moveBishop(int startRow, int startCol, int endRow, int endCol) {
 		if (!this.isCommandValid(startRow, startCol, endRow, endCol)) {
 			return false;
@@ -300,7 +305,7 @@ public class Chessboard {
 		}
 		chessboard = tempBoard;
 		return false;
-	}
+	}*/
 	
 	/**
 	 * Moves queen and possibly captures an enemy piece, if allowed by chess rules.
@@ -309,7 +314,7 @@ public class Chessboard {
 	 * @param endRow Row where the piece is to be moved.
 	 * @param endCol Column where the piece is to be moved.
 	 * @return True, if move is successfully done, false otherwise.
-	 */
+	 */ /*
 	public boolean moveQueen(int startRow, int startCol, int endRow, int endCol) {
 		if (!this.isCommandValid(startRow, startCol, endRow, endCol)) {
 			return false;
@@ -369,30 +374,9 @@ public class Chessboard {
 		}
 		chessboard = tempBoard;
 		return false;
-	}
+	}*/
 	
-	/**
-	 * Determines if end square contains enemy or is empty.
-	 * @param colour True, if piece to be moved is white, false otherwise.
-	 * @param endRow Row where the piece is to be moved.
-	 * @param endCol Column where the piece is to be moved.
-	 * @return True, if end square contains enemy or is empty, false otherwise.
-	 */
-	public boolean endSquareContainsEnemyOrEmpty(boolean colour, int endRow, int endCol) {
-		boolean onTargetSquareIsEnemyPiece = colour ? Character.isLowerCase(chessboard[endRow][endCol]) : Character.isUpperCase(chessboard[endRow][endCol]);	
-		return chessboard[endRow][endCol] == ' ' || onTargetSquareIsEnemyPiece;
-	}
-	
-	
-	 /** Determines if end square contains enemy.
-	 * @param colour True, if piece to be moved is white, false otherwise.
-	 * @param endRow Row where the piece is to be moved.
-	 * @param endCol Column where the piece is to be moved.
-	 * @return True, if square contains enemy, false otherwise.
-	 */
-	public boolean endSquareContainsEnemy(boolean colour, int endRow, int endCol) {
-		return colour ? Character.isLowerCase(chessboard[endRow][endCol]) : Character.isUpperCase(chessboard[endRow][endCol]);	
-	}
+
 
 	/**
 	 * Method updates king's position at the char array.
@@ -544,7 +528,7 @@ public class Chessboard {
 	}
 	
 	public boolean isItCheckMate(boolean checkedIsWhite) {
-		Piece king = this.getUserPiece(checkedIsWhite ? whiteKingPosition : blackKingPosition);
+		Piece king = this.getPiece(checkedIsWhite ? whiteKingPosition : blackKingPosition);
 		ArrayList<Movement> movements = king.getPossibleMovements(this);
 		return movements.size() == 0;
 	}
@@ -564,8 +548,8 @@ public class Chessboard {
 	 * @param col Column of the square.
 	 * @return Character, contents of the square.
 	 */
-	public char getSquareContents(int row, int col) {
-		return chessboard[row][col];
+	public char getSquareContents(int position) {
+		return chessboard[position/8][position%8];
 	}
 	
 	public void setSquare(int position, char contents) {

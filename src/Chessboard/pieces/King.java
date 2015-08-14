@@ -22,44 +22,69 @@ public class King extends Piece implements Cloneable {
 	
 	@Override
 	public ArrayList getPossibleMovements(Chessboard chessboard) {
-		ArrayList<Movement> movements = new ArrayList<Movement>();
-		// TODO
+		ArrayList<Movement> movements = new ArrayList<>();
+		int kRow = position / 8;
+		int kCol = position % 8;
+		for (int row = kRow - 1; row < kRow+3; row++) {
+			for (int col = kCol - 1; col < kCol+3; col++) {
+				if (row >= 0 && row < 8 && col >= 0 && col < 8 && this.isMoveValid(chessboard, row*8 + col)) {
+					movements.add(new Movement(0, position, row*8 + col));
+				}
+			}
+		}
 		return movements;
 	}
 	
 	/**
+	 *
+	 * @param chessboard
+	 * @param end
+	 * @return
+	 */
+	@Override
+	protected boolean isMoveValid(Chessboard chessboard, int end) {
+		if (!this.isCommandValid(end)) {
+			return false;
+		}
+		int startRow = position/8;
+		int startCol = position%8;
+		int endRow = end/8;
+		int endCol = end%8;
+		char king = white ? 'K' : 'k';
+		if (Math.abs(endRow-startRow) <= 1 && Math.abs(endCol-startCol) <= 1 && this.endSquareContainsEnemyOrEmpty(chessboard, end)) {
+			char endSquareBackup = chessboard.getSquareContents(end);
+			chessboard.setSquare(position, ' ');
+			chessboard.setSquare(end, king);
+			chessboard.updateKingPosition(white);
+			if (!chessboard.isItCheck(white)) {
+				chessboard.setSquare(position, king);
+				chessboard.setSquare(end, endSquareBackup);
+				chessboard.updateKingPosition(white);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
 	 * Moves king and possibly captures an enemy piece, if allowed by chess rules.
-	 * @param startRow Row where the piece to be moved is.
-	 * @param startCol Column where the piece to be moved is.
-	 * @param endRow Row where the piece is to be moved.
-	 * @param endCol Column where the piece is to be moved.
+	 * @param chessboard
+	 * @param end
 	 * @return True, if move is successfully done, false otherwise.
 	 */
 	@Override
 	public boolean move(Chessboard chessboard, int end) {
-		if (!this.isCommandValid(end)) {
+		char king = white ? 'K' : 'k';
+		if (this.isMoveValid(chessboard, end)) {
+			if (this.endSquareContainsEnemy(chessboard, end)) {
+				chessboard.getPieces(white).remove(end);
+			}
+			chessboard.setSquare(position, ' ');
+			chessboard.setSquare(end, king);
+			return true;
+		} else {
 			return false;
 		}
-		int start = position;
-		int startRow = start/8;
-		int startCol = start%8;
-		int endRow = end/8;
-		int endCol = end%8;
-		char king = white ? 'K' : 'k';
-
-		char[][] tempBoard = chessboard.cloneBoard();
-		
-		if (Math.abs(endRow-startRow) <= 1 && Math.abs(endCol-startCol) <= 1 && chessboard.endSquareContainsEnemyOrEmpty(white, endRow, endCol)) {
-			chessboard.setSquare(start, ' ');
-			chessboard.setSquare(end, king);
-			chessboard.updateKingPosition(white);
-			if (!chessboard.isItCheck(white)) {
-				return true;
-			}
-		}
-		chessboard.setBoard(tempBoard);
-		chessboard.updateKingPosition(white);
-		return false;
 	}
 	
 	@Override

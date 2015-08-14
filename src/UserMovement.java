@@ -20,11 +20,10 @@ public class UserMovement {
 	 * and the command obeys chess's rules. If the move command is valid, method
 	 * updates the char-array and outputs "true" boolean value.
 	 * @param command Move command received from the human user, such as "c4e5".
-	 * @param Chessboard Reference to the Chessboard-object.
+	 * @param chessboard
 	 * @return True if command is valid and successful, false otherwise.
 	 */
 	public static boolean movePiece(String command, Chessboard chessboard) {
-		boolean movedone;
 		command = command.toUpperCase();
 		if (command.length() != 4) {
 			return false;
@@ -32,41 +31,21 @@ public class UserMovement {
 		int start, end;
 		start = (((int)command.charAt(0) - 65 )* 8) + (8 - Integer.parseInt(command.substring(1, 2)));
 		end = ((int)command.charAt(2) - 65) + (8 - Integer.parseInt(command.substring(3)));
-		//startCol = (int)command.charAt(0) - 65;
-		//startRow = 8 - Integer.parseInt(command.substring(1, 2));
-		//endCol = (int)command.charAt(2) - 65;
-		//endRow = 8 - Integer.parseInt(command.substring(3));
-		if (0 > start && start > 63 && 0 > end && end > 63) {
+		// Are coordinates inside the board
+		if (0 > start || start > 63 || 0 > end || end > 63) {
 			return false;
 		}
-		Piece piece = chessboard.getUserPiece(start);
+		// Is a piece found at start coordinates
+		Piece piece = chessboard.getPiece(start);
 		if (piece == null) {
 			return false;
 		}
-		char[][] tempboard = chessboard.getBoard();
-		if (Character.isLowerCase(tempboard[start/8][start%8])) {
+		// Is the piece player's own piece (i.e. white) and is the move successful
+		if (piece.amIWhite()) {
+			return piece.move(chessboard, end);
+		} else {
 			return false;
-		}
-		switch(tempboard[start/8][start%8]) {
-			case 'P': movedone = piece.move(chessboard, end);
-				break;/*
-			case 'R': movedone = chessboard.moveRook(startRow, startCol, endRow, endCol);
-				break;
-			case 'N': movedone = chessboard.moveKnight(startRow, startCol, endRow, endCol);
-				break;
-			case 'B': movedone = chessboard.moveBishop(startRow, startCol, endRow, endCol);
-				break;
-			case 'Q': movedone = chessboard.moveQueen(startRow, startCol, endRow, endCol);
-				break;
-			case 'K': movedone = chessboard.moveKing(startRow, startCol, endRow, endCol);
-				break;*/
-			default: movedone = false;
-				break;
-		}
-		if (!movedone) {
-			return false;
-		}
-		return true;
+		}	
 	}
 	
 }

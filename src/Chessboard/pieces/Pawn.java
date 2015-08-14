@@ -3,6 +3,7 @@ package Chessboard.pieces;
 import AI.Movement;
 import Chessboard.Chessboard;
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 public class Pawn extends Piece implements Cloneable {
 	
@@ -13,37 +14,29 @@ public class Pawn extends Piece implements Cloneable {
 	
 	@Override
 	public ArrayList getPossibleMovements(Chessboard chessboard) {
-		int amountToMove = white ? -1 : 1;
-		int row = position/8 + amountToMove;
-		int col = position%8;
-		ArrayList<Movement> movements = new ArrayList<Movement>();
-		if (chessboard.getSquareContents(position/8 + amountToMove, position%8) == ' ') {
-			movements.add(new Movement(0, position, position + amountToMove*8));
+		int amountToMove = white ? -8 : 8;
+		ArrayList<Movement> movements = new ArrayList<>();
+		int pawnRow = white ? (position / 8) - 1 : (position / 8) + 1;
+		int pawnCol = position % 8;
+		for (int col = pawnCol - 1; col <= pawnCol + 1; col++) {
+			if ((col >= 0 && col < 8) && this.isMoveValid(chessboard, pawnRow * 8 + col)) {
+				movements.add(new Movement(0, position, pawnRow * 8 + col));
+			}
 		}
-		// TODO captures
 		return movements;
 	}
 	
-	/**
-	 * Moves pawn and possibly captures an enemy piece, if allowed by chess rules.
-	 * @param chessboard
-	 * @param start Start position on the board between 0 and 63 (0 is top left, 63 is bottom right).
-	 * @param end End position on the board between 0 and 63 (0 is top left, 63 is bottom right).
-	 * @return boolean value, whether the move is successfully done.
-	 */
 	@Override
-	public boolean move(Chessboard chessboard, int end) {
+	public boolean isMoveValid(Chessboard chessboard, int end) {
 		if (!this.isCommandValid(end)) {
 			return false;
 		}
-		int start = position;
-		int startRow = start/8;
-		int startCol = start%8;
-		int endRow = end/8;
-		int endCol = end%8;
+		int startRow = position / 8;
+		int startCol = position % 8;
+		int endRow = end / 8;
+		int endCol = end % 8;
 		char pawn = white ? 'P' : 'p';
 		int homeRow = white ? 6 : 1;
-		char[][] tempBoard = chessboard.cloneBoard();
 		
 		if (white) {
 			if (startRow <= endRow) {
@@ -54,30 +47,53 @@ public class Pawn extends Piece implements Cloneable {
 				return false;
 			}
 		}
-		
 		// move forward
 		if (startCol == endCol) {
-			if (((Math.abs(startRow - endRow) == 2 && startRow == homeRow) || Math.abs(startRow - endRow) == 1) && chessboard.getSquareContents(endRow, endCol) == ' ') {
-				chessboard.setSquare(start, ' ');
+			if (((Math.abs(startRow - endRow) == 2 && startRow == homeRow) || Math.abs(startRow - endRow) == 1) && chessboard.getSquareContents(end) == ' ') {
+				chessboard.setSquare(position, ' ');
 				chessboard.setSquare(end, pawn);
 				if (!chessboard.isItCheck(white)) {
-					this.position = end;
+					chessboard.setSquare(position, pawn);
+					chessboard.setSquare(end, ' ');
 					return true;
 				}
 			}
 		// capture
 		} else {
-			if ((Math.abs(startCol - endCol) == 1 && Math.abs(startRow - endRow) == 1) && chessboard.endSquareContainsEnemy(white, endRow, endCol)) {
-				chessboard.setSquare(start, ' ');
+			if ((Math.abs(startCol - endCol) == 1 && Math.abs(startRow - endRow) == 1) && this.endSquareContainsEnemy(chessboard, end)) {
+				char endSquareBackup = chessboard.getSquareContents(end);
+				chessboard.setSquare(position, ' ');
 				chessboard.setSquare(end, pawn);
 				if (!chessboard.isItCheck(white)) {
-					this.position = end;
+					chessboard.setSquare(position, pawn);
+					chessboard.setSquare(end, endSquareBackup);
 					return true;
 				}
 			}
 		}
-		chessboard.setBoard(tempBoard);
 		return false;
+	}
+	
+	
+	/**
+	 * Moves pawn and possibly captures an enemy piece, if allowed by chess rules.
+	 * @param chessboard
+	 * @param end End position on the board between 0 and 63 (0 is top left, 63 is bottom right).
+	 * @return boolean value, whether the move is successfully done.
+	 */
+	@Override
+	public boolean move(Chessboard chessboard, int end) {
+		char pawn = white ? 'P' : 'p';
+		if (this.isMoveValid(chessboard, end)) {
+			if (this.endSquareContainsEnemy(chessboard, end)) {
+				chessboard.getPieces(white).remove(end);
+			}
+			chessboard.setSquare(position, ' ');
+			chessboard.setSquare(end, pawn);
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	@Override
