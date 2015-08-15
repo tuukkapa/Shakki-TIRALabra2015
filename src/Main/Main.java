@@ -45,7 +45,7 @@ public class Main {
 				if (UserMovement.movePiece(command, chessboard)) {
 					UserInterface.draw(chessboard.getBoard());
 					System.out.println("Tietokone tekee siirtonsa...");
-					Movement move = ai.minimax(chessboard, 3, true);
+					Movement move = ai.minimax(chessboard, 4, true);
 					System.out.println("Minimax laskettu, ei siirretty:");
 					UserInterface.draw(chessboard.getBoard());
 					if (!chessboard.movePiece(move.getStart(), move.getEnd())) {

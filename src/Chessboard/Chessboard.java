@@ -35,14 +35,14 @@ public class Chessboard {
 	
 	public Chessboard() {
 		char[][] newboard = {
-			{'r', 'n', 'b', ' ', 'k', 'b', 'n', 'r'},
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
-			{'R', 'N', 'B', ' ', 'K', 'B', 'N', 'R'}
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
 		chessboard = newboard;
 		whiteKingPosition = 60;

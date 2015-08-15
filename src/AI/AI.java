@@ -22,18 +22,19 @@ public class AI {
 			for (int j = 0; j < movements.size(); j++) {
 				Chessboard clone = this.cloneBoardAndPieces(chessboard);
 				clone.movePiece(movements.get(j).getStart(), movements.get(j).getEnd());
-				value = minimax(clone, depth - 1, !maximizingPlayer).getScore();
+				Movement move = minimax(clone, depth - 1, !maximizingPlayer);
+				value = move.getScore();
 				if (maximizingPlayer) {
 					if (bestValue < value) {
 						bestValue = value;
-						bestMove = new Movement(clone.getValue(), piece.getValue().getPosition(), movements.get(j).getEnd());
+						
 					}
 				} else {
 					if (bestValue > value) {
 						bestValue = value;
-						bestMove = new Movement(clone.getValue(), piece.getValue().getPosition(), movements.get(j).getEnd());
 					}
 				}
+				bestMove = new Movement(bestValue, piece.getValue().getPosition(), movements.get(j).getEnd());
 			}
 		}
 		return bestMove;

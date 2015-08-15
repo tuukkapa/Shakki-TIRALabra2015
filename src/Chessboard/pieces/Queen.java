@@ -41,26 +41,32 @@ public class Queen extends Piece implements Cloneable {
 		// Check route diagonally
 		if (Math.abs(startCol-endCol) == Math.abs(startRow-endRow)) {
 			for (int i = 1; i < Math.abs(endRow-startRow); i++) {
-				if (endRow>startRow && endCol>startCol) {
+				// check south-east
+				if (startRow+i < 8 && startCol+i < 8) {
 					if (chessboard.getSquareContents(startRow+i, startCol+i) != ' ') {
 						movementOk = false;
 						break;
 					}
-				} else if (endRow>startRow && endCol<startCol) {
+				// check south-west
+				} else if (startRow+i < 8 && startCol - i >= 0) {
 					if (chessboard.getSquareContents(startRow+i, startCol-i) != ' ') {
 						movementOk = false;
 						break;
 					}
-				} else if (endRow<startRow && endCol>startCol) {
+				// check north-east
+				} else if (startRow-i >= 0 && startCol+i < 8) {
 					if (chessboard.getSquareContents(startRow-i, startCol+i) != ' ') {
 						movementOk = false;
 						break;
 					}
-				} else {
+				// check north-west
+				} else if (startRow-i >= 0 && startCol-i >= 0) {
 					if (chessboard.getSquareContents(startRow-i, endRow-i) != ' ') {
 						movementOk = false;
 						break;
 					}
+				} else {
+					return false;
 				}
 			}
 		}
