@@ -3,7 +3,6 @@ package Chessboard.pieces;
 import AI.Movement;
 import Chessboard.Chessboard;
 import java.util.ArrayList;
-import java.util.TreeMap;
 
 public class Pawn extends Piece implements Cloneable {
 	

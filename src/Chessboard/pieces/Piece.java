@@ -5,7 +5,6 @@
  */
 package Chessboard.pieces;
 
-import AI.Movement;
 import Chessboard.Chessboard;
 import java.util.ArrayList;
 

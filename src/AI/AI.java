@@ -2,13 +2,10 @@ package AI;
 
 
 import Chessboard.Chessboard;
-import Chessboard.pieces.Pawn;
 import Chessboard.pieces.Piece;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class AI {
 	
