@@ -46,7 +46,11 @@ public class Main {
 					UserInterface.draw(chessboard.getBoard());
 					System.out.println("Tietokone tekee siirtonsa...");
 					Movement move = ai.minimax(chessboard, 3, true);
-					chessboard.movePiece(move.getStart(), move.getEnd());
+					System.out.println("Minimax laskettu, ei siirretty:");
+					UserInterface.draw(chessboard.getBoard());
+					if (!chessboard.movePiece(move.getStart(), move.getEnd())) {
+						System.out.println("Siirrossa tapahtui virhe.");
+					}
 					UserInterface.draw(chessboard.getBoard());
 				} else {
 					System.out.println("Virheellinen komento.");

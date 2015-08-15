@@ -35,28 +35,34 @@ public class Chessboard {
 	
 	public Chessboard() {
 		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'r', 'n', ' ', ' ', 'k', ' ', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
-			{' ', ' ', ' ', ' ', 'K', ' ', ' ', ' '}
+			{'R', 'N', ' ', ' ', 'K', ' ', 'N', 'R'}
 		};
 		chessboard = newboard;
 		whiteKingPosition = 60;
 		blackKingPosition= 4;
 		whitePieces = new TreeMap<>();
 		blackPieces = new TreeMap<>();
-		for (int i = 0; i < 8; i++) {
-			blackPieces.put(8 + i, new Pawn(false, 8 + i));
-			whitePieces.put(48 + i, new Pawn(true, 48 + i));
+		this.createPieces();
+	}
+	
+	private void createPieces() {
+		for (int i = 0; i < 64; i++) {
+			if (chessboard[i/8][i%8] == 'p') blackPieces.put(i, new Pawn(false, i));
+			if (chessboard[i/8][i%8] == 'r') blackPieces.put(i, new Rook(false, i));
+			if (chessboard[i/8][i%8] == 'n') blackPieces.put(i, new Knight(false, i));
+			if (chessboard[i/8][i%8] == 'k') blackPieces.put(i, new King(false, i));
+			if (chessboard[i/8][i%8] == 'P') whitePieces.put(i, new Pawn(true, i));
+			if (chessboard[i/8][i%8] == 'R') whitePieces.put(i, new Rook(true, i));
+			if (chessboard[i/8][i%8] == 'N') whitePieces.put(i, new Knight(true, i));
+			if (chessboard[i/8][i%8] == 'K') whitePieces.put(i, new King(true, i));
 		}
-		whitePieces.put(60, new King(true, 60));
-		blackPieces.put(4, new King(false, 4));
-		//pieces[0] = new Pawn(false, 44);
-		// TODO create the rest of the pieces
 	}
 	
 	public TreeMap clonePieces(boolean white) throws CloneNotSupportedException {
@@ -153,144 +159,7 @@ public class Chessboard {
 		this.updateKingPosition(true);
 		this.updateKingPosition(false);
 	}
-	
-	/**
-	 * Moves pawn and possibly captures an enemy piece, if allowed by chess rules.
-	 * @param startRow Row where the piece to be moved is.
-	 * @param startCol Column where the piece to be moved is.
-	 * @param endRow Row where the piece is to be moved.
-	 * @param endCol Column where the piece is to be moved.
-	 * @return boolean value, whether the move is successfully done.
-	 */
-	/*
-	public boolean movePawn(int startRow, int startCol, int endRow, int endCol) {
-		if (!this.isCommandValid(startRow, startCol, endRow, endCol)) {
-			return false;
-		}
-		
-		if (Character.toUpperCase(chessboard[startRow][startCol]) != 'P') {
-			return false;
-		}
-		boolean colour = Character.isUpperCase(chessboard[startRow][startCol]);
-		char pawn = colour ? 'P' : 'p';
-		int homeRow = colour ? 6 : 1;
-		char[][] tempBoard = chessboard;
-		
-		if (colour) {
-			if (startRow <= endRow) {
-				return false;
-			}
-		} else {
-			if (startRow >= endRow) {
-				return false;
-			}
-		}
-		
-		// move forward
-		if (startCol == endCol) {
-			if (((Math.abs(startRow - endRow) == 2 && startRow == homeRow) || Math.abs(startRow - endRow) == 1) && chessboard[endRow][endCol] == ' ') {
-				chessboard[startRow][startCol] = ' ';
-				chessboard[endRow][endCol] = pawn;
-				if (!this.isItCheck(colour)) {
-					return true;
-				}
-			}
-		// capture
-		} else {
-			if ((Math.abs(startCol - endCol) == 1 && Math.abs(startRow - endRow) == 1) && this.endSquareContainsEnemy(colour, endRow, endCol)) {
-				chessboard[startRow][startCol] = ' ';
-				chessboard[endRow][endCol] = pawn;
-				if (!this.isItCheck(colour)) {
-					return true;
-				}
-			}
-		}
-		chessboard = tempBoard;
-		return false;
-	}
-	*/
-	/**
-	 * Moves rook and possibly captures an enemy piece, if allowed by chess rules.
-	 * @param startRow Row where the piece to be moved is.
-	 * @param startCol Column where the piece to be moved is.
-	 * @param endRow Row where the piece is to be moved.
-	 * @param endCol Column where the piece is to be moved.
-	 * @return True, if move is successfully done, false otherwise.
-	 *//*
-	public boolean moveRook(int startRow, int startCol, int endRow, int endCol) {
-		if (!this.isCommandValid(startRow, startCol, endRow, endCol)) {
-			return false;
-		}
-		
-		if (Character.toUpperCase(chessboard[startRow][startCol]) != 'R') {
-			return false;
-		}	
-		boolean colour = Character.isUpperCase(chessboard[startRow][startCol]);
-		char rook = colour ? 'R' : 'r';
-		char[][] tempBoard = chessboard;
 
-		// Check route vertically
-		if (startCol == endCol) {
-			for (int i = startRow; i < endRow; i++) {
-				if (chessboard[i][startCol] != ' ') {
-					return false;
-				}
-			}	
-		// Check route horizontally
-		} else if (startRow == endRow) {
-			for (int i = startCol; i < endCol; i++) {
-				if (chessboard[startRow][i] != ' ') {
-					return false;
-				}
-			}
-		} else if (startRow != endRow && startCol != endCol) {
-			return false;
-		}
-		
-		if (this.endSquareContainsEnemyOrEmpty(colour, endRow, endCol)) {
-			chessboard[startRow][startCol] = ' ';
-			chessboard[endRow][endCol] = rook;
-			if (!this.isItCheck(colour)) {
-				return true;
-			}
-		}
-		chessboard = tempBoard;
-		return false;
-	}
-	*/
-	/**
-	 * Moves knight and possibly captures an enemy piece, if allowed by chess rules.
-	 * @param startRow Row where the piece to be moved is.
-	 * @param startCol Column where the piece to be moved is.
-	 * @param endRow Row where the piece is to be moved.
-	 * @param endCol Column where the piece is to be moved.
-	 * @return True, if move is successfully done, false otherwise.
-	 */ /*
-	public boolean moveKnight(int startRow, int startCol, int endRow, int endCol) {
-		if (!this.isCommandValid(startRow, startCol, endRow, endCol)) {
-			return false;
-		}
-		
-		if (Character.toUpperCase(chessboard[startRow][startCol]) != 'N') {
-			return false;
-		}	
-		boolean colour = Character.isUpperCase(chessboard[startRow][startCol]);
-		char knight = colour ? 'N' : 'n';
-		char[][] tempBoard = chessboard;
-		
-		if ((Math.abs(startCol-endCol) == 1 && Math.abs(startRow-endRow) == 2) || 
-				Math.abs(startCol-endCol) == 2 && Math.abs(startRow-endRow) == 1) {
-			if (this.endSquareContainsEnemyOrEmpty(colour, endRow, endCol)) {
-				chessboard[startRow][startCol] = ' ';
-				chessboard[endRow][endCol] = knight;
-				if (!this.isItCheck(colour)) {
-					return true;
-				}
-			}
-		}
-		chessboard = tempBoard;
-		return false;
-	}*/
 	
 	/**
 	 * Moves bishop and possibly captures an enemy piece, if allowed by chess rules.
@@ -564,6 +433,16 @@ public class Chessboard {
 		return false;
 	}
 	
+	public boolean wouldItBeCheck(Piece piece, int end) {
+		char endSquareBackup = this.getSquareContents(end);
+		this.setSquare(piece.getPosition(), ' ');
+		this.setSquare(end, piece.getSign());
+		boolean checkSituation = this.isItCheck(piece.amIWhite());
+		this.setSquare(piece.getPosition(), piece.getSign());
+		this.setSquare(end, endSquareBackup);
+		return checkSituation;
+	}
+	
 	public boolean isItCheckMate(boolean checkedIsWhite) {
 		Piece king = this.getPiece(checkedIsWhite ? whiteKingPosition : blackKingPosition);
 		if (king == null) {
@@ -587,40 +466,40 @@ public class Chessboard {
 		int bishopPoints = 3;
 		int pawnPoints = 1;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard[i/8][i%8] == 'K') {
+			if (chessboard[i/8][i%8] == 'k') {
 				points += kingPoints;
 			}
-			if (chessboard[i/8][i%8] == 'Q') {
+			if (chessboard[i/8][i%8] == 'q') {
 				points += queenPoints;
 			}
-			if (chessboard[i/8][i%8] == 'R') {
+			if (chessboard[i/8][i%8] == 'r') {
 				points += rookPoints;
 			}
-			if (chessboard[i/8][i%8] == 'N') {
+			if (chessboard[i/8][i%8] == 'n') {
 				points += knightPoints;
 			}
-			if (chessboard[i/8][i%8] == 'B') {
+			if (chessboard[i/8][i%8] == 'b') {
 				points += bishopPoints;
 			}
-			if (chessboard[i/8][i%8] == 'P') {
+			if (chessboard[i/8][i%8] == 'p') {
 				points += pawnPoints;
 			}
-			if (chessboard[i/8][i%8] == 'k') {
+			if (chessboard[i/8][i%8] == 'K') {
 				points -= kingPoints;
 			}
-			if (chessboard[i/8][i%8] == 'q') {
+			if (chessboard[i/8][i%8] == 'Q') {
 				points -= queenPoints;
 			}
-			if (chessboard[i/8][i%8] == 'r') {
+			if (chessboard[i/8][i%8] == 'R') {
 				points -= rookPoints;
 			}
-			if (chessboard[i/8][i%8] == 'n') {
+			if (chessboard[i/8][i%8] == 'N') {
 				points -= knightPoints;
 			}
-			if (chessboard[i/8][i%8] == 'b') {
+			if (chessboard[i/8][i%8] == 'B') {
 				points -= bishopPoints;
 			}
-			if (chessboard[i/8][i%8] == 'p') {
+			if (chessboard[i/8][i%8] == 'P') {
 				points -= pawnPoints;
 			}
 
@@ -642,15 +521,18 @@ public class Chessboard {
 	
 	/**
 	 * Returns contents of one chess board square.
-	 * @param row Row of the square.
-	 * @param col Column of the square.
+	 * @param position
 	 * @return Character, contents of the square.
 	 */
 	public char getSquareContents(int position) {
 		return chessboard[position/8][position%8];
 	}
 	
-	public void setSquare(int position, char contents) {
+	public char getSquareContents(int row, int col) {
+		return chessboard[row][col];
+	}
+	
+	private void setSquare(int position, char contents) {
 		chessboard[position/8][position%8] = contents;
 	}
 	

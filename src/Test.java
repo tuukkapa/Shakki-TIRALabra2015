@@ -23,11 +23,8 @@ import java.util.logging.Logger;
 public class Test {
 	
 	public static void main(String[] args) throws CloneNotSupportedException {	
-		Chessboard chessboard = new Chessboard();
-		Pawn pawn = (Pawn) chessboard.getPiece(48);
-		ArrayList<Movement> testi = pawn.getPossibleMovements(chessboard);
-		System.out.println(UserMovement.movePiece("a2a3", chessboard));
-		UserInterface.draw(chessboard.getBoard());
+		char[] testi = {'A', ' ', 'c'};
+		System.out.println(Character.isUpperCase(testi[0]));
 	}
 	
 }

@@ -44,10 +44,10 @@ public class King extends Piece implements Cloneable {
 	 */
 	@Override
 	public boolean isMoveValid(Chessboard chessboard, int end) {
-		boolean success = false;
 		if (!this.isCommandValid(end)) {
 			return false;
 		}
+		boolean movementOk = false;
 		int startRow = position/8;
 		int startCol = position%8;
 		int endRow = end/8;
@@ -55,17 +55,10 @@ public class King extends Piece implements Cloneable {
 		char king = white ? 'K' : 'k';
 		char endSquareBackup = chessboard.getSquareContents(end);
 		if (Math.abs(endRow-startRow) <= 1 && Math.abs(endCol-startCol) <= 1 && this.endSquareContainsEnemyOrEmpty(chessboard, end)) {
-			chessboard.setSquare(position, ' ');
-			chessboard.setSquare(end, king);
-			chessboard.updateKingPosition(white);
-			if (!chessboard.isItCheck(white)) {
-				success = true;
-			}
+			movementOk = true;
 		}
-		chessboard.setSquare(position, king);
-		chessboard.setSquare(end, endSquareBackup);
-		chessboard.updateKingPosition(white);
-		return success;
+		
+		return movementOk && !chessboard.wouldItBeCheck(this, end);
 	}
 	
 	@Override

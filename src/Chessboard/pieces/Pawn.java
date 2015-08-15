@@ -28,18 +28,17 @@ public class Pawn extends Piece implements Cloneable {
 	
 	@Override
 	public boolean isMoveValid(Chessboard chessboard, int end) {
-		boolean success = false;
 		if (!this.isCommandValid(end)) {
 			return false;
 		}
+		boolean movementOk = true;
 		int startRow = position / 8;
 		int startCol = position % 8;
 		int endRow = end / 8;
 		int endCol = end % 8;
-		char pawn = white ? 'P' : 'p';
 		int homeRow = white ? 6 : 1;
-		char endSquareBackup = chessboard.getSquareContents(end);
 		
+		// prevent moving backwards
 		if (white) {
 			if (startRow <= endRow) {
 				return false;
@@ -50,35 +49,36 @@ public class Pawn extends Piece implements Cloneable {
 			}
 		}
 		
-		// move forward
+		// check moving forward
+		int movement = white ? -1 : 1;
 		if (startCol == endCol) {
-			if (((Math.abs(startRow - endRow) == 2 && startRow == homeRow) || Math.abs(startRow - endRow) == 1) && chessboard.getSquareContents(end) == ' ') {
-				chessboard.setSquare(position, ' ');
-				chessboard.setSquare(end, pawn);
-				if (!chessboard.isItCheck(white)) {
-					success = true;
+				// check moving 2 squares
+				if (startRow == homeRow && Math.abs(startRow - endRow) == 2) {
+					for (int i = startRow + movement; i <= Math.abs(startRow - endRow); i++) {
+						if (chessboard.getSquareContents(startRow + (i * movement) , startCol) != ' ') {
+							movementOk = false;
+						}
+					}
+				// check moving 1 square
+				} else if (Math.abs(startRow - endRow) != 1 || chessboard.getSquareContents(endRow, endCol) != ' ') {
+					movementOk = false;
 				}
-			}
-		
-		// capture
+			
+		// check capture
 		} else {
-			if ((Math.abs(startCol - endCol) == 1 && Math.abs(startRow - endRow) == 1) && this.endSquareContainsEnemy(chessboard, end)) {
-				chessboard.setSquare(position, ' ');
-				chessboard.setSquare(end, pawn);
-				if (!chessboard.isItCheck(white)) {
-					success = true;
-				}
+			movementOk = false;
+			if (Math.abs(startCol - endCol) == 1 && Math.abs(startRow - endRow) == 1 && this.endSquareContainsEnemy(chessboard, end)) {
+				movementOk = true;
 			}
 		}
-		chessboard.setSquare(position, pawn);
-		chessboard.setSquare(end, endSquareBackup);
-		return success;
+		
+		return movementOk && !chessboard.wouldItBeCheck(this, end);
 	}
 	
 	@Override
 	public Object clone() throws CloneNotSupportedException {
 		Pawn newPawn = (Pawn) super.clone();
-		//… take care of any deep copies to be made here
 		return newPawn;
 	}
+
 }
