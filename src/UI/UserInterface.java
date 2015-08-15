@@ -1,20 +1,15 @@
 package UI;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
- * @author tuukka
+ * Static class to draw the user interface.
+ * @author Tuukka Paukkunen <tuukka.paukkunen@cs.helsinki.fi>
  */
 public class UserInterface {
 	
 	/**
 	 * Method uses the char-array of this class as an input and outputs human
 	 * readable ASCII-character version of the chess board.
+	 * @param chessboard Two dimensional char-array, the board to be drawn.
 	 */
 	public static void draw(char[][] chessboard) {
 		for (int i = 0; i < 17; i++) {

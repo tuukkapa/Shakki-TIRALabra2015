@@ -47,7 +47,7 @@ public class Main {
 	public static void main(String[] args) {
 		String command;
 		boolean continueGame = true;
-		
+
 		init();
 		
 		UserInterface.draw(chessboard.getBoard());
