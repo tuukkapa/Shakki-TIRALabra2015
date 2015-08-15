@@ -6,7 +6,6 @@
 
 package Chessboard.pieces;
 
-import AI.Movement;
 import Chessboard.Chessboard;
 import java.util.ArrayList;
 
@@ -20,20 +19,7 @@ public class Rook extends Piece implements Cloneable {
 	
 	@Override
 	public ArrayList getPossibleMovements(Chessboard chessboard) {
-		ArrayList<Movement> movements = new ArrayList<>();
-		int rookRow = position / 8;
-		int rookCol = position % 8;
-		for (int i = 0; i < 8; i++) {
-			// check Rook's row
-			if (rookCol != i && this.isMoveValid(chessboard, rookRow * 8 + i)) {
-				movements.add(new Movement(0, position, rookRow * 8 + i));
-			}
-			// check Rook's col
-			if (rookRow != i && this.isMoveValid(chessboard, i * 8 + rookCol)) {
-				movements.add(new Movement(0, position, i * 8 + rookCol));
-			}
-		}
-		return movements;
+		return this.createStraightMovements(chessboard);
 	}
 	
 	@Override
@@ -47,26 +33,28 @@ public class Rook extends Piece implements Cloneable {
 		int endRow = end / 8;
 		int endCol = end % 8;
 
-		// Check route vertically
-		if (startCol == endCol) {
-			for (int i = 0; i < Math.abs(endRow - startRow); i++) {
-				// is the route clear and the checked square isn't where the Rook is
-				if (Math.min(startRow, endRow) + i != startRow && 
-						chessboard.getSquareContents(Math.min(startRow, endRow) + i, startCol) != ' ') {
-					movementOk = false;
-				}
-			}	
-		// Check route horizontally
-		} else if (startRow == endRow) {
-			for (int i = 0; i < Math.abs(endCol - startCol); i++) {
-				// is the route clear and the checked square isn't where the Rook is
-				if (Math.min(startCol, endCol) + i != startCol &&
-						chessboard.getSquareContents(startRow, Math.min(startCol, endCol) + i) != ' ') {
-					movementOk = false;
-				}
-			}
-		} else if (startRow != endRow && startCol != endCol) {
+		
+		if (startCol != endCol && startRow != endRow) {
 			return false;
+		}
+		
+		// check route
+		int movement = Math.abs(startRow - endRow) == 0 ? Math.abs(startCol - endCol) : Math.abs(startRow - endRow);
+		for (int i = 1; i < movement; i++) {
+			if (startRow == endRow) {
+				if (chessboard.getSquareContents(startRow, Math.min(startCol, endCol) + i) != ' ') {
+					movementOk = false;
+					break;
+				}
+			} else if (startCol == endCol) {
+				if (chessboard.getSquareContents(Math.min(startRow, endRow) + i, startCol) != ' ') {
+					movementOk = false;
+					break;
+				}
+			} else {
+				movementOk = false;
+				break;
+			}
 		}
 
 		return movementOk && !chessboard.wouldItBeCheck(this, end) && this.endSquareContainsEnemyOrEmpty(chessboard, end);
