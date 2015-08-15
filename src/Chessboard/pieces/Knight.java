@@ -10,6 +10,11 @@ import AI.Move;
 import Chessboard.Chessboard;
 import java.util.ArrayList;
 
+/**
+ * Class for Knight, creates Knight-objects.
+ * 
+ * @author Tuukka Paukkunen <tuukka.paukkunen@cs.helsinki.fi>
+ */
 public class Knight extends Piece implements Cloneable {
 	
 	public Knight(boolean white, int position) {

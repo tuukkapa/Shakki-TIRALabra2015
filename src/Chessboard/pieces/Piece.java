@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Chessboard.pieces;
 
 import AI.Move;
@@ -10,8 +5,14 @@ import Chessboard.Chessboard;
 import java.util.ArrayList;
 
 /**
- *
- * @author tuukka
+ * Piece-class from which other pieces are extended.
+ * 
+ * Fields:
+ * - Position, integer
+ * - Colour, boolean (true = white, false = black)
+ * - Sign, character (e.g. P = white pawn. See more info at Chessboard.java).
+ * 
+ * @author Tuukka Paukkunen <tuukka.paukkunen@cs.helsinki.fi>
  */
 public abstract class Piece implements Cloneable {
 	
@@ -19,10 +20,19 @@ public abstract class Piece implements Cloneable {
 	protected boolean white;
 	protected char sign;
 	
+	/**
+	 * Returns the position of this Piece.
+	 * @return Integer, position of the piece.
+	 */
 	public int getPosition() {
 		return position;
 	}
 	
+	/**
+	 * Sets the position of this Piece.
+	 * @param position Integer, position of this piece.
+	 * @return True, if given position is valid, false otherwise.
+	 */
 	public boolean setPosition(int position) {
 		if (0 <= position && position < 64) {
 			this.position = position;
@@ -32,18 +42,43 @@ public abstract class Piece implements Cloneable {
 		}
 	}
 	
+	/**
+	 * Returns the piece's sign as a character.
+	 * @return Character, sign of this piece.
+	 */
 	public char getSign() {
 		return sign;
 	}
 	
+	/**
+	 * Returns boolean value, telling the colour of the piece.
+	 * @return True, if piece is white, false if piece is black.
+	 */
 	public boolean amIWhite() {
 		return white;
 	}
 	
+	/**
+	 * Returns an ArrayList of Move-objects, which are possible for the piece in question.
+	 * @param chessboard Chessboard-object, which pieces are to be moved.
+	 * @return ArrayList of Move-objects.
+	 */
 	public abstract ArrayList getPossibleMoves(Chessboard chessboard);
 	
+	/**
+	 * Verifies if this Piece can be moved to the end position according to the chess rules.
+	 * @param chessboard Chessboard-object, which pieces are to be moved.
+	 * @param end Position, where the current Piece-object is to be moved.
+	 * @return True, if command is valid, false otherwise.
+	 */
 	public abstract boolean isMoveValid(Chessboard chessboard, int end);
 	
+	/**
+	 * Objects protected helper-method. Creates Move-objects horizontally
+	 * and vertically from the Piece-objects position (i.e. like Rook).
+	 * @param chessboard Chessboard-object, which pieces are to be moved.
+	 * @return ArrayList of Move-objects.
+	 */
 	protected ArrayList createStraightMoves(Chessboard chessboard) {
 		ArrayList<Move> moves = new ArrayList<>();
 		int startRow = position / 8;
@@ -102,6 +137,12 @@ public abstract class Piece implements Cloneable {
 		return moves;
 	}
 	
+	/**
+	 * Objects protected helper-method. Creates Move-objects diagonally
+	 * from the Piece-objects position (i.e. like Rook).
+	 * @param chessboard Chessboard-object, which pieces are to be moved.
+	 * @return ArrayList of Move-objects.
+	 */
 	protected ArrayList createDiagonalMoves(Chessboard chessboard) {
 		ArrayList<Move> moves = new ArrayList<>();
 		int row = position / 8;
@@ -171,6 +212,12 @@ public abstract class Piece implements Cloneable {
 		return moves;
 	}
 	
+	/**
+	 * Verifies, if the horizontal or vertical route to the end square is free.
+	 * @param chessboard Chessboard-object, which pieces are to be moved.
+	 * @param end Position, where the current Piece-object is to be moved.
+	 * @return True, if route is free, false otherwise.
+	 */
 	protected boolean checkStraightRoutes(Chessboard chessboard, int end) {
 		boolean moveOk = true;
 		int startRow = position / 8;
@@ -200,7 +247,7 @@ public abstract class Piece implements Cloneable {
 	/**
 	 * Does the basic validation of given move, i.e. is any of the coordinates
 	 * outside of the board.
-	 * @param end
+	 * @param end Position, where the current Piece-object is to be moved.
 	 * @return True if coordinates are valid, false otherwise.
 	 */
 	protected boolean isCommandValid(int end) {
@@ -208,9 +255,9 @@ public abstract class Piece implements Cloneable {
 	}
 	
 	/**
-	 * Determines if end square contains enemy or is empty.
-	 * @param chessboard
-	 * @param end
+	 * Determines if end square contains enemy or piece is empty.
+	 * @param chessboard Chessboard-object, which pieces are to be moved.
+	 * @param end Position, where the current Piece-object is to be moved.
 	 * @return True, if end square contains enemy or is empty, false otherwise.
 	 */
 	public boolean endSquareContainsEnemyOrEmpty(Chessboard chessboard, int end) {
@@ -223,8 +270,8 @@ public abstract class Piece implements Cloneable {
 	}
 	
 	/** Determines if end square contains enemy.
-	 * @param chessboard
-	 * @param end
+	 * @param chessboard Chessboard-object, which pieces are to be moved.
+	 * @param end Position, where the current Piece-object is to be moved.
 	 * @return True, if square contains enemy, false otherwise.
 	 */
 	public boolean endSquareContainsEnemy(Chessboard chessboard, int end) {
@@ -235,6 +282,11 @@ public abstract class Piece implements Cloneable {
 		return white ? Character.isLowerCase(tempboard[end/8][end%8]) : Character.isUpperCase(tempboard[end/8][end%8]);	
 	}
 	
+	/**
+	 * Clones this Piece-object.
+	 * @return The cloned Piece-object.
+	 * @throws CloneNotSupportedException 
+	 */
 	@Override
 	public Object clone() throws CloneNotSupportedException {
 		return super.clone();

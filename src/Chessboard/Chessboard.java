@@ -8,6 +8,15 @@ import java.util.TreeMap;
 
 /**
  * This class does everything related to the chess board and it's pieces' movement.
+ * It contains both the board and the piece-objects.
+ * 
+ * Fiels:
+ * - Two-dimensional char-array, the chessboard.
+ * - White and black King's positions as integers
+ *   (0 = top left corner, 63 = bottom right corner).
+ * - Two TreeMaps consisting of the pieces.
+ *   Piece's position is as key and the Piece-object is as a value.
+ * 
  * @author Tuukka Paukkunen
  */
 public class Chessboard {
@@ -32,6 +41,10 @@ public class Chessboard {
 	private int whiteKingPosition, blackKingPosition;
 	private TreeMap<Integer, Piece> whitePieces, blackPieces;
 	
+	/**
+	 * Constructor. Creates the chessboard, updates King's positions
+	 * and calls createPieces-method, which creates the Piece-objects.
+	 */
 	public Chessboard() {
 		char[][] newboard = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
@@ -49,6 +62,10 @@ public class Chessboard {
 		this.createPieces();
 	}
 	
+	/**
+	 * Creates two TreeMaps, one for black and one for white. Creates piece-objects
+	 * and puts those into the corresponding TreeMaps.
+	 */
 	private void createPieces() {
 		whitePieces = new TreeMap<>();
 		blackPieces = new TreeMap<>();
@@ -68,6 +85,12 @@ public class Chessboard {
 		}
 	}
 	
+	/**
+	 * Clones and returns the pieces of the colour given as a parameter.
+	 * @param white Colour of the pieces, true means white, false means black.
+	 * @return TreeMap consisting of the piece-objects.
+	 * @throws CloneNotSupportedException 
+	 */
 	public TreeMap clonePieces(boolean white) throws CloneNotSupportedException {
 		TreeMap<Integer, Piece> newPieces = new TreeMap<>();
 		if (white) {
@@ -82,10 +105,20 @@ public class Chessboard {
 		return newPieces;
 	}
 	
+	/**
+	 * Returns the pieces of the colour given as a parameter.
+	 * @param white Colour of the pieces, true means white, false means black.
+	 * @return TreeMap consisting of the piece-objects.
+	 */
 	public TreeMap getPieces(boolean white) {
 		return white ? whitePieces : blackPieces;
 	}
 	
+	/**
+	 * Replaces the pieces with new ones of the colour given as a parameter.
+	 * @param white Colour of the pieces, true means white, false means black.
+	 * @param newPieces TreeMap consisting of the piece-objects.
+	 */
 	public void setPieces(boolean white, TreeMap newPieces) {
 		if (white) {
 			this.whitePieces = newPieces;
@@ -94,6 +127,11 @@ public class Chessboard {
 		}
 	}
 	
+	/**
+	 * Returns one piece on the position.
+	 * @param position Integer from 0 to 63. 0 is top left corner, 63 is bottom right corner.
+	 * @return The correct piece-object. Returns null if no piece is found.
+	 */
 	public Piece getPiece(int position) {
 		Piece piece = whitePieces.get(position);
 		if (piece == null) {
@@ -103,6 +141,12 @@ public class Chessboard {
 		}
 	}
 	
+	/**
+	 * Moves one piece from start position to end position.
+	 * @param start Original position of the piece.
+	 * @param end The target position of the piece to be moved.
+	 * @return True if moving is successful, false otherwise.
+	 */
 	public boolean movePiece(int start, int end) {
 		boolean success = false;
 		Piece piece = null;
@@ -138,8 +182,8 @@ public class Chessboard {
 	}
 	
 	/**
-	 * Returns the chessboard as char-array.
-	 * @return Returns the chessboard as char-array.
+	 * Returns a clone of the chessboard as char-array.
+	 * @return Chessboard as two dimensional char-array.
 	 */
 	public char[][] cloneBoard() {
 		char[][] newBoard = new char[8][8];
@@ -149,10 +193,18 @@ public class Chessboard {
 		return newBoard;
 	}
 	
+	/**
+	 * Returns the chessboard as char-array.
+	 * @return Chessboard as two dimensional char-array.
+	 */
 	public char[][] getBoard() {
 		return chessboard;
 	}
 	
+	/**
+	 * Replaces the board and pieces with a new one given as a parameter.
+	 * @param newboard Two dimensional char-array of the board.
+	 */
 	public void setBoard(char[][] newboard) {
 		chessboard = newboard;
 		this.createPieces();
@@ -179,7 +231,7 @@ public class Chessboard {
 	}
 	
 	/**
-	 * Determines, if the game situation is check. This method
+	 * Verifies, if the game situation is check. This method
 	 * can be used with either side of the player by using boolean parameter
 	 * checkedIsWhite.
 	 * @param checkedIsWhite True, if the checked player (the player who's King is threatened) is white, false otherwise.
@@ -309,6 +361,12 @@ public class Chessboard {
 		return false;
 	}
 	
+	/**
+	 * Verifies if the game situation would be check after a piece is moved.
+	 * @param piece Piece-object to be moved.
+	 * @param end Position, where the piece is to be moved.
+	 * @return True, if the situation would be check, false otherwise.
+	 */
 	public boolean wouldItBeCheck(Piece piece, int end) {
 		char endSquareBackup = this.getSquareContents(end);
 		this.setSquare(piece.getPosition(), ' ');
@@ -319,6 +377,11 @@ public class Chessboard {
 		return checkSituation;
 	}
 	
+	/**
+	 * Verifies, if the game situation is checkmate.
+	 * @param checkedIsWhite Colour, from which point of view the situation is viewed. True = white, false = black.
+	 * @return True, if game situation is check mate, false otherwise.
+	 */
 	public boolean isItCheckMate(boolean checkedIsWhite) {
 		Piece king = this.getPiece(checkedIsWhite ? whiteKingPosition : blackKingPosition);
 		if (king == null) {
@@ -331,7 +394,7 @@ public class Chessboard {
 	
 	/**
 	 * Returns the value of the game situation at the chessboard.
-	 * @return Integer, higher means better chances at winning.
+	 * @return Integer, higher means better chances at winning for the computer.
 	 */
 	public int getValue() {
 		int points = 0;
@@ -372,17 +435,28 @@ public class Chessboard {
 	
 	/**
 	 * Returns contents of one chess board square.
-	 * @param position
+	 * @param position Position of the square to be returned.
 	 * @return Character, contents of the square.
 	 */
 	public char getSquareContents(int position) {
 		return chessboard[position/8][position%8];
 	}
 	
+	/**
+	 * Returns contents of one chess board square.
+	 * @param row Row of the square to be returned.
+	 * @param col Column of the square to be returned.
+	 * @return Character, contents of the square.
+	 */
 	public char getSquareContents(int row, int col) {
 		return chessboard[row][col];
 	}
 	
+	/**
+	 * Changes the contents of one square.
+	 * @param position Position of the square to be changed.
+	 * @param contents New contents of the square.
+	 */
 	private void setSquare(int position, char contents) {
 		chessboard[position/8][position%8] = contents;
 	}

@@ -10,6 +10,11 @@ import AI.Move;
 import Chessboard.Chessboard;
 import java.util.ArrayList;
 
+/**
+ * Class for Queen, creates Queen-objects.
+ * 
+ * @author Tuukka Paukkunen <tuukka.paukkunen@cs.helsinki.fi>
+ */
 public class Queen extends Piece implements Cloneable {
 	
 	public Queen(boolean white, int position) {

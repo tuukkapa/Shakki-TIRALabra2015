@@ -4,6 +4,11 @@ import AI.Move;
 import Chessboard.Chessboard;
 import java.util.ArrayList;
 
+/**
+ * Class for Pawn, creates Pawn-objects.
+ * 
+ * @author Tuukka Paukkunen <tuukka.paukkunen@cs.helsinki.fi>
+ */
 public class Pawn extends Piece implements Cloneable {
 	
 	public Pawn(boolean white, int position) {

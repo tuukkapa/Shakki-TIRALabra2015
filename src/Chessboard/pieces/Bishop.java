@@ -9,6 +9,11 @@ package Chessboard.pieces;
 import Chessboard.Chessboard;
 import java.util.ArrayList;
 
+/**
+ * Class for Bishop. Creates Bishop-objects.
+ * 
+ * @author Tuukka Paukkunen <tuukka.paukkunen@cs.helsinki.fi>
+ */
 public class Bishop extends Piece implements Cloneable {
 	
 	public Bishop(boolean white, int position) {

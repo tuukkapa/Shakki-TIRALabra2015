@@ -9,6 +9,11 @@ package Chessboard.pieces;
 import Chessboard.Chessboard;
 import java.util.ArrayList;
 
+/**
+ * Class for Rook, creates Rook-objects.
+ * 
+ * @author Tuukka Paukkunen <tuukka.paukkunen@cs.helsinki.fi>
+ */
 public class Rook extends Piece implements Cloneable {
 	
 	public Rook(boolean white, int position) {

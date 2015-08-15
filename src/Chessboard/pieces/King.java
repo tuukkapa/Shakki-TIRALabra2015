@@ -4,6 +4,11 @@ import AI.Move;
 import Chessboard.Chessboard;
 import java.util.ArrayList;
 
+/**
+ * Class for King, creates King-objects.
+ * 
+ * @author Tuukka Paukkunen <tuukka.paukkunen@cs.helsinki.fi>
+ */
 public class King extends Piece implements Cloneable {
 	
 	public King(boolean white, int position) {

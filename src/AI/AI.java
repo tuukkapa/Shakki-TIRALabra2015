@@ -7,8 +7,20 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * This class does everything related to the game tree.
+ * @author Tuukka Paukkunen <tuukka.paukkunen@cs.helsinki.fi>
+ */
 public class AI {
 	
+	/**
+	 * Constructs the game tree, which determines the next move for the computer.
+	 * @param chessboard Chessboard-object with the game situation.
+	 * @param depth Integer, how many moves ahead the game tree is constructed.
+	 * @param maximizingPlayer True, if it is the turn of maximizingPlayer (i.e. computer), false otherwise.
+	 * @return Move-object including starting and ending coordinates for one move, and value of the move.
+	 * @throws CloneNotSupportedException 
+	 */
 	public Move minimax(Chessboard chessboard, int depth, boolean maximizingPlayer) throws CloneNotSupportedException {
 		int bestValue, value;
 		Move bestMove = null;
@@ -40,6 +52,12 @@ public class AI {
 		return bestMove;
 	}
 	
+	/**
+	 * Uses chessboard-objects methods to clone it's board and also pieces into new objects.
+	 * @param chessboard Chessboard-object to be cloned.
+	 * @return New Chessboard-object, clone of the object and other objects inside it.
+	 * @throws CloneNotSupportedException 
+	 */
 	private Chessboard cloneBoardAndPieces(Chessboard chessboard) throws CloneNotSupportedException {
 		Chessboard cloneBoard = new Chessboard();
 		cloneBoard.setBoard(chessboard.cloneBoard());
