@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Chessboard.pieces;
 
-import AI.Movement;
+import AI.Move;
 import Chessboard.Chessboard;
 import java.util.ArrayList;
 
-/**
- *
- * @author tuukka
- */
 public class King extends Piece implements Cloneable {
 	
 	public King(boolean white, int position) {
@@ -22,18 +13,18 @@ public class King extends Piece implements Cloneable {
 	}
 	
 	@Override
-	public ArrayList getPossibleMovements(Chessboard chessboard) {
-		ArrayList<Movement> movements = new ArrayList<>();
+	public ArrayList getPossibleMoves(Chessboard chessboard) {
+		ArrayList<Move> moves = new ArrayList<>();
 		int kRow = position / 8;
 		int kCol = position % 8;
 		for (int row = kRow - 1; row < kRow+3; row++) {
 			for (int col = kCol - 1; col < kCol+3; col++) {
 				if (row >= 0 && row < 8 && col >= 0 && col < 8 && this.isMoveValid(chessboard, row*8 + col)) {
-					movements.add(new Movement(0, position, row*8 + col));
+					moves.add(new Move(0, position, row*8 + col));
 				}
 			}
 		}
-		return movements;
+		return moves;
 	}
 	
 	/**
@@ -47,7 +38,7 @@ public class King extends Piece implements Cloneable {
 		if (!this.isCommandValid(end)) {
 			return false;
 		}
-		boolean movementOk = false;
+		boolean moveOk = false;
 		int startRow = position/8;
 		int startCol = position%8;
 		int endRow = end/8;
@@ -55,10 +46,10 @@ public class King extends Piece implements Cloneable {
 		char king = white ? 'K' : 'k';
 		char endSquareBackup = chessboard.getSquareContents(end);
 		if (Math.abs(endRow-startRow) <= 1 && Math.abs(endCol-startCol) <= 1 && this.endSquareContainsEnemyOrEmpty(chessboard, end)) {
-			movementOk = true;
+			moveOk = true;
 		}
 		
-		return movementOk && !chessboard.wouldItBeCheck(this, end);
+		return moveOk && !chessboard.wouldItBeCheck(this, end);
 	}
 	
 	@Override

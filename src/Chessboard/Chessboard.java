@@ -1,6 +1,6 @@
 package Chessboard;
 
-import AI.Movement;
+import AI.Move;
 import Chessboard.pieces.*;
 import java.util.ArrayList;
 import java.util.Map;
@@ -30,7 +30,6 @@ public class Chessboard {
 	
 	private char[][] chessboard;
 	private int whiteKingPosition, blackKingPosition;
-	//private Piece[] whitePieces, blackPieces;
 	private TreeMap<Integer, Piece> whitePieces, blackPieces;
 	
 	public Chessboard() {
@@ -47,12 +46,12 @@ public class Chessboard {
 		chessboard = newboard;
 		whiteKingPosition = 60;
 		blackKingPosition= 4;
-		whitePieces = new TreeMap<>();
-		blackPieces = new TreeMap<>();
 		this.createPieces();
 	}
 	
 	private void createPieces() {
+		whitePieces = new TreeMap<>();
+		blackPieces = new TreeMap<>();
 		for (int i = 0; i < 64; i++) {
 			if (chessboard[i/8][i%8] == 'p') blackPieces.put(i, new Pawn(false, i));
 			if (chessboard[i/8][i%8] == 'r') blackPieces.put(i, new Rook(false, i));
@@ -70,20 +69,16 @@ public class Chessboard {
 	}
 	
 	public TreeMap clonePieces(boolean white) throws CloneNotSupportedException {
-		//Piece[] newPieces = new Piece[8];
 		TreeMap<Integer, Piece> newPieces = new TreeMap<>();
 		if (white) {
 			for (Map.Entry<Integer, Piece> piece : whitePieces.entrySet()) {
-				//newPieces[i] = (Pawn) whitePieces[i].clone();
 				newPieces.put(piece.getKey(), (Piece)piece.getValue().clone());
 			}
 		} else {
 			for (Map.Entry<Integer, Piece> piece : blackPieces.entrySet()) {
-				//newPieces[i] = (Pawn) blackPieces[i].clone();
 				newPieces.put(piece.getKey(), (Piece)piece.getValue().clone());
 			}
 		}
-		
 		return newPieces;
 	}
 	
@@ -160,6 +155,7 @@ public class Chessboard {
 	
 	public void setBoard(char[][] newboard) {
 		chessboard = newboard;
+		this.createPieces();
 		this.updateKingPosition(true);
 		this.updateKingPosition(false);
 	}
@@ -328,9 +324,9 @@ public class Chessboard {
 		if (king == null) {
 			return false;
 		}
-		ArrayList<Movement> movements = new ArrayList<>();
-		movements = king.getPossibleMovements(this);
-		return this.isItCheck(checkedIsWhite) && movements.isEmpty();
+		ArrayList<Move> moves;
+		moves = king.getPossibleMoves(this);
+		return this.isItCheck(checkedIsWhite) && moves.isEmpty();
 	}
 	
 	/**
@@ -346,43 +342,18 @@ public class Chessboard {
 		int bishopPoints = 3;
 		int pawnPoints = 1;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard[i/8][i%8] == 'k') {
-				points += kingPoints;
-			}
-			if (chessboard[i/8][i%8] == 'q') {
-				points += queenPoints;
-			}
-			if (chessboard[i/8][i%8] == 'r') {
-				points += rookPoints;
-			}
-			if (chessboard[i/8][i%8] == 'n') {
-				points += knightPoints;
-			}
-			if (chessboard[i/8][i%8] == 'b') {
-				points += bishopPoints;
-			}
-			if (chessboard[i/8][i%8] == 'p') {
-				points += pawnPoints;
-			}
-			if (chessboard[i/8][i%8] == 'K') {
-				points -= kingPoints;
-			}
-			if (chessboard[i/8][i%8] == 'Q') {
-				points -= queenPoints;
-			}
-			if (chessboard[i/8][i%8] == 'R') {
-				points -= rookPoints;
-			}
-			if (chessboard[i/8][i%8] == 'N') {
-				points -= knightPoints;
-			}
-			if (chessboard[i/8][i%8] == 'B') {
-				points -= bishopPoints;
-			}
-			if (chessboard[i/8][i%8] == 'P') {
-				points -= pawnPoints;
-			}
-
+			if (chessboard[i/8][i%8] == 'k') points += kingPoints;
+			if (chessboard[i/8][i%8] == 'q') points += queenPoints;
+			if (chessboard[i/8][i%8] == 'r') points += rookPoints;
+			if (chessboard[i/8][i%8] == 'n') points += knightPoints;
+			if (chessboard[i/8][i%8] == 'b') points += bishopPoints;
+			if (chessboard[i/8][i%8] == 'p') points += pawnPoints;
+			if (chessboard[i/8][i%8] == 'K') points -= kingPoints;
+			if (chessboard[i/8][i%8] == 'Q') points -= queenPoints;
+			if (chessboard[i/8][i%8] == 'R') points -= rookPoints;
+			if (chessboard[i/8][i%8] == 'N') points -= knightPoints;
+			if (chessboard[i/8][i%8] == 'B') points -= bishopPoints;
+			if (chessboard[i/8][i%8] == 'P') points -= pawnPoints;
 		}
 		if (this.isItCheck(true)) {
 			points += 1000;
@@ -414,33 +385,6 @@ public class Chessboard {
 	
 	private void setSquare(int position, char contents) {
 		chessboard[position/8][position%8] = contents;
-	}
-	
-	/**
-	 * Moves king's position for testing purposes.
-	 * @param row Row of the new position.
-	 * @param col Column of the new position.
-	 * @param colour Colour of the king, true = white, false = black.
-	 */
-	public void moveKingForTest(boolean colour, int row, int col) {
-		if (colour) {
-			chessboard[row][col] = 'K';
-		} else {
-			chessboard[row][col] = 'k';
-		}
-	}
-	
-	/**
-	 * Does the basic validation of given movement, i.e. is any of the coordinates
-	 * outside of the board.
-	 * @param startRow Row where the piece to be moved is.
-	 * @param startCol Column where the piece to be moved is.
-	 * @param endRow Row where the piece is to be moved.
-	 * @param endCol Column where the piece is to be moved.
-	 * @return True if coordinates are valid, false otherwise.
-	 */
-	private boolean isCommandValid(int startRow, int startCol, int endRow, int endCol) {
-		return !(startRow < 0 || startRow > 7 || startCol < 0 || startCol > 7 || endRow < 0 || endRow > 7 || endCol < 0 || endCol > 7);
 	}
 	
 }

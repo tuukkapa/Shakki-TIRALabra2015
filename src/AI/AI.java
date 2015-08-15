@@ -9,32 +9,32 @@ import java.util.TreeMap;
 
 public class AI {
 	
-	public Movement minimax(Chessboard chessboard, int depth, boolean maximizingPlayer) throws CloneNotSupportedException {
+	public Move minimax(Chessboard chessboard, int depth, boolean maximizingPlayer) throws CloneNotSupportedException {
 		int bestValue, value;
-		Movement bestMove = null;
+		Move bestMove = null;
 		if (depth == 0 || chessboard.isItCheckMate(!maximizingPlayer)) {
-			return new Movement(chessboard.getValue(), 0, 0);
+			return new Move(chessboard.getValue(), 0, 0);
 		}
 		bestValue = maximizingPlayer ? Integer.MIN_VALUE : Integer.MAX_VALUE;
 		TreeMap<Integer, Piece> pieces = chessboard.getPieces(!maximizingPlayer);
 		for (Map.Entry<Integer, Piece> piece : pieces.entrySet()) {
-			ArrayList<Movement> movements = piece.getValue().getPossibleMovements(chessboard);
-			for (int j = 0; j < movements.size(); j++) {
+			ArrayList<Move> moves;
+			moves = piece.getValue().getPossibleMoves(chessboard);
+			for (int j = 0; j < moves.size(); j++) {
 				Chessboard clone = this.cloneBoardAndPieces(chessboard);
-				clone.movePiece(movements.get(j).getStart(), movements.get(j).getEnd());
-				Movement move = minimax(clone, depth - 1, !maximizingPlayer);
+				clone.movePiece(moves.get(j).getStart(), moves.get(j).getEnd());
+				Move move = minimax(clone, depth - 1, !maximizingPlayer);
 				value = move.getScore();
 				if (maximizingPlayer) {
 					if (bestValue < value) {
 						bestValue = value;
-						
 					}
 				} else {
 					if (bestValue > value) {
 						bestValue = value;
 					}
 				}
-				bestMove = new Movement(bestValue, piece.getValue().getPosition(), movements.get(j).getEnd());
+				bestMove = new Move(bestValue, piece.getValue().getPosition(), moves.get(j).getEnd());
 			}
 		}
 		return bestMove;

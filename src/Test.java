@@ -1,6 +1,6 @@
 
 import User.UserMovement;
-import AI.Movement;
+import AI.Move;
 import UI.UserInterface;
 import Chessboard.Chessboard;
 import Chessboard.pieces.Pawn;

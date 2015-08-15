@@ -1,6 +1,6 @@
 package Chessboard.pieces;
 
-import AI.Movement;
+import AI.Move;
 import Chessboard.Chessboard;
 import java.util.ArrayList;
 
@@ -13,16 +13,16 @@ public class Pawn extends Piece implements Cloneable {
 	}
 	
 	@Override
-	public ArrayList getPossibleMovements(Chessboard chessboard) {
-		ArrayList<Movement> movements = new ArrayList<>();
+	public ArrayList getPossibleMoves(Chessboard chessboard) {
+		ArrayList<Move> moves = new ArrayList<>();
 		int pawnRow = white ? (position / 8) - 1 : (position / 8) + 1;
 		int pawnCol = position % 8;
 		for (int col = pawnCol - 1; col <= pawnCol + 1; col++) {
 			if ((col >= 0 && col < 8) && this.isMoveValid(chessboard, pawnRow * 8 + col)) {
-				movements.add(new Movement(0, position, pawnRow * 8 + col));
+				moves.add(new Move(0, position, pawnRow * 8 + col));
 			}
 		}
-		return movements;
+		return moves;
 	}
 	
 	@Override

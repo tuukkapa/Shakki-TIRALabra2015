@@ -3,11 +3,12 @@ package Main;
 
 import User.UserMovement;
 import AI.AI;
-import AI.Movement;
+import AI.Move;
 import UI.UserInterface;
 import Chessboard.Chessboard;
-import Chessboard.pieces.Piece;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -19,17 +20,15 @@ public class Main {
 	
 	/**
 	 * This method initiates the game.
-	 * @param args 
+	 * @param args Command line arguments, not used.
 	 */
-	public static void main(String[] args) throws CloneNotSupportedException {
+	public static void main(String[] args) {
 		Chessboard chessboard = new Chessboard();
 		AI ai = new AI();
 		Scanner input = new Scanner(System.in);
 		String command;
 		boolean continueGame = true;
 		UserInterface.draw(chessboard.getBoard());
-		//Movement move = ai.minimax(chessboard, 4, true);
-		//System.out.println("Shakki? " + chessboard.isItCheck(true));
 		System.out.println("Peli vastaanottaa siirtokomennot koordinaatteina.\n"
 				+ "Esimerkiksi komento c2c4 siirtää koordinaateissa c2\n"
 				+ "olevan nappulan koordinaatteihin c4. Peli tarkistaa, ettei\n"
@@ -45,11 +44,21 @@ public class Main {
 				if (UserMovement.movePiece(command, chessboard)) {
 					UserInterface.draw(chessboard.getBoard());
 					System.out.println("Tietokone tekee siirtonsa...");
-					Movement move = ai.minimax(chessboard, 4, true);
-					System.out.println("Minimax laskettu, ei siirretty:");
-					UserInterface.draw(chessboard.getBoard());
+					Move move = null;
+					try {
+						move = ai.minimax(chessboard, 5, true);
+					} catch (CloneNotSupportedException ex) {
+						Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+					} catch (Exception e) {
+						Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, e);
+					} finally {
+						if (move == null) {
+							System.out.println("Siirtokomentoa ei saatu minimax-metodilta.");
+							return;
+						}
+					}
 					if (!chessboard.movePiece(move.getStart(), move.getEnd())) {
-						System.out.println("Siirrossa tapahtui virhe.");
+						System.out.println("Tietokoneen siirtovuorolla tapahtui virhe.");
 					}
 					UserInterface.draw(chessboard.getBoard());
 				} else {

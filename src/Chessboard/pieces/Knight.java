@@ -6,7 +6,7 @@
 
 package Chessboard.pieces;
 
-import AI.Movement;
+import AI.Move;
 import Chessboard.Chessboard;
 import java.util.ArrayList;
 
@@ -19,36 +19,36 @@ public class Knight extends Piece implements Cloneable {
 	}
 
 	@Override
-	public ArrayList getPossibleMovements(Chessboard chessboard) {
-		ArrayList<Movement> movements = new ArrayList<>();
+	public ArrayList getPossibleMoves(Chessboard chessboard) {
+		ArrayList<Move> moves = new ArrayList<>();
 		int row = position / 8;
 		int col = position % 8;
 		if (row - 1 >= 0 && col - 2 >= 0 && this.endSquareContainsEnemyOrEmpty(chessboard, (row - 1) * 8 + (col - 2))) {
-			movements.add(new Movement(0, position, (row - 1) * 8 + (col - 2)));
+			moves.add(new Move(0, position, (row - 1) * 8 + (col - 2)));
 		}
 		if (row - 2 >= 0 && col - 1 >= 0 && this.endSquareContainsEnemyOrEmpty(chessboard, (row - 2) * 8 + (col - 1))) {
-			movements.add(new Movement(0, position, (row - 2) * 8 + (col - 1)));
+			moves.add(new Move(0, position, (row - 2) * 8 + (col - 1)));
 		}
 		if (row - 2 >= 0 && col + 1 < 8 && this.endSquareContainsEnemyOrEmpty(chessboard, (row - 2) * 8 + (col + 1))) {
-			movements.add(new Movement(0, position, (row - 2) * 8 + (col + 1)));
+			moves.add(new Move(0, position, (row - 2) * 8 + (col + 1)));
 		}
 		if (row - 1 >= 0 && col + 2 < 8 && this.endSquareContainsEnemyOrEmpty(chessboard, (row - 1) * 8 + (col + 2))) {
-			movements.add(new Movement(0, position, (row - 1) * 8 + (col + 2)));
+			moves.add(new Move(0, position, (row - 1) * 8 + (col + 2)));
 		}
 		if (row + 1 < 8 && col + 2 < 8 && this.endSquareContainsEnemyOrEmpty(chessboard, (row + 1) * 8 + (col + 2))) {
-			movements.add(new Movement(0, position, (row + 1) * 8 + (col + 2)));
+			moves.add(new Move(0, position, (row + 1) * 8 + (col + 2)));
 		}
 		if (row + 2 < 8 && col + 1 < 8 && this.endSquareContainsEnemyOrEmpty(chessboard, (row + 2) * 8 + (col + 1))) {
-			movements.add(new Movement(0, position, (row + 2) * 8 + (col + 1)));
+			moves.add(new Move(0, position, (row + 2) * 8 + (col + 1)));
 		}
 		if (row + 2 < 8 && col - 1 >= 0 && this.endSquareContainsEnemyOrEmpty(chessboard, (row + 2) * 8 + (col - 1))) {
-			movements.add(new Movement(0, position, (row + 2) * 8 + (col - 1)));
+			moves.add(new Move(0, position, (row + 2) * 8 + (col - 1)));
 		}
 		if (row + 1 < 8 && col - 2 >= 0 && this.endSquareContainsEnemyOrEmpty(chessboard, (row + 1) * 8 + (col - 2))) {
-			movements.add(new Movement(0, position, (row + 1) * 8 + (col - 2)));
+			moves.add(new Move(0, position, (row + 1) * 8 + (col - 2)));
 		}
 
-		return movements;
+		return moves;
 	}
 
 	@Override

@@ -1,11 +1,11 @@
 package AI;
 
-public class Movement {
+public class Move {
 
 	//private Piece piece;
 	private int score, start, end;
 	
-	public Movement(int score, int start, int end) {
+	public Move(int score, int start, int end) {
 		this.score = score;
 		this.start = start;
 		this.end = end;

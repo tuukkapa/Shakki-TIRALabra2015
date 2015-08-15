@@ -18,8 +18,8 @@ public class Bishop extends Piece implements Cloneable {
 	}
 
 	@Override
-	public ArrayList getPossibleMovements(Chessboard chessboard) {
-		return this.createDiagonalMovements(chessboard);
+	public ArrayList getPossibleMoves(Chessboard chessboard) {
+		return this.createDiagonalMoves(chessboard);
 	}
 
 	@Override
@@ -27,7 +27,7 @@ public class Bishop extends Piece implements Cloneable {
 		if (!this.isCommandValid(end)) {
 			return false;
 		}
-		boolean movementOk = true;
+		boolean moveOk = true;
 		int startRow = position / 8;
 		int startCol = position % 8;
 		int endRow = end / 8;
@@ -37,28 +37,28 @@ public class Bishop extends Piece implements Cloneable {
 			for (int i = 1; i < Math.abs(endRow-startRow); i++) {
 				if (endRow>startRow && endCol>startCol) {
 					if (chessboard.getSquareContents(startRow+i, startCol+i) != ' ') {
-						movementOk = false;
+						moveOk = false;
 						break;
 					}
 				} else if (endRow>startRow && endCol<startCol) {
 					if (chessboard.getSquareContents(startRow+i, startCol-i) != ' ') {
-						movementOk = false;
+						moveOk = false;
 						break;
 					}
 				} else if (endRow<startRow && endCol>startCol) {
 					if (chessboard.getSquareContents(startRow-i, startCol+i) != ' ') {
-						movementOk = false;
+						moveOk = false;
 						break;
 					}
 				} else {
 					if (chessboard.getSquareContents(startRow-i, startCol-i) != ' ') {
-						movementOk = false;
+						moveOk = false;
 						break;
 					}
 				}
 			}
 		}
-		return movementOk && !chessboard.wouldItBeCheck(this, end) && this.endSquareContainsEnemyOrEmpty(chessboard, end);
+		return moveOk && !chessboard.wouldItBeCheck(this, end) && this.endSquareContainsEnemyOrEmpty(chessboard, end);
 	}
 	
 	@Override

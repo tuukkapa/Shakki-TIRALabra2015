@@ -18,8 +18,8 @@ public class Rook extends Piece implements Cloneable {
 	}
 	
 	@Override
-	public ArrayList getPossibleMovements(Chessboard chessboard) {
-		return this.createStraightMovements(chessboard);
+	public ArrayList getPossibleMoves(Chessboard chessboard) {
+		return this.createStraightMoves(chessboard);
 	}
 	
 	@Override
@@ -27,7 +27,7 @@ public class Rook extends Piece implements Cloneable {
 		if (!this.isCommandValid(end)) {
 			return false;
 		}
-		boolean movementOk = true;
+		boolean moveOk = true;
 		int startRow = position / 8;
 		int startCol = position % 8;
 		int endRow = end / 8;
@@ -43,21 +43,21 @@ public class Rook extends Piece implements Cloneable {
 		for (int i = 1; i < movement; i++) {
 			if (startRow == endRow) {
 				if (chessboard.getSquareContents(startRow, Math.min(startCol, endCol) + i) != ' ') {
-					movementOk = false;
+					moveOk = false;
 					break;
 				}
 			} else if (startCol == endCol) {
 				if (chessboard.getSquareContents(Math.min(startRow, endRow) + i, startCol) != ' ') {
-					movementOk = false;
+					moveOk = false;
 					break;
 				}
 			} else {
-				movementOk = false;
+				moveOk = false;
 				break;
 			}
 		}
 
-		return movementOk && !chessboard.wouldItBeCheck(this, end) && this.endSquareContainsEnemyOrEmpty(chessboard, end);
+		return moveOk && !chessboard.wouldItBeCheck(this, end) && this.endSquareContainsEnemyOrEmpty(chessboard, end);
 	}
 	
 	@Override

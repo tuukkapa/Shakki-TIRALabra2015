@@ -6,7 +6,7 @@
 
 package Chessboard.pieces;
 
-import AI.Movement;
+import AI.Move;
 import Chessboard.Chessboard;
 import java.util.ArrayList;
 
@@ -18,10 +18,15 @@ public class Queen extends Piece implements Cloneable {
 		this.sign = white ? 'Q' : 'q';
 	}
 
+	/**
+	 *
+	 * @param chessboard
+	 * @return
+	 */
 	@Override
-	public ArrayList getPossibleMovements(Chessboard chessboard) {
-		ArrayList<Movement> moves = this.createStraightMovements(chessboard);
-		ArrayList<Movement> diagonalMoves = this.createDiagonalMovements(chessboard);
+	public ArrayList getPossibleMoves(Chessboard chessboard) {
+		ArrayList<Move> moves = this.createStraightMoves(chessboard);
+		ArrayList<Move> diagonalMoves = this.createDiagonalMoves(chessboard);
 		moves.removeAll(diagonalMoves); // this should be redundant?
 		moves.addAll(diagonalMoves);
 		return moves;
@@ -32,7 +37,7 @@ public class Queen extends Piece implements Cloneable {
 		if (!this.isCommandValid(end)) {
 			return false;
 		}
-		boolean movementOk = true;
+		boolean moveOk = true;
 		int startRow = position / 8;
 		int startCol = position % 8;
 		int endRow = end / 8;
@@ -44,25 +49,25 @@ public class Queen extends Piece implements Cloneable {
 				// check south-east
 				if (startRow+i < 8 && startCol+i < 8) {
 					if (chessboard.getSquareContents(startRow+i, startCol+i) != ' ') {
-						movementOk = false;
+						moveOk = false;
 						break;
 					}
 				// check south-west
 				} else if (startRow+i < 8 && startCol - i >= 0) {
 					if (chessboard.getSquareContents(startRow+i, startCol-i) != ' ') {
-						movementOk = false;
+						moveOk = false;
 						break;
 					}
 				// check north-east
 				} else if (startRow-i >= 0 && startCol+i < 8) {
 					if (chessboard.getSquareContents(startRow-i, startCol+i) != ' ') {
-						movementOk = false;
+						moveOk = false;
 						break;
 					}
 				// check north-west
 				} else if (startRow-i >= 0 && startCol-i >= 0) {
 					if (chessboard.getSquareContents(startRow-i, endRow-i) != ' ') {
-						movementOk = false;
+						moveOk = false;
 						break;
 					}
 				} else {
@@ -71,10 +76,10 @@ public class Queen extends Piece implements Cloneable {
 			}
 		}
 		if (startRow == endRow || startCol == endCol) {
-			movementOk = this.checkStraightRoutes(chessboard, end);
+			moveOk = this.checkStraightRoutes(chessboard, end);
 		}
 		
-		return movementOk && !chessboard.wouldItBeCheck(this, end) && this.endSquareContainsEnemyOrEmpty(chessboard, end);
+		return moveOk && !chessboard.wouldItBeCheck(this, end) && this.endSquareContainsEnemyOrEmpty(chessboard, end);
 	}
 	
 	@Override
