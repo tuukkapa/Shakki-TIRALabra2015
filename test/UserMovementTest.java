@@ -44,7 +44,7 @@ public class UserMovementTest {
 	@Test
 	public void testMovePieceCorrectInput() {
 		Chessboard testboard = new Chessboard();
-		testboard.makeTestBoard(false);
+		//testboard.makeTestBoard(false);
 		System.out.println("movePiece correct input");
 		String command = "c2c3";
 		boolean expResult = true;
@@ -58,7 +58,7 @@ public class UserMovementTest {
 	@Test
 	public void testMovePieceWrongInputString() {
 		Chessboard testboard = new Chessboard();
-		testboard.makeTestBoard(false);
+		//testboard.makeTestBoard(false);
 		System.out.println("movePiece wrong input string");
 		String command = "hello";
 		boolean expResult = false;
@@ -73,7 +73,7 @@ public class UserMovementTest {
 	@Test
 	public void testMovePieceWrongInputCoordinates() {
 		Chessboard testboard = new Chessboard();
-		testboard.makeTestBoard(false);
+		//testboard.makeTestBoard(false);
 		System.out.println("movePiece wrong input coordinates");
 		String command = "c9u9";
 		boolean expResult = false;

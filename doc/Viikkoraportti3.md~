@@ -25,8 +25,9 @@ laskee nappuloiden määrän laudalla, mutta ei ota niiden sijainteja mitenkää
 huomioon. Metodi täytyy korvata jollain edistyneemmällä ennen pitkää.
 
 Nappuloiden liikkeiden testaamiseen vaaditaan nähtävästi hirvittävä määrä
-yksikötestitapauksia, mikäli haluan, että kaikki haarat testataan. Lisäksi
-työskentely tuppaa nyt menemään kierteeseen, jossa koodia refaktoroidaan
-ja testejä kirjoitetaan ja korjaillaan vuoron perään. Se jätti pohtimaan,
-mikä olisi fiksumpi tai vähätöisempi tapa tehdä sama asia. Ehkä esim. TDD
-(Test Driven Development) voisi olla kokeilemisen arvoinen?
+yksikötestitapauksia, mikäli haluan, että kaikki haarat testataan.
+Lisäksi työskentely tuppaa nyt menemään kierteeseen, jossa koodia
+refaktoroidaan ja testejä kirjoitetaan ja korjaillaan vuoron perään.
+Se jätti pohtimaan, mikä olisi fiksumpi tai vähätöisempi tapa tehdä
+sama asia. Ehkä esim. TDD (Test Driven Development) voisi olla
+kokeilemisen arvoinen?

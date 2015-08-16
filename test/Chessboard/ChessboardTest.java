@@ -1,11 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2015
+ * 
+ * Tuukka Paukkunen <tuukka.paukkunen@cs.helsinki.fi>
  */
 package Chessboard;
 
-import Chessboard.Chessboard;
+import Chessboard.pieces.*;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.TreeMap;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -15,10 +18,11 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author tuukka
+ * @author Tuukka Paukkunen <tuukka.paukkunen@cs.helsinki.fi>
  */
 public class ChessboardTest {
-
+	
+	private Chessboard chessboard;
 	
 	public ChessboardTest() {
 	}
@@ -33,1544 +37,774 @@ public class ChessboardTest {
 	
 	@Before
 	public void setUp() {
+		chessboard = new Chessboard();
 	}
 	
 	@After
 	public void tearDown() {
 	}
 
+	/**
+	 * Test of clonePieces method with white pieces, of class Chessboard.
+	 * Tests that the result isn't null.
+	 * @throws java.lang.Exception
+	 */
+	@Test
+	public void testCloneWhitePiecesIsNotNull() throws Exception {
+		System.out.println("clonePieces, white, result isn't null");
+		boolean white = true;
+		TreeMap result = chessboard.clonePieces(white);
+		assertNotNull(result);
+	}
+	
+	/**
+	 * Test of clonePieces method with white pieces, of class Chessboard.
+	 * Tests that the result isn't null.
+	 * @throws java.lang.Exception
+	 */
+	@Test
+	public void testCloneBlackPiecesIsNotNull() throws Exception {
+		System.out.println("clonePieces, black, result isn't null");
+		boolean white = false;
+		TreeMap result = chessboard.clonePieces(white);
+		assertNotNull(result);
+	}
+	
+	/**
+	 * Test of clonePieces method with white pieces, of class Chessboard.
+	 * Tests that the resulting TreeMap is different than original.
+	 * @throws java.lang.Exception
+	 */
+	@Test
+	public void testCloneWhitePiecesDifferentTreeMap() throws Exception {
+		System.out.println("clonePieces, white, resulting TreeMap is different");
+		boolean white = true;
+		TreeMap original = chessboard.getPieces(white);
+		TreeMap result = chessboard.clonePieces(white);
+		assertNotSame(original, result);
+	}
+	
+	/**
+	 * Test of clonePieces method with black pieces, of class Chessboard.
+	 * Tests that the resulting TreeMap is different than original.
+	 * @throws java.lang.Exception
+	 */
+	@Test
+	public void testCloneBlackPiecesDifferentTreeMap() throws Exception {
+		System.out.println("clonePieces, black, resulting TreeMap is different");
+		boolean white = false;
+		TreeMap original = chessboard.getPieces(white);
+		TreeMap result = chessboard.clonePieces(white);
+		assertNotSame(original, result);
+	}
+	
+	/**
+	 * Test of clonePieces method with white pieces, of class Chessboard.
+	 * Tests with one piece, that the objects in the cloned TreeMap are different
+	 * from those in the original TreeMap.
+	 * @throws java.lang.Exception
+	 */
+	@Test
+	public void testCloneWhitePiecesDifferentPieces() throws Exception {
+		System.out.println("clonePieces, white, resulting TreeMap is different");
+		boolean white = true;
+		TreeMap originalTreeMap = chessboard.getPieces(white);
+		Piece original = (Piece)originalTreeMap.firstEntry().getValue();
+		TreeMap cloneTreeMap = chessboard.clonePieces(white);
+		Piece result = (Piece)cloneTreeMap.firstEntry().getValue();
+		assertNotSame(original, result);
+	}
+	
+	/**
+	 * Test of clonePieces method with black pieces, of class Chessboard.
+	 * Tests with one piece, that the objects in the cloned TreeMap are different
+	 * from those in the original TreeMap.
+	 * @throws java.lang.Exception
+	 */
+	@Test
+	public void testCloneBlackPiecesDifferentPieces() throws Exception {
+		System.out.println("clonePieces, black, resulting TreeMap is different");
+		boolean white = false;
+		TreeMap originalTreeMap = chessboard.getPieces(white);
+		Piece original = (Piece)originalTreeMap.firstEntry().getValue();
+		TreeMap cloneTreeMap = chessboard.clonePieces(white);
+		Piece result = (Piece)cloneTreeMap.firstEntry().getValue();
+		assertNotSame(original, result);
+	}
 
 	/**
-	 * Test of isCommandValid method, of class Chessboard.
+	 * Test of getPieces method, of class Chessboard.
+	 * Tests that the result isn't null.
 	 */
 	@Test
-	public void testIsCommandValidWrongInput1() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', 'r', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		int startRow = -1;
-		int startCol = 2;
-		int endRow = 5;
-		int endCol = 2;
-		boolean expResult = false;
-		boolean result = testboard.movePawn(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
+	public void testGetWhitePiecesNotNull() {
+		System.out.println("getPieces, white, not null");
+		boolean white = true;
+		TreeMap result = chessboard.getPieces(white);
+		assertNotNull(result);
 	}
 	
 	/**
-	 * Test of isCommandValid method, of class Chessboard.
+	 * Test of getPieces method, of class Chessboard.
+	 * Tests that the result isn't null.
 	 */
 	@Test
-	public void testIsCommandValidWrongInput2() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', 'r', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		int startRow = 6;
-		int startCol = -1;
-		int endRow = 5;
-		int endCol = 2;
-		boolean expResult = false;
-		boolean result = testboard.movePawn(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
+	public void testGetBlackPiecesNotNull() {
+		System.out.println("getPieces, black, not null");
+		boolean white = false;
+		TreeMap result = chessboard.getPieces(white);
+		assertNotNull(result);
 	}
 	
 	/**
-	 * Test of isCommandValid method, of class Chessboard.
+	 * Test of getPieces method, of class Chessboard.
+	 * Tests that the resulting TreeMap includes Piece-objects.
 	 */
 	@Test
-	public void testIsCommandValidWrongInput3() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', 'r', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		int startRow = 6;
-		int startCol = 2;
-		int endRow = -1;
-		int endCol = 2;
-		boolean expResult = false;
-		boolean result = testboard.movePawn(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of isCommandValid method, of class Chessboard.
-	 */
-	@Test
-	public void testIsCommandValidWrongInput4() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', 'r', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		int startRow = 6;
-		int startCol = 2;
-		int endRow = 5;
-		int endCol = -1;
-		boolean expResult = false;
-		boolean result = testboard.movePawn(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of movePawn method with correct input, of class Chessboard.
-	 * Move white piece two squares forward.
-	 */
-	@Test
-	public void testMovePawnCorrectInputWhite1() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', 'r', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("movePawn: move white 1 square");
-		int startRow = 6;
-		int startCol = 2;
-		int endRow = 5;
-		int endCol = 2;
-		boolean expResult = true;
-		boolean result = testboard.movePawn(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of movePawn method with correct input, of class Chessboard.
-	 * Move white piece one square forward.
-	 */
-	@Test
-	public void testMovePawnCorrectInputWhite2() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', 'r', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("movePawn: move white 2 squares from starting row");
-		int startRow = 6;
-		int startCol = 2;
-		int endRow = 4;
-		int endCol = 2;
-		boolean expResult = true;
-		boolean result = testboard.movePawn(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of movePawn method with correct input, of class Chessboard.
-	 * Capture piece to the left.
-	 */
-	@Test
-	public void testMovePawnCorrectInputWhiteCapture1() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', 'r', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', 'P', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', ' ', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("movePawn: capture black piece with white pawn to the left");
-		int startRow = 5;
-		int startCol = 2;
-		int endRow = 4;
-		int endCol = 1;
-		boolean expResult = true;
-		boolean result = testboard.movePawn(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of movePawn method with correct input, of class Chessboard.
-	 * Capture piece to the right.
-	 */
-	@Test
-	public void testMovePawnCorrectInputWhiteCapture2() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', 'r', ' ', ' ', ' ', ' '},
-			{' ', ' ', 'P', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', ' ', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("movePawn: capture black piece with white pawn to the right");
-		int startRow = 5;
-		int startCol = 2;
-		int endRow = 4;
-		int endCol = 3;
-		boolean expResult = true;
-		boolean result = testboard.movePawn(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of movePawn method with correct input, of class Chessboard.
-	 * Try to move white piece three squares forward.
-	 */
-	@Test
-	public void testMovePawnWrongInputWhite1() {
-		Chessboard testboard = new Chessboard();
-		System.out.println("movePawn: try to move white 3 squares from starting row");
-		int startRow = 6;
-		int startCol = 2;
-		int endRow = 3;
-		int endCol = 2;
-		boolean expResult = false;
-		boolean result = testboard.movePawn(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of movePawn method with correct input, of class Chessboard.
-	 * Try to move white piece straight backwards.
-	 */
-	@Test
-	public void testMovePawnWrongInputWhite2() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', 'r', ' ', ' ', ' ', ' '},
-			{' ', ' ', 'P', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', ' ', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("movePawn: try to move white straight backwards");
-		int startRow = 5;
-		int startCol = 2;
-		int endRow = 6;
-		int endCol = 2;
-		boolean expResult = false;
-		boolean result = testboard.movePawn(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of movePawn method with correct input, of class Chessboard.
-	 * Try to move white piece left backwards.
-	 */
-	@Test
-	public void testMovePawnWrongInputWhite3() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', 'r', ' ', ' ', ' ', ' '},
-			{' ', ' ', 'P', ' ', ' ', ' ', ' ', 'R'},
-			{' ', 'r', ' ', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("movePawn: try to move white left backwards");
-		int startRow = 5;
-		int startCol = 2;
-		int endRow = 6;
-		int endCol = 1;
-		boolean expResult = false;
-		boolean result = testboard.movePawn(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of movePawn method with correct input, of class Chessboard.
-	 * Try to move white piece right backwards.
-	 */
-	@Test
-	public void testMovePawnWrongInputWhite4() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', 'P', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', ' ', 'r', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("movePawn: try to move white right backwards");
-		int startRow = 5;
-		int startCol = 2;
-		int endRow = 6;
-		int endCol = 3;
-		boolean expResult = false;
-		boolean result = testboard.movePawn(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of movePawn method with correct input, of class Chessboard.
-	 * Try to capture black piece straight ahead.
-	 */
-	@Test
-	public void testMovePawnWrongInputWhite5() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', 'r', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', 'P', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', ' ', 'r', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("movePawn: try to capture enemy piece straight ahead");
-		int startRow = 5;
-		int startCol = 2;
-		int endRow = 4;
-		int endCol = 2;
-		boolean expResult = false;
-		boolean result = testboard.movePawn(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of movePawn method with correct input, of class Chessboard.
-	 * Try to move piece 2 rows ahead without being at starting row.
-	 */
-	@Test
-	public void testMovePawnWrongInputWhite6() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', 'P', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', ' ', 'r', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("movePawn: try to move piece 2 rows ahead without being at starting row");
-		int startRow = 5;
-		int startCol = 2;
-		int endRow = 3;
-		int endCol = 2;
-		boolean expResult = false;
-		boolean result = testboard.movePawn(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
+	public void testGetWhitePieces() {
+		System.out.println("getPieces, white");
+		boolean white = true;
+		TreeMap pieces = chessboard.getPieces(white);
+		boolean result = true;
+		Collection c = pieces.values();
+		Iterator itr = c.iterator();
+	    while(itr.hasNext()) {
+			if (!(itr.next() instanceof Piece)) {
+				result = false;
+			}
+		}
+		assertTrue(result);
 	}
 
+	/**
+	 * Test of getPieces method, of class Chessboard.
+	 * Tests that the resulting TreeMap includes Piece-objects.
+	 */
+	@Test
+	public void testGetBlackPieces() {
+		System.out.println("getPieces, black");
+		boolean white = false;
+		TreeMap pieces = chessboard.getPieces(white);
+		boolean result = true;
+		Collection c = pieces.values();
+		Iterator itr = c.iterator();
+	    while(itr.hasNext()) {
+			if (!(itr.next() instanceof Piece)) {
+				result = false;
+			}
+		}
+		assertTrue(result);
+	}
+	
+	/**
+	 * Test of setPieces method, of class Chessboard with white pieces.
+	 */
+	@Test
+	public void testSetWhitePieces() {
+		System.out.println("setPieces, white");
+		boolean white = true;
+		TreeMap<Integer, Piece> newPieces = new TreeMap<>();
+		for (int i = 0; i < 8; i++) {
+			newPieces.put(48 + i, new Pawn(white, 48 + i));
+		}
+		chessboard.setPieces(white, newPieces);
+		boolean treeMapNotEmpty = chessboard.getPieces(white).size() > 0;
+		boolean piecesExist = true;
+		int counter = 0;
+		Collection c = chessboard.getPieces(white).values();
+		Iterator itr = c.iterator();
+	    while(itr.hasNext()) {
+			if (!(itr.next() instanceof Piece)) {
+				piecesExist = false;
+			}
+			counter++;
+		}
+		assertTrue(piecesExist && treeMapNotEmpty && counter == 8);
+	}
+	
+	/**
+	 * Test of setPieces method, of class Chessboard with böacl pieces.
+	 */
+	@Test
+	public void testSetBlackPieces() {
+		System.out.println("setPieces, black");
+		boolean white = false;
+		TreeMap<Integer, Piece> newPieces = new TreeMap<>();
+		for (int i = 0; i < 8; i++) {
+			newPieces.put(8 + i, new Pawn(white, 8 + i));
+		}
+		chessboard.setPieces(white, newPieces);
+		boolean treeMapNotEmpty = chessboard.getPieces(white).size() > 0;
+		boolean piecesExist = true;
+		int counter = 0;
+		Collection c = chessboard.getPieces(white).values();
+		Iterator itr = c.iterator();
+	    while(itr.hasNext()) {
+			if (!(itr.next() instanceof Piece)) {
+				piecesExist = false;
+			}
+			counter++;
+		}
+		assertTrue(piecesExist && treeMapNotEmpty && counter == 8);
+	}
 
 	/**
-	 * Test of movePawn method with correct input, of class Chessboard.
-	 * Move white piece one square forward.
+	 * Test of getPiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePawnWrongInputWhiteCapture1() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
+	public void testGetPiece() {
+		System.out.println("getPiece");
+		char[][] referencePieces = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', 'R', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', 'P', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', ' ', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("movePawn: try to capture white piece with white pawn to the left");
-		int startRow = 5;
-		int startCol = 2;
-		int endRow = 4;
-		int endCol = 1;
-		boolean expResult = false;
-		boolean result = testboard.movePawn(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of movePawn method with correct input, of class Chessboard.
-	 * Move white piece one square forward.
-	 */
-	@Test
-	public void testMovePawnWrongInputWhiteCapture2() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', 'R', ' ', ' ', ' ', ' '},
-			{' ', ' ', 'P', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', ' ', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("movePawn: try to capture white piece with white pawn to the right");
-		int startRow = 5;
-		int startCol = 2;
-		int endRow = 4;
-		int endCol = 3;
-		boolean expResult = false;
-		boolean result = testboard.movePawn(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of movePawn method with wrong input, of class Chessboard.
-	 * Try to move pawn 1 rows and 2 columns.
-	 */
-	@Test
-	public void testMovePawnWrongInputWhiteCapture3() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'r', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', 'P', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', ' ', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("movePawn: try to move pawn more than 1 columns");
-		int startRow = 5;
-		int startCol = 2;
-		int endRow = 4;
-		int endCol = 0;
-		boolean expResult = false;
-		boolean result = testboard.movePawn(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of movePawn method with wrong input, of class Chessboard.
-	 * Try to move pawn 2 rows and 1 column.
-	 */
-	@Test
-	public void testMovePawnWrongInputWhiteCapture4() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', 'r', ' ', ' ', ' ', ' ', ' ', 'Q'},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', 'P', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', ' ', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("movePawn: try to move pawn 2 rows and 1 column");
-		int startRow = 5;
-		int startCol = 2;
-		int endRow = 3;
-		int endCol = 1;
-		boolean expResult = false;
-		boolean result = testboard.movePawn(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of movePawn method with correct input, of class Chessboard.
-	 * Move piece two squares forward.
-	 */
-	@Test
-	public void testMovePawnCorrectInputBlack1() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', ' ', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{' ', ' ', ' ', 'R', ' ', ' ', ' ', ' '},
-			{' ', ' ', 'P', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', ' ', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("movePawn: move black 1 square");
-		int startRow = 1;
-		int startCol = 3;
-		int endRow = 2;
-		int endCol = 3;
-		boolean expResult = true;
-		boolean result = testboard.movePawn(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of movePawn method with correct input, of class Chessboard.
-	 * Move piece one square forward.
-	 */
-	@Test
-	public void testMovePawnCorrectInputBlack2() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', ' ', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{' ', ' ', ' ', 'R', ' ', ' ', ' ', ' '},
-			{' ', ' ', 'P', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', ' ', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("movePawn: move black 2 squares from starting row");
-		int startRow = 1;
-		int startCol = 3;
-		int endRow = 3;
-		int endCol = 3;
-		boolean expResult = true;
-		boolean result = testboard.movePawn(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of movePawn method with correct input, of class Chessboard.
-	 * Capture piece to the left.
-	 */
-	@Test
-	public void testMovePawnCorrectInputBlackCapture1() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', 'r', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', 'P', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', ' ', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("movePawn: capture black piece with white pawn to the left");
-		int startRow = 1;
-		int startCol = 3;
-		int endRow = 2;
-		int endCol = 2;
-		boolean expResult = true;
-		boolean result = testboard.movePawn(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of movePawn method with correct input, of class Chessboard.
-	 * Capture piece to the right.
-	 */
-	@Test
-	public void testMovePawnCorrectInputBlackCapture2() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', ' ', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{' ', ' ', ' ', 'r', ' ', ' ', ' ', ' '},
-			{' ', ' ', 'P', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', ' ', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("movePawn: capture black piece with white pawn to the right");
-		int startRow = 1;
-		int startCol = 3;
-		int endRow = 2;
-		int endCol = 4;
-		boolean expResult = true;
-		boolean result = testboard.movePawn(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of movePawn method with correct input, of class Chessboard.
-	 * Try to move piece three squares forward.
-	 */
-	@Test
-	public void testMovePawnWrongInputBlack1() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', 'P', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', ' ', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("movePawn: try to move white 3 squares from starting row");
-		int startRow = 1;
-		int startCol = 3;
-		int endRow = 4;
-		int endCol = 3;
-		boolean expResult = false;
-		boolean result = testboard.movePawn(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of movePawn method with correct input, of class Chessboard.
-	 * Try to move piece straight backwards.
-	 */
-	@Test
-	public void testMovePawnWrongInputBlack2() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', ' ', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', 'p', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', 'r', ' ', ' ', ' ', ' '},
-			{' ', ' ', 'P', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', ' ', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("movePawn: try to move white straight backwards");
-		int startRow = 2;
-		int startCol = 3;
-		int endRow = 1;
-		int endCol = 3;
-		boolean expResult = false;
-		boolean result = testboard.movePawn(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of movePawn method with correct input, of class Chessboard.
-	 * Try to move white piece left backwards.
-	 */
-	@Test
-	public void testMovePawnWrongInputBlack3() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', ' ', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', 'p', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', 'r', ' ', ' ', ' ', ' '},
-			{' ', ' ', 'P', ' ', ' ', ' ', ' ', 'R'},
-			{' ', 'r', ' ', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("movePawn: try to move white left backwards");
-		int startRow = 3;
-		int startCol = 3;
-		int endRow = 2;
-		int endCol = 2;
-		boolean expResult = false;
-		boolean result = testboard.movePawn(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of movePawn method with correct input, of class Chessboard.
-	 * Try to move white piece right backwards.
-	 */
-	@Test
-	public void testMovePawnWrongInputBlack4() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', ' ', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', 'p', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', 'P', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', ' ', 'r', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("movePawn: try to move white right backwards");
-		int startRow = 3;
-		int startCol = 3;
-		int endRow = 2;
-		int endCol = 4;
-		boolean expResult = false;
-		boolean result = testboard.movePawn(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of movePawn method with correct input, of class Chessboard.
-	 * Try to capture piece straight ahead.
-	 */
-	@Test
-	public void testMovePawnWrongInputBlack5() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', 'r', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', 'r', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', 'P', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', ' ', 'r', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("movePawn: try to capture black piece straight ahead");
-		int startRow = 2;
-		int startCol = 3;
-		int endRow = 3;
-		int endCol = 3;
-		boolean expResult = false;
-		boolean result = testboard.movePawn(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-
-	/**
-	 * Test of movePawn method with correct input, of class Chessboard.
-	 * Try to move piece 2 rows ahead without being at starting row.
-	 */
-	@Test
-	public void testMovePawnWrongInputBlack6() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', ' ', 'p', 'p', 'p', 'p'},
-			{' ', ' ', ' ', 'p', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', 'P', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', ' ', 'r', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		testboard.setBoard(newboard);
-		System.out.println("movePawn: try to move piece 2 rows ahead without being at starting row");
-		int startRow = 2;
-		int startCol = 3;
-		int endRow = 4;
-		int endCol = 3;
+		boolean result = true;
+		for (int i = 0; i < 64; i++) {
+			if (i < 16) {
+				if (chessboard.getPiece(i) == null) {
+					result = false;
+				}
+				if (referencePieces[i/8][i%8] != chessboard.getPiece(i).getSign()) {
+					result = false;
+				}
+				if (chessboard.getPiece(i).amIWhite()) {
+					result = false;
+				}
+				if (chessboard.getPiece(i).getPosition() != i) {
+					result = false;
+				}
+			} else if (i >= 16 && i < 48) {
+				if (chessboard.getPiece(i) != null) {
+					result = false;
+				}
+			} else {
+				if (chessboard.getPiece(i) == null) {
+					result = false;
+				}
+				if (referencePieces[i/8][i%8] != chessboard.getPiece(i).getSign()) {
+					result = false;
+				}
+				if (!chessboard.getPiece(i).amIWhite()) {
+					result = false;
+				}
+				if (chessboard.getPiece(i).getPosition() != i) {
+					result = false;
+				}
+			}
+		}
+		assertTrue(result);
+	}
+	
+	/**
+	 * Test of movePiece method, of class Chessboard.
+	 */
+	@Test
+	public void testMovePieceWrongMove() {
+		System.out.println("movePiece, wrong input");
+		int start = 8;
+		int end = 17;
 		boolean expResult = false;
-		boolean result = testboard.movePawn(startRow, startCol, endRow, endCol);
+		boolean result = chessboard.movePiece(start, end);
 		assertEquals(expResult, result);
 	}
-
+	
 	/**
-	 * Test of movePawn method with correct input, of class Chessboard.
-	 * Try to capture own piece with own piece to the left.
+	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePawnWrongInputBlackCapture1() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'b', ' ', 'n', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', 'R', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', 'P', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', ' ', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("movePawn: try to capture white piece with white pawn to the left");
-		int startRow = 1;
-		int startCol = 3;
-		int endRow = 2;
-		int endCol = 2;
+	public void testMovePieceNonexistentPiece() {
+		System.out.println("movePiece, nonexisting piece");
+		int start = 16;
+		int end = 24;
 		boolean expResult = false;
-		boolean result = testboard.movePawn(startRow, startCol, endRow, endCol);
+		boolean result = chessboard.movePiece(start, end);
 		assertEquals(expResult, result);
 	}
 	
 	/**
-	 * Test of movePawn method with correct input, of class Chessboard.
-	 * Move white piece one square forward.
+	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePawnWrongInputBlackCapture2() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
+	public void testMovePieceWrongInputIsBoardIntact() {
+		System.out.println("movePiece, wrong input, is board intact");
+		int start = 8;
+		int end = 17;
+		char[][] referenceBoard = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'b', ' ', 'n', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', 'R', ' ', ' ', ' ', ' '},
-			{' ', ' ', 'P', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', ' ', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		testboard.setBoard(newboard);
-		System.out.println("movePawn: try to capture white piece with white pawn to the right");
-		int startRow = 1;
-		int startCol = 2;
-		int endRow = 2;
-		int endCol = 4;
-		boolean expResult = false;
-		boolean result = testboard.movePawn(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
+
+		char[][] resultBoard = chessboard.getBoard();
+		assertArrayEquals(referenceBoard, resultBoard);
 	}
 	
-	////////////////////////////////
-	// TESTS MADE SO FAR
-	// Branches still missing above
-	////////////////////////////////
-	
 	/**
-	 * Test of moveRook method, of class Chessboard.
-	 * Move rook vertically.
+	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMoveRookVertically() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("moveRook vertically");
-		int startRow = 7;
-		int startCol = 0;
-		int endRow = 5;
-		int endCol = 0;
+	public void testMovePieceWhiteCorrectInput() {
+		System.out.println("movePiece, white, correct input");
+		int start = 48;
+		int end = 40;
 		boolean expResult = true;
-		boolean result = testboard.moveRook(startRow, startCol, endRow, endCol);
+		boolean result = chessboard.movePiece(start, end);
 		assertEquals(expResult, result);
 	}
 	
 	/**
-	 * Test of moveRook method, of class Chessboard.
-	 * Move rook horizontally.
+	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMoveRookHorizontally() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("moveRook horizontally");
-		int startRow = 5;
-		int startCol = 7;
-		int endRow = 5;
-		int endCol = 3;
-		boolean expResult = true;
-		boolean result = testboard.moveRook(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
+	public void testMovePieceWhiteCorrectInputBoardUpdated() {
+		System.out.println("movePiece, white, correct input, board updated");
+		int start = 48;
+		int end = 40;
+		char expectedStart = ' ', expectedEnd = 'P';
+		int expectedPosition = end;
+		boolean moveResult = chessboard.movePiece(start, end);
+		int resultPosition = chessboard.getPiece(expectedPosition).getPosition();
+		char resultStart = chessboard.getSquareContents(start);
+		char resultEnd = chessboard.getSquareContents(end);
+		assertTrue(moveResult && expectedStart == resultStart && expectedEnd == resultEnd && expectedPosition == resultPosition);
 	}
 
 	/**
-	 * Test of moveKnight method with correct input, of class Chessboard.
-	 * Move knight north-west-west.
+	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMoveKnightCorrectNWW() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("moveKnight NWW");
-		int startRow = 7;
-		int startCol = 1;
-		int endRow = 6;
-		int endCol = 3;
+	public void testMovePieceBlackCorrectInput() {
+		System.out.println("movePiece, black, correct input");
+		int start = 8;
+		int end = 16;
 		boolean expResult = true;
-		boolean result = testboard.moveKnight(startRow, startCol, endRow, endCol);
+		boolean result = chessboard.movePiece(start, end);
 		assertEquals(expResult, result);
 	}
 	
 	/**
-	 * Test of moveKnight method, of class Chessboard.
-	 * Move knight north-north-west.
+	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMoveKnightNNW() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("moveKnight NNW");
-		int startRow = 7;
-		int startCol = 1;
-		int endRow = 5;
-		int endCol = 0;
-		boolean expResult = true;
-		boolean result = testboard.moveKnight(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
+	public void testMovePieceBlackCorrectInputBoardUpdated() {
+		System.out.println("movePiece, black, correct input, board updated");
+		int start = 11;
+		int end = 27;
+		char expectedStart = ' ', expectedEnd = 'p';
+		int expectedPosition = end;
+		boolean moveResult = chessboard.movePiece(start, end);
+		int resultPosition = chessboard.getPiece(expectedPosition).getPosition();
+		char resultStart = chessboard.getSquareContents(start);
+		char resultEnd = chessboard.getSquareContents(end);
+		assertTrue(moveResult && expectedStart == resultStart && expectedEnd == resultEnd && expectedPosition == resultPosition);
 	}
 	
 	/**
-	 * Test of moveKnight method with correct input, of class Chessboard.
-	 * Move knight north-north-east.
+	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMoveKnightNNE() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
+	public void testMovePieceCapture() {
+		System.out.println("movePiece, capture");
+		char[][] referenceBoard = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
+			{' ', 'R', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		testboard.setBoard(newboard);
-		System.out.println("moveKnight NNE");
-		int startRow = 7;
-		int startCol = 6;
-		int endRow = 5;
-		int endCol = 5;
-		boolean expResult = true;
-		boolean result = testboard.moveKnight(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	/**
-	 * Test of moveKnight method with correct input, of class Chessboard.
-	 * Move knight north-east-east.
-	 */
-	@Test
-	public void testMoveKnightNEE() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("moveKnight NEE");
-		int startRow = 7;
-		int startCol = 6;
-		int endRow = 6;
-		int endCol = 4;
-		boolean expResult = true;
-		boolean result = testboard.moveKnight(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of moveKnight method with correct input, of class Chessboard.
-	 * Move knight south-east-east.
-	 */
-	@Test
-	public void testMoveKnightSEE() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("moveKnight SEE");
-		int startRow = 2;
-		int startCol = 4;
-		int endRow = 3;
-		int endCol = 6;
-		boolean expResult = true;
-		boolean result = testboard.moveKnight(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of moveKnight method with correct input, of class Chessboard.
-	 * Move knight south-south-east.
-	 */
-	@Test
-	public void testMoveKnightSSE() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("moveKnight SSE");
-		int startRow = 2;
-		int startCol = 4;
-		int endRow = 4;
-		int endCol = 5;
-		boolean expResult = true;
-		boolean result = testboard.moveKnight(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
+		chessboard.setBoard(referenceBoard);
+		int start = 8;
+		int end = 17;
+		char expectedStart = ' ', expectedEnd = 'p';
+		int expectedPosition = end;
+		boolean moveResult = chessboard.movePiece(start, end);
+		int resultPosition = chessboard.getPiece(expectedPosition).getPosition();
+		char resultStart = chessboard.getSquareContents(start);
+		char resultEnd = chessboard.getSquareContents(end);
+		assertTrue(moveResult && expectedStart == resultStart && expectedEnd == resultEnd && expectedPosition == resultPosition);
 	}
 
 	/**
-	 * Test of moveKnight method with correct input, of class Chessboard.
-	 * Move knight south-south-west.
+	 * Test of cloneBoard method, of class Chessboard.
 	 */
 	@Test
-	public void testMoveKnightSSW() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
+	public void testCloneBoardNotNull() {
+		System.out.println("cloneBoard, not null");
+		char[][] result = chessboard.cloneBoard();
+		assertNotNull(result);
+	}
+	
+	/**
+	 * Test of cloneBoard method, of class Chessboard.
+	 */
+	@Test
+	public void testCloneBoard() {
+		System.out.println("cloneBoard");
+		char[][] expResult = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		testboard.setBoard(newboard);
-		System.out.println("moveKnight SSW");
-		int startRow = 2;
-		int startCol = 4;
-		int endRow = 4;
-		int endCol = 3;
-		boolean expResult = true;
-		boolean result = testboard.moveKnight(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
+		char[][] result = chessboard.cloneBoard();
+		assertArrayEquals(expResult, result);
 	}
 
 	/**
-	 * Test of moveKnight method with correct input, of class Chessboard.
-	 * Move knight south-west-west.
+	 * Test of getBoard method, of class Chessboard.
 	 */
 	@Test
-	public void testMoveKnightSWW() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
+	public void testGetBoard() {
+		System.out.println("getBoard");
+		char[][] expResult = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		testboard.setBoard(newboard);
-		System.out.println("moveKnight SWW");
-		int startRow = 2;
-		int startCol = 4;
-		int endRow = 3;
-		int endCol = 2;
-		boolean expResult = true;
-		boolean result = testboard.moveKnight(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of moveBishop method with correct input, of class Chessboard.
-	 * Move bishop north-west.
-	 */
-	@Test
-	public void testMoveBishopNW() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("moveBishop NW");
-		int startRow = 7;
-		int startCol = 2;
-		int endRow = 5;
-		int endCol = 0;
-		boolean expResult = true;
-		boolean result = testboard.moveBishop(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
+		char[][] result = chessboard.getBoard();
+		assertArrayEquals(expResult, result);
 	}
 
 	/**
-	 * Test of moveBishop method with correct input, of class Chessboard.
-	 * Move bishop north-east.
+	 * Test of setBoard method, of class Chessboard.
 	 */
 	@Test
-	public void testMoveBishopNE() {
-		Chessboard testboard = new Chessboard();
+	public void testSetBoard() {
+		System.out.println("setBoard");
 		char[][] newboard = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		testboard.setBoard(newboard);
-		System.out.println("moveBishop NE");
-		int startRow = 7;
-		int startCol = 2;
-		int endRow = 5;
-		int endCol = 4;
-		boolean expResult = true;
-		boolean result = testboard.moveBishop(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-
-	/**
-	 * Test of moveBishop method with correct input, of class Chessboard.
-	 * Move bishop south-east.
-	 */
-	@Test
-	public void testMoveBishopSE() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("moveBishop SE");
-		int startRow = 2;
-		int startCol = 2;
-		int endRow = 4;
-		int endCol = 4;
-		boolean expResult = true;
-		boolean result = testboard.moveBishop(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-
-	/**
-	 * Test of moveBishop method with correct input, of class Chessboard.
-	 * Move bishop south-west.
-	 */
-	@Test
-	public void testMoveBishopSW() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("moveBishop SW");
-		int startRow = 2;
-		int startCol = 2;
-		int endRow = 3;
-		int endCol = 1;
-		boolean expResult = true;
-		boolean result = testboard.moveBishop(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of moveQueen method with correct input, of class Chessboard.
-	 * Move queen north.
-	 */
-	@Test
-	public void testMoveQueenN() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("moveQueen N");
-		int startRow = 4;
-		int startCol = 0;
-		int endRow = 3;
-		int endCol = 0;
-		boolean expResult = true;
-		boolean result = testboard.moveQueen(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-
-	/**
-	 * Test of moveQueen method with correct input, of class Chessboard.
-	 * Move queen north-east.
-	 */
-	@Test
-	public void testMoveQueenNE() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("moveQueen NE");
-		int startRow = 4;
-		int startCol = 0;
-		int endRow = 3;
-		int endCol = 1;
-		boolean expResult = true;
-		boolean result = testboard.moveQueen(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of moveQueen method with correct input, of class Chessboard.
-	 * Move queen east.
-	 */
-	@Test
-	public void testMoveQueenE() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("moveQueen E");
-		int startRow = 4;
-		int startCol = 0;
-		int endRow = 4;
-		int endCol = 1;
-		boolean expResult = true;
-		boolean result = testboard.moveQueen(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of moveQueen method with correct input, of class Chessboard.
-	 * Move queen south-east.
-	 */
-	@Test
-	public void testMoveQueenSE() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("moveQueen SE");
-		int startRow = 4;
-		int startCol = 0;
-		int endRow = 5;
-		int endCol = 1;
-		boolean expResult = true;
-		boolean result = testboard.moveQueen(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of moveQueen method with correct input, of class Chessboard.
-	 * Move queen south.
-	 */
-	@Test
-	public void testMoveQueenS() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("moveQueen S");
-		int startRow = 4;
-		int startCol = 0;
-		int endRow = 5;
-		int endCol = 0;
-		boolean expResult = true;
-		boolean result = testboard.moveQueen(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of moveQueen method with correct input, of class Chessboard.
-	 * Move queen south-west.
-	 */
-	@Test
-	public void testMoveQueenSW() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("moveQueen SW");
-		int startRow = 3;
-		int startCol = 7;
-		int endRow = 4;
-		int endCol = 6;
-		boolean expResult = true;
-		boolean result = testboard.moveQueen(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of moveQueen method with correct input, of class Chessboard.
-	 * Move queen west.
-	 */
-	@Test
-	public void testMoveQueenW() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("moveQueen W");
-		int startRow = 3;
-		int startCol = 7;
-		int endRow = 3;
-		int endCol = 6;
-		boolean expResult = true;
-		boolean result = testboard.moveQueen(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of moveQueen method with correct input, of class Chessboard.
-	 * Move queen north-west.
-	 */
-	@Test
-	public void testMoveQueenNW() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("moveQueen NW");
-		int startRow = 3;
-		int startCol = 7;
-		int endRow = 2;
-		int endCol = 6;
-		boolean expResult = true;
-		boolean result = testboard.moveQueen(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-	
-	/**
-	 * Test of moveKing method with correct input, of class Chessboard.
-	 * Move king north.
-	 */
-	@Test
-	public void testMoveKing() {
-		Chessboard testboard = new Chessboard();
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', 'B', ' ', 'N', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'Q'},
-			{'Q', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-		};
-		testboard.setBoard(newboard);
-		System.out.println("moveKing");
-		int startRow = 7;
-		int startCol = 4;
-		int endRow = 6;
-		int endCol = 4;
-		boolean expResult = true;
-		boolean result = testboard.moveKing(startRow, startCol, endRow, endCol);
-		assertEquals(expResult, result);
-	}
-		
-	/**
-	 * Test of updateBlackKingPosition method, of class Chessboard.
-	 */
-	@Test
-	public void testUpdateBlackKingPosition() {
-		Chessboard testboard = new Chessboard();
-		System.out.println("updateBlackKingPosition");
-		testboard.moveKingForTest(false, 5, 5);
-		testboard.updateKingPosition(false);
-		char expResult = 'k';
-		char result = testboard.getSquareContents(5, 5);
-		assertEquals(expResult, result);
-	}
-
-	/**
-	 * Test of updateWhiteKingPosition method, of class Chessboard.
-	 */
-	@Test
-	public void testUpdateWhiteKingPosition() {
-		Chessboard testboard = new Chessboard();
-		System.out.println("updateWhiteKingPosition");
-		testboard.moveKingForTest(true, 6, 6);
-		testboard.updateKingPosition(true);
-		char expResult = 'K';
-		char result = testboard.getSquareContents(6, 6);
-		assertEquals(expResult, result);
+		chessboard.setBoard(newboard);
+		assertArrayEquals(newboard, chessboard.getBoard());
 	}
 
 	/**
 	 * Test of isItCheck method, of class Chessboard.
-	 * Tests when the game situation is check against white.
 	 */
 	@Test
-	public void testIsItCheckWithCheckSituation() {
-		Chessboard testboard = new Chessboard();
-		System.out.println("isItCheck: game situation is check");
-		char[][] newboard = {
-				{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-				{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-				{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-				{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-				{' ', ' ', ' ', ' ', 'r', ' ', ' ', ' '},
-				{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
-				{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-				{'R', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
-			};
-		testboard.setBoard(newboard);
+	public void testIsItCheckForWhiteInCheckSituation() {
+		System.out.println("isItCheck for white");
 		boolean checkedIsWhite = true;
 		boolean expResult = true;
-		boolean result = testboard.isItCheck(checkedIsWhite);
+		char[][] newboard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', 'r', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', ' ', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		boolean result = chessboard.isItCheck(checkedIsWhite);
 		assertEquals(expResult, result);
 	}
 	
 	/**
 	 * Test of isItCheck method, of class Chessboard.
-	 * Tests when the game situation isn't check against white.
 	 */
 	@Test
-	public void testIsItCheckWithoutCheckSituation() {
-		Chessboard testboard = new Chessboard();
-		System.out.println("isItCheck: game situation is not check");
+	public void testIsItCheckForWhiteInNonCheckSituation() {
+		System.out.println("isItCheck for white");
 		boolean checkedIsWhite = true;
 		boolean expResult = false;
-		boolean result = testboard.isItCheck(checkedIsWhite);
+		boolean result = chessboard.isItCheck(checkedIsWhite);
 		assertEquals(expResult, result);
+	}
+
+	/**
+	 * Test of isItCheck method, of class Chessboard.
+	 */
+	@Test
+	public void testIsItCheckForBlackInCheckSituation() {
+		System.out.println("isItCheck for black in Check situation");
+		boolean checkedIsWhite = false;
+		boolean expResult = true;
+		char[][] newboard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', ' ', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', 'R', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		boolean result = chessboard.isItCheck(checkedIsWhite);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of isItCheck method, of class Chessboard.
+	 */
+	@Test
+	public void testIsItCheckForBlackInNonCheckSituation() {
+		System.out.println("isItCheck for black in non check situation");
+		boolean checkedIsWhite = false;
+		boolean expResult = false;
+		boolean result = chessboard.isItCheck(checkedIsWhite);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of wouldItBeCheck method, of class Chessboard.
+	 */
+	@Test
+	public void testWouldItBeCheckInCheckSituationForWhite() {
+		System.out.println("wouldItBeCheck in Check situation for White");
+		char[][] newboard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', ' ', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', 'r', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'Q', 'P', 'P', 'P'},
+			{'R', 'N', 'B', ' ', 'K', 'B', 'N', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		Piece piece = chessboard.getPiece(52);
+		int end = 45;
+		boolean expResult = true;
+		boolean result = chessboard.wouldItBeCheck(piece, end);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of wouldItBeCheck method, of class Chessboard.
+	 */
+	@Test
+	public void testWouldItBeCheckInNonCheckSituationForWhite() {
+		System.out.println("wouldItBeCheck in non Check situation for White");
+		char[][] newboard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		Piece piece = chessboard.getPiece(52);
+		int end = 36;
+		boolean expResult = false;
+		boolean result = chessboard.wouldItBeCheck(piece, end);
+		assertEquals(expResult, result);
+	}
+
+	/**
+	 * Test of wouldItBeCheck method, of class Chessboard.
+	 */
+	@Test
+	public void testWouldItBeCheckInCheckSituationForBlack() {
+		System.out.println("wouldItBeCheck in Check situation for Black");
+		char[][] newboard = {
+			{'r', 'n', 'b', ' ', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'q', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', 'R', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		Piece piece = chessboard.getPiece(12);
+		int end = 21;
+		boolean expResult = true;
+		boolean result = chessboard.wouldItBeCheck(piece, end);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of wouldItBeCheck method, of class Chessboard.
+	 */
+	@Test
+	public void testWouldItBeCheckInNonCheckSituationForBlack() {
+		System.out.println("wouldItBeCheck in non Check situation for Black");
+		char[][] newboard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		Piece piece = chessboard.getPiece(12);
+		int end = 28;
+		boolean expResult = false;
+		boolean result = chessboard.wouldItBeCheck(piece, end);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of isItCheckMate method, of class Chessboard.
+	 */
+	@Test
+	public void testIsItCheckMateForWhiteInCheckMateSituation() {
+		System.out.println("isItCheckMate for white in checkmate situation");
+		char[][] newboard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', 'r', 'q', 'r', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', ' ', ' ', ' ', 'P', 'P'},
+			{'R', 'N', ' ', ' ', 'K', ' ', 'N', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		boolean checkedIsWhite = true;
+		boolean expResult = true;
+		boolean result = chessboard.isItCheckMate(checkedIsWhite);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of isItCheckMate method, of class Chessboard.
+	 */
+	@Test
+	public void testIsItCheckMateForWhiteInNonCheckMateSituation() {
+		System.out.println("isItCheckMate for white in checkmate situation");
+		boolean checkedIsWhite = true;
+		boolean expResult = false;
+		boolean result = chessboard.isItCheckMate(checkedIsWhite);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of isItCheckMate method, of class Chessboard.
+	 */
+	@Test
+	public void testIsItCheckMateForBlackInCheckMateSituation() {
+		System.out.println("isItCheckMate for black in checkmate situation");
+		char[][] newboard = {
+			{'r', 'n', 'b', ' ', 'k', ' ', 'n', 'r'},
+			{'p', 'p', 'p', ' ', ' ', ' ', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', 'R', 'Q', 'R', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		boolean checkedIsWhite = false;
+		boolean expResult = true;
+		boolean result = chessboard.isItCheckMate(checkedIsWhite);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of isItCheckMate method, of class Chessboard.
+	 */
+	@Test
+	public void testIsItCheckMateForBlackInNonCheckMateSituation() {
+		System.out.println("isItCheckMate for black in checkmate situation");
+		boolean checkedIsWhite = false;
+		boolean expResult = false;
+		boolean result = chessboard.isItCheckMate(checkedIsWhite);
+		assertEquals(expResult, result);
+	}
+
+	/**
+	 * Test of getValue method, of class Chessboard.
+	 */
+	@Test
+	public void testGetValue() {
+		System.out.println("getValue");
+		int expResult = 0;
+		int result = chessboard.getValue();
+		assertEquals(expResult, result);
+	}
+
+	/**
+	 * Test of getSquareContents method, of class Chessboard.
+	 */
+	@Test
+	public void testGetSquareContents_int() {
+		System.out.println("getSquareContents");
+		char[][] referenceBoard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		boolean result = true;
+		for (int i = 0; i < 64; i++) {
+			if (referenceBoard[i/8][i%8] != chessboard.getSquareContents(i)) {
+				result = false;
+				break;
+			}
+		}
+		assertTrue(result);
+	}
+
+	/**
+	 * Test of getSquareContents method, of class Chessboard.
+	 */
+	@Test
+	public void testGetSquareContents_int_int() {
+		System.out.println("getSquareContents");
+		char[][] referenceBoard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		boolean result = true;
+		for (int i = 0; i < 64; i++) {
+			if (referenceBoard[i/8][i%8] != chessboard.getSquareContents(i/8, i%8)) {
+				result = false;
+				break;
+			}
+		}
+		assertTrue(result);
 	}
 	
 }

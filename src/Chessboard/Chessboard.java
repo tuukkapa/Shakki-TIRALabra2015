@@ -216,7 +216,7 @@ public class Chessboard {
 	 * Method updates king's position at the char array.
 	 * @param colour True, if piece to be moved is white, false otherwise.
 	 */
-	public void updateKingPosition(boolean colour) {
+	private void updateKingPosition(boolean colour) {
 		char king = colour ? 'K' : 'k';
 		for (int i = 0; i < 64; i++) {
 			if (chessboard[i/8][i%8] == king) {
@@ -371,9 +371,11 @@ public class Chessboard {
 		char endSquareBackup = this.getSquareContents(end);
 		this.setSquare(piece.getPosition(), ' ');
 		this.setSquare(end, piece.getSign());
+		this.updateKingPosition(piece.amIWhite());
 		boolean checkSituation = this.isItCheck(piece.amIWhite());
 		this.setSquare(piece.getPosition(), piece.getSign());
 		this.setSquare(end, endSquareBackup);
+		this.updateKingPosition(piece.amIWhite());
 		return checkSituation;
 	}
 	
