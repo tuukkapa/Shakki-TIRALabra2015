@@ -84,8 +84,9 @@ public abstract class Piece implements Cloneable {
 		int startRow = position / 8;
 		int startCol = position % 8;
 		boolean rightBlocked = false, downBlocked = false, leftBlocked = false, upBlocked = false;
+		int maxMovement = Math.max(Math.max(startRow, startCol), Math.max(7-startRow, 7-startCol));
 		// check route
-		for (int i = 1; i <= Math.max(startRow, startCol); i++) {
+		for (int i = 1; i <= maxMovement; i++) {
 			// check right
 			if (!rightBlocked && startCol + i < 8) {
 				if (chessboard.getSquareContents(startRow, startCol + i) == ' ') {

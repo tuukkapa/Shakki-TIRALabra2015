@@ -43,45 +43,65 @@ public class PawnTest {
 	public void tearDown() {
 	}
 
+	
 	/**
-	 * Test of getPossibleMoves method, of class Pawn.
+	 * Test of getPossibleMoves method, of class Rook.
 	 */
 	@Test
 	public void testGetPossibleMovesWhiteNoCapture1() {
-		System.out.println("getPossibleMoves, no capture 1");
-		Pawn instance = (Pawn)chessboard.getPiece(48);
-		ArrayList<Move> expResultList = new ArrayList<>();
-		Move move1 = new Move(0, 48, 40);
-		Move move2 = new Move(0, 48, 32);
-		expResultList.add(move1);
-		expResultList.add(move2);
-		ArrayList<Move> resultList = instance.getPossibleMoves(chessboard);
-		boolean[] results = new boolean[resultList.size()];
-		boolean result = true;
-		for (int i = 0; i < results.length; i++) {
-			results[i] = false;
-		}
-		for (int i = 0; i < expResultList.size(); i++) {
-			for (int j = 0; j < resultList.size(); j++) {
-				if (resultList.get(j).equals(expResultList.get(i))) {
-					results[i] = true;
-				}
+		System.out.println("Pawn, getPossibleMoves, white, no capture 1");
+		char[][] newboard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', 'P', ' ', ' ', ' ', ' ', ' '},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) == 'P') {
+				piece = chessboard.getPiece(i);
 			}
 		}
-		for (int i = 0; i < results.length; i++) {
-			if (!results[i]) {
-				result = false;
+		ArrayList<Move> resultList = piece.getPossibleMoves(chessboard);
+		boolean[][] expectedMovementMap = {
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, true, false, false, false, false, false},
+			{false, false, true, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false}
+		};
+		int correctMovementsExpected = 0;
+		for (int i = 0; i < 64; i++) {
+			if (expectedMovementMap[i/8][i%8]) {
+				correctMovementsExpected++;
 			}
 		}
-		assertTrue(result);
+		int correctMovementsResult = 0;
+		boolean noWrongMovementFound = true;
+		for (int i = 0; i < resultList.size(); i++) {
+			if (expectedMovementMap[resultList.get(i).getEnd()/8][resultList.get(i).getEnd()%8]) {
+				correctMovementsResult++;
+			} else {
+				noWrongMovementFound = false;
+			}
+		}
+		assertTrue(noWrongMovementFound && correctMovementsExpected == correctMovementsResult);
 	}
 	
 	/**
-	 * Test of getPossibleMoves method, of class Pawn.
+	 * Test of getPossibleMoves method, of class Rook.
 	 */
 	@Test
 	public void testGetPossibleMovesWhiteNoCapture2() {
-		System.out.println("getPossibleMoves, no capture 2");
+		System.out.println("Pawn, getPossibleMoves, white, no capture 2");
 		char[][] newboard = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
@@ -89,77 +109,158 @@ public class PawnTest {
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', 'R', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', 'P', ' ', ' ', ' ', ' ', ' '},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) == 'P') {
+				piece = chessboard.getPiece(i);
+			}
+		}
+		ArrayList<Move> resultList = piece.getPossibleMoves(chessboard);
+		boolean[][] expectedMovementMap = {
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, true, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false}
+		};
+		int correctMovementsExpected = 0;
+		for (int i = 0; i < 64; i++) {
+			if (expectedMovementMap[i/8][i%8]) {
+				correctMovementsExpected++;
+			}
+		}
+		int correctMovementsResult = 0;
+		boolean noWrongMovementFound = true;
+		for (int i = 0; i < resultList.size(); i++) {
+			if (expectedMovementMap[resultList.get(i).getEnd()/8][resultList.get(i).getEnd()%8]) {
+				correctMovementsResult++;
+			} else {
+				noWrongMovementFound = false;
+			}
+		}
+		assertTrue(noWrongMovementFound && correctMovementsExpected == correctMovementsResult);
+	}
+	
+	/**
+	 * Test of getPossibleMoves method, of class Rook.
+	 */
+	@Test
+	public void testGetPossibleMovesWhiteNoCapture3() {
+		System.out.println("Pawn, getPossibleMoves, white, no capture 3");
+		char[][] newboard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', 'P', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) == 'P') {
+				piece = chessboard.getPiece(i);
+			}
+		}
+		ArrayList<Move> resultList = piece.getPossibleMoves(chessboard);
+		boolean[][] expectedMovementMap = {
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, true, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false}
+		};
+		int correctMovementsExpected = 0;
+		for (int i = 0; i < 64; i++) {
+			if (expectedMovementMap[i/8][i%8]) {
+				correctMovementsExpected++;
+			}
+		}
+		int correctMovementsResult = 0;
+		boolean noWrongMovementFound = true;
+		for (int i = 0; i < resultList.size(); i++) {
+			if (expectedMovementMap[resultList.get(i).getEnd()/8][resultList.get(i).getEnd()%8]) {
+				correctMovementsResult++;
+			} else {
+				noWrongMovementFound = false;
+			}
+		}
+		assertTrue(noWrongMovementFound && correctMovementsExpected == correctMovementsResult);
+	}
+	
+	/**
+	 * Test of getPossibleMoves method, of class Rook.
+	 */
+	@Test
+	public void testGetPossibleMovesBlackNoCapture1() {
+		System.out.println("Pawn, getPossibleMoves, black, no capture 1");
+		char[][] newboard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{' ', ' ', 'p', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
 		chessboard.setBoard(newboard);
-		Pawn instance = (Pawn)chessboard.getPiece(50);
-		ArrayList<Move> expResultList = new ArrayList<>();
-		Move move1 = new Move(0, 50, 42);
-		expResultList.add(move1);
-		ArrayList<Move> resultList = instance.getPossibleMoves(chessboard);
-		boolean[] results = new boolean[resultList.size()];
-		boolean result = true;
-		for (int i = 0; i < results.length; i++) {
-			results[i] = false;
-		}
-		for (int i = 0; i < expResultList.size(); i++) {
-			for (int j = 0; j < resultList.size(); j++) {
-				if (resultList.get(j).equals(expResultList.get(i))) {
-					results[i] = true;
-				}
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) == 'p') {
+				piece = chessboard.getPiece(i);
 			}
 		}
-		for (int i = 0; i < results.length; i++) {
-			if (!results[i]) {
-				result = false;
+		ArrayList<Move> resultList = piece.getPossibleMoves(chessboard);
+		boolean[][] expectedMovementMap = {
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, true, false, false, false, false, false},
+			{false, false, true, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false}
+		};
+		int correctMovementsExpected = 0;
+		for (int i = 0; i < 64; i++) {
+			if (expectedMovementMap[i/8][i%8]) {
+				correctMovementsExpected++;
 			}
 		}
-		assertTrue(result);
+		int correctMovementsResult = 0;
+		boolean noWrongMovementFound = true;
+		for (int i = 0; i < resultList.size(); i++) {
+			if (expectedMovementMap[resultList.get(i).getEnd()/8][resultList.get(i).getEnd()%8]) {
+				correctMovementsResult++;
+			} else {
+				noWrongMovementFound = false;
+			}
+		}
+		assertTrue(noWrongMovementFound && correctMovementsExpected == correctMovementsResult);
 	}
 	
 	/**
-	 * Test of getPossibleMoves method, of class Pawn.
-	 */
-	@Test
-	public void testGetPossibleMovesBlackNoCapture1() {
-		System.out.println("getPossibleMoves, black, no capture 1");
-		Pawn instance = (Pawn)chessboard.getPiece(12);
-		ArrayList<Move> expResultList = new ArrayList<>();
-		Move move1 = new Move(0, 12, 20);
-		Move move2 = new Move(0, 12, 28);
-		expResultList.add(move1);
-		expResultList.add(move2);
-		ArrayList<Move> resultList = instance.getPossibleMoves(chessboard);
-		boolean[] results = new boolean[resultList.size()];
-		boolean result = true;
-		for (int i = 0; i < results.length; i++) {
-			results[i] = false;
-		}
-		for (int i = 0; i < expResultList.size(); i++) {
-			for (int j = 0; j < resultList.size(); j++) {
-				if (resultList.get(j).equals(expResultList.get(i))) {
-					results[i] = true;
-				}
-			}
-		}
-		for (int i = 0; i < results.length; i++) {
-			if (!results[i]) {
-				result = false;
-			}
-		}
-		assertTrue(result);
-	}
-	
-	/**
-	 * Test of getPossibleMoves method, of class Pawn.
+	 * Test of getPossibleMoves method, of class Rook.
 	 */
 	@Test
 	public void testGetPossibleMovesBlackNoCapture2() {
-		System.out.println("getPossibleMoves, black, no capture 2");
+		System.out.println("Pawn, getPossibleMoves, black, no capture 2");
 		char[][] newboard = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', 'p', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', 'r', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
@@ -168,37 +269,99 @@ public class PawnTest {
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
 		chessboard.setBoard(newboard);
-		Pawn instance = (Pawn)chessboard.getPiece(10);
-		ArrayList<Move> expResultList = new ArrayList<>();
-		Move move1 = new Move(0, 10, 18);
-		expResultList.add(move1);
-		ArrayList<Move> resultList = instance.getPossibleMoves(chessboard);
-		boolean[] results = new boolean[resultList.size()];
-		boolean result = true;
-		for (int i = 0; i < results.length; i++) {
-			results[i] = false;
-		}
-		for (int i = 0; i < expResultList.size(); i++) {
-			for (int j = 0; j < resultList.size(); j++) {
-				if (resultList.get(j).equals(expResultList.get(i))) {
-					results[i] = true;
-				}
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) == 'p') {
+				piece = chessboard.getPiece(i);
 			}
 		}
-		for (int i = 0; i < results.length; i++) {
-			if (!results[i]) {
-				result = false;
+		ArrayList<Move> resultList = piece.getPossibleMoves(chessboard);
+		boolean[][] expectedMovementMap = {
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, true, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false}
+		};
+		int correctMovementsExpected = 0;
+		for (int i = 0; i < 64; i++) {
+			if (expectedMovementMap[i/8][i%8]) {
+				correctMovementsExpected++;
 			}
 		}
-		assertTrue(result);
+		int correctMovementsResult = 0;
+		boolean noWrongMovementFound = true;
+		for (int i = 0; i < resultList.size(); i++) {
+			if (expectedMovementMap[resultList.get(i).getEnd()/8][resultList.get(i).getEnd()%8]) {
+				correctMovementsResult++;
+			} else {
+				noWrongMovementFound = false;
+			}
+		}
+		assertTrue(noWrongMovementFound && correctMovementsExpected == correctMovementsResult);
 	}
 	
 	/**
-	 * Test of getPossibleMoves method, of class Pawn.
+	 * Test of getPossibleMoves method, of class Rook.
+	 */
+	@Test
+	public void testGetPossibleMovesBlackNoCapture3() {
+		System.out.println("Pawn, getPossibleMoves, black, no capture 3");
+		char[][] newboard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', 'p', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) == 'p') {
+				piece = chessboard.getPiece(i);
+			}
+		}
+		ArrayList<Move> resultList = piece.getPossibleMoves(chessboard);
+		boolean[][] expectedMovementMap = {
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, true, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false}
+		};
+		int correctMovementsExpected = 0;
+		for (int i = 0; i < 64; i++) {
+			if (expectedMovementMap[i/8][i%8]) {
+				correctMovementsExpected++;
+			}
+		}
+		int correctMovementsResult = 0;
+		boolean noWrongMovementFound = true;
+		for (int i = 0; i < resultList.size(); i++) {
+			if (expectedMovementMap[resultList.get(i).getEnd()/8][resultList.get(i).getEnd()%8]) {
+				correctMovementsResult++;
+			} else {
+				noWrongMovementFound = false;
+			}
+		}
+		assertTrue(noWrongMovementFound && correctMovementsExpected == correctMovementsResult);
+	}
+	
+	/**
+	 * Test of getPossibleMoves method, of class Rook.
 	 */
 	@Test
 	public void testGetPossibleMovesWhiteCapture() {
-		System.out.println("getPossibleMoves, white,  capture");
+		System.out.println("Pawn, getPossibleMoves, white, capture");
 		char[][] newboard = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
@@ -206,50 +369,54 @@ public class PawnTest {
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', 'r', ' ', 'r', ' ', ' ', ' ', ' '},
-			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{' ', ' ', 'P', ' ', ' ', ' ', ' ', ' '},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
 		chessboard.setBoard(newboard);
-		Pawn instance = (Pawn)chessboard.getPiece(50);
-		ArrayList<Move> expResultList = new ArrayList<>();
-		Move move1 = new Move(0, 50, 42);
-		Move move2 = new Move(0, 50, 34);
-		Move move3 = new Move(0, 50, 41);
-		Move move4 = new Move(0, 50, 43);
-		expResultList.add(move1);
-		expResultList.add(move2);
-		expResultList.add(move3);
-		expResultList.add(move4);
-		ArrayList<Move> resultList = instance.getPossibleMoves(chessboard);
-		boolean[] results = new boolean[resultList.size()];
-		boolean result = true;
-		for (int i = 0; i < results.length; i++) {
-			results[i] = false;
-		}
-		for (int i = 0; i < expResultList.size(); i++) {
-			for (int j = 0; j < resultList.size(); j++) {
-				if (resultList.get(j).equals(expResultList.get(i))) {
-					results[i] = true;
-				}
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) == 'P') {
+				piece = chessboard.getPiece(i);
 			}
 		}
-		for (int i = 0; i < results.length; i++) {
-			if (!results[i]) {
-				result = false;
+		ArrayList<Move> resultList = piece.getPossibleMoves(chessboard);
+		boolean[][] expectedMovementMap = {
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, true, false, false, false, false, false},
+			{false, true, true, true, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false}
+		};
+		int correctMovementsExpected = 0;
+		for (int i = 0; i < 64; i++) {
+			if (expectedMovementMap[i/8][i%8]) {
+				correctMovementsExpected++;
 			}
 		}
-		assertTrue(result);
+		int correctMovementsResult = 0;
+		boolean noWrongMovementFound = true;
+		for (int i = 0; i < resultList.size(); i++) {
+			if (expectedMovementMap[resultList.get(i).getEnd()/8][resultList.get(i).getEnd()%8]) {
+				correctMovementsResult++;
+			} else {
+				noWrongMovementFound = false;
+			}
+		}
+		assertTrue(noWrongMovementFound && correctMovementsExpected == correctMovementsResult);
 	}
 
 	/**
-	 * Test of getPossibleMoves method, of class Pawn.
+	 * Test of getPossibleMoves method, of class Rook.
 	 */
 	@Test
 	public void testGetPossibleMovesBlackCapture() {
-		System.out.println("getPossibleMoves, white,  capture");
+		System.out.println("Pawn, getPossibleMoves, black, capture");
 		char[][] newboard = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', 'p', ' ', ' ', ' ', ' ', ' '},
 			{' ', 'R', ' ', 'R', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
@@ -258,35 +425,39 @@ public class PawnTest {
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
 		chessboard.setBoard(newboard);
-		Pawn instance = (Pawn)chessboard.getPiece(10);
-		ArrayList<Move> expResultList = new ArrayList<>();
-		Move move1 = new Move(0, 10, 18);
-		Move move2 = new Move(0, 10, 26);
-		Move move3 = new Move(0, 10, 17);
-		Move move4 = new Move(0, 10, 19);
-		expResultList.add(move1);
-		expResultList.add(move2);
-		expResultList.add(move3);
-		expResultList.add(move4);
-		ArrayList<Move> resultList = instance.getPossibleMoves(chessboard);
-		boolean[] results = new boolean[resultList.size()];
-		boolean result = true;
-		for (int i = 0; i < results.length; i++) {
-			results[i] = false;
-		}
-		for (int i = 0; i < expResultList.size(); i++) {
-			for (int j = 0; j < resultList.size(); j++) {
-				if (resultList.get(j).equals(expResultList.get(i))) {
-					results[i] = true;
-				}
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) == 'p') {
+				piece = chessboard.getPiece(i);
 			}
 		}
-		for (int i = 0; i < results.length; i++) {
-			if (!results[i]) {
-				result = false;
+		ArrayList<Move> resultList = piece.getPossibleMoves(chessboard);
+		boolean[][] expectedMovementMap = {
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, true, true, true, false, false, false, false},
+			{false, false, true, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false}
+		};
+		int correctMovementsExpected = 0;
+		for (int i = 0; i < 64; i++) {
+			if (expectedMovementMap[i/8][i%8]) {
+				correctMovementsExpected++;
 			}
 		}
-		assertTrue(result);
+		int correctMovementsResult = 0;
+		boolean noWrongMovementFound = true;
+		for (int i = 0; i < resultList.size(); i++) {
+			if (expectedMovementMap[resultList.get(i).getEnd()/8][resultList.get(i).getEnd()%8]) {
+				correctMovementsResult++;
+			} else {
+				noWrongMovementFound = false;
+			}
+		}
+		assertTrue(noWrongMovementFound && correctMovementsExpected == correctMovementsResult);
 	}
 	
 	/**
@@ -294,7 +465,7 @@ public class PawnTest {
 	 */
 	@Test
 	public void testIsMoveValidWhiteTrue() {
-		System.out.println("isMoveValid, true");
+		System.out.println("Pawn, isMoveValid, true move forwards");
 		int end = 44;
 		Pawn instance = (Pawn)chessboard.getPiece(52);
 		boolean expResult = true;
@@ -307,7 +478,7 @@ public class PawnTest {
 	 */
 	@Test
 	public void testIsMoveValidWhiteFalse() {
-		System.out.println("isMoveValid, false");
+		System.out.println("Pawn, isMoveValid, false move diagonally without capture");
 		int end = 45;
 		Pawn instance = (Pawn)chessboard.getPiece(52);
 		boolean expResult = false;
@@ -316,11 +487,179 @@ public class PawnTest {
 	}
 
 	/**
+	 * Test of isMoveValid method, of class Pawn.
+	 */
+	@Test
+	public void testIsMoveValidWhiteFalse2() {
+		System.out.println("Pawn, isMoveValid, try to move backwards");
+		char[][] newboard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{' ', ' ', 'p', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'R', ' ', 'R', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', 'P', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', ' ', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		int end = 45;
+		Pawn instance = (Pawn)chessboard.getPiece(37);
+		boolean expResult = false;
+		boolean result = instance.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of isMoveValid method, of class Pawn.
+	 */
+	@Test
+	public void testIsMoveValidWhiteFalse3() {
+		System.out.println("Pawn, isMoveValid, false");
+		char[][] newboard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{' ', ' ', 'p', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'R', ' ', 'R', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		int end = 43;
+		Pawn instance = (Pawn)chessboard.getPiece(53);
+		boolean expResult = false;
+		boolean result = instance.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of isMoveValid method, of class Pawn.
+	 */
+	@Test
+	public void testIsMoveValidWhiteFalse4() {
+		System.out.println("Pawn, isMoveValid, false");
+		char[][] newboard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{' ', ' ', 'p', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'R', ' ', 'R', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		int end = 36;
+		Pawn instance = (Pawn)chessboard.getPiece(53);
+		boolean expResult = false;
+		boolean result = instance.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of isMoveValid method, of class Pawn.
+	 */
+	@Test
+	public void testIsMoveValidBlackFalse() {
+		System.out.println("Pawn, isMoveValid, false, moving backwards");
+		char[][] newboard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', 'p', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', 'P', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', ' ', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		int end = 18;
+		Pawn instance = (Pawn)chessboard.getPiece(26);
+		boolean expResult = false;
+		boolean result = instance.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of isMoveValid method, of class Pawn.
+	 */
+	@Test
+	public void testIsMoveValidBlackWrongCapture() {
+		System.out.println("Pawn, isMoveValid, false, wrong capture");
+		char[][] newboard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{' ', ' ', 'p', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'r', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', 'P', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', ' ', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		int end = 17;
+		Pawn instance = (Pawn)chessboard.getPiece(10);
+		boolean expResult = false;
+		boolean result = instance.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of isMoveValid method, of class Pawn.
+	 */
+	@Test
+	public void testIsMoveValidFalseOutsideBoard1() {
+		System.out.println("Pawn, isMoveValid, false, outside board 1");
+		char[][] newboard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{' ', ' ', 'p', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'R', ' ', 'R', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', 'P', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', ' ', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		int end = 87;
+		Pawn instance = (Pawn)chessboard.getPiece(37);
+		boolean expResult = false;
+		boolean result = instance.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of isMoveValid method, of class Pawn.
+	 */
+	@Test
+	public void testIsMoveValidFalseOutsideBoard2() {
+		System.out.println("Pawn, isMoveValid, false, outside board 2");
+		char[][] newboard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{' ', ' ', 'p', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'R', ' ', 'R', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', 'P', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', ' ', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		int end = -5;
+		Pawn instance = (Pawn)chessboard.getPiece(37);
+		boolean expResult = false;
+		boolean result = instance.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	/**
 	 * Test of clone method, of class Pawn.
 	 */
 	@Test
 	public void testClone() throws Exception {
-		System.out.println("clone");
+		System.out.println("Pawn, clone");
 		Pawn instance = (Pawn)chessboard.getPiece(48);
 		Pawn clone = (Pawn)instance.clone();
 		int expResult = instance.getPosition();

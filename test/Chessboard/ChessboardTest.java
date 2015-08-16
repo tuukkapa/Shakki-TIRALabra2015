@@ -51,7 +51,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testCloneWhitePiecesIsNotNull() throws Exception {
-		System.out.println("clonePieces, white, result isn't null");
+		System.out.println("Chessboard, clonePieces, white, result isn't null");
 		boolean white = true;
 		TreeMap result = chessboard.clonePieces(white);
 		assertNotNull(result);
@@ -64,7 +64,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testCloneBlackPiecesIsNotNull() throws Exception {
-		System.out.println("clonePieces, black, result isn't null");
+		System.out.println("Chessboard, clonePieces, black, result isn't null");
 		boolean white = false;
 		TreeMap result = chessboard.clonePieces(white);
 		assertNotNull(result);
@@ -77,7 +77,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testCloneWhitePiecesDifferentTreeMap() throws Exception {
-		System.out.println("clonePieces, white, resulting TreeMap is different");
+		System.out.println("Chessboard, clonePieces, white, resulting TreeMap is different");
 		boolean white = true;
 		TreeMap original = chessboard.getPieces(white);
 		TreeMap result = chessboard.clonePieces(white);
@@ -91,7 +91,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testCloneBlackPiecesDifferentTreeMap() throws Exception {
-		System.out.println("clonePieces, black, resulting TreeMap is different");
+		System.out.println("Chessboard, clonePieces, black, resulting TreeMap is different");
 		boolean white = false;
 		TreeMap original = chessboard.getPieces(white);
 		TreeMap result = chessboard.clonePieces(white);
@@ -106,7 +106,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testCloneWhitePiecesDifferentPieces() throws Exception {
-		System.out.println("clonePieces, white, resulting TreeMap is different");
+		System.out.println("Chessboard, clonePieces, white, resulting TreeMap is different");
 		boolean white = true;
 		TreeMap originalTreeMap = chessboard.getPieces(white);
 		Piece original = (Piece)originalTreeMap.firstEntry().getValue();
@@ -123,7 +123,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testCloneBlackPiecesDifferentPieces() throws Exception {
-		System.out.println("clonePieces, black, resulting TreeMap is different");
+		System.out.println("Chessboard, clonePieces, black, resulting TreeMap is different");
 		boolean white = false;
 		TreeMap originalTreeMap = chessboard.getPieces(white);
 		Piece original = (Piece)originalTreeMap.firstEntry().getValue();
@@ -138,7 +138,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testGetWhitePiecesNotNull() {
-		System.out.println("getPieces, white, not null");
+		System.out.println("Chessboard, getPieces, white, not null");
 		boolean white = true;
 		TreeMap result = chessboard.getPieces(white);
 		assertNotNull(result);
@@ -150,7 +150,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testGetBlackPiecesNotNull() {
-		System.out.println("getPieces, black, not null");
+		System.out.println("Chessboard, getPieces, black, not null");
 		boolean white = false;
 		TreeMap result = chessboard.getPieces(white);
 		assertNotNull(result);
@@ -162,7 +162,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testGetWhitePieces() {
-		System.out.println("getPieces, white");
+		System.out.println("Chessboard, getPieces, white");
 		boolean white = true;
 		TreeMap pieces = chessboard.getPieces(white);
 		boolean result = true;
@@ -182,7 +182,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testGetBlackPieces() {
-		System.out.println("getPieces, black");
+		System.out.println("Chessboard, getPieces, black");
 		boolean white = false;
 		TreeMap pieces = chessboard.getPieces(white);
 		boolean result = true;
@@ -201,7 +201,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testSetWhitePieces() {
-		System.out.println("setPieces, white");
+		System.out.println("Chessboard, setPieces, white");
 		boolean white = true;
 		TreeMap<Integer, Piece> newPieces = new TreeMap<>();
 		for (int i = 0; i < 8; i++) {
@@ -227,7 +227,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testSetBlackPieces() {
-		System.out.println("setPieces, black");
+		System.out.println("Chessboard, setPieces, black");
 		boolean white = false;
 		TreeMap<Integer, Piece> newPieces = new TreeMap<>();
 		for (int i = 0; i < 8; i++) {
@@ -253,7 +253,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testGetPiece() {
-		System.out.println("getPiece");
+		System.out.println("Chessboard, getPiece");
 		char[][] referencePieces = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
@@ -306,7 +306,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testMovePieceWrongMove() {
-		System.out.println("movePiece, wrong input");
+		System.out.println("Chessboard, movePiece, wrong input");
 		int start = 8;
 		int end = 17;
 		boolean expResult = false;
@@ -319,7 +319,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testMovePieceNonexistentPiece() {
-		System.out.println("movePiece, nonexisting piece");
+		System.out.println("Chessboard, movePiece, nonexisting piece");
 		int start = 16;
 		int end = 24;
 		boolean expResult = false;
@@ -332,7 +332,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testMovePieceWrongInputIsBoardIntact() {
-		System.out.println("movePiece, wrong input, is board intact");
+		System.out.println("Chessboard, movePiece, wrong input, is board intact");
 		int start = 8;
 		int end = 17;
 		char[][] referenceBoard = {
@@ -355,7 +355,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testMovePieceWhiteCorrectInput() {
-		System.out.println("movePiece, white, correct input");
+		System.out.println("Chessboard, movePiece, white, correct input");
 		int start = 48;
 		int end = 40;
 		boolean expResult = true;
@@ -368,7 +368,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testMovePieceWhiteCorrectInputBoardUpdated() {
-		System.out.println("movePiece, white, correct input, board updated");
+		System.out.println("Chessboard, movePiece, white, correct input, board updated");
 		int start = 48;
 		int end = 40;
 		char expectedStart = ' ', expectedEnd = 'P';
@@ -385,7 +385,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testMovePieceBlackCorrectInput() {
-		System.out.println("movePiece, black, correct input");
+		System.out.println("Chessboard, movePiece, black, correct input");
 		int start = 8;
 		int end = 16;
 		boolean expResult = true;
@@ -398,7 +398,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testMovePieceBlackCorrectInputBoardUpdated() {
-		System.out.println("movePiece, black, correct input, board updated");
+		System.out.println("Chessboard, movePiece, black, correct input, board updated");
 		int start = 11;
 		int end = 27;
 		char expectedStart = ' ', expectedEnd = 'p';
@@ -415,7 +415,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testMovePieceCapture() {
-		System.out.println("movePiece, capture");
+		System.out.println("Chessboard, movePiece, capture");
 		char[][] referenceBoard = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
@@ -443,7 +443,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testCloneBoardNotNull() {
-		System.out.println("cloneBoard, not null");
+		System.out.println("Chessboard, cloneBoard, not null");
 		char[][] result = chessboard.cloneBoard();
 		assertNotNull(result);
 	}
@@ -453,7 +453,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testCloneBoard() {
-		System.out.println("cloneBoard");
+		System.out.println("Chessboard, cloneBoard");
 		char[][] expResult = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
@@ -473,7 +473,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testGetBoard() {
-		System.out.println("getBoard");
+		System.out.println("Chessboard, getBoard");
 		char[][] expResult = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
@@ -493,7 +493,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testSetBoard() {
-		System.out.println("setBoard");
+		System.out.println("Chessboard, setBoard");
 		char[][] newboard = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
@@ -513,7 +513,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testIsItCheckForWhiteInCheckSituation() {
-		System.out.println("isItCheck for white");
+		System.out.println("Chessboard, isItCheck for white");
 		boolean checkedIsWhite = true;
 		boolean expResult = true;
 		char[][] newboard = {
@@ -536,7 +536,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testIsItCheckForWhiteInNonCheckSituation() {
-		System.out.println("isItCheck for white");
+		System.out.println("Chessboard, isItCheck for white");
 		boolean checkedIsWhite = true;
 		boolean expResult = false;
 		boolean result = chessboard.isItCheck(checkedIsWhite);
@@ -548,7 +548,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testIsItCheckForBlackInCheckSituation() {
-		System.out.println("isItCheck for black in Check situation");
+		System.out.println("Chessboard, isItCheck for black in Check situation");
 		boolean checkedIsWhite = false;
 		boolean expResult = true;
 		char[][] newboard = {
@@ -571,7 +571,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testIsItCheckForBlackInNonCheckSituation() {
-		System.out.println("isItCheck for black in non check situation");
+		System.out.println("Chessboard, isItCheck for black in non check situation");
 		boolean checkedIsWhite = false;
 		boolean expResult = false;
 		boolean result = chessboard.isItCheck(checkedIsWhite);
@@ -583,7 +583,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testWouldItBeCheckInCheckSituationForWhite() {
-		System.out.println("wouldItBeCheck in Check situation for White");
+		System.out.println("Chessboard, wouldItBeCheck in Check situation for White");
 		char[][] newboard = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', ' ', 'p', 'p', 'p'},
@@ -631,7 +631,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testWouldItBeCheckInCheckSituationForBlack() {
-		System.out.println("wouldItBeCheck in Check situation for Black");
+		System.out.println("Chessboard, wouldItBeCheck in Check situation for Black");
 		char[][] newboard = {
 			{'r', 'n', 'b', ' ', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'q', 'p', 'p', 'p'},
@@ -655,7 +655,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testWouldItBeCheckInNonCheckSituationForBlack() {
-		System.out.println("wouldItBeCheck in non Check situation for Black");
+		System.out.println("Chessboard, wouldItBeCheck in non Check situation for Black");
 		char[][] newboard = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
@@ -679,7 +679,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testIsItCheckMateForWhiteInCheckMateSituation() {
-		System.out.println("isItCheckMate for white in checkmate situation");
+		System.out.println("Chessboard, isItCheckMate for white in checkmate situation");
 		char[][] newboard = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
@@ -702,7 +702,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testIsItCheckMateForWhiteInNonCheckMateSituation() {
-		System.out.println("isItCheckMate for white in checkmate situation");
+		System.out.println("Chessboard, isItCheckMate for white in checkmate situation");
 		boolean checkedIsWhite = true;
 		boolean expResult = false;
 		boolean result = chessboard.isItCheckMate(checkedIsWhite);
@@ -714,7 +714,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testIsItCheckMateForBlackInCheckMateSituation() {
-		System.out.println("isItCheckMate for black in checkmate situation");
+		System.out.println("Chessboard, isItCheckMate for black in checkmate situation");
 		char[][] newboard = {
 			{'r', 'n', 'b', ' ', 'k', ' ', 'n', 'r'},
 			{'p', 'p', 'p', ' ', ' ', ' ', 'p', 'p'},
@@ -737,7 +737,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testIsItCheckMateForBlackInNonCheckMateSituation() {
-		System.out.println("isItCheckMate for black in checkmate situation");
+		System.out.println("Chessboard, isItCheckMate for black in checkmate situation");
 		boolean checkedIsWhite = false;
 		boolean expResult = false;
 		boolean result = chessboard.isItCheckMate(checkedIsWhite);
@@ -749,7 +749,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testGetValue() {
-		System.out.println("getValue");
+		System.out.println("Chessboard, getValue");
 		int expResult = 0;
 		int result = chessboard.getValue();
 		assertEquals(expResult, result);
@@ -760,7 +760,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testGetSquareContents_int() {
-		System.out.println("getSquareContents");
+		System.out.println("Chessboard, getSquareContents");
 		char[][] referenceBoard = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
@@ -786,7 +786,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testGetSquareContents_int_int() {
-		System.out.println("getSquareContents");
+		System.out.println("Chessboard, getSquareContents");
 		char[][] referenceBoard = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},

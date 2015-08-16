@@ -37,22 +37,25 @@ public class Rook extends Piece implements Cloneable {
 		int startCol = position % 8;
 		int endRow = end / 8;
 		int endCol = end % 8;
-
-		
-		if (startCol != endCol && startRow != endRow) {
-			return false;
-		}
 		
 		// check route
-		int movement = Math.abs(startRow - endRow) == 0 ? Math.abs(startCol - endCol) : Math.abs(startRow - endRow);
-		for (int i = 1; i < movement; i++) {
+		int movement = startRow - endRow == 0 ? Math.abs(startCol - endCol) : Math.abs(startRow - endRow);
+		for (int i = 1; i <= movement; i++) {
 			if (startRow == endRow) {
-				if (chessboard.getSquareContents(startRow, Math.min(startCol, endCol) + i) != ' ') {
+				if (startCol < endCol && !this.endSquareContainsEnemyOrEmpty(chessboard, startRow * 8 + startCol + i)) {
+					moveOk = false;
+					break;
+				}
+				if (startCol > endCol && !this.endSquareContainsEnemyOrEmpty(chessboard, startRow * 8 + startCol - i)) {
 					moveOk = false;
 					break;
 				}
 			} else if (startCol == endCol) {
-				if (chessboard.getSquareContents(Math.min(startRow, endRow) + i, startCol) != ' ') {
+				if (startRow < endRow && !this.endSquareContainsEnemyOrEmpty(chessboard, (startRow + i) * 8 + startCol)) {
+					moveOk = false;
+					break;
+				}
+				if (startRow > endRow && !this.endSquareContainsEnemyOrEmpty(chessboard, (startRow - i) * 8 + startCol)) {
 					moveOk = false;
 					break;
 				}
@@ -62,7 +65,7 @@ public class Rook extends Piece implements Cloneable {
 			}
 		}
 
-		return moveOk && !chessboard.wouldItBeCheck(this, end) && this.endSquareContainsEnemyOrEmpty(chessboard, end);
+		return moveOk && !chessboard.wouldItBeCheck(this, end);
 	}
 	
 	@Override
