@@ -20,11 +20,13 @@ public class Pawn extends Piece implements Cloneable {
 	@Override
 	public ArrayList getPossibleMoves(Chessboard chessboard) {
 		ArrayList<Move> moves = new ArrayList<>();
-		int pawnRow = white ? (position / 8) - 1 : (position / 8) + 1;
+		int pawnRow = white ? 7 - position / 8 : position / 8;
 		int pawnCol = position % 8;
 		for (int col = pawnCol - 1; col <= pawnCol + 1; col++) {
-			if ((col >= 0 && col < 8) && this.isMoveValid(chessboard, pawnRow * 8 + col)) {
-				moves.add(new Move(0, position, pawnRow * 8 + col));
+			for (int row = pawnRow + 1; row <= pawnRow + 2; row++) {
+				if ((col >= 0 && col < 8) && this.isMoveValid(chessboard, (7 - row) * 8 + col)) {
+					moves.add(new Move(0, position, (7 - row) * 8 + col));
+				}
 			}
 		}
 		return moves;
@@ -58,8 +60,8 @@ public class Pawn extends Piece implements Cloneable {
 		if (startCol == endCol) {
 				// check moving 2 squares
 				if (startRow == homeRow && Math.abs(startRow - endRow) == 2) {
-					for (int i = startRow + movement; i <= Math.abs(startRow - endRow); i++) {
-						if (chessboard.getSquareContents(startRow + (i * movement) , startCol) != ' ') {
+					for (int i = 1; i <= Math.abs(startRow - endRow); i++) {
+						if (chessboard.getSquareContents(startRow + (movement * i) , startCol) != ' ') {
 							movementOk = false;
 						}
 					}

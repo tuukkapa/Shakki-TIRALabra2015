@@ -50,4 +50,16 @@ public class Move {
 		return end;
 	}
 	
+	/**
+	 *
+	 * @param move
+	 * @return
+	 */
+	public boolean equals(Move move) {
+		boolean scoreEquals = this.score == move.score;
+		boolean startEquals = this.start == move.start;
+		boolean endEquals = this.end == move.end;
+		return scoreEquals && startEquals && endEquals;
+	}
+	
 }
