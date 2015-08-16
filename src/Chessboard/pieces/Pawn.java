@@ -20,12 +20,13 @@ public class Pawn extends Piece implements Cloneable {
 	@Override
 	public ArrayList getPossibleMoves(Chessboard chessboard) {
 		ArrayList<Move> moves = new ArrayList<>();
-		int pawnRow = white ? 7 - position / 8 : position / 8;
+		int pawnRow = position / 8;
 		int pawnCol = position % 8;
+		int movement = white ? -1 : 1;
 		for (int col = pawnCol - 1; col <= pawnCol + 1; col++) {
-			for (int row = pawnRow + 1; row <= pawnRow + 2; row++) {
-				if ((col >= 0 && col < 8) && this.isMoveValid(chessboard, (7 - row) * 8 + col)) {
-					moves.add(new Move(0, position, (7 - row) * 8 + col));
+			for (int row = 1; row <= 2; row++) {
+				if ((col >= 0 && col < 8) && this.isMoveValid(chessboard, (pawnRow + (movement * row)) * 8 + col)) {
+					moves.add(new Move(0, position, (pawnRow + (movement * row)) * 8 + col));
 				}
 			}
 		}
