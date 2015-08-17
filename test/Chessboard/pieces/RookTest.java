@@ -107,7 +107,7 @@ public class RookTest {
 			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', 'r', ' ', ' ', ' ', ' ', ' '},
+			{'n', 'R', 'r', ' ', ' ', ' ', 'R', 'n'},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
@@ -125,7 +125,7 @@ public class RookTest {
 			{false, false, true, false, false, false, false, false},
 			{false, false, true, false, false, false, false, false},
 			{false, false, true, false, false, false, false, false},
-			{true, true, false, true, true, true, true, true},
+			{false, true, false, true, true, true, true, false},
 			{false, false, true, false, false, false, false, false},
 			{false, false, true, false, false, false, false, false},
 			{false, false, false, false, false, false, false, false}

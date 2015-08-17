@@ -52,25 +52,25 @@ public class Queen extends Piece implements Cloneable {
 		if (Math.abs(startCol-endCol) == Math.abs(startRow-endRow)) {
 			for (int i = 1; i < Math.abs(endRow-startRow); i++) {
 				// check south-east
-				if (startRow+i < 8 && startCol+i < 8) {
+				if (startRow+i < endRow && startCol+i < endCol) {
 					if (chessboard.getSquareContents(startRow+i, startCol+i) != ' ') {
 						moveOk = false;
 						break;
 					}
 				// check south-west
-				} else if (startRow+i < 8 && startCol - i >= 0) {
+				} else if (startRow+i < endRow && startCol - i >= endCol) {
 					if (chessboard.getSquareContents(startRow+i, startCol-i) != ' ') {
 						moveOk = false;
 						break;
 					}
 				// check north-east
-				} else if (startRow-i >= 0 && startCol+i < 8) {
+				} else if (startRow-i >= endRow && startCol+i < endCol) {
 					if (chessboard.getSquareContents(startRow-i, startCol+i) != ' ') {
 						moveOk = false;
 						break;
 					}
 				// check north-west
-				} else if (startRow-i >= 0 && startCol-i >= 0) {
+				} else if (startRow-i >= endRow && startCol-i >= endCol) {
 					if (chessboard.getSquareContents(startRow-i, endRow-i) != ' ') {
 						moveOk = false;
 						break;
