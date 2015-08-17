@@ -1,7 +1,10 @@
 
 import AI.Move;
 import Chessboard.Chessboard;
+import Chessboard.pieces.Piece;
+import Chessboard.pieces.Rook;
 import UI.UserInterface;
+import java.util.ArrayList;
 
 /*
  * Copyright (C) 2015
@@ -14,8 +17,8 @@ public class Test {
 	public static void main(String[] args) {
 		Chessboard chessboard = new Chessboard();
 		char[][] newboard = {
-			{' ', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', 'n', 'b', 'q', 'k', 'b', ' ', 'r'},
+			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
@@ -24,15 +27,11 @@ public class Test {
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
 		chessboard.setBoard(newboard);
-		Move move = new Move(0, 6, 21);
-		System.out.println("Lauta alussa");
-		UserInterface.draw(chessboard.getBoard());
-		boolean move1 = chessboard.makeMove(move);
-		System.out.println("Siirto tehty");
-		UserInterface.draw(chessboard.getBoard());
-		chessboard.undoMove(chessboard, move);
-		System.out.println("Siirto peruttu");
-		UserInterface.draw(chessboard.getBoard());
+		Move move = new Move(0, 3, 17);
+		Piece piece = chessboard.getPiece(3);
+		ArrayList<Move> moves = piece.getPossibleMoves(chessboard);
+		boolean value = piece.isMoveValid(chessboard, 17);
+		System.out.println("moi");
 	}
 
 }

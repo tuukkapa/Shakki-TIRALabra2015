@@ -203,24 +203,23 @@ public class Chessboard {
 		if (piece.isMoveValid(this, end)) {
 			if (piece.endSquareContainsEnemy(this, end)) {
 				// save captured piece into Move for undoing
-				move.setCapturedPiece((Piece)this.getPieces(!piece.amIWhite()).get(end));
-				this.getPieces(!piece.amIWhite()).remove(end);
+				Piece capturedPiece = this.getPiece(end);
+				move.setCapturedPiece(capturedPiece);
+				this.getPieces(capturedPiece.amIWhite()).remove(end);
 			}
 			this.setSquare(start, ' ');
 			this.setSquare(end, piece.getSign());
+			piece.setPosition(end);
 			if (piece.amIWhite()) {
-				whitePieces.put(end, whitePieces.get(start));
+				whitePieces.put(end, piece);
 				whitePieces.remove(start);
-				success = true;
+				return true;
 			} else {
-				blackPieces.put(end, blackPieces.get(start));
+				blackPieces.put(end, piece);
 				blackPieces.remove(start);
-				success = true;
-			}
-			if (success) {
-				piece.setPosition(end);
 				return true;
 			}
+
 		}
 		return false;
 	}
@@ -235,6 +234,13 @@ public class Chessboard {
 		this.setSquare(move.getEnd(), ' ');
 		movedPiece.setPosition(move.getStart());
 		this.setSquare(move.getStart(), movedPiece.getSign());
+		if (movedPiece.amIWhite()) {
+			whitePieces.remove(move.getEnd());
+			whitePieces.put(move.getStart(), movedPiece);
+		} else {
+			blackPieces.remove(move.getEnd());
+			blackPieces.put(move.getStart(), movedPiece);
+		}
 		if (capturedPiece != null) {
 			this.setSquare(move.getEnd(), capturedPiece.getSign());
 			capturedPiece.setPosition(move.getEnd());
@@ -244,6 +250,8 @@ public class Chessboard {
 				blackPieces.put(move.getEnd(), capturedPiece);
 			}
 		}
+		this.updateKingPosition(true);
+		this.updateKingPosition(false);
 	}
 	
 	/**

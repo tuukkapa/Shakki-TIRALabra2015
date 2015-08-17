@@ -74,7 +74,14 @@ public class AI {
 		Move[] moves = this.treeMapToArray(chessboard, chessboard.getPieces(false), false);
 		for (int i = 0; i < moves.length; i++) {
 			Move mv = moves[i];
-			chessboard.makeMove(mv);
+			if (!chessboard.makeMove(mv)) {
+				UserInterface.draw(chessboard.getBoard());
+				System.out.println("Hei");
+			} else {
+				if (chessboard.getPiece(mv.getEnd()).getSign() == 'k') {
+					System.out.println("Max taso " + depth + ": Siirretty " + chessboard.getPiece(mv.getEnd()).getSign() + ": " + mv.getStart() + " -> " + mv.getEnd());
+				}
+			}
 			int val = -min(chessboard, depth-1);
 			if (val>best) {
 				best = val;
@@ -92,7 +99,12 @@ public class AI {
 		Move[] moves = this.treeMapToArray(chessboard, chessboard.getPieces(true), true);
 		for (int i = 0; i < moves.length; i++) {
 			Move mv = moves[i];
-			chessboard.makeMove(mv);
+			if (!chessboard.makeMove(mv)) {
+				UserInterface.draw(chessboard.getBoard());
+				System.out.println("Hei");
+			} else {
+				//System.out.println("Min taso " + depth + ": Siirretty " + chessboard.getPiece(mv.getEnd()).getSign() + ": " + mv.getStart() + " -> " + mv.getEnd());
+			}
 			int val = -max(chessboard, depth-1);
 			if (val>best) {
 				best = val;

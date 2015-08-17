@@ -111,7 +111,7 @@ public abstract class Piece implements Cloneable {
 			}
 			// check left
 			if (!leftBlocked && startCol - i >= 0) {
-				if (chessboard.getSquareContents(startRow, startCol - 1) == ' ') {
+				if (chessboard.getSquareContents(startRow, startCol - i) == ' ') {
 					moves.add(new Move(0, position, (startRow * 8) + startCol - i));
 				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, (startRow * 8) + startCol - i)) {
 					moves.add(new Move(0, position, (startRow * 8) + startCol - i));
