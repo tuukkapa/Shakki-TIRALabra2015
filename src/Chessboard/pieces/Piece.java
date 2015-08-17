@@ -245,6 +245,45 @@ public abstract class Piece implements Cloneable {
 		return moveOk;
 	}
 	
+	protected boolean checkDiagonalRoutes(Chessboard chessboard, int end) {
+		boolean moveOk = true;
+		int startRow = position / 8;
+		int startCol = position % 8;
+		int endRow = end / 8;
+		int endCol = end % 8;
+		
+		for (int i = 1; i < Math.abs(endRow-startRow); i++) {
+			// check south-east
+			if (startRow+i < endRow && startCol+i < endCol) {
+				if (chessboard.getSquareContents(startRow+i, startCol+i) != ' ') {
+					moveOk = false;
+					break;
+				}
+			// check south-west
+			} else if (startRow+i < endRow && startCol - i >= endCol) {
+				if (chessboard.getSquareContents(startRow+i, startCol-i) != ' ') {
+					moveOk = false;
+					break;
+				}
+			// check north-east
+			} else if (startRow-i >= endRow && startCol+i < endCol) {
+				if (chessboard.getSquareContents(startRow-i, startCol+i) != ' ') {
+					moveOk = false;
+					break;
+				}
+			// check north-west
+			} else if (startRow-i >= endRow && startCol-i >= endCol) {
+				if (chessboard.getSquareContents(startRow-i, endRow-i) != ' ') {
+					moveOk = false;
+					break;
+				}
+			} else {
+				return false;
+			}
+		}
+		return moveOk;
+	}
+	
 	/**
 	 * Does the basic validation of given move, i.e. is any of the coordinates
 	 * outside of the board.

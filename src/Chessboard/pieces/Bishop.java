@@ -39,30 +39,11 @@ public class Bishop extends Piece implements Cloneable {
 		int endCol = end % 8;
 		
 		if (Math.abs(startCol-endCol) == Math.abs(startRow-endRow)) {
-			for (int i = 1; i < Math.abs(endRow-startRow); i++) {
-				if (endRow>startRow && endCol>startCol) {
-					if (chessboard.getSquareContents(startRow+i, startCol+i) != ' ') {
-						moveOk = false;
-						break;
-					}
-				} else if (endRow>startRow && endCol<startCol) {
-					if (chessboard.getSquareContents(startRow+i, startCol-i) != ' ') {
-						moveOk = false;
-						break;
-					}
-				} else if (endRow<startRow && endCol>startCol) {
-					if (chessboard.getSquareContents(startRow-i, startCol+i) != ' ') {
-						moveOk = false;
-						break;
-					}
-				} else {
-					if (chessboard.getSquareContents(startRow-i, startCol-i) != ' ') {
-						moveOk = false;
-						break;
-					}
-				}
-			}
+			moveOk = this.checkDiagonalRoutes(chessboard, end);
+		} else {
+			return false;
 		}
+		
 		return moveOk && !chessboard.wouldItBeCheck(this, end) && this.endSquareContainsEnemyOrEmpty(chessboard, end);
 	}
 	
