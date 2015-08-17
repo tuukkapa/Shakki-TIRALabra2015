@@ -613,6 +613,35 @@ public class RookTest {
 	}
 	
 	/**
+	 * Test of isMoveValid method, of class Rook.
+	 */
+	@Test
+	public void testIsMoveValidWrongInputCauseCheck3() {
+		System.out.println("Rook, isMoveValid, wrong input, wrong move, cause check");
+		char[][] newboard = {
+			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
+			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'b', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', 'R', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', ' ', ' ', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		int end = 35;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) == 'R') {
+				piece = chessboard.getPiece(i);
+			}
+		}
+		boolean expResult = false;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	/**
 	 * Test of clone method, of class Pawn.
 	 * @throws java.lang.Exception
 	 */
