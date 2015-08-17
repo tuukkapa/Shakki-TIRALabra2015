@@ -160,7 +160,7 @@ public abstract class Piece implements Cloneable {
 		}
 		boolean neBlocked = false, seBlocked = false, swBlocked = false, nwBlocked = false;
 		int nePosition, sePosition, swPosition, nwPosition;
-		for (int i = 1; i < maxMovement; i++) {
+		for (int i = 1; i <= maxMovement; i++) {
 			// check north-east
 			nePosition = (row - i) * 8 + col + i;
 			sePosition = (row + i) * 8 + col + i;
