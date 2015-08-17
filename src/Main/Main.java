@@ -6,7 +6,10 @@ import AI.AI;
 import AI.Move;
 import UI.UserInterface;
 import Chessboard.Chessboard;
+import Chessboard.pieces.Piece;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,7 +40,7 @@ public class Main {
 		chessboard = new Chessboard();
 		ai = new AI();
 		input = new Scanner(System.in);
-		depth = 5;
+		depth = 3;
 	}
 	
 	/**
@@ -49,6 +52,18 @@ public class Main {
 		boolean continueGame = true;
 
 		init();
+		
+		char[][] newboard = {
+			{'r', ' ', ' ', ' ', 'k', ' ', ' ', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', ' ', ' ', ' ', 'K', ' ', ' ', 'R'}
+		};
+		//chessboard.setBoard(newboard);
 		
 		UserInterface.draw(chessboard.getBoard());
 		System.out.println("Peli vastaanottaa siirtokomennot koordinaatteina.\n"
@@ -67,7 +82,7 @@ public class Main {
 					System.out.println("\nOdota. Tietokone tekee siirtonsa...");
 					Move move = null;
 					try {
-						move = ai.minimax(chessboard, depth, true);
+						move = ai.getMove(chessboard, depth, true);
 					} catch (CloneNotSupportedException ex) {
 						Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
 					} catch (Exception e) {
@@ -78,9 +93,16 @@ public class Main {
 							return;
 						}
 					}
-					if (!chessboard.movePiece(move.getStart(), move.getEnd())) {
-						System.out.println("Tietokoneen siirtovuorolla tapahtui virhe."
+					if (!chessboard.makeMove(move)) {
+						System.out.println("\n\n\nTietokoneen siirtovuorolla tapahtui virhe."
 								+ "Peli lopetetaan.");
+						System.out.println("Siirtokomento oli koordinaatista " + move.getStart() + 
+								" koordinaattiin " + move.getEnd());
+						TreeMap<Integer, Piece> pieces = chessboard.getPieces(false);
+						System.out.println("Mustat nappulat ovat:");
+						for (Map.Entry<Integer, Piece> piece : pieces.entrySet()) {
+							System.out.println(piece.getValue().getSign() + " paikassa " + piece.getValue().getPosition());
+						}
 						continueGame = false;
 					}
 					UserInterface.draw(chessboard.getBoard());

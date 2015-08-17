@@ -2,6 +2,7 @@ package Chessboard;
 
 import AI.Move;
 import Chessboard.pieces.*;
+import UI.UserInterface;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
@@ -179,6 +180,70 @@ public class Chessboard {
 			}
 		}
 		return false;
+	}
+	
+	/**
+	 * Moves one piece from start position to end position.
+	 * @param move Move-object, contains start and end coordinates.
+	 * @return True if moving is successful, false otherwise.
+	 */
+	public boolean makeMove(Move move) {
+		boolean success = false;
+		int start = move.getStart();
+		int end = move.getEnd();
+		Piece piece = null;
+		if (whitePieces.containsKey(start)) {
+			piece = whitePieces.get(start);
+		} else {
+			piece = blackPieces.get(start);
+		}
+		if (piece == null) {
+			return false;
+		}
+		if (piece.isMoveValid(this, end)) {
+			if (piece.endSquareContainsEnemy(this, end)) {
+				// save captured piece into Move for undoing
+				move.setCapturedPiece((Piece)this.getPieces(!piece.amIWhite()).get(end));
+				this.getPieces(!piece.amIWhite()).remove(end);
+			}
+			this.setSquare(start, ' ');
+			this.setSquare(end, piece.getSign());
+			if (piece.amIWhite()) {
+				whitePieces.put(end, whitePieces.get(start));
+				whitePieces.remove(start);
+				success = true;
+			} else {
+				blackPieces.put(end, blackPieces.get(start));
+				blackPieces.remove(start);
+				success = true;
+			}
+			if (success) {
+				piece.setPosition(end);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Undoes one move, i.e. gets the board back to it's original state before the move.
+	 * @param move Move-object, contains start and end coordinates.
+	 */
+	public void undoMove(Chessboard chessboard, Move move) {
+		Piece movedPiece = this.getPiece(move.getEnd());
+		Piece capturedPiece = move.getCapturedPiece();
+		this.setSquare(move.getEnd(), ' ');
+		movedPiece.setPosition(move.getStart());
+		this.setSquare(move.getStart(), movedPiece.getSign());
+		if (capturedPiece != null) {
+			this.setSquare(move.getEnd(), capturedPiece.getSign());
+			capturedPiece.setPosition(move.getEnd());
+			if (capturedPiece.amIWhite()) {
+				whitePieces.put(move.getEnd(), capturedPiece);
+			} else {
+				blackPieces.put(move.getEnd(), capturedPiece);
+			}
+		}
 	}
 	
 	/**

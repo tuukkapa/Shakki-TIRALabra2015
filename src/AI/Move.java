@@ -1,5 +1,7 @@
 package AI;
 
+import Chessboard.pieces.Piece;
+
 /**
  * Class contains one chess move and it's score.
  * 
@@ -13,6 +15,7 @@ package AI;
 public class Move {
 
 	private int score, start, end;
+	private Piece capturedPiece;
 	
 	/**
 	 * Constructor of Move-object.
@@ -24,6 +27,7 @@ public class Move {
 		this.score = score;
 		this.start = start;
 		this.end = end;
+		this.capturedPiece = null;
 	}
 	
 	/**
@@ -48,6 +52,14 @@ public class Move {
 	 */
 	public int getEnd() {
 		return end;
+	}
+	
+	public void setCapturedPiece(Piece piece) {
+		this.capturedPiece = piece;
+	}
+	
+	public Piece getCapturedPiece() {
+		return capturedPiece;
 	}
 	
 	/**
