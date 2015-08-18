@@ -63,7 +63,7 @@ public class Main {
 
 		//chessboard.setBoard(newboard);
 		
-		UserInterface.draw(chessboard.getBoardAsCharArray());
+		UserInterface.draw(chessboard.getBoardAsCharArray(), chessboard);
 		System.out.println("Peli vastaanottaa siirtokomennot koordinaatteina.\n"
 				+ "Esimerkiksi komento c2c4 siirtää koordinaatissa c2 olevan\n"
 				+ "nappulan koordinaattiin c4. Peli tarkistaa, etteivät\n"
@@ -76,24 +76,33 @@ public class Main {
 				continueGame = false;
 			} else {
 				if (UserMovement.movePiece(command, chessboard)) {
-					UserInterface.draw(chessboard.getBoardAsCharArray());
+					UserInterface.draw(chessboard.getBoardAsCharArray(), chessboard);
 					System.out.println("\nOdota. Tietokone tekee siirtonsa...");
 					Move move = null;
-					move = ai.getMove(chessboard, depth);
-			
+					try {
+						move = ai.getMove(chessboard, depth);
+					} catch (NullPointerException ne) {
+						System.out.println("getcause getmessage: " + ne.getCause().getMessage());
+						System.out.println("getmessage: " + ne.getMessage());
+						System.out.println("tostring: " + ne.toString());
+					} catch (Exception e) {
+						System.out.println("exception: " + e.getCause().getMessage());
+					}
 					if (!chessboard.movePiece(move)) {
-						System.out.println("\n\n\nTietokoneen siirtovuorolla tapahtui virhe."
+						System.out.println("\n\nTietokoneen siirtovuorolla tapahtui virhe."
 								+ "Peli lopetetaan.");
-						System.out.println("Siirtokomento koordinaatista " + move.getStart() + 
+						System.out.println("\nViimeinen siirtokomento oli koordinaatista " + move.getStart() + 
 								" koordinaattiin " + move.getEnd());
+						System.out.println("\nAlkukoordinaatissa oli nappula: " + chessboard.getSquareContents(move.getStart()));
 						ArrayList<Piece> pieces = chessboard.getPieces(false);
-						System.out.println("Mustat nappulat ovat:");
+						System.out.println("\nMustat nappulat:");
 						for (Piece piece : pieces) {
-							System.out.println(piece.getSign() + " paikassa " + piece.getPosition());
+							System.out.println(piece.getSign() + " r" + (piece.getPosition()/8) + " s" + (piece.getPosition()%8));
 						}
 						continueGame = false;
+						System.out.println("\nLauta oli lopussa");
 					}
-					UserInterface.draw(chessboard.getBoardAsCharArray());
+					UserInterface.draw(chessboard.getBoardAsCharArray(), chessboard);
 				} else {
 					System.out.println("Virheellinen komento.");
 				}

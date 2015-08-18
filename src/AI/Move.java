@@ -14,17 +14,18 @@ import Chessboard.pieces.Piece;
 public class Move {
 
 	private int start, end;
-	private Piece capturedPiece;
+	private Piece capturedPiece, movedPiece;
 	
 	/**
 	 * Constructor of Move-object.
 	 * @param start Integer, starting position of the move.
 	 * @param end Integer, ending position of the move.
 	 */
-	public Move(int start, int end) {
+	public Move(int start, int end, Piece piece) {
 		this.start = start;
 		this.end = end;
 		this.capturedPiece = null;
+		this.movedPiece = piece;
 	}
 	
 	/**
@@ -49,6 +50,10 @@ public class Move {
 	
 	public Piece getCapturedPiece() {
 		return capturedPiece;
+	}
+	
+	public Piece getPiece() {
+		return movedPiece;
 	}
 	
 }

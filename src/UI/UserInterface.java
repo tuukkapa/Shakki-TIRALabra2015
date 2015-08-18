@@ -1,5 +1,9 @@
 package UI;
 
+import Chessboard.Chessboard;
+import Chessboard.pieces.Piece;
+import java.util.ArrayList;
+
 /**
  * Static class to draw the user interface.
  * @author Tuukka Paukkunen <tuukka.paukkunen@cs.helsinki.fi>
@@ -11,7 +15,7 @@ public class UserInterface {
 	 * readable ASCII-character version of the chess board.
 	 * @param chessboard Two dimensional char-array, the board to be drawn.
 	 */
-	public static void draw(char[][] chessboard) {
+	public static void draw(char[][] chessboard, Chessboard board) {
 		for (int i = 0; i < 17; i++) {
 			for (int j = 0; j < 33; j++) {
 				// Draw chess board's top and bottom edge
@@ -65,6 +69,16 @@ public class UserInterface {
 			System.out.println("");
 		}
 		System.out.println("    A   B   C   D   E   F   G   H");
+		System.out.println("\nMustat nappulat:");
+		ArrayList<Piece> pieces = board.getPieces(false);
+		for (Piece onePiece : pieces) {
+			System.out.println(onePiece.getSign() + " r" + (onePiece.getPosition()/8) + " s" + (onePiece.getPosition()%8));
+		}
+		System.out.println("\nValkoiset nappulat:");
+		ArrayList<Piece> wpieces = board.getPieces(true);
+		for (Piece onePiece : wpieces) {
+			System.out.println(onePiece.getSign() + " r" + (onePiece.getPosition()/8) + " s" + (onePiece.getPosition()%8));
+		}
 	}
 	
 }

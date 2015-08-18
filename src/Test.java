@@ -26,7 +26,7 @@ public class Test {
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
 		Chessboard chessboard = new Chessboard(newboard);
-		Move move = new Move(3, 17);
+		//Move move = new Move(3, 17);
 		Piece piece = chessboard.getSquareContents(3);
 		ArrayList<Move> moves = piece.getPossibleMoves(chessboard);
 		boolean value = piece.isMoveValid(chessboard, 17);

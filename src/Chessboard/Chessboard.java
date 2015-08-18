@@ -9,6 +9,7 @@ import Chessboard.pieces.Pawn;
 import Chessboard.pieces.Piece;
 import Chessboard.pieces.Queen;
 import Chessboard.pieces.Rook;
+import UI.UserInterface;
 import java.util.ArrayList;
 import java.util.TreeMap;
 import java.util.Vector;
@@ -18,6 +19,7 @@ public class Chessboard {
 	private Piece[][] chessboard;
 	private ArrayList<Piece> blackPieces, whitePieces;
 	private int whiteKingPosition, blackKingPosition;
+	private boolean virhe;
 	
 	public Chessboard() {
 		chessboard = new Piece[8][8];
@@ -32,6 +34,7 @@ public class Chessboard {
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
 		this.setBoard(newboard);
+		virhe = false;
 	}
 	
 	public Chessboard(char[][] newboard) {
@@ -133,14 +136,13 @@ public class Chessboard {
 		int end = move.getEnd();
 		Piece piece = chessboard[start/8][start%8];
 		if (piece == null) {
-			System.out.println("Virhe: siirrettävä nappula ei ollut oletetuissa koordinaateissa"
-					+ " tietokoneen siirtovuorolla.\n"
-					+ "Nappulan oletettu alkukohta: " + move.getStart()
-					+ " siirron loppukohta " + move.getEnd());
+			this.errorToScreen(piece, move, end);
 			return false;
 		}
 		if (piece.isMoveValid(this, end)) {
-			this.performMove(move);
+			if (!this.performMove(move)) {
+				return false;
+			}
 			return true;
 		}
 		return false;
@@ -149,31 +151,15 @@ public class Chessboard {
 	private boolean performMove(Move move) {
 		Piece piece = this.getSquareContents(move.getStart());
 		if (piece == null) {
-			System.out.println("performMove (ei ref): saatiin null nappula");
+			return false;
 		}
 		int start = move.getStart();
 		int end = move.getEnd();
 		if (piece.endSquareContainsEnemy(this, end)) {
 				Piece capturedPiece = chessboard[end/8][end%8];
 				move.setCapturedPiece(capturedPiece);
-		}
-		chessboard[start/8][start%8] = null;
-		chessboard[end/8][end%8] = piece;
-		piece.setPosition(end);
-		return true;
-	}
-	
-	private boolean performMove(Piece refPiece, Move move) {
-		Piece piece = this.getSquareContents(move.getStart());
-		if (piece == null) {
-			System.out.println("performMove (ref): saatiin null nappula");
-			System.out.println(piece);
-		}
-		int start = move.getStart();
-		int end = move.getEnd();
-		if (piece.endSquareContainsEnemy(this, end)) {
-				Piece capturedPiece = chessboard[end/8][end%8];
-				move.setCapturedPiece(capturedPiece);
+				System.out.println("\nSyötiin: " + capturedPiece + " " + capturedPiece.getSign());
+				System.out.println("sijainti: r" + capturedPiece.getPosition()/8 + " s" + capturedPiece.getPosition()%8);
 		}
 		chessboard[start/8][start%8] = null;
 		chessboard[end/8][end%8] = piece;
@@ -188,24 +174,65 @@ public class Chessboard {
 			return false;
 		}
 		chessboard[move.getStart()/8][move.getStart()%8] = movedPiece;
-		chessboard[move.getEnd()/8][move.getEnd()%8] = capturedPiece;
+		if (capturedPiece == null) {
+			chessboard[move.getEnd()/8][move.getEnd()%8] = null;
+		} else {
+			chessboard[move.getEnd()/8][move.getEnd()%8] = capturedPiece;
+		}
 		movedPiece.setPosition(move.getStart());
 		return true;
 	}
 	
 	public boolean wouldItBeCheck(Piece piece, int end) {
-		Move move = new Move(piece.getPosition(), end);
+		Move move = new Move(piece.getPosition(), end, piece);
 		if (piece == null) {
-			System.out.println("wouldItBeCheck: saatiin null nappula");
+			return false;
 		}
-		if (!this.performMove(piece, move)) {
-			System.out.println("wouldItBeCheck: siirtoa tehtäessä tapahtui virhe");
+		boolean loytyi = false;
+		for (int r = 0; r < 8; r++) {
+			for (int s = 0; s < 8; s++) {
+				if (chessboard[r][s] != null) {
+					if (chessboard[r][s].equals(piece)) {
+						loytyi = true;
+						break;
+					}
+				}
+			}
+		}
+		if (!this.performMove(move)) {
+			this.errorToScreen(piece, move, end);
 		}
 		boolean checkSituation = this.isItCheck(piece.amIWhite());
 		if (!this.undoMove(move)) {
-			System.out.println("wouldItBeCheck: siirtoa peruttaessa tapahtui virhe");
+			this.errorToScreen(piece, move, end);
 		}
 		return checkSituation;
+	}
+	
+	private void errorToScreen(Piece piece, Move move, int end) {
+		System.out.println("\n=====================================");
+		System.out.println("Siirtoa tehtäessä tapahtui virhe");
+		System.out.println("Nappulaa " + piece + " ei löytynyt laudalta");
+		if (piece != null) {
+			System.out.println("Nappula on omasta mielestään: r" + piece.getPosition()/8 + " s" + piece.getPosition()%8);
+			System.out.println("Loppukoordinaatit: r" + end/8 + " s" + end%8);
+		}
+		System.out.println("Lauta oli:");
+		UserInterface.draw(this.getBoardAsCharArray(), this);
+		System.out.println("\nMustat nappulat:");
+		ArrayList<Piece> pieces = this.getPieces(false);
+		for (Piece onePiece : pieces) {
+			System.out.println(onePiece.getSign() + " r" + (onePiece.getPosition()/8) + " s" + (onePiece.getPosition()%8));
+		}
+		System.out.println("\nValkoiset nappulat:");
+		ArrayList<Piece> wpieces = this.getPieces(true);
+		for (Piece onePiece : wpieces) {
+			System.out.println(onePiece.getSign() + " r" + (onePiece.getPosition()/8) + " s" + (onePiece.getPosition()%8));
+		}
+		System.out.println("\nSiirtokäsky sisälsi");
+		System.out.println("Nappula: " + move.getPiece() + " ja väri " + move.getPiece().amIWhite());
+		System.out.println("Alku: r" + move.getStart()/8 + " s" + move.getStart()%8 + " loppu: r" + move.getEnd()/8 + " s" + move.getEnd()%8);
+		System.out.println("=====================================\n");
 	}
 	
 	public boolean isItCheck(boolean checkedIsWhite) {
