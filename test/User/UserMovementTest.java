@@ -7,7 +7,7 @@ package User;
  */
 
 import User.UserMovement;
-import Chessboard.Chessboard;
+import Chessboard.OldChessboard;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -45,7 +45,7 @@ public class UserMovementTest {
 	 */
 	@Test
 	public void testMovePieceCorrectInput() {
-		Chessboard testboard = new Chessboard();
+		OldChessboard testboard = new OldChessboard();
 		//testboard.makeTestBoard(false);
 		System.out.println("movePiece correct input");
 		String command = "c2c3";
@@ -59,7 +59,7 @@ public class UserMovementTest {
 	*/
 	@Test
 	public void testMovePieceWrongInputString() {
-		Chessboard testboard = new Chessboard();
+		OldChessboard testboard = new OldChessboard();
 		//testboard.makeTestBoard(false);
 		System.out.println("movePiece wrong input string");
 		String command = "hello";
@@ -74,7 +74,7 @@ public class UserMovementTest {
 	*/
 	@Test
 	public void testMovePieceWrongInputCoordinates() {
-		Chessboard testboard = new Chessboard();
+		OldChessboard testboard = new OldChessboard();
 		//testboard.makeTestBoard(false);
 		System.out.println("movePiece wrong input coordinates");
 		String command = "c9u9";

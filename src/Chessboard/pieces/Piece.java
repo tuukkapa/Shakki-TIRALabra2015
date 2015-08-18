@@ -3,6 +3,7 @@ package Chessboard.pieces;
 import AI.Move;
 import Chessboard.Chessboard;
 import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  * Piece-class from which other pieces are extended.
@@ -89,7 +90,7 @@ public abstract class Piece implements Cloneable {
 		for (int i = 1; i <= maxMovement; i++) {
 			// check right
 			if (!rightBlocked && startCol + i < 8) {
-				if (chessboard.getSquareContents(startRow, startCol + i) == ' ') {
+				if (chessboard.getSquareContents(startRow, startCol + i) == null) {
 					moves.add(new Move(0, position, startRow * 8 + (startCol + i)));
 				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, startRow * 8 + (startCol + i))) {
 					moves.add(new Move(0, position, startRow * 8 + (startCol + i)));
@@ -100,7 +101,7 @@ public abstract class Piece implements Cloneable {
 			}
 			// check down
 			if (!downBlocked && startRow + i < 8) {
-				if (chessboard.getSquareContents(startRow + i, startCol) == ' ') {
+				if (chessboard.getSquareContents(startRow + i, startCol) == null) {
 					moves.add(new Move(0, position, (startRow + i) * 8 + startCol));
 				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, (startRow + i) * 8 + startCol)) {
 					moves.add(new Move(0, position, (startRow + i) * 8 + startCol));
@@ -111,7 +112,7 @@ public abstract class Piece implements Cloneable {
 			}
 			// check left
 			if (!leftBlocked && startCol - i >= 0) {
-				if (chessboard.getSquareContents(startRow, startCol - i) == ' ') {
+				if (chessboard.getSquareContents(startRow, startCol - i) == null) {
 					moves.add(new Move(0, position, (startRow * 8) + startCol - i));
 				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, (startRow * 8) + startCol - i)) {
 					moves.add(new Move(0, position, (startRow * 8) + startCol - i));
@@ -122,7 +123,7 @@ public abstract class Piece implements Cloneable {
 			}
 			// check up
 			if (!upBlocked && startRow - i >= 0) {
-				if (chessboard.getSquareContents(startRow - i, startCol) == ' ') {
+				if (chessboard.getSquareContents(startRow - i, startCol) == null) {
 					moves.add(new Move(0, position, (startRow - i) * 8 + startCol));
 				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, (startRow - i) * 8 + startCol)) {
 					moves.add(new Move(0, position, (startRow - i) * 8 + startCol));
@@ -167,7 +168,7 @@ public abstract class Piece implements Cloneable {
 			swPosition = (row + i) * 8 + col - i;
 			nwPosition = (row - i) * 8 + col - i;
 			if (!neBlocked && row - i >= 0 && col + i < 8) {
-				if (chessboard.getSquareContents(row-i, col+i) == ' ') {
+				if (chessboard.getSquareContents(row-i, col+i) == null) {
 					moves.add(new Move(0, position, nePosition));
 				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, nePosition)) {
 					moves.add(new Move(0, position, nePosition));
@@ -178,7 +179,7 @@ public abstract class Piece implements Cloneable {
 			}
 			// check south-east
 			if (!seBlocked && row + i < 8 && col + i < 8) {
-				if (chessboard.getSquareContents(row+i, col+i) == ' ') {
+				if (chessboard.getSquareContents(row+i, col+i) == null) {
 					moves.add(new Move(0, position, sePosition));
 				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, sePosition)) {
 					moves.add(new Move(0, position, sePosition));
@@ -189,7 +190,7 @@ public abstract class Piece implements Cloneable {
 			}
 			// check south-west
 			if (!swBlocked && row + i < 8 && col - i >= 0) {
-				if (chessboard.getSquareContents(row+i, col-i) == ' ') {
+				if (chessboard.getSquareContents(row+i, col-i) == null) {
 					moves.add(new Move(0, position, swPosition));
 				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, swPosition)) {
 					moves.add(new Move(0, position, swPosition));
@@ -200,7 +201,7 @@ public abstract class Piece implements Cloneable {
 			}
 			// check nort-west
 			if (!nwBlocked && row - i >= 0 && col - i >= 0) {
-				if (chessboard.getSquareContents(row-i, col-i) == ' ') {
+				if (chessboard.getSquareContents(row-i, col-i) == null) {
 					moves.add(new Move(0, position, nwPosition));
 				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, nwPosition)) {
 					moves.add(new Move(0, position, nwPosition));
@@ -228,12 +229,12 @@ public abstract class Piece implements Cloneable {
 		int movement = Math.abs(startRow - endRow) == 0 ? Math.abs(startCol - endCol) : Math.abs(startRow - endRow);
 		for (int i = 1; i < movement; i++) {
 			if (startRow == endRow) {
-				if (chessboard.getSquareContents(startRow, Math.min(startCol, endCol) + i) != ' ') {
+				if (chessboard.getSquareContents(startRow, Math.min(startCol, endCol) + i) != null) {
 					moveOk = false;
 					break;
 				}
 			} else if (startCol == endCol) {
-				if (chessboard.getSquareContents(Math.min(startRow, endRow) + i, startCol) != ' ') {
+				if (chessboard.getSquareContents(Math.min(startRow, endRow) + i, startCol) != null) {
 					moveOk = false;
 					break;
 				}
@@ -255,25 +256,25 @@ public abstract class Piece implements Cloneable {
 		for (int i = 1; i < Math.abs(endRow-startRow); i++) {
 			// check south-east
 			if (startRow+i < endRow && startCol+i < endCol) {
-				if (chessboard.getSquareContents(startRow+i, startCol+i) != ' ') {
+				if (chessboard.getSquareContents(startRow+i, startCol+i) != null) {
 					moveOk = false;
 					break;
 				}
 			// check south-west
 			} else if (startRow+i < endRow && startCol - i >= endCol) {
-				if (chessboard.getSquareContents(startRow+i, startCol-i) != ' ') {
+				if (chessboard.getSquareContents(startRow+i, startCol-i) != null) {
 					moveOk = false;
 					break;
 				}
 			// check north-east
 			} else if (startRow-i >= endRow && startCol+i < endCol) {
-				if (chessboard.getSquareContents(startRow-i, startCol+i) != ' ') {
+				if (chessboard.getSquareContents(startRow-i, startCol+i) != null) {
 					moveOk = false;
 					break;
 				}
 			// check north-west
 			} else if (startRow-i >= endRow && startCol-i >= endCol) {
-				if (chessboard.getSquareContents(startRow-i, endRow-i) != ' ') {
+				if (chessboard.getSquareContents(startRow-i, endRow-i) != null) {
 					moveOk = false;
 					break;
 				}
@@ -304,9 +305,11 @@ public abstract class Piece implements Cloneable {
 		if (end < 0 || end > 63) {
 			return false;
 		}
-		char[][] tempboard = chessboard.getBoard();
-		boolean onTargetSquareIsEnemyPiece = white ? Character.isLowerCase(tempboard[end/8][end%8]) : Character.isUpperCase(tempboard[end/8][end%8]);	
-		return tempboard[end/8][end%8] == ' ' || onTargetSquareIsEnemyPiece;
+		Piece endContents = chessboard.getSquareContents(end);
+		if (endContents == null) {
+			return true;
+		}
+		return white ? !endContents.amIWhite() : endContents.amIWhite();
 	}
 	
 	/** Determines if end square contains enemy.
@@ -318,8 +321,12 @@ public abstract class Piece implements Cloneable {
 		if (end < 0 || end > 63) {
 			return false;
 		}
-		char[][] tempboard = chessboard.getBoard();
-		return white ? Character.isLowerCase(tempboard[end/8][end%8]) : Character.isUpperCase(tempboard[end/8][end%8]);	
+		Piece endContents = chessboard.getSquareContents(end);
+		if (endContents != null) {
+			return white ? !endContents.amIWhite() : endContents.amIWhite();
+		} else {
+			return false;
+		}
 	}
 	
 	/**

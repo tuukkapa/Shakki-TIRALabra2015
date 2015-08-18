@@ -31,6 +31,7 @@ public class King extends Piece implements Cloneable {
 		}
 		return moves;
 	}
+
 	
 	/**
 	 *
@@ -48,8 +49,6 @@ public class King extends Piece implements Cloneable {
 		int startCol = position%8;
 		int endRow = end/8;
 		int endCol = end%8;
-		char king = white ? 'K' : 'k';
-		char endSquareBackup = chessboard.getSquareContents(end);
 		if (Math.abs(endRow-startRow) <= 1 && Math.abs(endCol-startCol) <= 1 && this.endSquareContainsEnemyOrEmpty(chessboard, end)) {
 			moveOk = true;
 		}

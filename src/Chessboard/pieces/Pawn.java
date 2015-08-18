@@ -62,12 +62,12 @@ public class Pawn extends Piece implements Cloneable {
 				// check moving 2 squares
 				if (startRow == homeRow && Math.abs(startRow - endRow) == 2) {
 					for (int i = 1; i <= Math.abs(startRow - endRow); i++) {
-						if (chessboard.getSquareContents(startRow + (movement * i) , startCol) != ' ') {
+						if (chessboard.getSquareContents(startRow + (movement * i) , startCol) != null) {
 							movementOk = false;
 						}
 					}
 				// check moving 1 square
-				} else if (Math.abs(startRow - endRow) != 1 || chessboard.getSquareContents(endRow, endCol) != ' ') {
+				} else if (Math.abs(startRow - endRow) != 1 || chessboard.getSquareContents(endRow, endCol) != null) {
 					movementOk = false;
 				}
 			

@@ -22,7 +22,7 @@ import static org.junit.Assert.*;
  */
 public class ChessboardTest {
 	
-	private Chessboard chessboard;
+	private OldChessboard chessboard;
 	
 	public ChessboardTest() {
 	}
@@ -37,7 +37,7 @@ public class ChessboardTest {
 	
 	@Before
 	public void setUp() {
-		chessboard = new Chessboard();
+		chessboard = new OldChessboard();
 	}
 	
 	@After

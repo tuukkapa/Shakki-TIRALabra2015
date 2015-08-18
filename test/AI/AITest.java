@@ -5,7 +5,7 @@
  */
 package AI;
 
-import Chessboard.Chessboard;
+import Chessboard.OldChessboard;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
  */
 public class AITest {
 	
-	private Chessboard chessboard;
+	private OldChessboard chessboard;
 	private AI ai;
 	
 	public AITest() {
@@ -35,7 +35,7 @@ public class AITest {
 	
 	@Before
 	public void setUp() {
-		chessboard = new Chessboard();
+		chessboard = new OldChessboard();
 		ai = new AI();
 	}
 	

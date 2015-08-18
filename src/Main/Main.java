@@ -7,12 +7,10 @@ import AI.Move;
 import UI.UserInterface;
 import Chessboard.Chessboard;
 import Chessboard.pieces.Piece;
-import java.util.Map;
+import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 
 /**
  * Main class of Chess-game "Shakki". Run this to start the game.
@@ -65,7 +63,7 @@ public class Main {
 		};
 		//chessboard.setBoard(newboard);
 		
-		UserInterface.draw(chessboard.getBoard());
+		UserInterface.draw(chessboard.getBoardAsCharArray());
 		System.out.println("Peli vastaanottaa siirtokomennot koordinaatteina.\n"
 				+ "Esimerkiksi komento c2c4 siirtää koordinaatissa c2 olevan\n"
 				+ "nappulan koordinaattiin c4. Peli tarkistaa, etteivät\n"
@@ -78,11 +76,11 @@ public class Main {
 				continueGame = false;
 			} else {
 				if (UserMovement.movePiece(command, chessboard)) {
-					UserInterface.draw(chessboard.getBoard());
+					UserInterface.draw(chessboard.getBoardAsCharArray());
 					System.out.println("\nOdota. Tietokone tekee siirtonsa...");
 					Move move = null;
 					try {
-						move = ai.getMove(chessboard, depth, true);
+						move = ai.getMove(chessboard, depth);
 					} catch (CloneNotSupportedException ex) {
 						Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
 					} catch (Exception e) {
@@ -98,14 +96,14 @@ public class Main {
 								+ "Peli lopetetaan.");
 						System.out.println("Siirtokomento oli koordinaatista " + move.getStart() + 
 								" koordinaattiin " + move.getEnd());
-						TreeMap<Integer, Piece> pieces = chessboard.getPieces(false);
+						ArrayList<Piece> pieces = chessboard.getPieces(false);
 						System.out.println("Mustat nappulat ovat:");
-						for (Map.Entry<Integer, Piece> piece : pieces.entrySet()) {
-							System.out.println(piece.getValue().getSign() + " paikassa " + piece.getValue().getPosition());
+						for (Piece piece : pieces) {
+							System.out.println(piece.getSign() + " paikassa " + piece.getPosition());
 						}
 						continueGame = false;
 					}
-					UserInterface.draw(chessboard.getBoard());
+					UserInterface.draw(chessboard.getBoardAsCharArray());
 				} else {
 					System.out.println("Virheellinen komento.");
 				}

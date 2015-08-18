@@ -3,9 +3,7 @@ package AI;
 
 import Chessboard.Chessboard;
 import Chessboard.pieces.Piece;
-import UI.UserInterface;
 import java.util.ArrayList;
-import java.util.*;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -21,97 +19,53 @@ public class AI {
 		bestMove = null;
 	}
 	
-	public Move getMove(Chessboard chessboard, int depth, boolean maximizingPlayer) throws CloneNotSupportedException {
+	public Move getMove(Chessboard chessboard, int depth) throws CloneNotSupportedException {
 		bestMove = null;
-		//minimax(chessboard, depth, maximizingPlayer);
 		max(chessboard, depth);
 		return bestMove;
 	}
-	
-	/**
-	 * Constructs the game tree, which determines the next move for the computer.
-	 * @param chessboard Chessboard-object with the game situation.
-	 * @param depth Integer, how many moves ahead the game tree is constructed.
-	 * @param maximizingPlayer True, if it is the turn of maximizingPlayer (i.e. computer), false otherwise.
-	 * @return Move-object including starting and ending coordinates for one move, and value of the move.
-	 * @throws CloneNotSupportedException 
-	 */
-	/*public int minimax(Chessboard chessboard, int depth, boolean maximizingPlayer) throws CloneNotSupportedException {
-		int bestValue, value;
-		if (depth == 0 || chessboard.isItCheckMate(!maximizingPlayer)) {
-			return chessboard.getValue();
+
+	public int max(Chessboard chessboard, int depth) {
+		if (depth == 0 || chessboard.isItCheckMate(false)) {
+			return chessboard.evaluate();
 		}
-		bestValue = maximizingPlayer ? Integer.MIN_VALUE : Integer.MAX_VALUE;
-		TreeMap<Integer, Piece> pieces = chessboard.getPieces(!maximizingPlayer);
-		for (Map.Entry<Integer, Piece> piece : pieces.entrySet()) {
-			ArrayList<Move> moves;
-			moves = piece.getValue().getPossibleMoves(chessboard);
-			for (int j = 0; j < moves.size(); j++) {
-				Move move = moves.get(j);
-				Chessboard clone = this.cloneBoardAndPieces(chessboard);
-				clone.movePiece(move.getStart(), move.getEnd());
-				value = minimax(clone, depth - 1, !maximizingPlayer);
-				if (maximizingPlayer) {
-					if (bestValue < value) {
-						bestValue = value;
-						bestMove = move;
-					}
-				} else {
-					if (bestValue > value) {
-						bestValue = value;
-					}
+		int bestValue = Integer.MIN_VALUE;
+		int value = 0;
+		ArrayList<Piece> pieces = chessboard.getPieces(false);
+		for (Piece piece : pieces) {
+			ArrayList<Move> moves = piece.getPossibleMoves(chessboard);
+			for (Move move : moves) {
+				chessboard.makeMove(move);
+				value = min(chessboard, depth - 1);
+				if (value > bestValue) {
+					bestValue = value;
+					bestMove = move;
 				}
+				chessboard.undoMove(move);
 			}
 		}
-		
 		return bestValue;
-	}*/
-	
-	private int max(Chessboard chessboard, int depth) throws CloneNotSupportedException {
-		if (depth == 0 || chessboard.isItCheckMate(false))
-			return chessboard.getValue();
-		int best = Integer.MIN_VALUE;
-		Move[] moves = this.treeMapToArray(chessboard, chessboard.getPieces(false), false);
-		for (int i = 0; i < moves.length; i++) {
-			Move mv = moves[i];
-			if (!chessboard.makeMove(mv)) {
-				UserInterface.draw(chessboard.getBoard());
-				System.out.println("Hei");
-			} else {
-				if (chessboard.getPiece(mv.getEnd()).getSign() == 'k') {
-					System.out.println("Max taso " + depth + ": Siirretty " + chessboard.getPiece(mv.getEnd()).getSign() + ": " + mv.getStart() + " -> " + mv.getEnd());
-				}
-			}
-			int val = -min(chessboard, depth-1);
-			if (val>best) {
-				best = val;
-				bestMove = mv; // Current choice of move
-			}
-			chessboard.undoMove(chessboard, mv);
-		}
-		return best;
 	}
 	
-	private int min(Chessboard chessboard, int depth) throws CloneNotSupportedException {
-		if (depth == 0 || chessboard.isItCheckMate(true))
-			return chessboard.getValue();
-		int best = Integer.MIN_VALUE;
-		Move[] moves = this.treeMapToArray(chessboard, chessboard.getPieces(true), true);
-		for (int i = 0; i < moves.length; i++) {
-			Move mv = moves[i];
-			if (!chessboard.makeMove(mv)) {
-				UserInterface.draw(chessboard.getBoard());
-				System.out.println("Hei");
-			} else {
-				//System.out.println("Min taso " + depth + ": Siirretty " + chessboard.getPiece(mv.getEnd()).getSign() + ": " + mv.getStart() + " -> " + mv.getEnd());
-			}
-			int val = -max(chessboard, depth-1);
-			if (val>best) {
-				best = val;
-			}
-			chessboard.undoMove(chessboard, mv);
+	public int min(Chessboard chessboard, int depth) {
+		if (depth == 0 || chessboard.isItCheckMate(false)) {
+			return chessboard.evaluate();
 		}
-		return best;
+		int bestValue = Integer.MAX_VALUE;
+		int value = 0;
+		ArrayList<Piece> pieces = chessboard.getPieces(true);
+		for (Piece piece : pieces) {
+			ArrayList<Move> moves = piece.getPossibleMoves(chessboard);
+			for (Move move : moves) {
+				chessboard.makeMove(move);
+				value = max(chessboard, depth - 1);
+				if (value < bestValue) {
+					bestValue = value;
+				}
+				chessboard.undoMove(move);
+			}
+		}
+		return bestValue;
 	}
 	
 	/**
@@ -120,13 +74,13 @@ public class AI {
 	 * @return New Chessboard-object, clone of the object and other objects inside it.
 	 * @throws CloneNotSupportedException 
 	 */
-	private Chessboard cloneBoardAndPieces(Chessboard chessboard) throws CloneNotSupportedException {
+	/*private Chessboard cloneBoardAndPieces(Chessboard chessboard) throws CloneNotSupportedException {
 		Chessboard cloneBoard = new Chessboard();
 		cloneBoard.setBoard(chessboard.cloneBoard());
 		cloneBoard.setPieces(true, chessboard.clonePieces(true));
 		cloneBoard.setPieces(false, chessboard.clonePieces(false));
 		return cloneBoard;
-	}
+	}*/
 	
 	private Move[] treeMapToArray(Chessboard chessboard, TreeMap<Integer, Piece> pieces, boolean white) {
 		int size = 0;

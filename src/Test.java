@@ -15,7 +15,6 @@ import java.util.ArrayList;
 public class Test {
 	
 	public static void main(String[] args) {
-		Chessboard chessboard = new Chessboard();
 		char[][] newboard = {
 			{' ', 'n', 'b', 'q', 'k', 'b', ' ', 'r'},
 			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
@@ -26,9 +25,9 @@ public class Test {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard.setBoard(newboard);
+		Chessboard chessboard = new Chessboard(newboard);
 		Move move = new Move(0, 3, 17);
-		Piece piece = chessboard.getPiece(3);
+		Piece piece = chessboard.getSquareContents(3);
 		ArrayList<Move> moves = piece.getPossibleMoves(chessboard);
 		boolean value = piece.isMoveValid(chessboard, 17);
 		System.out.println("moi");

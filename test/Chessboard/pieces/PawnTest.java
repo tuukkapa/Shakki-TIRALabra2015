@@ -6,7 +6,7 @@
 package Chessboard.pieces;
 
 import AI.Move;
-import Chessboard.Chessboard;
+import Chessboard.OldChessboard;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
  */
 public class PawnTest {
 	
-	Chessboard chessboard;
+	OldChessboard chessboard;
 	
 	public PawnTest() {
 	}
@@ -36,7 +36,7 @@ public class PawnTest {
 	
 	@Before
 	public void setUp() {
-		chessboard = new Chessboard();
+		chessboard = new OldChessboard();
 	}
 	
 	@After
