@@ -40,7 +40,31 @@ public class Chessboard {
 	public Chessboard(char[][] newboard) {
 		chessboard = new Piece[8][8];
 		this.setBoard(newboard);
-		System.out.println("moi");
+	}
+	
+	public Chessboard(Piece[][] newboard) {
+		chessboard = newboard;
+	}
+	
+	public Piece[][] getBoard() {
+		return chessboard;
+	}
+	
+	public void setBoard(Piece[][] newboard) throws CloneNotSupportedException {
+		blackPieces = new ArrayList<>();
+		whitePieces = new ArrayList<>();
+		for (int i = 0; i < 64; i++) {
+			if (newboard[i/8][i%8] == null) {
+				chessboard[i/8][i%8] = null;
+			} else {
+				chessboard[i/8][i%8] = (Piece)newboard[i/8][i%8].clone();
+				if (newboard[i/8][i%8].amIWhite()) {
+					whitePieces.add(chessboard[i/8][i%8]);
+				} else {
+					blackPieces.add(chessboard[i/8][i%8]);
+				}
+			}
+		}
 	}
 	
 	public void setBoard(char[][] newboard) {
@@ -95,6 +119,28 @@ public class Chessboard {
 		return white ? whitePieces : blackPieces;
 	}
 	
+	public Piece[][] cloneBoard() {
+		Piece[][] newBoard = new Piece[8][8];
+		for (int i = 0; i < chessboard.length; i++) {
+			System.arraycopy(chessboard[i], 0, newBoard[i], 0, chessboard[i].length);
+		}
+		return newBoard;
+	}
+	
+	public ArrayList<Piece> clonePieces(boolean white) throws CloneNotSupportedException {
+		ArrayList<Piece> newPieces = new ArrayList<>();
+		if (white) {
+			for (Piece piece : whitePieces) {
+				newPieces.add((Piece)piece.clone());
+			}
+		} else {
+			for (Piece piece : blackPieces) {
+				newPieces.add((Piece)piece.clone());
+			}
+		}
+		return newPieces;
+	}
+	
 	public Piece getSquareContents(int position) {
 		return chessboard[position/8][position%8];
 	}
@@ -136,7 +182,7 @@ public class Chessboard {
 		int end = move.getEnd();
 		Piece piece = chessboard[start/8][start%8];
 		if (piece == null) {
-			this.errorToScreen(piece, move, end);
+			//this.errorToScreen(piece, move, end);
 			return false;
 		}
 		if (piece.isMoveValid(this, end)) {
@@ -158,8 +204,8 @@ public class Chessboard {
 		if (piece.endSquareContainsEnemy(this, end)) {
 				Piece capturedPiece = chessboard[end/8][end%8];
 				move.setCapturedPiece(capturedPiece);
-				System.out.println("\nSyötiin: " + capturedPiece + " " + capturedPiece.getSign());
-				System.out.println("sijainti: r" + capturedPiece.getPosition()/8 + " s" + capturedPiece.getPosition()%8);
+				//System.out.println("\nSyötiin: " + capturedPiece + " " + capturedPiece.getSign());
+				//System.out.println("sijainti: r" + capturedPiece.getPosition()/8 + " s" + capturedPiece.getPosition()%8);
 		}
 		chessboard[start/8][start%8] = null;
 		chessboard[end/8][end%8] = piece;
@@ -184,7 +230,7 @@ public class Chessboard {
 	}
 	
 	public boolean wouldItBeCheck(Piece piece, int end) {
-		Move move = new Move(piece.getPosition(), end, piece);
+		Move move = new Move(piece.getPosition(), end);
 		if (piece == null) {
 			return false;
 		}
@@ -218,7 +264,7 @@ public class Chessboard {
 			System.out.println("Loppukoordinaatit: r" + end/8 + " s" + end%8);
 		}
 		System.out.println("Lauta oli:");
-		UserInterface.draw(this.getBoardAsCharArray(), this);
+		UserInterface.draw(this.getBoardAsCharArray());
 		System.out.println("\nMustat nappulat:");
 		ArrayList<Piece> pieces = this.getPieces(false);
 		for (Piece onePiece : pieces) {

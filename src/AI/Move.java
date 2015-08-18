@@ -21,11 +21,10 @@ public class Move {
 	 * @param start Integer, starting position of the move.
 	 * @param end Integer, ending position of the move.
 	 */
-	public Move(int start, int end, Piece piece) {
+	public Move(int start, int end) {
 		this.start = start;
 		this.end = end;
 		this.capturedPiece = null;
-		this.movedPiece = piece;
 	}
 	
 	/**

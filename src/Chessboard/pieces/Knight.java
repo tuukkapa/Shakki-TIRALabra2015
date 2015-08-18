@@ -29,28 +29,28 @@ public class Knight extends Piece implements Cloneable {
 		int row = position / 8;
 		int col = position % 8;
 		if (row - 1 >= 0 && col - 2 >= 0 && this.endSquareContainsEnemyOrEmpty(chessboard, (row - 1) * 8 + (col - 2))) {
-			moves.add(new Move(position, (row - 1) * 8 + (col - 2), this));
+			moves.add(new Move(position, (row - 1) * 8 + (col - 2)));
 		}
 		if (row - 2 >= 0 && col - 1 >= 0 && this.endSquareContainsEnemyOrEmpty(chessboard, (row - 2) * 8 + (col - 1))) {
-			moves.add(new Move(position, (row - 2) * 8 + (col - 1), this));
+			moves.add(new Move(position, (row - 2) * 8 + (col - 1)));
 		}
 		if (row - 2 >= 0 && col + 1 < 8 && this.endSquareContainsEnemyOrEmpty(chessboard, (row - 2) * 8 + (col + 1))) {
-			moves.add(new Move(position, (row - 2) * 8 + (col + 1), this));
+			moves.add(new Move(position, (row - 2) * 8 + (col + 1)));
 		}
 		if (row - 1 >= 0 && col + 2 < 8 && this.endSquareContainsEnemyOrEmpty(chessboard, (row - 1) * 8 + (col + 2))) {
-			moves.add(new Move(position, (row - 1) * 8 + (col + 2), this));
+			moves.add(new Move(position, (row - 1) * 8 + (col + 2)));
 		}
 		if (row + 1 < 8 && col + 2 < 8 && this.endSquareContainsEnemyOrEmpty(chessboard, (row + 1) * 8 + (col + 2))) {
-			moves.add(new Move(position, (row + 1) * 8 + (col + 2), this));
+			moves.add(new Move(position, (row + 1) * 8 + (col + 2)));
 		}
 		if (row + 2 < 8 && col + 1 < 8 && this.endSquareContainsEnemyOrEmpty(chessboard, (row + 2) * 8 + (col + 1))) {
-			moves.add(new Move(position, (row + 2) * 8 + (col + 1), this));
+			moves.add(new Move(position, (row + 2) * 8 + (col + 1)));
 		}
 		if (row + 2 < 8 && col - 1 >= 0 && this.endSquareContainsEnemyOrEmpty(chessboard, (row + 2) * 8 + (col - 1))) {
-			moves.add(new Move(position, (row + 2) * 8 + (col - 1), this));
+			moves.add(new Move(position, (row + 2) * 8 + (col - 1)));
 		}
 		if (row + 1 < 8 && col - 2 >= 0 && this.endSquareContainsEnemyOrEmpty(chessboard, (row + 1) * 8 + (col - 2))) {
-			moves.add(new Move(position, (row + 1) * 8 + (col - 2), this));
+			moves.add(new Move(position, (row + 1) * 8 + (col - 2)));
 		}
 
 		return moves;

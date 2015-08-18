@@ -26,7 +26,7 @@ public class Pawn extends Piece implements Cloneable {
 		for (int col = pawnCol - 1; col <= pawnCol + 1; col++) {
 			for (int row = 1; row <= 2; row++) {
 				if ((col >= 0 && col < 8) && this.isMoveValid(chessboard, (pawnRow + (movement * row)) * 8 + col)) {
-					moves.add(new Move(position, (pawnRow + (movement * row)) * 8 + col, this));
+					moves.add(new Move(position, (pawnRow + (movement * row)) * 8 + col));
 				}
 			}
 		}
