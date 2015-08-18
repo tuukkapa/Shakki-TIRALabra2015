@@ -6,7 +6,7 @@
 package Chessboard.pieces;
 
 import AI.Move;
-import Chessboard.OldChessboard;
+import Chessboard.Chessboard;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
  */
 public class RookTest {
 	
-	private OldChessboard chessboard;
+	private Chessboard chessboard;
 	
 	public RookTest() {
 	}
@@ -36,7 +36,7 @@ public class RookTest {
 	
 	@Before
 	public void setUp() {
-		chessboard = new OldChessboard();
+		chessboard = new Chessboard();
 	}
 	
 	@After
@@ -62,8 +62,8 @@ public class RookTest {
 		chessboard.setBoard(newboard);
 		Rook rook = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i) == 'R') {
-				rook = (Rook)chessboard.getPiece(i);
+			if (chessboard.getSquareContents(i).getSign() == 'R') {
+				rook = (Rook)chessboard.getSquareContents(i);
 			}
 		}
 		ArrayList<Move> resultList = rook.getPossibleMoves(chessboard);
@@ -115,8 +115,8 @@ public class RookTest {
 		chessboard.setBoard(newboard);
 		Rook rook = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i) == 'r') {
-				rook = (Rook)chessboard.getPiece(i);
+			if (chessboard.getSquareContents(i).getSign() == 'r') {
+				rook = (Rook)chessboard.getSquareContents(i);
 			}
 		}
 		ArrayList<Move> resultList = rook.getPossibleMoves(chessboard);
@@ -168,8 +168,8 @@ public class RookTest {
 		int end = 32;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i) == 'r') {
-				piece = chessboard.getPiece(i);
+			if (chessboard.getSquareContents(i).getSign() == 'r') {
+				piece = chessboard.getSquareContents(i);
 			}
 		}
 		boolean expResult = true;
@@ -197,8 +197,8 @@ public class RookTest {
 		int end = 39;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i) == 'r') {
-				piece = chessboard.getPiece(i);
+			if (chessboard.getSquareContents(i).getSign() == 'r') {
+				piece = chessboard.getSquareContents(i);
 			}
 		}
 		boolean expResult = true;
@@ -226,8 +226,8 @@ public class RookTest {
 		int end = 19;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i) == 'r') {
-				piece = chessboard.getPiece(i);
+			if (chessboard.getSquareContents(i).getSign() == 'r') {
+				piece = chessboard.getSquareContents(i);
 			}
 		}
 		boolean expResult = true;
@@ -255,8 +255,8 @@ public class RookTest {
 		int end = 51;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i) == 'R') {
-				piece = chessboard.getPiece(i);
+			if (chessboard.getSquareContents(i).getSign() == 'R') {
+				piece = chessboard.getSquareContents(i);
 			}
 		}
 		boolean expResult = true;
@@ -284,8 +284,8 @@ public class RookTest {
 		int end = 39;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i) == 'r') {
-				piece = chessboard.getPiece(i);
+			if (chessboard.getSquareContents(i).getSign() == 'r') {
+				piece = chessboard.getSquareContents(i);
 			}
 		}
 		boolean expResult = true;
@@ -313,8 +313,8 @@ public class RookTest {
 		int end = 32;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i) == 'r') {
-				piece = chessboard.getPiece(i);
+			if (chessboard.getSquareContents(i).getSign() == 'r') {
+				piece = chessboard.getSquareContents(i);
 			}
 		}
 		boolean expResult = true;
@@ -342,8 +342,8 @@ public class RookTest {
 		int end = 11;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i) == 'r') {
-				piece = chessboard.getPiece(i);
+			if (chessboard.getSquareContents(i).getSign() == 'r') {
+				piece = chessboard.getSquareContents(i);
 			}
 		}
 		boolean expResult = true;
@@ -371,8 +371,8 @@ public class RookTest {
 		int end = 51;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i) == 'R') {
-				piece = chessboard.getPiece(i);
+			if (chessboard.getSquareContents(i).getSign() == 'R') {
+				piece = chessboard.getSquareContents(i);
 			}
 		}
 		boolean expResult = true;
@@ -400,8 +400,8 @@ public class RookTest {
 		int end = 42;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i) == 'r') {
-				piece = chessboard.getPiece(i);
+			if (chessboard.getSquareContents(i).getSign() == 'r') {
+				piece = chessboard.getSquareContents(i);
 			}
 		}
 		boolean expResult = false;
@@ -429,8 +429,8 @@ public class RookTest {
 		int end = 11;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i) == 'r') {
-				piece = chessboard.getPiece(i);
+			if (chessboard.getSquareContents(i).getSign() == 'r') {
+				piece = chessboard.getSquareContents(i);
 			}
 		}
 		boolean expResult = false;
@@ -458,8 +458,8 @@ public class RookTest {
 		int end = 51;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i) == 'R') {
-				piece = chessboard.getPiece(i);
+			if (chessboard.getSquareContents(i).getSign() == 'R') {
+				piece = chessboard.getSquareContents(i);
 			}
 		}
 		boolean expResult = false;
@@ -487,8 +487,8 @@ public class RookTest {
 		int end = 39;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i) == 'r') {
-				piece = chessboard.getPiece(i);
+			if (chessboard.getSquareContents(i).getSign() == 'r') {
+				piece = chessboard.getSquareContents(i);
 			}
 		}
 		boolean expResult = false;
@@ -516,8 +516,8 @@ public class RookTest {
 		int end = 32;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i) == 'R') {
-				piece = chessboard.getPiece(i);
+			if (chessboard.getSquareContents(i).getSign() == 'R') {
+				piece = chessboard.getSquareContents(i);
 			}
 		}
 		boolean expResult = false;
@@ -545,8 +545,8 @@ public class RookTest {
 		int end = -1;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i) == 'r') {
-				piece = chessboard.getPiece(i);
+			if (chessboard.getSquareContents(i).getSign() == 'r') {
+				piece = chessboard.getSquareContents(i);
 			}
 		}
 		boolean expResult = false;
@@ -574,8 +574,8 @@ public class RookTest {
 		int end = 40;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i) == 'R') {
-				piece = chessboard.getPiece(i);
+			if (chessboard.getSquareContents(i).getSign() == 'R') {
+				piece = chessboard.getSquareContents(i);
 			}
 		}
 		boolean expResult = false;
@@ -603,8 +603,8 @@ public class RookTest {
 		int end = 43;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i) == 'R') {
-				piece = chessboard.getPiece(i);
+			if (chessboard.getSquareContents(i).getSign() == 'R') {
+				piece = chessboard.getSquareContents(i);
 			}
 		}
 		boolean expResult = false;
@@ -632,8 +632,8 @@ public class RookTest {
 		int end = 35;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i) == 'R') {
-				piece = chessboard.getPiece(i);
+			if (chessboard.getSquareContents(i).getSign() == 'R') {
+				piece = chessboard.getSquareContents(i);
 			}
 		}
 		boolean expResult = false;
@@ -648,7 +648,7 @@ public class RookTest {
 	@Test
 	public void testClone() throws Exception {
 		System.out.println("Rook, clone");
-		Rook instance = (Rook)chessboard.getPiece(56);
+		Rook instance = (Rook)chessboard.getSquareContents(56);
 		Rook clone = (Rook)instance.clone();
 		int expResult = instance.getPosition();
 		int result = clone.getPosition();

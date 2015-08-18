@@ -6,7 +6,7 @@
 package Chessboard.pieces;
 
 import AI.Move;
-import Chessboard.OldChessboard;
+import Chessboard.Chessboard;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
  */
 public class PawnTest {
 	
-	OldChessboard chessboard;
+	Chessboard chessboard;
 	
 	public PawnTest() {
 	}
@@ -36,7 +36,7 @@ public class PawnTest {
 	
 	@Before
 	public void setUp() {
-		chessboard = new OldChessboard();
+		chessboard = new Chessboard();
 	}
 	
 	@After
@@ -63,8 +63,8 @@ public class PawnTest {
 		chessboard.setBoard(newboard);
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i) == 'P') {
-				piece = chessboard.getPiece(i);
+			if (chessboard.getSquareContents(i).getSign() == 'P') {
+				piece = chessboard.getSquareContents(i);
 			}
 		}
 		ArrayList<Move> resultList = piece.getPossibleMoves(chessboard);
@@ -115,8 +115,10 @@ public class PawnTest {
 		chessboard.setBoard(newboard);
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i) == 'P') {
-				piece = chessboard.getPiece(i);
+			if (chessboard.getSquareContents(i) != null) {
+				if (chessboard.getSquareContents(i).getSign() == 'P') {
+					piece = chessboard.getSquareContents(i);
+				}
 			}
 		}
 		ArrayList<Move> resultList = piece.getPossibleMoves(chessboard);
@@ -167,8 +169,10 @@ public class PawnTest {
 		chessboard.setBoard(newboard);
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i) == 'P') {
-				piece = chessboard.getPiece(i);
+			if (chessboard.getSquareContents(i) != null) {
+				if (chessboard.getSquareContents(i).getSign() == 'P') {
+					piece = chessboard.getSquareContents(i);
+				}
 			}
 		}
 		ArrayList<Move> resultList = piece.getPossibleMoves(chessboard);
@@ -219,8 +223,10 @@ public class PawnTest {
 		chessboard.setBoard(newboard);
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i) == 'p') {
-				piece = chessboard.getPiece(i);
+			if (chessboard.getSquareContents(i) != null) {
+				if (chessboard.getSquareContents(i).getSign() == 'p') {
+					piece = chessboard.getSquareContents(i);
+				}
 			}
 		}
 		ArrayList<Move> resultList = piece.getPossibleMoves(chessboard);
@@ -271,8 +277,10 @@ public class PawnTest {
 		chessboard.setBoard(newboard);
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i) == 'p') {
-				piece = chessboard.getPiece(i);
+			if (chessboard.getSquareContents(i) != null) {
+				if (chessboard.getSquareContents(i).getSign() == 'p') {
+					piece = chessboard.getSquareContents(i);
+				}
 			}
 		}
 		ArrayList<Move> resultList = piece.getPossibleMoves(chessboard);
@@ -323,8 +331,10 @@ public class PawnTest {
 		chessboard.setBoard(newboard);
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i) == 'p') {
-				piece = chessboard.getPiece(i);
+			if (chessboard.getSquareContents(i) != null) {
+				if (chessboard.getSquareContents(i).getSign() == 'p') {
+					piece = chessboard.getSquareContents(i);
+				}
 			}
 		}
 		ArrayList<Move> resultList = piece.getPossibleMoves(chessboard);
@@ -375,8 +385,8 @@ public class PawnTest {
 		chessboard.setBoard(newboard);
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i) == 'P') {
-				piece = chessboard.getPiece(i);
+			if (chessboard.getSquareContents(i).getSign() == 'P') {
+				piece = chessboard.getSquareContents(i);
 			}
 		}
 		ArrayList<Move> resultList = piece.getPossibleMoves(chessboard);
@@ -427,8 +437,8 @@ public class PawnTest {
 		chessboard.setBoard(newboard);
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i) == 'p') {
-				piece = chessboard.getPiece(i);
+			if (chessboard.getSquareContents(i).getSign() == 'p') {
+				piece = chessboard.getSquareContents(i);
 			}
 		}
 		ArrayList<Move> resultList = piece.getPossibleMoves(chessboard);
@@ -467,7 +477,7 @@ public class PawnTest {
 	public void testIsMoveValidWhiteTrue() {
 		System.out.println("Pawn, isMoveValid, true move forwards");
 		int end = 44;
-		Pawn instance = (Pawn)chessboard.getPiece(52);
+		Pawn instance = (Pawn)chessboard.getSquareContents(52);
 		boolean expResult = true;
 		boolean result = instance.isMoveValid(chessboard, end);
 		assertEquals(expResult, result);
@@ -480,7 +490,7 @@ public class PawnTest {
 	public void testIsMoveValidWhiteFalse() {
 		System.out.println("Pawn, isMoveValid, false move diagonally without capture");
 		int end = 45;
-		Pawn instance = (Pawn)chessboard.getPiece(52);
+		Pawn instance = (Pawn)chessboard.getSquareContents(52);
 		boolean expResult = false;
 		boolean result = instance.isMoveValid(chessboard, end);
 		assertEquals(expResult, result);
@@ -504,7 +514,7 @@ public class PawnTest {
 		};
 		chessboard.setBoard(newboard);
 		int end = 45;
-		Pawn instance = (Pawn)chessboard.getPiece(37);
+		Pawn instance = (Pawn)chessboard.getSquareContents(37);
 		boolean expResult = false;
 		boolean result = instance.isMoveValid(chessboard, end);
 		assertEquals(expResult, result);
@@ -528,7 +538,7 @@ public class PawnTest {
 		};
 		chessboard.setBoard(newboard);
 		int end = 43;
-		Pawn instance = (Pawn)chessboard.getPiece(53);
+		Pawn instance = (Pawn)chessboard.getSquareContents(53);
 		boolean expResult = false;
 		boolean result = instance.isMoveValid(chessboard, end);
 		assertEquals(expResult, result);
@@ -552,7 +562,7 @@ public class PawnTest {
 		};
 		chessboard.setBoard(newboard);
 		int end = 36;
-		Pawn instance = (Pawn)chessboard.getPiece(53);
+		Pawn instance = (Pawn)chessboard.getSquareContents(53);
 		boolean expResult = false;
 		boolean result = instance.isMoveValid(chessboard, end);
 		assertEquals(expResult, result);
@@ -576,7 +586,7 @@ public class PawnTest {
 		};
 		chessboard.setBoard(newboard);
 		int end = 18;
-		Pawn instance = (Pawn)chessboard.getPiece(26);
+		Pawn instance = (Pawn)chessboard.getSquareContents(26);
 		boolean expResult = false;
 		boolean result = instance.isMoveValid(chessboard, end);
 		assertEquals(expResult, result);
@@ -600,7 +610,7 @@ public class PawnTest {
 		};
 		chessboard.setBoard(newboard);
 		int end = 17;
-		Pawn instance = (Pawn)chessboard.getPiece(10);
+		Pawn instance = (Pawn)chessboard.getSquareContents(10);
 		boolean expResult = false;
 		boolean result = instance.isMoveValid(chessboard, end);
 		assertEquals(expResult, result);
@@ -624,7 +634,7 @@ public class PawnTest {
 		};
 		chessboard.setBoard(newboard);
 		int end = 87;
-		Pawn instance = (Pawn)chessboard.getPiece(37);
+		Pawn instance = (Pawn)chessboard.getSquareContents(37);
 		boolean expResult = false;
 		boolean result = instance.isMoveValid(chessboard, end);
 		assertEquals(expResult, result);
@@ -648,7 +658,7 @@ public class PawnTest {
 		};
 		chessboard.setBoard(newboard);
 		int end = -5;
-		Pawn instance = (Pawn)chessboard.getPiece(37);
+		Pawn instance = (Pawn)chessboard.getSquareContents(37);
 		boolean expResult = false;
 		boolean result = instance.isMoveValid(chessboard, end);
 		assertEquals(expResult, result);
@@ -660,7 +670,7 @@ public class PawnTest {
 	@Test
 	public void testClone() throws Exception {
 		System.out.println("Pawn, clone");
-		Pawn instance = (Pawn)chessboard.getPiece(48);
+		Pawn instance = (Pawn)chessboard.getSquareContents(48);
 		Pawn clone = (Pawn)instance.clone();
 		int expResult = instance.getPosition();
 		int result = clone.getPosition();

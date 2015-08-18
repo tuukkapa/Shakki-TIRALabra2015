@@ -127,7 +127,7 @@ public class Chessboard {
 		}
 	}
 	
-	public boolean makeMove(Move move) {
+	public boolean movePiece(Move move) {
 		int start = move.getStart();
 		int end = move.getEnd();
 		Piece piece = chessboard[start/8][start%8];
@@ -139,7 +139,17 @@ public class Chessboard {
 			return false;
 		}
 		if (piece.isMoveValid(this, end)) {
-			if (piece.endSquareContainsEnemy(this, end)) {
+			this.makeMove(move);
+			return true;
+		}
+		return false;
+	}
+	
+	private void makeMove(Move move) {
+		Piece piece = this.getSquareContents(move.getStart());
+		int start = move.getStart();
+		int end = move.getEnd();
+		if (piece.endSquareContainsEnemy(this, end)) {
 				// save captured piece into Move for undoing
 				Piece capturedPiece = chessboard[end/8][end%8];
 				move.setCapturedPiece(capturedPiece);
@@ -148,9 +158,6 @@ public class Chessboard {
 			chessboard[start/8][start%8] = null;
 			chessboard[end/8][end%8] = piece;
 			piece.setPosition(end);
-			return true;
-		}
-		return false;
 	}
 	
 	public boolean undoMove(Move move) {
@@ -277,7 +284,7 @@ public class Chessboard {
 	}
 	
 	public boolean wouldItBeCheck(Piece piece, int end) {
-		Move move = new Move(0, piece.getPosition(), end);
+		Move move = new Move(piece.getPosition(), end);
 		this.makeMove(move);
 		boolean checkSituation = this.isItCheck(piece.amIWhite());
 		this.undoMove(move);

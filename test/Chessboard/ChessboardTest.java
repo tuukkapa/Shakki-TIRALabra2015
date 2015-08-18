@@ -5,10 +5,9 @@
  */
 package Chessboard;
 
+import AI.Move;
 import Chessboard.pieces.*;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.TreeMap;
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -22,7 +21,7 @@ import static org.junit.Assert.*;
  */
 public class ChessboardTest {
 	
-	private OldChessboard chessboard;
+	private Chessboard chessboard;
 	
 	public ChessboardTest() {
 	}
@@ -37,101 +36,13 @@ public class ChessboardTest {
 	
 	@Before
 	public void setUp() {
-		chessboard = new OldChessboard();
+		chessboard = new Chessboard();
 	}
 	
 	@After
 	public void tearDown() {
 	}
-
-	/**
-	 * Test of clonePieces method with white pieces, of class Chessboard.
-	 * Tests that the result isn't null.
-	 * @throws java.lang.Exception
-	 */
-	@Test
-	public void testCloneWhitePiecesIsNotNull() throws Exception {
-		System.out.println("Chessboard, clonePieces, white, result isn't null");
-		boolean white = true;
-		TreeMap result = chessboard.clonePieces(white);
-		assertNotNull(result);
-	}
 	
-	/**
-	 * Test of clonePieces method with white pieces, of class Chessboard.
-	 * Tests that the result isn't null.
-	 * @throws java.lang.Exception
-	 */
-	@Test
-	public void testCloneBlackPiecesIsNotNull() throws Exception {
-		System.out.println("Chessboard, clonePieces, black, result isn't null");
-		boolean white = false;
-		TreeMap result = chessboard.clonePieces(white);
-		assertNotNull(result);
-	}
-	
-	/**
-	 * Test of clonePieces method with white pieces, of class Chessboard.
-	 * Tests that the resulting TreeMap is different than original.
-	 * @throws java.lang.Exception
-	 */
-	@Test
-	public void testCloneWhitePiecesDifferentTreeMap() throws Exception {
-		System.out.println("Chessboard, clonePieces, white, resulting TreeMap is different");
-		boolean white = true;
-		TreeMap original = chessboard.getPieces(white);
-		TreeMap result = chessboard.clonePieces(white);
-		assertNotSame(original, result);
-	}
-	
-	/**
-	 * Test of clonePieces method with black pieces, of class Chessboard.
-	 * Tests that the resulting TreeMap is different than original.
-	 * @throws java.lang.Exception
-	 */
-	@Test
-	public void testCloneBlackPiecesDifferentTreeMap() throws Exception {
-		System.out.println("Chessboard, clonePieces, black, resulting TreeMap is different");
-		boolean white = false;
-		TreeMap original = chessboard.getPieces(white);
-		TreeMap result = chessboard.clonePieces(white);
-		assertNotSame(original, result);
-	}
-	
-	/**
-	 * Test of clonePieces method with white pieces, of class Chessboard.
-	 * Tests with one piece, that the objects in the cloned TreeMap are different
-	 * from those in the original TreeMap.
-	 * @throws java.lang.Exception
-	 */
-	@Test
-	public void testCloneWhitePiecesDifferentPieces() throws Exception {
-		System.out.println("Chessboard, clonePieces, white, resulting TreeMap is different");
-		boolean white = true;
-		TreeMap originalTreeMap = chessboard.getPieces(white);
-		Piece original = (Piece)originalTreeMap.firstEntry().getValue();
-		TreeMap cloneTreeMap = chessboard.clonePieces(white);
-		Piece result = (Piece)cloneTreeMap.firstEntry().getValue();
-		assertNotSame(original, result);
-	}
-	
-	/**
-	 * Test of clonePieces method with black pieces, of class Chessboard.
-	 * Tests with one piece, that the objects in the cloned TreeMap are different
-	 * from those in the original TreeMap.
-	 * @throws java.lang.Exception
-	 */
-	@Test
-	public void testCloneBlackPiecesDifferentPieces() throws Exception {
-		System.out.println("Chessboard, clonePieces, black, resulting TreeMap is different");
-		boolean white = false;
-		TreeMap originalTreeMap = chessboard.getPieces(white);
-		Piece original = (Piece)originalTreeMap.firstEntry().getValue();
-		TreeMap cloneTreeMap = chessboard.clonePieces(white);
-		Piece result = (Piece)cloneTreeMap.firstEntry().getValue();
-		assertNotSame(original, result);
-	}
-
 	/**
 	 * Test of getPieces method, of class Chessboard.
 	 * Tests that the result isn't null.
@@ -140,7 +51,7 @@ public class ChessboardTest {
 	public void testGetWhitePiecesNotNull() {
 		System.out.println("Chessboard, getPieces, white, not null");
 		boolean white = true;
-		TreeMap result = chessboard.getPieces(white);
+		ArrayList<Move> result = chessboard.getPieces(white);
 		assertNotNull(result);
 	}
 	
@@ -152,7 +63,7 @@ public class ChessboardTest {
 	public void testGetBlackPiecesNotNull() {
 		System.out.println("Chessboard, getPieces, black, not null");
 		boolean white = false;
-		TreeMap result = chessboard.getPieces(white);
+		ArrayList<Move> result = chessboard.getPieces(white);
 		assertNotNull(result);
 	}
 	
@@ -164,12 +75,10 @@ public class ChessboardTest {
 	public void testGetWhitePieces() {
 		System.out.println("Chessboard, getPieces, white");
 		boolean white = true;
-		TreeMap pieces = chessboard.getPieces(white);
+		ArrayList<Piece> pieces = chessboard.getPieces(white);
 		boolean result = true;
-		Collection c = pieces.values();
-		Iterator itr = c.iterator();
-	    while(itr.hasNext()) {
-			if (!(itr.next() instanceof Piece)) {
+	    for(Piece piece : pieces) {
+			if (!(piece instanceof Piece)) {
 				result = false;
 			}
 		}
@@ -184,76 +93,22 @@ public class ChessboardTest {
 	public void testGetBlackPieces() {
 		System.out.println("Chessboard, getPieces, black");
 		boolean white = false;
-		TreeMap pieces = chessboard.getPieces(white);
+		ArrayList<Piece> pieces = chessboard.getPieces(white);
 		boolean result = true;
-		Collection c = pieces.values();
-		Iterator itr = c.iterator();
-	    while(itr.hasNext()) {
-			if (!(itr.next() instanceof Piece)) {
+	    for(Piece piece : pieces) {
+			if (!(piece instanceof Piece)) {
 				result = false;
 			}
 		}
 		assertTrue(result);
-	}
-	
-	/**
-	 * Test of setPieces method, of class Chessboard with white pieces.
-	 */
-	@Test
-	public void testSetWhitePieces() {
-		System.out.println("Chessboard, setPieces, white");
-		boolean white = true;
-		TreeMap<Integer, Piece> newPieces = new TreeMap<>();
-		for (int i = 0; i < 8; i++) {
-			newPieces.put(48 + i, new Pawn(white, 48 + i));
-		}
-		chessboard.setPieces(white, newPieces);
-		boolean treeMapNotEmpty = chessboard.getPieces(white).size() > 0;
-		boolean piecesExist = true;
-		int counter = 0;
-		Collection c = chessboard.getPieces(white).values();
-		Iterator itr = c.iterator();
-	    while(itr.hasNext()) {
-			if (!(itr.next() instanceof Piece)) {
-				piecesExist = false;
-			}
-			counter++;
-		}
-		assertTrue(piecesExist && treeMapNotEmpty && counter == 8);
-	}
-	
-	/**
-	 * Test of setPieces method, of class Chessboard with böacl pieces.
-	 */
-	@Test
-	public void testSetBlackPieces() {
-		System.out.println("Chessboard, setPieces, black");
-		boolean white = false;
-		TreeMap<Integer, Piece> newPieces = new TreeMap<>();
-		for (int i = 0; i < 8; i++) {
-			newPieces.put(8 + i, new Pawn(white, 8 + i));
-		}
-		chessboard.setPieces(white, newPieces);
-		boolean treeMapNotEmpty = chessboard.getPieces(white).size() > 0;
-		boolean piecesExist = true;
-		int counter = 0;
-		Collection c = chessboard.getPieces(white).values();
-		Iterator itr = c.iterator();
-	    while(itr.hasNext()) {
-			if (!(itr.next() instanceof Piece)) {
-				piecesExist = false;
-			}
-			counter++;
-		}
-		assertTrue(piecesExist && treeMapNotEmpty && counter == 8);
 	}
 
 	/**
 	 * Test of getPiece method, of class Chessboard.
 	 */
 	@Test
-	public void testGetPiece() {
-		System.out.println("Chessboard, getPiece");
+	public void testGetSquareContents() {
+		System.out.println("Chessboard, getSquareContents");
 		char[][] referencePieces = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
@@ -267,33 +122,33 @@ public class ChessboardTest {
 		boolean result = true;
 		for (int i = 0; i < 64; i++) {
 			if (i < 16) {
-				if (chessboard.getPiece(i) == null) {
+				if (chessboard.getSquareContents(i) == null) {
 					result = false;
 				}
-				if (referencePieces[i/8][i%8] != chessboard.getPiece(i).getSign()) {
+				if (referencePieces[i/8][i%8] != chessboard.getSquareContents(i).getSign()) {
 					result = false;
 				}
-				if (chessboard.getPiece(i).amIWhite()) {
+				if (chessboard.getSquareContents(i).amIWhite()) {
 					result = false;
 				}
-				if (chessboard.getPiece(i).getPosition() != i) {
+				if (chessboard.getSquareContents(i).getPosition() != i) {
 					result = false;
 				}
 			} else if (i >= 16 && i < 48) {
-				if (chessboard.getPiece(i) != null) {
+				if (chessboard.getSquareContents(i) != null) {
 					result = false;
 				}
 			} else {
-				if (chessboard.getPiece(i) == null) {
+				if (chessboard.getSquareContents(i) == null) {
 					result = false;
 				}
-				if (referencePieces[i/8][i%8] != chessboard.getPiece(i).getSign()) {
+				if (referencePieces[i/8][i%8] != chessboard.getSquareContents(i).getSign()) {
 					result = false;
 				}
-				if (!chessboard.getPiece(i).amIWhite()) {
+				if (!chessboard.getSquareContents(i).amIWhite()) {
 					result = false;
 				}
-				if (chessboard.getPiece(i).getPosition() != i) {
+				if (chessboard.getSquareContents(i).getPosition() != i) {
 					result = false;
 				}
 			}
@@ -307,10 +162,11 @@ public class ChessboardTest {
 	@Test
 	public void testMovePieceWrongMove() {
 		System.out.println("Chessboard, movePiece, wrong input");
+		Move move = new Move(8, 17);
 		int start = 8;
 		int end = 17;
 		boolean expResult = false;
-		boolean result = chessboard.movePiece(start, end);
+		boolean result = chessboard.makeMove(move);
 		assertEquals(expResult, result);
 	}
 	
@@ -322,8 +178,9 @@ public class ChessboardTest {
 		System.out.println("Chessboard, movePiece, nonexisting piece");
 		int start = 16;
 		int end = 24;
+		Move move = new Move(16, 24);
 		boolean expResult = false;
-		boolean result = chessboard.movePiece(start, end);
+		boolean result = chessboard.makeMove(move);
 		assertEquals(expResult, result);
 	}
 	
@@ -345,8 +202,7 @@ public class ChessboardTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-
-		char[][] resultBoard = chessboard.getBoard();
+		char[][] resultBoard = chessboard.getBoardAsCharArray();
 		assertArrayEquals(referenceBoard, resultBoard);
 	}
 	
@@ -358,8 +214,9 @@ public class ChessboardTest {
 		System.out.println("Chessboard, movePiece, white, correct input");
 		int start = 48;
 		int end = 40;
+		Move move = new Move(48, 40);
 		boolean expResult = true;
-		boolean result = chessboard.movePiece(start, end);
+		boolean result = chessboard.makeMove(move);
 		assertEquals(expResult, result);
 	}
 	
@@ -371,12 +228,13 @@ public class ChessboardTest {
 		System.out.println("Chessboard, movePiece, white, correct input, board updated");
 		int start = 48;
 		int end = 40;
+		Move move = new Move(48, 40);
 		char expectedStart = ' ', expectedEnd = 'P';
 		int expectedPosition = end;
-		boolean moveResult = chessboard.movePiece(start, end);
-		int resultPosition = chessboard.getPiece(expectedPosition).getPosition();
-		char resultStart = chessboard.getSquareContents(start);
-		char resultEnd = chessboard.getSquareContents(end);
+		boolean moveResult = chessboard.makeMove(move);
+		int resultPosition = chessboard.getSquareContents(expectedPosition).getPosition();
+		char resultStart = chessboard.getSquareContents(start).getSign();
+		char resultEnd = chessboard.getSquareContents(end).getSign();
 		assertTrue(moveResult && expectedStart == resultStart && expectedEnd == resultEnd && expectedPosition == resultPosition);
 	}
 
@@ -388,8 +246,9 @@ public class ChessboardTest {
 		System.out.println("Chessboard, movePiece, black, correct input");
 		int start = 8;
 		int end = 16;
+		Move move = new Move(8, 16);
 		boolean expResult = true;
-		boolean result = chessboard.movePiece(start, end);
+		boolean result = chessboard.makeMove(move);
 		assertEquals(expResult, result);
 	}
 	
@@ -401,12 +260,13 @@ public class ChessboardTest {
 		System.out.println("Chessboard, movePiece, black, correct input, board updated");
 		int start = 11;
 		int end = 27;
+		Move move = new Move(11, 27);
 		char expectedStart = ' ', expectedEnd = 'p';
 		int expectedPosition = end;
-		boolean moveResult = chessboard.movePiece(start, end);
-		int resultPosition = chessboard.getPiece(expectedPosition).getPosition();
-		char resultStart = chessboard.getSquareContents(start);
-		char resultEnd = chessboard.getSquareContents(end);
+		boolean moveResult = chessboard.makeMove(move);
+		int resultPosition = chessboard.getSquareContents(expectedPosition).getPosition();
+		char resultStart = chessboard.getSquareContents(start).getSign();
+		char resultEnd = chessboard.getSquareContents(end).getSign();
 		assertTrue(moveResult && expectedStart == resultStart && expectedEnd == resultEnd && expectedPosition == resultPosition);
 	}
 	
@@ -429,6 +289,7 @@ public class ChessboardTest {
 		chessboard.setBoard(referenceBoard);
 		int start = 8;
 		int end = 17;
+		Move move = new Move(8, 17);
 		char expectedStart = ' ', expectedEnd = 'p';
 		int expectedPosition = end;
 		boolean moveResult = chessboard.movePiece(start, end);

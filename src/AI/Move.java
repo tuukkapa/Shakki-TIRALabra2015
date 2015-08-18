@@ -6,7 +6,6 @@ import Chessboard.pieces.Piece;
  * Class contains one chess move and it's score.
  * 
  * Fields:
- * - Integer: score of the move
  * - Integer: starting position
  * - Integer: ending position
  * 
@@ -14,28 +13,18 @@ import Chessboard.pieces.Piece;
  */
 public class Move {
 
-	private int score, start, end;
+	private int start, end;
 	private Piece capturedPiece;
 	
 	/**
 	 * Constructor of Move-object.
-	 * @param score Integer, score of the move.
 	 * @param start Integer, starting position of the move.
 	 * @param end Integer, ending position of the move.
 	 */
-	public Move(int score, int start, int end) {
-		this.score = score;
+	public Move(int start, int end) {
 		this.start = start;
 		this.end = end;
 		this.capturedPiece = null;
-	}
-	
-	/**
-	 * Returns the score of the move.
-	 * @return Integer, score of the move.
-	 */
-	public int getScore() {
-		return score;
 	}
 	
 	/**
@@ -60,18 +49,6 @@ public class Move {
 	
 	public Piece getCapturedPiece() {
 		return capturedPiece;
-	}
-	
-	/**
-	 *
-	 * @param move
-	 * @return
-	 */
-	public boolean equals(Move move) {
-		boolean scoreEquals = this.score == move.score;
-		boolean startEquals = this.start == move.start;
-		boolean endEquals = this.end == move.end;
-		return scoreEquals && startEquals && endEquals;
 	}
 	
 }

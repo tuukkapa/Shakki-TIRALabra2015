@@ -25,7 +25,7 @@ public class UserMovement {
 		}
 		int start = ((8 - Integer.parseInt(command.substring(1, 2))) * 8) + (int)command.charAt(0) - 65;
 		int end = ((8 - Integer.parseInt(command.substring(3))) * 8) + (int)command.charAt(2) - 65;
-		Move move = new Move(0, start, end);
+		Move move = new Move(start, end);
 		// Are the coordinates inside the board
 		if (0 > start || start > 63 || 0 > end || end > 63) {
 			return false;
@@ -37,7 +37,7 @@ public class UserMovement {
 		}
 		// Is the piece player's own piece (i.e. white) and is the move successful
 		if (piece.amIWhite()) {
-			return chessboard.makeMove(move);
+			return chessboard.movePiece(move);
 		} else {
 			return false;
 		}	

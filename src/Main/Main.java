@@ -91,7 +91,7 @@ public class Main {
 							return;
 						}
 					}
-					if (!chessboard.makeMove(move)) {
+					if (!chessboard.movePiece(move)) {
 						System.out.println("\n\n\nTietokoneen siirtovuorolla tapahtui virhe."
 								+ "Peli lopetetaan.");
 						System.out.println("Siirtokomento oli koordinaatista " + move.getStart() + 

@@ -5,7 +5,7 @@
  */
 package AI;
 
-import Chessboard.OldChessboard;
+import Chessboard.Chessboard;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
  */
 public class AITest {
 	
-	private OldChessboard chessboard;
+	private Chessboard chessboard;
 	private AI ai;
 	
 	public AITest() {
@@ -35,7 +35,7 @@ public class AITest {
 	
 	@Before
 	public void setUp() {
-		chessboard = new OldChessboard();
+		chessboard = new Chessboard();
 		ai = new AI();
 	}
 	
@@ -51,7 +51,7 @@ public class AITest {
 		System.out.println("minimax, maximizing, depth 1");
 		int depth = 1;
 		boolean maximizingPlayer = true;
-		Move result = ai.minimax(chessboard, depth, maximizingPlayer);
+		Move result = ai.getMove(chessboard, depth);
 		assertNotNull(result);
 	}
 	
@@ -63,7 +63,7 @@ public class AITest {
 		System.out.println("minimax, minimizing, depth 1");
 		int depth = 2;
 		boolean maximizingPlayer = false;
-		Move result = ai.minimax(chessboard, depth, maximizingPlayer);
+		Move result = ai.getMove(chessboard, depth);
 		assertNotNull(result);
 	}
 	
@@ -76,7 +76,7 @@ public class AITest {
 		System.out.println("minimax, maximizing, depth 2");
 		int depth = 2;
 		boolean maximizingPlayer = true;
-		Move result = ai.minimax(chessboard, depth, maximizingPlayer);
+		Move result = ai.getMove(chessboard, depth);
 		assertNotNull(result);
 	}
 	
@@ -89,7 +89,7 @@ public class AITest {
 		System.out.println("minimax, minimizing, depth 2");
 		int depth = 2;
 		boolean maximizingPlayer = false;
-		Move result = ai.minimax(chessboard, depth, maximizingPlayer);
+		Move result = ai.getMove(chessboard, depth);
 		assertNotNull(result);
 	}
 	
@@ -102,7 +102,7 @@ public class AITest {
 		System.out.println("minimax, maximizing, depth 3");
 		int depth = 3;
 		boolean maximizingPlayer = true;
-		Move result = ai.minimax(chessboard, depth, maximizingPlayer);
+		Move result = ai.getMove(chessboard, depth);
 		assertNotNull(result);
 	}
 	
@@ -115,7 +115,7 @@ public class AITest {
 		System.out.println("minimax, minimizing, depth 3");
 		int depth = 3;
 		boolean maximizingPlayer = false;
-		Move result = ai.minimax(chessboard, depth, maximizingPlayer);
+		Move result = ai.getMove(chessboard, depth);
 		assertNotNull(result);
 	}
 	
@@ -128,7 +128,7 @@ public class AITest {
 		System.out.println("minimax, maximizing, depth 4");
 		int depth = 4;
 		boolean maximizingPlayer = true;
-		Move result = ai.minimax(chessboard, depth, maximizingPlayer);
+		Move result = ai.getMove(chessboard, depth);
 		assertNotNull(result);
 	}
 	
@@ -141,7 +141,7 @@ public class AITest {
 		System.out.println("minimax, minimizing, depth 4");
 		int depth = 4;
 		boolean maximizingPlayer = false;
-		Move result = ai.minimax(chessboard, depth, maximizingPlayer);
+		Move result = ai.getMove(chessboard, depth);
 		assertNotNull(result);
 	}
 	

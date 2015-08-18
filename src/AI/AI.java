@@ -35,7 +35,7 @@ public class AI {
 		for (Piece piece : pieces) {
 			ArrayList<Move> moves = piece.getPossibleMoves(chessboard);
 			for (Move move : moves) {
-				chessboard.makeMove(move);
+				chessboard.movePiece(move);
 				value = min(chessboard, depth - 1);
 				if (value > bestValue) {
 					bestValue = value;
@@ -57,7 +57,7 @@ public class AI {
 		for (Piece piece : pieces) {
 			ArrayList<Move> moves = piece.getPossibleMoves(chessboard);
 			for (Move move : moves) {
-				chessboard.makeMove(move);
+				chessboard.movePiece(move);
 				value = max(chessboard, depth - 1);
 				if (value < bestValue) {
 					bestValue = value;
