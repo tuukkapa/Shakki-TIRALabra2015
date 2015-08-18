@@ -18,7 +18,7 @@ public class Pawn extends Piece implements Cloneable {
 	}
 	
 	@Override
-	public ArrayList getPossibleMoves(Chessboard chessboard) {
+	public ArrayList<Move> getPossibleMoves(Chessboard chessboard) {
 		ArrayList<Move> moves = new ArrayList<>();
 		int pawnRow = position / 8;
 		int pawnCol = position % 8;

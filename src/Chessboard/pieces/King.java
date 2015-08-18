@@ -18,7 +18,7 @@ public class King extends Piece implements Cloneable {
 	}
 	
 	@Override
-	public ArrayList getPossibleMoves(Chessboard chessboard) {
+	public ArrayList<Move> getPossibleMoves(Chessboard chessboard) {
 		ArrayList<Move> moves = new ArrayList<>();
 		int kRow = position / 8;
 		int kCol = position % 8;

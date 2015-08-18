@@ -19,7 +19,7 @@ public class AI {
 		bestMove = null;
 	}
 	
-	public Move getMove(Chessboard chessboard, int depth) throws CloneNotSupportedException {
+	public Move getMove(Chessboard chessboard, int depth) {
 		bestMove = null;
 		max(chessboard, depth);
 		return bestMove;
@@ -49,7 +49,7 @@ public class AI {
 	
 	public int min(Chessboard chessboard, int depth) {
 		if (depth == 0 || chessboard.isItCheckMate(false)) {
-			return chessboard.evaluate();
+			return -chessboard.evaluate();
 		}
 		int bestValue = Integer.MAX_VALUE;
 		int value = 0;

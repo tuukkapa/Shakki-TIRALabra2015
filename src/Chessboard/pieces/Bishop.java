@@ -6,6 +6,7 @@
 
 package Chessboard.pieces;
 
+import AI.Move;
 import Chessboard.Chessboard;
 import java.util.ArrayList;
 
@@ -23,7 +24,7 @@ public class Bishop extends Piece implements Cloneable {
 	}
 
 	@Override
-	public ArrayList getPossibleMoves(Chessboard chessboard) {
+	public ArrayList<Move> getPossibleMoves(Chessboard chessboard) {
 		return this.createDiagonalMoves(chessboard);
 	}
 

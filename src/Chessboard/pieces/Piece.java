@@ -64,7 +64,7 @@ public abstract class Piece implements Cloneable {
 	 * @param chessboard Chessboard-object, which pieces are to be moved.
 	 * @return ArrayList of Move-objects.
 	 */
-	public abstract ArrayList getPossibleMoves(Chessboard chessboard);
+	public abstract ArrayList<Move> getPossibleMoves(Chessboard chessboard);
 	
 	/**
 	 * Verifies if this Piece can be moved to the end position according to the chess rules.
@@ -80,7 +80,7 @@ public abstract class Piece implements Cloneable {
 	 * @param chessboard Chessboard-object, which pieces are to be moved.
 	 * @return ArrayList of Move-objects.
 	 */
-	protected ArrayList createStraightMoves(Chessboard chessboard) {
+	protected ArrayList<Move> createStraightMoves(Chessboard chessboard) {
 		ArrayList<Move> moves = new ArrayList<>();
 		int startRow = position / 8;
 		int startCol = position % 8;
@@ -145,7 +145,7 @@ public abstract class Piece implements Cloneable {
 	 * @param chessboard Chessboard-object, which pieces are to be moved.
 	 * @return ArrayList of Move-objects.
 	 */
-	protected ArrayList createDiagonalMoves(Chessboard chessboard) {
+	protected ArrayList<Move> createDiagonalMoves(Chessboard chessboard) {
 		ArrayList<Move> moves = new ArrayList<>();
 		int row = position / 8;
 		int col = position % 8;

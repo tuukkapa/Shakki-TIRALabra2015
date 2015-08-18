@@ -29,7 +29,7 @@ public class Queen extends Piece implements Cloneable {
 	 * @return
 	 */
 	@Override
-	public ArrayList getPossibleMoves(Chessboard chessboard) {
+	public ArrayList<Move> getPossibleMoves(Chessboard chessboard) {
 		ArrayList<Move> moves = this.createStraightMoves(chessboard);
 		ArrayList<Move> diagonalMoves = this.createDiagonalMoves(chessboard);
 		moves.removeAll(diagonalMoves); // this should be redundant?

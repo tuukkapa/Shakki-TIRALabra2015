@@ -35,7 +35,17 @@ public class Main {
 	 * Initiates the class fields.
 	 */
 	public static void init() {
-		chessboard = new Chessboard();
+		char[][] newboard = {
+			{' ', ' ', ' ', ' ', 'k', ' ', ' ', ' '},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{' ', ' ', ' ', ' ', 'K', ' ', ' ', ' '}
+		};
+		chessboard = new Chessboard(newboard);
 		ai = new AI();
 		input = new Scanner(System.in);
 		depth = 3;
@@ -50,17 +60,7 @@ public class Main {
 		boolean continueGame = true;
 
 		init();
-		
-		char[][] newboard = {
-			{'r', ' ', ' ', ' ', 'k', ' ', ' ', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
-			{'R', ' ', ' ', ' ', 'K', ' ', ' ', 'R'}
-		};
+
 		//chessboard.setBoard(newboard);
 		
 		UserInterface.draw(chessboard.getBoardAsCharArray());
@@ -79,22 +79,12 @@ public class Main {
 					UserInterface.draw(chessboard.getBoardAsCharArray());
 					System.out.println("\nOdota. Tietokone tekee siirtonsa...");
 					Move move = null;
-					try {
-						move = ai.getMove(chessboard, depth);
-					} catch (CloneNotSupportedException ex) {
-						Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-					} catch (Exception e) {
-						Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, e);
-					} finally {
-						if (move == null) {
-							System.out.println("Siirtokomentoa ei saatu minimax-metodilta.");
-							return;
-						}
-					}
+					move = ai.getMove(chessboard, depth);
+			
 					if (!chessboard.movePiece(move)) {
 						System.out.println("\n\n\nTietokoneen siirtovuorolla tapahtui virhe."
 								+ "Peli lopetetaan.");
-						System.out.println("Siirtokomento oli koordinaatista " + move.getStart() + 
+						System.out.println("Siirtokomento koordinaatista " + move.getStart() + 
 								" koordinaattiin " + move.getEnd());
 						ArrayList<Piece> pieces = chessboard.getPieces(false);
 						System.out.println("Mustat nappulat ovat:");
