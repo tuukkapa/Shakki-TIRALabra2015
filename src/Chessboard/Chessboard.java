@@ -156,7 +156,7 @@ public class Chessboard {
 	
 	public boolean movePiece(Move move) {
 		if (move == null) {
-			System.out.println("hei");
+			return false;
 		}
 		int start = move.getStart();
 		int end = move.getEnd();

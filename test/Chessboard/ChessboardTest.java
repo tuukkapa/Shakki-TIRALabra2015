@@ -268,6 +268,190 @@ public class ChessboardTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
+	public void testMovePieceMoveWhitePawnIllegallyCaptureOwn1Up() {
+		System.out.println("Chessboard, movePiece, move white Pawn illegally, capture own 1 up");
+		char[][] referencePieces = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', 'N', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard = new Chessboard(referencePieces);
+		Move move = new Move(51, 43);
+		boolean expResult = false;
+		boolean result = chessboard.movePiece(move);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of movePiece method, of class Chessboard.
+	 */
+	@Test
+	public void testMovePieceMoveWhitePawnIllegallyCaptureOwn2Up() {
+		System.out.println("Chessboard, movePiece, move white Pawn illegally, capture own 2 Up");
+		char[][] referencePieces = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', 'N', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard = new Chessboard(referencePieces);
+		Move move = new Move(51, 35);
+		boolean expResult = false;
+		boolean result = chessboard.movePiece(move);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of movePiece method, of class Chessboard.
+	 */
+	@Test
+	public void testMovePieceMoveWhitePawnIllegallyCaptureOwnLeft() {
+		System.out.println("Chessboard, movePiece, move white Pawn illegally, capture own left");
+		char[][] referencePieces = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', 'N', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard = new Chessboard(referencePieces);
+		Move move = new Move(51, 42);
+		boolean expResult = false;
+		boolean result = chessboard.movePiece(move);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of movePiece method, of class Chessboard.
+	 */
+	@Test
+	public void testMovePieceMoveWhitePawnIllegallyCaptureOwnRight() {
+		System.out.println("Chessboard, movePiece, move white Pawn illegally, capture own right");
+		char[][] referencePieces = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', 'R', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard = new Chessboard(referencePieces);
+		Move move = new Move(51, 44);
+		boolean expResult = false;
+		boolean result = chessboard.movePiece(move);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of movePiece method, of class Chessboard.
+	 */
+	@Test
+	public void testMovePieceMoveBlackPawnIllegallyCaptureOwn1Up() {
+		System.out.println("Chessboard, movePiece, move black Pawn illegally, capture own 1 up");
+		char[][] referencePieces = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', 'n', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', 'N', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard = new Chessboard(referencePieces);
+		Move move = new Move(11, 19);
+		boolean expResult = false;
+		boolean result = chessboard.movePiece(move);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of movePiece method, of class Chessboard.
+	 */
+	@Test
+	public void testMovePieceMoveBlackPawnIllegallyCaptureOwn2Up() {
+		System.out.println("Chessboard, movePiece, move black Pawn illegally, capture own 2 Up");
+		char[][] referencePieces = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', 'p', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard = new Chessboard(referencePieces);
+		Move move = new Move(11, 27);
+		boolean expResult = false;
+		boolean result = chessboard.movePiece(move);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of movePiece method, of class Chessboard.
+	 */
+	@Test
+	public void testMovePieceMoveBlackPawnIllegallyCaptureOwnLeft() {
+		System.out.println("Chessboard, movePiece, move black Pawn illegally, capture own left");
+		char[][] referencePieces = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', 'r', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', 'N', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard = new Chessboard(referencePieces);
+		Move move = new Move(11, 18);
+		boolean expResult = false;
+		boolean result = chessboard.movePiece(move);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of movePiece method, of class Chessboard.
+	 */
+	@Test
+	public void testMovePieceMoveBlackPawnIllegallyCaptureOwnRight() {
+		System.out.println("Chessboard, movePiece, move black Pawn illegally, capture own right");
+		char[][] referencePieces = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', 'q', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard = new Chessboard(referencePieces);
+		Move move = new Move(11, 20);
+		boolean expResult = false;
+		boolean result = chessboard.movePiece(move);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of movePiece method, of class Chessboard.
+	 */
+	@Test
 	public void testMovePieceMoveBlackPawnIllegally1() {
 		System.out.println("Chessboard, movePiece, move black Pawn illegally 1");
 		Move move = new Move(10, 17);
@@ -551,7 +735,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testMoveWhitePawnCaptureRight() {
-		System.out.println("Chessboard, movePiece, black Pawn capture right");
+		System.out.println("Chessboard, movePiece, white Pawn capture right");
 		char[][] referenceBoard = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
@@ -580,7 +764,7 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testMoveWhitePawnCaptureLeft() {
-		System.out.println("Chessboard, movePiece, black Pawn capture right");
+		System.out.println("Chessboard, movePiece, white Pawn capture left");
 		char[][] referenceBoard = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
@@ -633,6 +817,17 @@ public class ChessboardTest {
 	@Test
 	public void testIsItCheckForWhiteInNonCheckSituation() {
 		System.out.println("Chessboard, isItCheck for white");
+		char[][] newboard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'r', 'p', 'p', 'p'},
+			{' ', ' ', 'q', ' ', 'P', ' ', 'b', ' '},
+			{' ', ' ', ' ', 'P', ' ', 'R', ' ', ' '},
+			{' ', 'r', 'P', ' ', 'K', ' ', 'P', 'r'},
+			{' ', ' ', ' ', 'p', ' ', 'R', ' ', ' '},
+			{'P', 'P', 'b', ' ', 'P', 'P', 'q', 'P'},
+			{'R', 'N', 'B', 'Q', 'r', 'B', 'N', 'R'}
+		};
+		chessboard = new Chessboard(newboard);
 		boolean checkedIsWhite = true;
 		boolean expResult = false;
 		boolean result = chessboard.isItCheck(checkedIsWhite);
@@ -673,6 +868,31 @@ public class ChessboardTest {
 		boolean result = chessboard.isItCheck(checkedIsWhite);
 		assertEquals(expResult, result);
 	}
+	
+	// Test for isItCheck for the rest of the branches, which weren't covered before
+	
+	/**
+	 * Test of isItCheck method, of class Chessboard.
+	 */
+	/*@Test
+	public void testIsItCheckForInCheckSituationSW() {
+		System.out.println("Chessboard, isItCheck, king is threatened from SW");
+		boolean checkedIsWhite = false;
+		boolean expResult = true;
+		char[][] newboard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', ' ', ' ', 'p', 'p', 'p'},
+			{' ', ' ', 'Q', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', ' ', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard = new Chessboard(newboard);
+		boolean result = chessboard.isItCheck(checkedIsWhite);
+		assertEquals(expResult, result);
+	}*/
 	
 	/**
 	 * Test of wouldItBeCheck method, of class Chessboard.

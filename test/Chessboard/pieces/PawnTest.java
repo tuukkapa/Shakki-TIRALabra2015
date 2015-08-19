@@ -63,7 +63,7 @@ public class PawnTest {
 		chessboard = new Chessboard(newboard);
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i).getSign() == 'P') {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'P') {
 				piece = chessboard.getSquareContents(i);
 			}
 		}
@@ -385,7 +385,7 @@ public class PawnTest {
 		chessboard = new Chessboard(newboard);
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i).getSign() == 'P') {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'P') {
 				piece = chessboard.getSquareContents(i);
 			}
 		}
@@ -437,7 +437,7 @@ public class PawnTest {
 		chessboard = new Chessboard(newboard);
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i).getSign() == 'p') {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'p') {
 				piece = chessboard.getSquareContents(i);
 			}
 		}

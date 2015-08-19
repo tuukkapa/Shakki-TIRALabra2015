@@ -62,7 +62,7 @@ public class RookTest {
 		chessboard = new Chessboard(newboard);
 		Rook rook = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i).getSign() == 'R') {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'R') {
 				rook = (Rook)chessboard.getSquareContents(i);
 			}
 		}
@@ -115,7 +115,7 @@ public class RookTest {
 		chessboard = new Chessboard(newboard);
 		Rook rook = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i).getSign() == 'r') {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'r') {
 				rook = (Rook)chessboard.getSquareContents(i);
 			}
 		}
@@ -152,8 +152,8 @@ public class RookTest {
 	 * Test of isMoveValid method, of class Rook.
 	 */
 	@Test
-	public void testIsMoveValidCorrectInputHorizontal1() {
-		System.out.println("Rook, isMoveValid, correct input horizontal 1");
+	public void testIsMoveValidCorrectInputHorizontalLeft() {
+		System.out.println("Rook, isMoveValid, correct input horizontal left");
 		char[][] newboard = {
 			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
 			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
@@ -168,7 +168,7 @@ public class RookTest {
 		int end = 32;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i).getSign() == 'r') {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'r') {
 				piece = chessboard.getSquareContents(i);
 			}
 		}
@@ -181,8 +181,8 @@ public class RookTest {
 	 * Test of isMoveValid method, of class Rook.
 	 */
 	@Test
-	public void testIsMoveValidCorrectInputHorizontal2() {
-		System.out.println("Rook, isMoveValid, correct input horizontal 2");
+	public void testIsMoveValidCorrectInputHorizontalRight() {
+		System.out.println("Rook, isMoveValid, correct input horizontal right");
 		char[][] newboard = {
 			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
 			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
@@ -197,7 +197,7 @@ public class RookTest {
 		int end = 39;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i).getSign() == 'r') {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'r') {
 				piece = chessboard.getSquareContents(i);
 			}
 		}
@@ -210,8 +210,8 @@ public class RookTest {
 	 * Test of isMoveValid method, of class Rook.
 	 */
 	@Test
-	public void testIsMoveValidCorrectInputVertical1() {
-		System.out.println("Rook, isMoveValid, correct input vertical 1");
+	public void testIsMoveValidCorrectInputVerticalUp() {
+		System.out.println("Rook, isMoveValid, correct input vertical up");
 		char[][] newboard = {
 			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
 			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
@@ -226,7 +226,7 @@ public class RookTest {
 		int end = 19;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i).getSign() == 'r') {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'r') {
 				piece = chessboard.getSquareContents(i);
 			}
 		}
@@ -239,8 +239,8 @@ public class RookTest {
 	 * Test of isMoveValid method, of class Rook.
 	 */
 	@Test
-	public void testIsMoveValidCorrectInputVertical2() {
-		System.out.println("Rook, isMoveValid, correct input vertical 2");
+	public void testIsMoveValidCorrectInputVerticalDown() {
+		System.out.println("Rook, isMoveValid, correct input vertical down");
 		char[][] newboard = {
 			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
 			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
@@ -255,7 +255,7 @@ public class RookTest {
 		int end = 51;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i).getSign() == 'R') {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'R') {
 				piece = chessboard.getSquareContents(i);
 			}
 		}
@@ -268,8 +268,8 @@ public class RookTest {
 	 * Test of isMoveValid method, of class Rook.
 	 */
 	@Test
-	public void testIsMoveValidCorrectInputCaptureHorizontal1() {
-		System.out.println("Rook, isMoveValid, correct input capture horizontal 1");
+	public void testIsMoveValidCorrectInputCaptureHorizontalRight() {
+		System.out.println("Rook, isMoveValid, correct input capture horizontal right");
 		char[][] newboard = {
 			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
 			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
@@ -284,7 +284,7 @@ public class RookTest {
 		int end = 39;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i).getSign() == 'r') {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'r') {
 				piece = chessboard.getSquareContents(i);
 			}
 		}
@@ -297,8 +297,8 @@ public class RookTest {
 	 * Test of isMoveValid method, of class Rook.
 	 */
 	@Test
-	public void testIsMoveValidCorrectInputCaptureHorizontal2() {
-		System.out.println("Rook, isMoveValid, correct input capture horizontal 2");
+	public void testIsMoveValidCorrectInputCaptureHorizontalLeft() {
+		System.out.println("Rook, isMoveValid, correct input capture horizontal left");
 		char[][] newboard = {
 			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
 			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
@@ -313,7 +313,7 @@ public class RookTest {
 		int end = 32;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i).getSign() == 'r') {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'r') {
 				piece = chessboard.getSquareContents(i);
 			}
 		}
@@ -326,8 +326,8 @@ public class RookTest {
 	 * Test of isMoveValid method, of class Rook.
 	 */
 	@Test
-	public void testIsMoveValidCorrectInputCaptureVertical() {
-		System.out.println("Rook, isMoveValid, correct input capture vertical");
+	public void testIsMoveValidCorrectInputCaptureVerticalUp() {
+		System.out.println("Rook, isMoveValid, correct input capture vertical up");
 		char[][] newboard = {
 			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
 			{'p', 'p', ' ', 'R', 'p', 'p', 'p', 'p'},
@@ -342,7 +342,7 @@ public class RookTest {
 		int end = 11;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i).getSign() == 'r') {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'r') {
 				piece = chessboard.getSquareContents(i);
 			}
 		}
@@ -355,8 +355,8 @@ public class RookTest {
 	 * Test of isMoveValid method, of class Rook.
 	 */
 	@Test
-	public void testIsMoveValidCorrectInputCaptureVertical2() {
-		System.out.println("Rook, isMoveValid, correct input capture vertical 2");
+	public void testIsMoveValidCorrectInputCaptureVerticalDown() {
+		System.out.println("Rook, isMoveValid, correct input capture vertical down");
 		char[][] newboard = {
 			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
 			{'p', 'p', ' ', 'R', 'p', 'p', 'p', 'p'},
@@ -371,7 +371,7 @@ public class RookTest {
 		int end = 51;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i).getSign() == 'R') {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'R') {
 				piece = chessboard.getSquareContents(i);
 			}
 		}
@@ -400,7 +400,7 @@ public class RookTest {
 		int end = 42;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i).getSign() == 'r') {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'r') {
 				piece = chessboard.getSquareContents(i);
 			}
 		}
@@ -413,8 +413,8 @@ public class RookTest {
 	 * Test of isMoveValid method, of class Rook.
 	 */
 	@Test
-	public void testIsMoveValidWrongInputCaptureOwnVertical1() {
-		System.out.println("Rook, isMoveValid, wrong input, capture own vertical");
+	public void testIsMoveValidWrongInputCaptureOwnVerticalUp() {
+		System.out.println("Rook, isMoveValid, wrong input, capture own vertical up");
 		char[][] newboard = {
 			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
 			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
@@ -429,7 +429,7 @@ public class RookTest {
 		int end = 11;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i).getSign() == 'r') {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'r') {
 				piece = chessboard.getSquareContents(i);
 			}
 		}
@@ -442,8 +442,8 @@ public class RookTest {
 	 * Test of isMoveValid method, of class Rook.
 	 */
 	@Test
-	public void testIsMoveValidWrongInputCaptureOwnVertical2() {
-		System.out.println("Rook, isMoveValid, wrong input, capture own vertical");
+	public void testIsMoveValidWrongInputCaptureOwnVerticalDown() {
+		System.out.println("Rook, isMoveValid, wrong input, capture own vertical down");
 		char[][] newboard = {
 			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
 			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
@@ -458,7 +458,7 @@ public class RookTest {
 		int end = 51;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i).getSign() == 'R') {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'R') {
 				piece = chessboard.getSquareContents(i);
 			}
 		}
@@ -471,8 +471,8 @@ public class RookTest {
 	 * Test of isMoveValid method, of class Rook.
 	 */
 	@Test
-	public void testIsMoveValidWrongInputCaptureOwnHorizontal1() {
-		System.out.println("Rook, isMoveValid, wrong input, capture own horizontal 1");
+	public void testIsMoveValidWrongInputCaptureOwnHorizontalRight() {
+		System.out.println("Rook, isMoveValid, wrong input, capture own horizontal right");
 		char[][] newboard = {
 			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
 			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
@@ -487,7 +487,7 @@ public class RookTest {
 		int end = 39;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i).getSign() == 'r') {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'r') {
 				piece = chessboard.getSquareContents(i);
 			}
 		}
@@ -500,14 +500,14 @@ public class RookTest {
 	 * Test of isMoveValid method, of class Rook.
 	 */
 	@Test
-	public void testIsMoveValidWrongInputCaptureOwnHorizontal2() {
-		System.out.println("Rook, isMoveValid, wrong input, capture own horizontal 2");
+	public void testIsMoveValidWrongInputCaptureOwnHorizontalLeft() {
+		System.out.println("Rook, isMoveValid, wrong input, capture own horizontal left");
 		char[][] newboard = {
 			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
 			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{'N', ' ', ' ', 'T', ' ', ' ', ' ', ' '},
+			{' ', 'N', ' ', 'R', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
@@ -516,7 +516,7 @@ public class RookTest {
 		int end = 32;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i).getSign() == 'R') {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'R') {
 				piece = chessboard.getSquareContents(i);
 			}
 		}
@@ -545,7 +545,7 @@ public class RookTest {
 		int end = -1;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i).getSign() == 'r') {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'r') {
 				piece = chessboard.getSquareContents(i);
 			}
 		}
@@ -574,7 +574,7 @@ public class RookTest {
 		int end = 40;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i).getSign() == 'R') {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'R') {
 				piece = chessboard.getSquareContents(i);
 			}
 		}
@@ -603,7 +603,7 @@ public class RookTest {
 		int end = 43;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i).getSign() == 'R') {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'R') {
 				piece = chessboard.getSquareContents(i);
 			}
 		}
@@ -632,7 +632,7 @@ public class RookTest {
 		int end = 35;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
-			if (chessboard.getSquareContents(i).getSign() == 'R') {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'R') {
 				piece = chessboard.getSquareContents(i);
 			}
 		}
