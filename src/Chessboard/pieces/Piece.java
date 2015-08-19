@@ -215,7 +215,7 @@ public abstract class Piece implements Cloneable {
 	}
 	
 	/**
-	 * Verifies, if the horizontal or vertical route to the end square is free.
+	 * Verifies, if the horizontal or vertical route until the end square is free.
 	 * @param chessboard Chessboard-object, which pieces are to be moved.
 	 * @param end Position, where the current Piece-object is to be moved.
 	 * @return True, if route is free, false otherwise.
@@ -227,23 +227,23 @@ public abstract class Piece implements Cloneable {
 		int endRow = end / 8;
 		int endCol = end % 8;
 		int movement = Math.abs(startRow - endRow) == 0 ? Math.abs(startCol - endCol) : Math.abs(startRow - endRow);
+		if (!(startRow == endRow || startCol == endCol)) {
+			return false;
+		}
 		for (int i = 1; i < movement; i++) {
 			if (startRow == endRow) {
 				if (chessboard.getSquareContents(startRow, Math.min(startCol, endCol) + i) != null) {
 					moveOk = false;
 					break;
 				}
-			} else if (startCol == endCol) {
+			} else {
 				if (chessboard.getSquareContents(Math.min(startRow, endRow) + i, startCol) != null) {
 					moveOk = false;
 					break;
 				}
-			} else {
-				moveOk = false;
-				break;
 			}
 		}
-		return moveOk;
+		return moveOk && this.endSquareContainsEnemyOrEmpty(chessboard, end);
 	}
 	
 	protected boolean checkDiagonalRoutes(Chessboard chessboard, int end) {
@@ -252,29 +252,31 @@ public abstract class Piece implements Cloneable {
 		int startCol = position % 8;
 		int endRow = end / 8;
 		int endCol = end % 8;
-		
+		if (Math.abs(startRow - endRow) != Math.abs(startCol-endCol)) {
+			return false;
+		}
 		for (int i = 1; i < Math.abs(endRow-startRow); i++) {
-			// check south-east <-- ei toimi
-			if (startRow+i < 8 && startCol+i < 8) {
-				if (chessboard.getSquareContents(startRow+i, startCol+i) != null) {
+			// check south-east
+			if (startRow < endRow && startCol < endCol) {
+				if (startRow+i < 8 && startCol+i < 8 && chessboard.getSquareContents(startRow+i, startCol+i) != null) {
 					moveOk = false;
 					break;
 				}
 			// check south-west
-			} else if (startRow+i < 8 && startCol - i >= 0) {
-				if (chessboard.getSquareContents(startRow+i, startCol-i) != null) {
+			} else if (startRow < endRow && endCol < startCol) {
+				if (startRow+i < 8 && startCol - i >= 0 && chessboard.getSquareContents(startRow+i, startCol-i) != null) {
 					moveOk = false;
 					break;
 				}
 			// check north-east
-			} else if (startRow-i >= 0 && startCol+i < 8) {
-				if (chessboard.getSquareContents(startRow-i, startCol+i) != null) {
+			} else if (endRow < startRow && startCol < endCol) {
+				if (startRow-i >= 0 && startCol+i < 8 && chessboard.getSquareContents(startRow-i, startCol+i) != null) {
 					moveOk = false;
 					break;
 				}
 			// check north-west
-			} else if (startRow-i >= 0 && startCol-i >= 0) {
-				if (chessboard.getSquareContents(startRow-i, endRow-i) != null) {
+			} else if (endRow < startRow && endCol < startCol) {
+				if (startRow-i >= 0 && startCol-i >= 0 && chessboard.getSquareContents(startRow-i, startCol-i) != null) {
 					moveOk = false;
 					break;
 				}
@@ -282,7 +284,7 @@ public abstract class Piece implements Cloneable {
 				return false;
 			}
 		}
-		return moveOk;
+		return moveOk && this.endSquareContainsEnemyOrEmpty(chessboard, end);
 	}
 	
 	/**
@@ -302,7 +304,7 @@ public abstract class Piece implements Cloneable {
 	 * @return True, if end square contains enemy or is empty, false otherwise.
 	 */
 	public boolean endSquareContainsEnemyOrEmpty(Chessboard chessboard, int end) {
-		if (end < 0 || end > 63) {
+		if (!this.isCommandValid(end)) {
 			return false;
 		}
 		Piece endContents = chessboard.getSquareContents(end);
@@ -318,7 +320,7 @@ public abstract class Piece implements Cloneable {
 	 * @return True, if square contains enemy, false otherwise.
 	 */
 	public boolean endSquareContainsEnemy(Chessboard chessboard, int end) {
-		if (end < 0 || end > 63) {
+		if (!this.isCommandValid(end)) {
 			return false;
 		}
 		Piece endContents = chessboard.getSquareContents(end);

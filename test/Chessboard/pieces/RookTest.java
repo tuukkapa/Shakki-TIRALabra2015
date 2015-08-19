@@ -529,6 +529,122 @@ public class RookTest {
 	 * Test of isMoveValid method, of class Rook.
 	 */
 	@Test
+	public void testIsMoveValidWrongInputRouteBlockedVerticalUp() {
+		System.out.println("Rook, isMoveValid, wrong input, route blocked vertical up");
+		char[][] newboard = {
+			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
+			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', 'R', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', 'r', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard = new Chessboard(newboard);
+		int end = 11;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'r') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = false;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of isMoveValid method, of class Rook.
+	 */
+	@Test
+	public void testIsMoveValidWrongInputRouteBlockedVerticalDown() {
+		System.out.println("Rook, isMoveValid, wrong input, route blocked vertical down");
+		char[][] newboard = {
+			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
+			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', 'R', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', 'N', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{' ', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
+		};
+		chessboard = new Chessboard(newboard);
+		int end = 51;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'R') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = false;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of isMoveValid method, of class Rook.
+	 */
+	@Test
+	public void testIsMoveValidWrongInputRouteBlockedHorizontalRight() {
+		System.out.println("Rook, isMoveValid, wrong input, route blocked horizontal right");
+		char[][] newboard = {
+			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
+			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', 'r', ' ', ' ', 'r', 'n'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard = new Chessboard(newboard);
+		int end = 39;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'r') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = false;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of isMoveValid method, of class Rook.
+	 */
+	@Test
+	public void testIsMoveValidWrongInputRouteBlockedHorizontalLeft() {
+		System.out.println("Rook, isMoveValid, wrong input, routeblocked horizontal left");
+		char[][] newboard = {
+			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
+			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'N', 'r', 'R', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard = new Chessboard(newboard);
+		int end = 32;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'R') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = false;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of isMoveValid method, of class Rook.
+	 */
+	@Test
 	public void testIsMoveValidWrongInputMoveOutsideBoard() {
 		System.out.println("Rook, isMoveValid, wrong input, move outside board");
 		char[][] newboard = {

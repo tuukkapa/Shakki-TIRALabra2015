@@ -98,26 +98,13 @@ public class AITest {
 	 * Test of minimax method, of class AI.
 	 * @throws java.lang.Exception
 	 */
-	/*@Test
+	@Test
 	public void testMinimaxMaximizingPlayerDepth5() throws Exception {
 		System.out.println("minimax, maximizing, depth 5");
 		int depth = 5;
 		boolean maximizingPlayer = true;
-		Move result = ai.minimax(chessboard, depth, maximizingPlayer);
-		assertNotNull(result);
-	}*/
-	
-	/**
-	 * Test of minimax method, of class AI.
-	 * @throws java.lang.Exception
-	 */
-	/*@Test
-	public void testMinimaxMinimizingPlayerDepth5() throws Exception {
-		System.out.println("minimax, minimizing, depth 5");
-		int depth = 5;
-		boolean maximizingPlayer = false;
-		Move result = ai.minimax(chessboard, depth, maximizingPlayer);
+		Move result = ai.getMove(chessboard, depth);
 		assertNotNull(result);
 	}
-	*/
+	
 }

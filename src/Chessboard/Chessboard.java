@@ -155,14 +155,10 @@ public class Chessboard {
 	}
 	
 	public boolean movePiece(Move move) {
-		if (move == null) {
-			return false;
-		}
 		int start = move.getStart();
 		int end = move.getEnd();
 		Piece piece = chessboard[start/8][start%8];
 		if (piece == null) {
-			//this.errorToScreen(piece, move, end);
 			return false;
 		}
 		if (piece.isMoveValid(this, end)) {
@@ -176,9 +172,6 @@ public class Chessboard {
 	
 	private boolean performMove(Move move) {
 		Piece piece = this.getSquareContents(move.getStart());
-		if (piece == null) {
-			return false;
-		}
 		int start = move.getStart();
 		int end = move.getEnd();
 		if (piece.endSquareContainsEnemy(this, end)) {
@@ -196,9 +189,6 @@ public class Chessboard {
 	private boolean undoMove(Move move) {
 		Piece capturedPiece = move.getCapturedPiece();
 		Piece movedPiece = chessboard[move.getEnd()/8][move.getEnd()%8];
-		if (movedPiece == null) {
-			return false;
-		}
 		chessboard[move.getStart()/8][move.getStart()%8] = movedPiece;
 		if (capturedPiece == null) {
 			chessboard[move.getEnd()/8][move.getEnd()%8] = null;
@@ -211,13 +201,9 @@ public class Chessboard {
 	
 	public boolean wouldItBeCheck(Piece piece, int end) {
 		Move move = new Move(piece.getPosition(), end);
-		if (!this.performMove(move)) {
-			this.errorToScreen(piece, move, end);
-		}
+		this.performMove(move);
 		boolean checkSituation = this.isItCheck(piece.amIWhite());
-		if (!this.undoMove(move)) {
-			this.errorToScreen(piece, move, end);
-		}
+		this.undoMove(move);
 		return checkSituation;
 	}
 	

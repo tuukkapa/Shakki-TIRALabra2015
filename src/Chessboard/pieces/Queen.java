@@ -57,7 +57,7 @@ public class Queen extends Piece implements Cloneable {
 			return false;
 		}
 		
-		return moveOk && !chessboard.wouldItBeCheck(this, end) && this.endSquareContainsEnemyOrEmpty(chessboard, end);
+		return moveOk && this.endSquareContainsEnemyOrEmpty(chessboard, end) && !chessboard.wouldItBeCheck(this, end);
 	}
 	
 	@Override

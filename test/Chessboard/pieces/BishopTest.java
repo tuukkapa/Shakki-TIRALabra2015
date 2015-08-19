@@ -48,7 +48,7 @@ public class BishopTest {
 	 */
 	@Test
 	public void testGetPossibleMovesBlackBottomLeft() {
-		System.out.println("Bishop, getPossibleMoves, white bottom left");
+		System.out.println("Bishop, getPossibleMoves, black bottom left");
 		char[][] newboard = {
 			{' ', 'n', ' ', 'q', 'k', ' ', 'n', ' '},
 			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
@@ -100,7 +100,7 @@ public class BishopTest {
 	 */
 	@Test
 	public void testGetPossibleMovesBlackTopLeft() {
-		System.out.println("Bishop, getPossibleMoves, white top left");
+		System.out.println("Bishop, getPossibleMoves, black top left");
 		char[][] newboard = {
 			{' ', 'n', ' ', 'q', 'k', ' ', 'n', ' '},
 			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
@@ -152,7 +152,7 @@ public class BishopTest {
 	 */
 	@Test
 	public void testGetPossibleMovesBlackTopRight() {
-		System.out.println("Bishop, getPossibleMoves, white top left");
+		System.out.println("Bishop, getPossibleMoves, black top right");
 		char[][] newboard = {
 			{' ', 'n', ' ', 'q', 'k', ' ', 'n', ' '},
 			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
@@ -204,7 +204,7 @@ public class BishopTest {
 	 */
 	@Test
 	public void testGetPossibleMovesBlackBottomRight() {
-		System.out.println("Bishop, getPossibleMoves, white top left");
+		System.out.println("Bishop, getPossibleMoves, black bottom right");
 		char[][] newboard = {
 			{' ', 'n', ' ', 'q', 'k', ' ', 'n', ' '},
 			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
@@ -354,6 +354,369 @@ public class BishopTest {
 		boolean result = piece.isMoveValid(chessboard, end);
 		assertEquals(expResult, result);
 	}
+	
+	@Test
+	public void testIsMoveValidCorrectInputNE() {
+		System.out.println("Bishop, isMoveValid, correct input NE");
+		char[][] newboard = {
+			{'r', 'n', ' ', 'q', 'k', ' ', 'n', 'r'},
+			{'p', 'p', ' ', 'p', 'p', 'p', 'Q', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', 'b', ' ', ' ', 'N'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard = new Chessboard(newboard);
+		int end = 22;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'b') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = true;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	@Test
+	public void testIsMoveValidCorrectInputSE() {
+		System.out.println("Bishop, isMoveValid, correct input SE");
+		char[][] newboard = {
+			{'r', 'n', ' ', 'q', 'k', ' ', 'n', 'r'},
+			{'p', 'p', ' ', 'p', 'p', 'p', 'Q', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', 'B', ' ', ' ', ' ', 'N'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', ' ', 'P', 'P'},
+			{'R', 'N', ' ', 'Q', 'K', ' ', 'N', 'R'}
+		};
+		chessboard = new Chessboard(newboard);
+		int end = 53;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'B') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = true;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	@Test
+	public void testIsMoveValidCorrectInputSW() {
+		System.out.println("Bishop, isMoveValid, correct input SW");
+		char[][] newboard = {
+			{'r', 'n', ' ', 'q', 'k', ' ', 'n', 'r'},
+			{'p', 'p', ' ', 'p', 'p', 'p', 'Q', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', 'B', ' ', ' ', ' ', 'N'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', ' ', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', ' ', 'Q', 'K', ' ', 'N', 'R'}
+		};
+		chessboard = new Chessboard(newboard);
+		int end = 49;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'B') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = true;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	@Test
+	public void testIsMoveValidCorrectInputNW() {
+		System.out.println("Bishop, isMoveValid, correct input NW");
+		char[][] newboard = {
+			{'r', 'n', ' ', 'q', 'k', ' ', 'n', 'r'},
+			{' ', ' ', ' ', 'p', 'p', 'p', 'Q', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', 'B', ' ', ' ', ' ', 'N'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'p', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', ' ', 'Q', 'K', ' ', 'N', 'R'}
+		};
+		chessboard = new Chessboard(newboard);
+		int end = 8;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'B') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = true;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
 
+	@Test
+	public void testIsMoveValidWrongInputTryCaptureNE() {
+		System.out.println("Bishop, isMoveValid, wrong input try capture NE");
+		char[][] newboard = {
+			{'r', 'n', ' ', 'q', 'k', ' ', 'n', 'r'},
+			{'p', 'p', ' ', 'p', 'p', 'p', 'q', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', 'b', ' ', ' ', 'N'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard = new Chessboard(newboard);
+		int end = 15;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'b') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = false;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	@Test
+	public void testIsMoveValidWrongInputTryCaptureSE() {
+		System.out.println("Bishop, isMoveValid, wrong input try capture SE");
+		char[][] newboard = {
+			{'r', 'n', ' ', 'q', 'k', ' ', 'n', 'r'},
+			{'p', 'p', ' ', 'p', 'p', 'p', 'Q', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', 'B', ' ', ' ', ' ', 'N'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', ' ', 'Q', 'K', ' ', 'N', 'R'}
+		};
+		chessboard = new Chessboard(newboard);
+		int end = 53;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'B') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = false;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	@Test
+	public void testIsMoveValidWrongInputTryCaptureSW() {
+		System.out.println("Bishop, isMoveValid, wrong input try capture SW");
+		char[][] newboard = {
+			{'r', 'n', ' ', 'q', 'k', ' ', 'n', 'r'},
+			{'p', 'p', ' ', 'p', 'p', 'p', 'Q', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', 'B', ' ', ' ', ' ', 'N'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', ' ', 'Q', 'K', ' ', 'N', 'R'}
+		};
+		chessboard = new Chessboard(newboard);
+		int end = 49;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'B') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = false;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	@Test
+	public void testIsMoveValidWrongInputTryCaptureNW() {
+		System.out.println("Bishop, isMoveValid, correct input NW");
+		char[][] newboard = {
+			{'r', 'n', ' ', 'q', 'k', ' ', 'n', 'r'},
+			{'R', ' ', ' ', 'p', 'p', 'p', 'Q', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', 'B', ' ', ' ', ' ', 'N'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'p', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{' ', 'N', ' ', 'Q', 'K', ' ', 'N', 'R'}
+		};
+		chessboard = new Chessboard(newboard);
+		int end = 8;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'B') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = false;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	@Test
+	public void testIsMoveValidWrongInputNoRouteNE() {
+		System.out.println("Bishop, isMoveValid, wrong input no route NE");
+		char[][] newboard = {
+			{'r', 'n', ' ', 'q', 'k', ' ', 'n', 'r'},
+			{'p', 'p', ' ', 'p', 'p', 'p', 'q', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', 'r', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', 'b', ' ', ' ', 'N'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard = new Chessboard(newboard);
+		int end = 22;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'b') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = false;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	@Test
+	public void testIsMoveValidWrongInputNoRouteSE() {
+		System.out.println("Bishop, isMoveValid, wrong input no route SE");
+		char[][] newboard = {
+			{'r', 'n', ' ', 'q', 'k', ' ', 'n', 'r'},
+			{'p', 'p', ' ', 'p', 'p', 'p', 'Q', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', 'B', ' ', ' ', ' ', 'N'},
+			{' ', ' ', ' ', ' ', 'R', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', ' ', 'Q', 'K', ' ', 'N', 'R'}
+		};
+		chessboard = new Chessboard(newboard);
+		int end = 53;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'B') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = false;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	@Test
+	public void testIsMoveValidWrongInputNoRouteSW() {
+		System.out.println("Bishop, isMoveValid, wrong input no route SW");
+		char[][] newboard = {
+			{'r', 'n', ' ', 'q', 'k', ' ', 'n', 'r'},
+			{'p', 'p', ' ', 'p', 'p', 'p', 'Q', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', 'B', ' ', ' ', ' ', 'N'},
+			{' ', ' ', 'N', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', ' ', 'Q', 'K', ' ', 'N', 'R'}
+		};
+		chessboard = new Chessboard(newboard);
+		int end = 49;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'B') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = false;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	@Test
+	public void testIsMoveValidWrongInputNoRouteNW() {
+		System.out.println("Bishop, isMoveValid, correct input NW");
+		char[][] newboard = {
+			{'r', 'n', ' ', 'q', 'k', ' ', 'n', 'r'},
+			{'R', ' ', ' ', 'p', 'p', 'p', 'Q', 'p'},
+			{' ', 'R', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', 'B', ' ', ' ', ' ', 'N'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'p', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{' ', 'N', ' ', 'Q', 'K', ' ', 'N', 'R'}
+		};
+		chessboard = new Chessboard(newboard);
+		int end = 8;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'B') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = false;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	@Test
+	public void testIsMoveValidWrongInputTryCauseCheck() {
+		System.out.println("Bishop, isMoveValid, correct input NW");
+		char[][] newboard = {
+			{'r', 'n', ' ', 'q', 'k', ' ', 'n', 'r'},
+			{'R', ' ', ' ', 'p', 'p', 'p', 'Q', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'b', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'N'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'p', 'P', 'B', 'P', 'P', 'P', 'P'},
+			{' ', 'N', ' ', 'Q', 'K', ' ', 'N', 'R'}
+		};
+		chessboard = new Chessboard(newboard);
+		int end = 44;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'B') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = false;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	@Test
+	public void testIsMoveValidWrongInputMoveHorizontally() {
+		System.out.println("Bishop, isMoveValid, correct input move horizontally");
+		char[][] newboard = {
+			{'r', 'n', ' ', 'q', 'k', ' ', 'n', 'r'},
+			{'R', ' ', ' ', 'p', 'p', 'p', 'Q', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'b', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'N'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'p', 'P', 'B', 'P', 'P', 'P', 'P'},
+			{' ', 'N', ' ', 'Q', 'K', ' ', 'N', 'R'}
+		};
+		chessboard = new Chessboard(newboard);
+		int end = 25;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'B') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = false;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
 	
 }
