@@ -57,18 +57,6 @@ public class AITest {
 	
 	/**
 	 * Test of minimax method, of class AI.
-	 */
-	@Test
-	public void testMinimaxMinimizingPlayerDepth1() throws Exception {
-		System.out.println("minimax, minimizing, depth 1");
-		int depth = 2;
-		boolean maximizingPlayer = false;
-		Move result = ai.getMove(chessboard, depth);
-		assertNotNull(result);
-	}
-	
-	/**
-	 * Test of minimax method, of class AI.
 	 * @throws java.lang.Exception
 	 */
 	@Test
@@ -76,19 +64,6 @@ public class AITest {
 		System.out.println("minimax, maximizing, depth 2");
 		int depth = 2;
 		boolean maximizingPlayer = true;
-		Move result = ai.getMove(chessboard, depth);
-		assertNotNull(result);
-	}
-	
-	/**
-	 * Test of minimax method, of class AI.
-	 * @throws java.lang.Exception
-	 */
-	@Test
-	public void testMinimaxMinimizingPlayerDepth2() throws Exception {
-		System.out.println("minimax, minimizing, depth 2");
-		int depth = 2;
-		boolean maximizingPlayer = false;
 		Move result = ai.getMove(chessboard, depth);
 		assertNotNull(result);
 	}
@@ -111,36 +86,10 @@ public class AITest {
 	 * @throws java.lang.Exception
 	 */
 	@Test
-	public void testMinimaxMinimizingPlayerDepth3() throws Exception {
-		System.out.println("minimax, minimizing, depth 3");
-		int depth = 3;
-		boolean maximizingPlayer = false;
-		Move result = ai.getMove(chessboard, depth);
-		assertNotNull(result);
-	}
-	
-	/**
-	 * Test of minimax method, of class AI.
-	 * @throws java.lang.Exception
-	 */
-	@Test
 	public void testMinimaxMaximizingPlayerDepth4() throws Exception {
 		System.out.println("minimax, maximizing, depth 4");
 		int depth = 4;
 		boolean maximizingPlayer = true;
-		Move result = ai.getMove(chessboard, depth);
-		assertNotNull(result);
-	}
-	
-	/**
-	 * Test of minimax method, of class AI.
-	 * @throws java.lang.Exception
-	 */
-	@Test
-	public void testMinimaxMinimizingPlayerDepth4() throws Exception {
-		System.out.println("minimax, minimizing, depth 4");
-		int depth = 4;
-		boolean maximizingPlayer = false;
 		Move result = ai.getMove(chessboard, depth);
 		assertNotNull(result);
 	}

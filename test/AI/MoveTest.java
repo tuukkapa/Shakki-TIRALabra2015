@@ -38,24 +38,12 @@ public class MoveTest {
 	}
 
 	/**
-	 * Test of getScore method, of class Move.
-	 */
-	@Test
-	public void testGetScore() {
-		System.out.println("getScore");
-		Move instance = new Move(20, 52, 44);
-		int expResult = 20;
-		int result = instance.getScore();
-		assertEquals(expResult, result);
-	}
-
-	/**
 	 * Test of getStart method, of class Move.
 	 */
 	@Test
 	public void testGetStart() {
 		System.out.println("getStart");
-		Move instance = new Move(20, 52, 44);
+		Move instance = new Move(52, 44);
 		int expResult = 52;
 		int result = instance.getStart();
 		assertEquals(expResult, result);
@@ -67,7 +55,7 @@ public class MoveTest {
 	@Test
 	public void testGetEnd() {
 		System.out.println("getEnd");
-		Move instance = new Move(20, 52, 44);
+		Move instance = new Move(52, 44);
 		int expResult = 44;
 		int result = instance.getEnd();
 		assertEquals(expResult, result);

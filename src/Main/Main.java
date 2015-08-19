@@ -9,8 +9,6 @@ import Chessboard.Chessboard;
 import Chessboard.pieces.Piece;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Main class of Chess-game "Shakki". Run this to start the game.
@@ -45,10 +43,10 @@ public class Main {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{' ', ' ', ' ', ' ', 'K', ' ', ' ', ' '}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard = new Chessboard();
 		ai = new AI();
 		input = new Scanner(System.in);
-		depth = 3;
+		depth = 2;
 	}
 	
 	/**
@@ -82,7 +80,8 @@ public class Main {
 					try {
 						move = ai.getMove(chessboard, depth);
 					} catch (NullPointerException ne) {
-						System.out.println("getcause getmessage: " + ne.getCause().getMessage());
+						//System.out.println("getcause getmessage: " + ne.getCause().getMessage());
+						System.out.println(ne.getStackTrace().toString());
 						System.out.println("getmessage: " + ne.getMessage());
 						System.out.println("tostring: " + ne.toString());
 					} catch (Exception e) {

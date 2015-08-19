@@ -11,15 +11,12 @@ import Chessboard.pieces.Queen;
 import Chessboard.pieces.Rook;
 import UI.UserInterface;
 import java.util.ArrayList;
-import java.util.TreeMap;
-import java.util.Vector;
 
 public class Chessboard {
 	
 	private Piece[][] chessboard;
 	private ArrayList<Piece> blackPieces, whitePieces;
-	private int whiteKingPosition, blackKingPosition;
-	private boolean virhe;
+	private Piece whiteKing, blackKing;
 	
 	public Chessboard() {
 		chessboard = new Piece[8][8];
@@ -34,7 +31,6 @@ public class Chessboard {
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
 		this.setBoard(newboard);
-		virhe = false;
 	}
 	
 	public Chessboard(char[][] newboard) {
@@ -46,11 +42,7 @@ public class Chessboard {
 		chessboard = newboard;
 	}
 	
-	public Piece[][] getBoard() {
-		return chessboard;
-	}
-	
-	public void setBoard(Piece[][] newboard) throws CloneNotSupportedException {
+	private void setBoardbyCloningOrig(Piece[][] newboard) throws CloneNotSupportedException {
 		blackPieces = new ArrayList<>();
 		whitePieces = new ArrayList<>();
 		for (int i = 0; i < 64; i++) {
@@ -63,11 +55,32 @@ public class Chessboard {
 				} else {
 					blackPieces.add(chessboard[i/8][i%8]);
 				}
+				if (chessboard[i/8][i%8] instanceof King && chessboard[i/8][i%8].amIWhite()) {
+					whiteKing = chessboard[i/8][i%8];
+				}
+				if (chessboard[i/8][i%8] instanceof King && !chessboard[i/8][i%8].amIWhite()) {
+					blackKing = chessboard[i/8][i%8];
+				}
 			}
 		}
 	}
 	
-	public void setBoard(char[][] newboard) {
+	private Piece[][] clonePieceArray() {
+		Piece[][] newBoard = new Piece[8][8];
+		for (int i = 0; i < chessboard.length; i++) {
+			System.arraycopy(chessboard[i], 0, newBoard[i], 0, chessboard[i].length);
+		}
+		return newBoard;
+	}
+	
+	public Chessboard cloneBoardAndPieces(Chessboard chessboard) throws CloneNotSupportedException {
+		Piece[][] cloneArray = chessboard.clonePieceArray();
+		Chessboard clonedBoard = new Chessboard();
+		clonedBoard.setBoardbyCloningOrig(cloneArray);
+		return clonedBoard;
+	}
+	
+	private void setBoard(char[][] newboard) {
 		blackPieces = new ArrayList<>();
 		whitePieces = new ArrayList<>();
 		for (int i = 0; i < 64; i++) {
@@ -87,9 +100,9 @@ public class Chessboard {
 				chessboard[i/8][i%8] = new Queen(false, i);
 				blackPieces.add(chessboard[i/8][i%8]);
 			} else if (newboard[i/8][i%8] == 'k') {
-				chessboard[i/8][i%8] = new King(false, i);
-				blackPieces.add(chessboard[i/8][i%8]);
-				blackKingPosition = i;
+				blackKing = new King(false, i);
+				chessboard[i/8][i%8] = blackKing;
+				blackPieces.add(blackKing);
 			} else if (newboard[i/8][i%8] == 'P') {
 				chessboard[i/8][i%8] = new Pawn(true, i);
 				whitePieces.add(chessboard[i/8][i%8]);
@@ -106,9 +119,9 @@ public class Chessboard {
 				chessboard[i/8][i%8] = new Queen(true, i);
 				whitePieces.add(chessboard[i/8][i%8]);
 			} else if (newboard[i/8][i%8] == 'K') {
-				chessboard[i/8][i%8] = new King(true, i);
-				whitePieces.add(chessboard[i/8][i%8]);
-				whiteKingPosition = i;
+				whiteKing = new King(true, i);
+				chessboard[i/8][i%8] = whiteKing;
+				whitePieces.add(whiteKing);
 			} else {
 				chessboard[i/8][i%8] = null;
 			}
@@ -117,28 +130,6 @@ public class Chessboard {
 	
 	public ArrayList<Piece> getPieces(boolean white) {
 		return white ? whitePieces : blackPieces;
-	}
-	
-	public Piece[][] cloneBoard() {
-		Piece[][] newBoard = new Piece[8][8];
-		for (int i = 0; i < chessboard.length; i++) {
-			System.arraycopy(chessboard[i], 0, newBoard[i], 0, chessboard[i].length);
-		}
-		return newBoard;
-	}
-	
-	public ArrayList<Piece> clonePieces(boolean white) throws CloneNotSupportedException {
-		ArrayList<Piece> newPieces = new ArrayList<>();
-		if (white) {
-			for (Piece piece : whitePieces) {
-				newPieces.add((Piece)piece.clone());
-			}
-		} else {
-			for (Piece piece : blackPieces) {
-				newPieces.add((Piece)piece.clone());
-			}
-		}
-		return newPieces;
 	}
 	
 	public Piece getSquareContents(int position) {
@@ -163,21 +154,10 @@ public class Chessboard {
 		return newboard;
 	}
 	
-	private void updateKingPosition(boolean colour) {
-		char king = colour ? 'K' : 'k';
-		for (int i = 0; i < 64; i++) {
-			if (chessboard[i/8][i%8].getSign() == king) {
-				if (colour) {
-					whiteKingPosition = i;
-				} else {
-					blackKingPosition = i;
-				}
-				break;
-			}
-		}
-	}
-	
 	public boolean movePiece(Move move) {
+		if (move == null) {
+			System.out.println("hei");
+		}
 		int start = move.getStart();
 		int end = move.getEnd();
 		Piece piece = chessboard[start/8][start%8];
@@ -213,7 +193,7 @@ public class Chessboard {
 		return true;
 	}
 	
-	public boolean undoMove(Move move) {
+	private boolean undoMove(Move move) {
 		Piece capturedPiece = move.getCapturedPiece();
 		Piece movedPiece = chessboard[move.getEnd()/8][move.getEnd()%8];
 		if (movedPiece == null) {
@@ -231,20 +211,6 @@ public class Chessboard {
 	
 	public boolean wouldItBeCheck(Piece piece, int end) {
 		Move move = new Move(piece.getPosition(), end);
-		if (piece == null) {
-			return false;
-		}
-		boolean loytyi = false;
-		for (int r = 0; r < 8; r++) {
-			for (int s = 0; s < 8; s++) {
-				if (chessboard[r][s] != null) {
-					if (chessboard[r][s].equals(piece)) {
-						loytyi = true;
-						break;
-					}
-				}
-			}
-		}
 		if (!this.performMove(move)) {
 			this.errorToScreen(piece, move, end);
 		}
@@ -284,8 +250,8 @@ public class Chessboard {
 	public boolean isItCheck(boolean checkedIsWhite) {
 		int kRow, kCol;
 		
-		kRow = checkedIsWhite ? whiteKingPosition/8 : blackKingPosition/8;
-		kCol = checkedIsWhite ? whiteKingPosition%8 : blackKingPosition%8;
+		kRow = checkedIsWhite ? whiteKing.getPosition()/8 : blackKing.getPosition()%8;
+		kCol = checkedIsWhite ? whiteKing.getPosition()%8 : blackKing.getPosition()%8;
 		
 		boolean pieceIsEnemy;
 		
@@ -392,15 +358,22 @@ public class Chessboard {
 		}
 		return false;
 	}
-	
-	public boolean isItCheckMate(boolean checkedIsWhite) {
-		Piece king = checkedIsWhite ? chessboard[whiteKingPosition/8][whiteKingPosition%8] : chessboard[blackKingPosition/8][blackKingPosition%8];
-		if (king == null) {
-			return false;
+	 /**
+	 * 
+	 * @return Integer: 1 = checkmate against white, 0 = checkmate against black, -1 = no checkmate
+	 */
+	public int isItCheckMate() {
+		// check from white's POW
+		ArrayList<Move> moves = whiteKing.getPossibleMoves(this);
+		if (this.isItCheck(true) && (moves == null || moves.isEmpty())) {
+			return 1;
 		}
-		ArrayList<Move> moves;
-		moves = king.getPossibleMoves(this);
-		return this.isItCheck(checkedIsWhite) && moves.isEmpty();
+		// check from black's POW
+		moves = blackKing.getPossibleMoves(this);
+		if (this.isItCheck(false) && moves.isEmpty()) {
+			return 0;
+		}
+		return -1;
 	}
 	
 	public int evaluate() {
@@ -429,15 +402,16 @@ public class Chessboard {
 			if (chessboard[i/8][i%8] instanceof Bishop && pieceIsWhite) points -= bishopPoints;
 			if (chessboard[i/8][i%8] instanceof Pawn && pieceIsWhite) points -= pawnPoints;
 		}
+		int checkMate = this.isItCheckMate();
 		if (this.isItCheck(true)) {
 			points += 1000;
-			if (this.isItCheckMate(true)) {
+			if (checkMate == 1) {
 				points = Integer.MAX_VALUE;
 			}
 		}
 		if (this.isItCheck(false)) {
 			points -= 1000;
-			if (this.isItCheckMate(false)) {
+			if (checkMate == 0) {
 				points = Integer.MIN_VALUE;
 			}
 		}

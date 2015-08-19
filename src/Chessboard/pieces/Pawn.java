@@ -79,7 +79,7 @@ public class Pawn extends Piece implements Cloneable {
 			}
 		}
 		
-		return movementOk /*&& !chessboard.wouldItBeCheck(this, end)*/;
+		return movementOk && !chessboard.wouldItBeCheck(this, end);
 	}
 	
 	@Override
