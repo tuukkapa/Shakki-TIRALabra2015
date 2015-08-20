@@ -1,6 +1,7 @@
 package AI;
 
 
+import Chessboard.Move;
 import Chessboard.Chessboard;
 import Chessboard.pieces.Piece;
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class AI {
 	 */
 	public int max(Chessboard chessboard, int depth) throws CloneNotSupportedException {
 		if (depth == 0 || chessboard.isItCheckMate() >= 0) {
-			return chessboard.evaluate();
+			return Evaluate.evaluate(chessboard);
 		}
 		int bestValue = Integer.MIN_VALUE;
 		int value = 0;
@@ -71,7 +72,7 @@ public class AI {
 	 */
 	public int min(Chessboard chessboard, int depth) throws CloneNotSupportedException {
 		if (depth == 0 || chessboard.isItCheckMate() >= 0) {
-			return chessboard.evaluate();
+			return Evaluate.evaluate(chessboard);
 		}
 		int bestValue = Integer.MAX_VALUE;
 		int value = 0;

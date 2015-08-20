@@ -1,5 +1,5 @@
 
-import AI.Move;
+import Chessboard.Move;
 import Chessboard.Chessboard;
 import Chessboard.pieces.Piece;
 import Chessboard.pieces.Rook;

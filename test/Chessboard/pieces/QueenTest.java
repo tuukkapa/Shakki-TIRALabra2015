@@ -5,7 +5,7 @@
  */
 package Chessboard.pieces;
 
-import AI.Move;
+import Chessboard.Move;
 import Chessboard.Chessboard;
 import java.util.ArrayList;
 import org.junit.After;
@@ -128,6 +128,58 @@ public class QueenTest {
 			{false, false, true, true, true, false, false, false},
 			{false, true, false, true, false, true, false, false},
 			{true, false, false, false, false, false, false, false}
+		};
+		int correctMovementsExpected = 0;
+		for (int i = 0; i < 64; i++) {
+			if (expectedMovementMap[i/8][i%8]) {
+				correctMovementsExpected++;
+			}
+		}
+		int correctMovementsResult = 0;
+		boolean noWrongMovementFound = true;
+		for (int i = 0; i < resultList.size(); i++) {
+			if (expectedMovementMap[resultList.get(i).getEnd()/8][resultList.get(i).getEnd()%8]) {
+				correctMovementsResult++;
+			} else {
+				noWrongMovementFound = false;
+			}
+		}
+		assertTrue(noWrongMovementFound && correctMovementsExpected == correctMovementsResult);
+	}
+	
+	/**
+	 * Test of getPossibleMoves method, of class Rook.
+	 */
+	@Test
+	public void testGetPossibleMovesBlackCauseCheck() {
+		System.out.println("Queen, getPossibleMoves, black, cause check");
+		char[][] newboard = {
+			{'r', 'n', 'b', ' ', 'k', 'b', 'n', 'r'},
+			{'p', 'p', ' ', 'p', ' ', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', 'q', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', ' ', 'P', 'P', 'R', 'P', 'P', 'P'},
+			{' ', 'N', 'B', ' ', 'K', 'B', 'N', ' '}
+		};
+		chessboard = new Chessboard(newboard);
+		Queen queen = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'q') {
+				queen = (Queen)chessboard.getSquareContents(i);
+			}
+		}
+		ArrayList<Move> resultList = queen.getPossibleMoves(chessboard);
+		boolean[][] expectedMovementMap = {
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, true, false, false, false},
+			{false, false, false, false, true, false, false, false},
+			{false, false, false, false, true, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, true, false, false, false},
+			{false, false, false, false, true, false, false, false},
+			{false, false, false, false, false, false, false, false},
 		};
 		int correctMovementsExpected = 0;
 		for (int i = 0; i < 64; i++) {

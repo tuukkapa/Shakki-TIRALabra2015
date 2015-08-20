@@ -6,7 +6,7 @@
 
 package Chessboard.pieces;
 
-import AI.Move;
+import Chessboard.Move;
 import Chessboard.Chessboard;
 import java.util.ArrayList;
 
@@ -28,28 +28,28 @@ public class Knight extends Piece implements Cloneable {
 		ArrayList<Move> moves = new ArrayList<>();
 		int row = position / 8;
 		int col = position % 8;
-		if (row - 1 >= 0 && col - 2 >= 0 && this.endSquareContainsEnemyOrEmpty(chessboard, (row - 1) * 8 + (col - 2))) {
+		if (row - 1 >= 0 && col - 2 >= 0 && this.endSquareContainsEnemyOrEmpty(chessboard, (row - 1) * 8 + (col - 2)) && !chessboard.wouldItBeCheck(this, (row - 1) * 8 + (col - 2))) {
 			moves.add(new Move(position, (row - 1) * 8 + (col - 2)));
 		}
-		if (row - 2 >= 0 && col - 1 >= 0 && this.endSquareContainsEnemyOrEmpty(chessboard, (row - 2) * 8 + (col - 1))) {
+		if (row - 2 >= 0 && col - 1 >= 0 && this.endSquareContainsEnemyOrEmpty(chessboard, (row - 2) * 8 + (col - 1)) && !chessboard.wouldItBeCheck(this, (row - 2) * 8 + (col - 1))) {
 			moves.add(new Move(position, (row - 2) * 8 + (col - 1)));
 		}
-		if (row - 2 >= 0 && col + 1 < 8 && this.endSquareContainsEnemyOrEmpty(chessboard, (row - 2) * 8 + (col + 1))) {
+		if (row - 2 >= 0 && col + 1 < 8 && this.endSquareContainsEnemyOrEmpty(chessboard, (row - 2) * 8 + (col + 1)) && !chessboard.wouldItBeCheck(this, (row - 2) * 8 + (col + 1))) {
 			moves.add(new Move(position, (row - 2) * 8 + (col + 1)));
 		}
-		if (row - 1 >= 0 && col + 2 < 8 && this.endSquareContainsEnemyOrEmpty(chessboard, (row - 1) * 8 + (col + 2))) {
+		if (row - 1 >= 0 && col + 2 < 8 && this.endSquareContainsEnemyOrEmpty(chessboard, (row - 1) * 8 + (col + 2)) && !chessboard.wouldItBeCheck(this, (row - 1) * 8 + (col + 2))) {
 			moves.add(new Move(position, (row - 1) * 8 + (col + 2)));
 		}
-		if (row + 1 < 8 && col + 2 < 8 && this.endSquareContainsEnemyOrEmpty(chessboard, (row + 1) * 8 + (col + 2))) {
+		if (row + 1 < 8 && col + 2 < 8 && this.endSquareContainsEnemyOrEmpty(chessboard, (row + 1) * 8 + (col + 2)) && !chessboard.wouldItBeCheck(this, (row + 1) * 8 + (col + 2))) {
 			moves.add(new Move(position, (row + 1) * 8 + (col + 2)));
 		}
-		if (row + 2 < 8 && col + 1 < 8 && this.endSquareContainsEnemyOrEmpty(chessboard, (row + 2) * 8 + (col + 1))) {
+		if (row + 2 < 8 && col + 1 < 8 && this.endSquareContainsEnemyOrEmpty(chessboard, (row + 2) * 8 + (col + 1)) && !chessboard.wouldItBeCheck(this, (row + 2) * 8 + (col + 1))) {
 			moves.add(new Move(position, (row + 2) * 8 + (col + 1)));
 		}
-		if (row + 2 < 8 && col - 1 >= 0 && this.endSquareContainsEnemyOrEmpty(chessboard, (row + 2) * 8 + (col - 1))) {
+		if (row + 2 < 8 && col - 1 >= 0 && this.endSquareContainsEnemyOrEmpty(chessboard, (row + 2) * 8 + (col - 1)) && !chessboard.wouldItBeCheck(this, (row + 2) * 8 + (col - 1))) {
 			moves.add(new Move(position, (row + 2) * 8 + (col - 1)));
 		}
-		if (row + 1 < 8 && col - 2 >= 0 && this.endSquareContainsEnemyOrEmpty(chessboard, (row + 1) * 8 + (col - 2))) {
+		if (row + 1 < 8 && col - 2 >= 0 && this.endSquareContainsEnemyOrEmpty(chessboard, (row + 1) * 8 + (col - 2)) && !chessboard.wouldItBeCheck(this, (row + 1) * 8 + (col - 2))) {
 			moves.add(new Move(position, (row + 1) * 8 + (col - 2)));
 		}
 

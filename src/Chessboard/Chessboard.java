@@ -1,7 +1,6 @@
 
 package Chessboard;
 
-import AI.Move;
 import Chessboard.pieces.Bishop;
 import Chessboard.pieces.King;
 import Chessboard.pieces.Knight;
@@ -28,6 +27,7 @@ public class Chessboard {
 	private Piece[][] chessboard;
 	private ArrayList<Piece> blackPieces, whitePieces;
 	private Piece whiteKing, blackKing;
+	private boolean checkForWhite, checkForBlack;
 	
 	public Chessboard() {
 		chessboard = new Piece[8][8];
@@ -42,6 +42,8 @@ public class Chessboard {
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
 		this.setBoard(newboard);
+		checkForWhite = false;
+		checkForBlack = false;
 	}
 	
 	/**
@@ -341,6 +343,11 @@ public class Chessboard {
 				if (Math.abs(kRow - (i/8)) == 1 && Math.abs(kCol - (i%8)) == 1) {
 					pieceIsPastKing = checkedIsWhite ? kRow < i/8 : kRow > i/8;
 					if (pieceIsEnemy && chessboard[i/8][i%8] instanceof Pawn && !pieceIsPastKing) {
+						if (checkedIsWhite) {
+							checkForWhite = true;
+						} else {
+							checkForBlack = true;
+						}
 						return true;
 					}
 				}
@@ -349,6 +356,11 @@ public class Chessboard {
 				if ((Math.abs(kRow - (i/8)) == 2 && Math.abs(kCol - (i%8)) == 1) || 
 						(Math.abs(kRow - (i/8)) == 1 && Math.abs(kCol - (i%8)) == 2)) {
 					if (pieceIsEnemy && chessboard[i/8][i%8] instanceof Knight) {
+						if (checkedIsWhite) {
+							checkForWhite = true;
+						} else {
+							checkForBlack = true;
+						}
 						return true;
 					}
 				}
@@ -382,6 +394,11 @@ public class Chessboard {
 						}
 					}
 					if (routeFree) {
+						if (checkedIsWhite) {
+							checkForWhite = true;
+						} else {
+							checkForBlack = true;
+						}
 						return true;
 					}
 				}
@@ -401,6 +418,11 @@ public class Chessboard {
 						}	
 					}
 					if (routeFree) {
+						if (checkedIsWhite) {
+							checkForWhite = true;
+						} else {
+							checkForBlack = true;
+						}
 						return true;
 					}
 				}
@@ -420,16 +442,31 @@ public class Chessboard {
 						}
 					}
 					if (routeFree) {
+						if (checkedIsWhite) {
+							checkForWhite = true;
+						} else {
+							checkForBlack = true;
+						}
 						return true;
 					}
 				}
 
 				// is opponent's King threatening
 				if (pieceIsEnemy && chessboard[i/8][i%8] instanceof King && (Math.abs((i/8) - kRow) <= 1 && Math.abs((i%8) - kCol) <= 1)) {
+					if (checkedIsWhite) {
+							checkForWhite = true;
+						} else {
+							checkForBlack = true;
+						}
 					return true;
 				}
 			}
 				
+		}
+		if (checkedIsWhite) {
+			checkForWhite = false;
+		} else {
+			checkForBlack = false;
 		}
 		return false;
 	}
@@ -497,6 +534,15 @@ public class Chessboard {
 			}
 		}
 		return points;
+	}
+	
+	/**
+	 * Returns check status of the colour in question.
+	 * @param white Boolean, white is true, black is false.
+	 * @return Boolean value of the check situation for the colour in question.
+	 */
+	public boolean getCheckStatus(boolean white) {
+		return white ? checkForWhite : checkForBlack;
 	}
 	
 }

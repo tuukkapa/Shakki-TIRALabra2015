@@ -1,6 +1,7 @@
 package Main;
 
 
+import Chessboard.Move;
 import User.UserMovement;
 import AI.*;
 import UI.UserInterface;
@@ -46,7 +47,7 @@ public class Main {
 		chessboard = new Chessboard();
 		ai = new AI();
 		input = new Scanner(System.in);
-		depth = 2;
+		depth = 4;
 	}
 	
 	/**

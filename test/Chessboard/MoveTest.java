@@ -3,8 +3,9 @@
  * 
  * Tuukka Paukkunen <tuukka.paukkunen@cs.helsinki.fi>
  */
-package AI;
+package Chessboard;
 
+import Chessboard.Move;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

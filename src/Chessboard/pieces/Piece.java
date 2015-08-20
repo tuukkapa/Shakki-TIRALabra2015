@@ -1,6 +1,6 @@
 package Chessboard.pieces;
 
-import AI.Move;
+import Chessboard.Move;
 import Chessboard.Chessboard;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -84,16 +84,20 @@ public abstract class Piece implements Cloneable {
 		ArrayList<Move> moves = new ArrayList<>();
 		int startRow = position / 8;
 		int startCol = position % 8;
+		boolean checkStatus = chessboard.getCheckStatus(this.amIWhite());
+		
 		boolean rightBlocked = false, downBlocked = false, leftBlocked = false, upBlocked = false;
 		int maxMovement = Math.max(Math.max(startRow, startCol), Math.max(7-startRow, 7-startCol));
+		
 		// check route
 		for (int i = 1; i <= maxMovement; i++) {
 			// check right
 			if (!rightBlocked && startCol + i < 8) {
-				if (chessboard.getSquareContents(startRow, startCol + i) == null) {
-					moves.add(new Move(position, startRow * 8 + (startCol + i)));
-				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, startRow * 8 + (startCol + i))) {
-					moves.add(new Move(position, startRow * 8 + (startCol + i)));
+				int end = startRow * 8 + (startCol + i);
+				if (chessboard.getSquareContents(end) == null && !chessboard.wouldItBeCheck(this, end)) {
+					moves.add(new Move(position, end));
+				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, end) && !chessboard.wouldItBeCheck(this, end)) {
+					moves.add(new Move(position, end));
 					rightBlocked = true;
 				} else {
 					rightBlocked = true;
@@ -101,10 +105,11 @@ public abstract class Piece implements Cloneable {
 			}
 			// check down
 			if (!downBlocked && startRow + i < 8) {
-				if (chessboard.getSquareContents(startRow + i, startCol) == null) {
-					moves.add(new Move(position, (startRow + i) * 8 + startCol));
-				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, (startRow + i) * 8 + startCol)) {
-					moves.add(new Move(position, (startRow + i) * 8 + startCol));
+				int end = (startRow + i) * 8 + startCol;
+				if (chessboard.getSquareContents(end) == null && !chessboard.wouldItBeCheck(this, end)) {
+					moves.add(new Move(position, end));
+				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, end) && !chessboard.wouldItBeCheck(this, end)) {
+					moves.add(new Move(position, end));
 					downBlocked = true;
 				} else {
 					downBlocked = true;
@@ -112,10 +117,11 @@ public abstract class Piece implements Cloneable {
 			}
 			// check left
 			if (!leftBlocked && startCol - i >= 0) {
-				if (chessboard.getSquareContents(startRow, startCol - i) == null) {
-					moves.add(new Move(position, (startRow * 8) + startCol - i));
-				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, (startRow * 8) + startCol - i)) {
-					moves.add(new Move(position, (startRow * 8) + startCol - i));
+				int end = (startRow * 8) + startCol - i;
+				if (chessboard.getSquareContents(end) == null && !chessboard.wouldItBeCheck(this, end)) {
+					moves.add(new Move(position, end));
+				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, end) && !chessboard.wouldItBeCheck(this, end)) {
+					moves.add(new Move(position, end));
 					leftBlocked = true;
 				} else {
 					leftBlocked = true;
@@ -123,10 +129,11 @@ public abstract class Piece implements Cloneable {
 			}
 			// check up
 			if (!upBlocked && startRow - i >= 0) {
-				if (chessboard.getSquareContents(startRow - i, startCol) == null) {
-					moves.add(new Move(position, (startRow - i) * 8 + startCol));
-				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, (startRow - i) * 8 + startCol)) {
-					moves.add(new Move(position, (startRow - i) * 8 + startCol));
+				int end = (startRow - i) * 8 + startCol;
+				if (chessboard.getSquareContents(end) == null && !chessboard.wouldItBeCheck(this, end)) {
+					moves.add(new Move(position, end));
+				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, end) && !chessboard.wouldItBeCheck(this, end)) {
+					moves.add(new Move(position, end));
 					upBlocked = true;
 				} else {
 					upBlocked = true;
@@ -136,6 +143,7 @@ public abstract class Piece implements Cloneable {
 				break;
 			}
 		}
+
 		return moves;
 	}
 	
@@ -168,9 +176,9 @@ public abstract class Piece implements Cloneable {
 			swPosition = (row + i) * 8 + col - i;
 			nwPosition = (row - i) * 8 + col - i;
 			if (!neBlocked && row - i >= 0 && col + i < 8) {
-				if (chessboard.getSquareContents(row-i, col+i) == null) {
+				if (chessboard.getSquareContents(row-i, col+i) == null && !chessboard.wouldItBeCheck(this, nePosition)) {
 					moves.add(new Move(position, nePosition));
-				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, nePosition)) {
+				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, nePosition) && !chessboard.wouldItBeCheck(this, nePosition)) {
 					moves.add(new Move(position, nePosition));
 					neBlocked = true;
 				} else {
@@ -179,9 +187,9 @@ public abstract class Piece implements Cloneable {
 			}
 			// check south-east
 			if (!seBlocked && row + i < 8 && col + i < 8) {
-				if (chessboard.getSquareContents(row+i, col+i) == null) {
+				if (chessboard.getSquareContents(row+i, col+i) == null && !chessboard.wouldItBeCheck(this, sePosition)) {
 					moves.add(new Move(position, sePosition));
-				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, sePosition)) {
+				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, sePosition) && !chessboard.wouldItBeCheck(this, sePosition)) {
 					moves.add(new Move(position, sePosition));
 					seBlocked = true;
 				} else {
@@ -190,9 +198,9 @@ public abstract class Piece implements Cloneable {
 			}
 			// check south-west
 			if (!swBlocked && row + i < 8 && col - i >= 0) {
-				if (chessboard.getSquareContents(row+i, col-i) == null) {
+				if (chessboard.getSquareContents(row+i, col-i) == null && !chessboard.wouldItBeCheck(this, swPosition)) {
 					moves.add(new Move(position, swPosition));
-				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, swPosition)) {
+				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, swPosition) && !chessboard.wouldItBeCheck(this, swPosition)) {
 					moves.add(new Move(position, swPosition));
 					swBlocked = true;
 				} else {
@@ -201,9 +209,9 @@ public abstract class Piece implements Cloneable {
 			}
 			// check nort-west
 			if (!nwBlocked && row - i >= 0 && col - i >= 0) {
-				if (chessboard.getSquareContents(row-i, col-i) == null) {
+				if (chessboard.getSquareContents(row-i, col-i) == null && !chessboard.wouldItBeCheck(this, nwPosition)) {
 					moves.add(new Move(position, nwPosition));
-				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, nwPosition)) {
+				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, nwPosition) && !chessboard.wouldItBeCheck(this, nwPosition)) {
 					moves.add(new Move(position, nwPosition));
 					nwBlocked = true;
 				} else {
@@ -335,6 +343,10 @@ public abstract class Piece implements Cloneable {
 		} else {
 			return false;
 		}
+	}
+	
+	protected boolean moveIsPossible(Chessboard chessboard, int end) {
+		return chessboard.getSquareContents(end) == null && !chessboard.wouldItBeCheck(this, end);
 	}
 	
 	/**

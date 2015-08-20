@@ -1,4 +1,4 @@
-package AI;
+package Chessboard;
 
 import Chessboard.pieces.Piece;
 
