@@ -61,3 +61,9 @@ purkaminen.
 Tulevaisuuden suunnitelmina voisi olla etsiä nappuloiden mahdollisia
 siirtoja verkkoina. Sain harmillisesti tämän neronleimauksen vasta
 tehdessäni vertaisarviointia, jossa verkot olivat olennaisessa osassa.
+
+Sovellus käyttää nyt edelleen ArrayListiä, jota en ole ehtinyt korvata
+omalla tietorakenteella. Voisin esim. tehdä luokan, joka taltioi oliot
+taulukkoon, ja joka tarjoaa metodit olioiden lisäämiseen luokkaan
+(eli taulukkoon), ja joka itse huolehtii taulukon koon kasvattamisesta,
+mikäli taulukko tulee täyteen.
