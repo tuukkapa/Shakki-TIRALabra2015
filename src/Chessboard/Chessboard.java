@@ -247,8 +247,6 @@ public class Chessboard {
 		if (piece.endSquareContainsEnemy(this, end)) {
 				Piece capturedPiece = chessboard[end/8][end%8];
 				move.setCapturedPiece(capturedPiece);
-				//System.out.println("\nSyötiin: " + capturedPiece + " " + capturedPiece.getSign());
-				//System.out.println("sijainti: r" + capturedPiece.getPosition()/8 + " s" + capturedPiece.getPosition()%8);
 		}
 		chessboard[start/8][start%8] = null;
 		chessboard[end/8][end%8] = piece;
@@ -281,8 +279,15 @@ public class Chessboard {
 	 * @return Boolean, true if command is successful, false otherwise.
 	 */
 	public boolean wouldItBeCheck(Piece piece, int end) {
-		Move move = new Move(piece.getPosition(), end);
-		this.performMove(move);
+		int start = piece.getPosition();
+		Move move = new Move(start, end);
+		if (piece.endSquareContainsEnemy(this, end)) {
+				Piece capturedPiece = chessboard[end/8][end%8];
+				move.setCapturedPiece(capturedPiece);
+		}
+		chessboard[start/8][start%8] = null;
+		chessboard[end/8][end%8] = piece;
+		piece.setPosition(end);
 		boolean checkSituation = this.isItCheck(piece.amIWhite());
 		this.undoMove(move);
 		return checkSituation;
