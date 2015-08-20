@@ -3,7 +3,6 @@ package Chessboard.pieces;
 import Chessboard.Move;
 import Chessboard.Chessboard;
 import java.util.ArrayList;
-import java.util.Vector;
 
 /**
  * Piece-class from which other pieces are extended.
@@ -84,7 +83,6 @@ public abstract class Piece implements Cloneable {
 		ArrayList<Move> moves = new ArrayList<>();
 		int startRow = position / 8;
 		int startCol = position % 8;
-		boolean checkStatus = chessboard.getCheckStatus(this.amIWhite());
 		
 		boolean rightBlocked = false, downBlocked = false, leftBlocked = false, upBlocked = false;
 		int maxMovement = Math.max(Math.max(startRow, startCol), Math.max(7-startRow, 7-startCol));
