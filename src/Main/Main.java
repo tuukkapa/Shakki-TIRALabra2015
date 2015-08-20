@@ -2,13 +2,11 @@ package Main;
 
 
 import User.UserMovement;
-import AI.AI;
-import AI.Move;
+import AI.*;
 import UI.UserInterface;
-import Chessboard.Chessboard;
-import Chessboard.pieces.Piece;
-import java.util.ArrayList;
-import java.util.Scanner;
+import Chessboard.*;
+import Chessboard.pieces.*;
+import java.util.*;
 
 /**
  * Main class of Chess-game "Shakki". Run this to start the game.

@@ -246,6 +246,12 @@ public abstract class Piece implements Cloneable {
 		return moveOk && this.endSquareContainsEnemyOrEmpty(chessboard, end);
 	}
 	
+	/**
+	 * Verifies, if the diagonal route until the end square is free.
+	 * @param chessboard Chessboard-object, which pieces are to be moved.
+	 * @param end Position, where the current Piece-object is to be moved.
+	 * @return True, if route is free, false otherwise.
+	 */
 	protected boolean checkDiagonalRoutes(Chessboard chessboard, int end) {
 		boolean moveOk = true;
 		int startRow = position / 8;

@@ -56,6 +56,11 @@ public class King extends Piece implements Cloneable {
 		return moveOk && !chessboard.wouldItBeCheck(this, end);
 	}
 	
+	/**
+	 * Clones this piece-object.
+	 * @return This object cloned.
+	 * @throws CloneNotSupportedException 
+	 */
 	@Override
 	public Object clone() throws CloneNotSupportedException {
 		King newKing = (King) super.clone();

@@ -8,13 +8,14 @@ import Chessboard.pieces.Piece;
  * Fields:
  * - Integer: starting position
  * - Integer: ending position
+ * - Piece: possibly captured piece during the move.
  * 
  * @author Tuukka Paukkunen <tuukka.paukkunen@cs.helsinki.fi>
  */
 public class Move {
 
 	private int start, end;
-	private Piece capturedPiece, movedPiece;
+	private Piece capturedPiece;
 	
 	/**
 	 * Constructor of Move-object.
@@ -43,16 +44,20 @@ public class Move {
 		return end;
 	}
 	
+	/**
+	 * Sets the captured Piece-field.
+	 * @param piece Piece-object, which is saved into this Move-object.
+	 */
 	public void setCapturedPiece(Piece piece) {
 		this.capturedPiece = piece;
 	}
 	
+	/**
+	 * Returns the Piece-field's contents.
+	 * @return Piece-object or null if no piece is captured.
+	 */
 	public Piece getCapturedPiece() {
 		return capturedPiece;
-	}
-	
-	public Piece getPiece() {
-		return movedPiece;
 	}
 	
 }

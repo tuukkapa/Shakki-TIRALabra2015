@@ -1,9 +1,5 @@
 package UI;
 
-import Chessboard.Chessboard;
-import Chessboard.pieces.Piece;
-import java.util.ArrayList;
-
 /**
  * Static class to draw the user interface.
  * @author Tuukka Paukkunen <tuukka.paukkunen@cs.helsinki.fi>

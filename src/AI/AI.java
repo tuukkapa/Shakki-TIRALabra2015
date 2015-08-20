@@ -17,12 +17,26 @@ public class AI {
 		bestMove = null;
 	}
 	
+	/**
+	 * Starts the minimax-algorithm and returns computer's next move.
+	 * @param chessboard Chessboard, which the game is on.
+	 * @param depth Integer, how many levels the game tree is built.
+	 * @return Move-object, includes start- and end-coordinates and possibly a captured piece.
+	 * @throws CloneNotSupportedException 
+	 */
 	public Move getMove(Chessboard chessboard, int depth) throws CloneNotSupportedException {
 		bestMove = null;
 		max(chessboard, depth);
 		return bestMove;
 	}
 
+	/**
+	 * Maximizing player's part of minimax-algorithm.
+	 * @param chessboard Chessboard, which the game is on.
+	 * @param depth Integer, how many levels the game tree is built.
+	 * @return Integer, value of the game situation.
+	 * @throws CloneNotSupportedException 
+	 */
 	public int max(Chessboard chessboard, int depth) throws CloneNotSupportedException {
 		if (depth == 0 || chessboard.isItCheckMate() >= 0) {
 			return chessboard.evaluate();
@@ -48,6 +62,13 @@ public class AI {
 		return bestValue;
 	}
 	
+	/**
+	 * Minimizing player's part of minimax-algorithm.
+	 * @param chessboard Chessboard, which the game is on.
+	 * @param depth Integer, how many levels the game tree is built.
+	 * @return Integer, value of the game situation.
+	 * @throws CloneNotSupportedException 
+	 */
 	public int min(Chessboard chessboard, int depth) throws CloneNotSupportedException {
 		if (depth == 0 || chessboard.isItCheckMate() >= 0) {
 			return chessboard.evaluate();

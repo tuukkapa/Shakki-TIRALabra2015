@@ -12,6 +12,17 @@ import Chessboard.pieces.Rook;
 import UI.UserInterface;
 import java.util.ArrayList;
 
+ /**
+  * This class does everything related to the chess board and it's pieces' movement.
+  * It contains both the board and the piece-objects.
+  * 
+  * Fiels:
+  * - Two-dimensional Piece-array, the chessboard.
+  * - Piece variables for black and white king
+  * - Two Arraylists consisting of the pieces.
+  * 
+  * @author Tuukka Paukkunen
+  */
 public class Chessboard {
 	
 	private Piece[][] chessboard;
@@ -33,15 +44,28 @@ public class Chessboard {
 		this.setBoard(newboard);
 	}
 	
+	/**
+	 * Constructor, creates the chessboard from char-array given as parameter.
+	 * @param newboard Two-dimensional char-array representation of the chess board.
+	 */
 	public Chessboard(char[][] newboard) {
 		chessboard = new Piece[8][8];
 		this.setBoard(newboard);
 	}
 	
+	/**
+	 * Constructor, creates the chessboard from Piece-array given as parameter.
+	 * @param newboard Two-dimensional char-array representation of the chess board.
+	 */
 	public Chessboard(Piece[][] newboard) {
 		chessboard = newboard;
 	}
 	
+	/**
+	 * Clones the contents of the Piece-array given as parameter.
+	 * @param newboard Piece-array of the board.
+	 * @throws CloneNotSupportedException 
+	 */
 	private void setBoardbyCloningOrig(Piece[][] newboard) throws CloneNotSupportedException {
 		blackPieces = new ArrayList<>();
 		whitePieces = new ArrayList<>();
@@ -65,6 +89,10 @@ public class Chessboard {
 		}
 	}
 	
+	/**
+	 * Makes a clone of the piece-array.
+	 * @return Two dimensional Piece-array.
+	 */
 	private Piece[][] clonePieceArray() {
 		Piece[][] newBoard = new Piece[8][8];
 		for (int i = 0; i < chessboard.length; i++) {
@@ -73,6 +101,12 @@ public class Chessboard {
 		return newBoard;
 	}
 	
+	/**
+	 * This method returns a full clone of one Chessboard-object and all objects inside it.
+	 * @param chessboard Chessboard-object to be cloned.
+	 * @return The cloned Chessboard-object.
+	 * @throws CloneNotSupportedException 
+	 */
 	public Chessboard cloneBoardAndPieces(Chessboard chessboard) throws CloneNotSupportedException {
 		Piece[][] cloneArray = chessboard.clonePieceArray();
 		Chessboard clonedBoard = new Chessboard();
@@ -80,6 +114,10 @@ public class Chessboard {
 		return clonedBoard;
 	}
 	
+	/**
+	 * Resets the chessboard from the char-array given as parameter.
+	 * @param newboard Two dimensional char-array representing the chessboard.
+	 */
 	private void setBoard(char[][] newboard) {
 		blackPieces = new ArrayList<>();
 		whitePieces = new ArrayList<>();
@@ -128,18 +166,38 @@ public class Chessboard {
 		}
 	}
 	
+	/**
+	 * Returns the ArrayList of Piece-objects with given colour.
+	 * @param white Colour of the pieces, true is white, false is black.
+	 * @return ArrayList of Piece-objects.
+	 */
 	public ArrayList<Piece> getPieces(boolean white) {
 		return white ? whitePieces : blackPieces;
 	}
 	
+	/**
+	 * Returns contents of one square. If square is empty, returns null.
+	 * @param position Integer, 0 is top left, 63 is bottom right.
+	 * @return Piece-object or null, if the square is empty. 
+	 */
 	public Piece getSquareContents(int position) {
 		return chessboard[position/8][position%8];
 	}
 	
+	/**
+	 * Returns contents of one square. If square is empty, returns null.
+	 * @param row Integer, row on the array.
+	 * @param col Integer, column on the array.
+	 * @return Piece-object or null, if the square is empty. 
+	 */
 	public Piece getSquareContents(int row, int col) {
 		return chessboard[row][col];
 	}
 	
+	/**
+	 * Returns the chessboard as two dimensional char-array.
+	 * @return Two dimensional char array representing the chessboard.
+	 */
 	public char[][] getBoardAsCharArray() {
 		char[][] newboard = new char[8][8];
 		for (int i = 0; i < 8; i++) {
@@ -154,6 +212,11 @@ public class Chessboard {
 		return newboard;
 	}
 	
+	/**
+	 * Moves one piece on the board.
+	 * @param move Move-object, consisting of start and end coordinates.
+	 * @return Move-object.
+	 */
 	public boolean movePiece(Move move) {
 		int start = move.getStart();
 		int end = move.getEnd();
@@ -170,6 +233,11 @@ public class Chessboard {
 		return false;
 	}
 	
+	/**
+	 * Performs one move and saves the possibly captured piece to the Move-object.
+	 * @param move Move-object, consisting of starting and ending coordinates and possibly a captured Piece.
+	 * @return Boolean, true if command is successful, false otherwise.
+	 */
 	private boolean performMove(Move move) {
 		Piece piece = this.getSquareContents(move.getStart());
 		int start = move.getStart();
@@ -186,6 +254,11 @@ public class Chessboard {
 		return true;
 	}
 	
+	/**
+	 * Undoes the move given as parameter.
+	 * @param move Move-object, to be undone.
+	 * @return Boolean, true if command is successful, false otherwise.
+	 */
 	private boolean undoMove(Move move) {
 		Piece capturedPiece = move.getCapturedPiece();
 		Piece movedPiece = chessboard[move.getEnd()/8][move.getEnd()%8];
@@ -199,6 +272,12 @@ public class Chessboard {
 		return true;
 	}
 	
+	/**
+	 * Returns true, if a move would cause check situation for moving an own piece.
+	 * @param piece Piece-object to be moved.
+	 * @param end Integer, ending coordinates (0 = top left, 63 = bottom right).
+	 * @return Boolean, true if command is successful, false otherwise.
+	 */
 	public boolean wouldItBeCheck(Piece piece, int end) {
 		Move move = new Move(piece.getPosition(), end);
 		this.performMove(move);
@@ -207,6 +286,12 @@ public class Chessboard {
 		return checkSituation;
 	}
 	
+	/**
+	 * Method is used for testing purposes. Removed after testing period.
+	 * @param piece Piece-object.
+	 * @param move Move-object.
+	 * @param end Ending coordinates.
+	 */
 	private void errorToScreen(Piece piece, Move move, int end) {
 		System.out.println("\n=====================================");
 		System.out.println("Siirtoa tehtäessä tapahtui virhe");
@@ -228,11 +313,15 @@ public class Chessboard {
 			System.out.println(onePiece.getSign() + " r" + (onePiece.getPosition()/8) + " s" + (onePiece.getPosition()%8));
 		}
 		System.out.println("\nSiirtokäsky sisälsi");
-		System.out.println("Nappula: " + move.getPiece() + " ja väri " + move.getPiece().amIWhite());
 		System.out.println("Alku: r" + move.getStart()/8 + " s" + move.getStart()%8 + " loppu: r" + move.getEnd()/8 + " s" + move.getEnd()%8);
 		System.out.println("=====================================\n");
 	}
 	
+	/**
+	 * Returns true, if game situation is check against the player colour given as parameter.
+	 * @param checkedIsWhite True, if player is white, false otherwise.
+	 * @return True if checked is white, false otherwise.
+	 */
 	public boolean isItCheck(boolean checkedIsWhite) {
 		int kRow, kCol;
 		
@@ -345,7 +434,7 @@ public class Chessboard {
 		return false;
 	}
 	 /**
-	 * 
+	 * Returns an integer value telling if game situation is checkmate.
 	 * @return Integer: 1 = checkmate against white, 0 = checkmate against black, -1 = no checkmate
 	 */
 	public int isItCheckMate() {
@@ -362,6 +451,12 @@ public class Chessboard {
 		return -1;
 	}
 	
+	/**
+	 * Evaluates this chessboard's game situation and gives it an Integer value,
+	 * how good the game situation is to be able to win from it from computer's
+	 * (black pieces) point of view.
+	 * @return Integer, value of the game situation.
+	 */
 	public int evaluate() {
 		int points = 0;
 		int kingPoints = 200;
