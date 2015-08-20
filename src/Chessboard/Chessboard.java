@@ -236,7 +236,7 @@ public class Chessboard {
 	public boolean isItCheck(boolean checkedIsWhite) {
 		int kRow, kCol;
 		
-		kRow = checkedIsWhite ? whiteKing.getPosition()/8 : blackKing.getPosition()%8;
+		kRow = checkedIsWhite ? whiteKing.getPosition()/8 : blackKing.getPosition()/8;
 		kCol = checkedIsWhite ? whiteKing.getPosition()%8 : blackKing.getPosition()%8;
 		
 		boolean pieceIsEnemy;

@@ -22,8 +22,8 @@ public class King extends Piece implements Cloneable {
 		ArrayList<Move> moves = new ArrayList<>();
 		int kRow = position / 8;
 		int kCol = position % 8;
-		for (int row = -1; row < 1; row++) {
-			for (int col = -1; col < 1; col++) {
+		for (int row = -1; row <= 1; row++) {
+			for (int col = -1; col <= 1; col++) {
 				if (kRow + row >= 0 && kRow + row < 8 && kCol + col >= 0 && kCol + col < 8 && this.isMoveValid(chessboard, (kRow + row) * 8 + kCol + col)) {
 					moves.add(new Move(position, (kRow + row) * 8 + kCol + col));
 				}
