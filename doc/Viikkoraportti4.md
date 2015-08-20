@@ -57,3 +57,7 @@ tässä vaiheessa riittävä.
 Tämän lisäksi sotilaalle täytyy vihdoin tehdä kuningattareksi ylentäminen
 sekä shakkitilanteen syntyessä estää muut siirrot kuin shakkitilanteen
 purkaminen.
+
+Tulevaisuuden suunnitelmina voisi olla etsiä nappuloiden mahdollisia
+siirtoja verkkoina. Sain harmillisesti tämän neronleimauksen vasta
+tehdessäni vertaisarviointia, jossa verkot olivat olennaisessa osassa.
