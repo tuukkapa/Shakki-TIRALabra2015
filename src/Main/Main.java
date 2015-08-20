@@ -7,6 +7,8 @@ import UI.UserInterface;
 import Chessboard.*;
 import Chessboard.pieces.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Main class of Chess-game "Shakki". Run this to start the game.
@@ -78,12 +80,9 @@ public class Main {
 					try {
 						move = ai.getMove(chessboard, depth);
 					} catch (NullPointerException ne) {
-						//System.out.println("getcause getmessage: " + ne.getCause().getMessage());
-						System.out.println(ne.getStackTrace().toString());
-						System.out.println("getmessage: " + ne.getMessage());
-						System.out.println("tostring: " + ne.toString());
+						Logger.getLogger(AI.class.getName()).log(Level.SEVERE, null, ne);
 					} catch (Exception e) {
-						System.out.println("exception: " + e.getCause().getMessage());
+						Logger.getLogger(AI.class.getName()).log(Level.SEVERE, null, e);
 					}
 					if (!chessboard.movePiece(move)) {
 						System.out.println("\n\nTietokoneen siirtovuorolla tapahtui virhe."
