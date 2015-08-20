@@ -47,7 +47,7 @@ public class Main {
 		chessboard = new Chessboard();
 		ai = new AI();
 		input = new Scanner(System.in);
-		depth = 5;
+		depth = 4;
 	}
 	
 	/**
@@ -62,7 +62,7 @@ public class Main {
 
 		//chessboard.setBoard(newboard);
 		
-		UserInterface.draw(chessboard.getBoardAsCharArray());
+		UserInterface.draw(chessboard.getBoardAsCharArray(), chessboard);
 		System.out.println("Peli vastaanottaa siirtokomennot koordinaatteina.\n"
 				+ "Esimerkiksi komento c2c4 siirtää koordinaatissa c2 olevan\n"
 				+ "nappulan koordinaattiin c4. Peli tarkistaa, etteivät\n"
@@ -75,7 +75,7 @@ public class Main {
 				continueGame = false;
 			} else {
 				if (UserMovement.movePiece(command, chessboard)) {
-					UserInterface.draw(chessboard.getBoardAsCharArray());
+					UserInterface.draw(chessboard.getBoardAsCharArray(), chessboard);
 					System.out.println("\nOdota. Tietokone tekee siirtonsa...");
 					Move move = null;
 					try {
@@ -99,7 +99,7 @@ public class Main {
 						continueGame = false;
 						System.out.println("\nLauta oli lopussa");
 					}
-					UserInterface.draw(chessboard.getBoardAsCharArray());
+					UserInterface.draw(chessboard.getBoardAsCharArray(), chessboard);
 				} else {
 					System.out.println("Virheellinen komento.");
 				}

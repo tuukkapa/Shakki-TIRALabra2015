@@ -247,6 +247,11 @@ public class Chessboard {
 		if (piece.endSquareContainsEnemy(this, end)) {
 				Piece capturedPiece = chessboard[end/8][end%8];
 				move.setCapturedPiece(capturedPiece);
+				if (capturedPiece.amIWhite()) {
+					whitePieces.remove(capturedPiece);
+				} else {
+					blackPieces.remove(capturedPiece);
+				}
 		}
 		chessboard[start/8][start%8] = null;
 		chessboard[end/8][end%8] = piece;
@@ -308,7 +313,7 @@ public class Chessboard {
 			System.out.println("Loppukoordinaatit: r" + end/8 + " s" + end%8);
 		}
 		System.out.println("Lauta oli:");
-		UserInterface.draw(this.getBoardAsCharArray());
+		//UserInterface.draw(this.getBoardAsCharArray());
 		System.out.println("\nMustat nappulat:");
 		ArrayList<Piece> pieces = this.getPieces(false);
 		for (Piece onePiece : pieces) {
