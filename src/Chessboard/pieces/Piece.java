@@ -345,10 +345,6 @@ public abstract class Piece implements Cloneable {
 		}
 	}
 	
-	protected boolean moveIsPossible(Chessboard chessboard, int end) {
-		return chessboard.getSquareContents(end) == null && !chessboard.wouldItBeCheck(this, end);
-	}
-	
 	/**
 	 * Clones this Piece-object.
 	 * @return The cloned Piece-object.
