@@ -42,7 +42,7 @@ public class AI {
 	 */
 	public int max(int alpha, int beta, Chessboard chessboard, int depth) throws CloneNotSupportedException {
 		if (depth == 0 || chessboard.isItCheckMate() >= 0) {
-			return -Evaluate.evaluate(chessboard);
+			return Evaluate.evaluate(chessboard);
 		}
 		int value = 0;
 		ArrayList<Piece> pieces = chessboard.getPieces(false);
