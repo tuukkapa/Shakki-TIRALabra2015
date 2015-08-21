@@ -1,3 +1,5 @@
+/.jaco*
+jaco*
 /nbproject/private/
 /build/
 /dist/

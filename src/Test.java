@@ -18,14 +18,14 @@ public class Test {
 	public static void main(String[] args) throws CloneNotSupportedException {
 		
 		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{' ', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', ' ', 'p', 'p', 'p'},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', 'p', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', 'R', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+			{'P', 'P', 'P', 'P', ' ', 'P', 'P', 'P'},
+			{' ', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
 		Chessboard chessboard = new Chessboard(newboard);
 		int arvo = Evaluate.evaluate(chessboard);

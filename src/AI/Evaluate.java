@@ -130,6 +130,10 @@ public class Evaluate {
 		int gameSituationPoints = 0;
 		boolean isItEndGame = white ? endGameForWhite : endGameForBlack;
 		
+		if (chessboard.isItCheck(white)) {
+			gameSituationPoints -= 5000;
+		}
+		
 		for (Piece piece : pieces) {
 			row = white ? piece.getPosition() / 8 : 7 - (piece.getPosition() / 8);
 			col = piece.getPosition() % 8;
