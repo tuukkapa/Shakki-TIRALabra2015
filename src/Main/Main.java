@@ -47,7 +47,7 @@ public class Main {
 		chessboard = new Chessboard();
 		ai = new AI();
 		input = new Scanner(System.in);
-		depth = 6;
+		depth = 4;
 	}
 	
 	/**
