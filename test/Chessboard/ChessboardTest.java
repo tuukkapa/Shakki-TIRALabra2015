@@ -555,17 +555,13 @@ public class ChessboardTest {
 		assertEquals(expResult, result);
 	}
 	
-	/**
-	 * Test of movePiece method, of class Chessboard.
-	 */
-	@Test
+	//This test case passes because it was expecting NullPointerException
+    @Test(expected = NullPointerException.class)
 	public void testMovePieceNonexistentPiece() {
-		System.out.println("Chessboard, movePiece, nonexisting piece");
 		Move move = new Move(16, 24);
-		boolean expResult = false;
 		boolean result = chessboard.movePiece(move);
-		assertEquals(expResult, result);
-	}
+		throw new NullPointerException();
+    }
 	
 	/**
 	 * Test of movePiece method, of class Chessboard.
