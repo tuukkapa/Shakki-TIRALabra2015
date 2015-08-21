@@ -1,6 +1,7 @@
 package UI;
 
 import Chessboard.Chessboard;
+import Chessboard.Move;
 import Chessboard.pieces.Piece;
 import java.util.ArrayList;
 
@@ -15,7 +16,7 @@ public class UserInterface {
 	 * readable ASCII-character version of the chess board.
 	 * @param chessboard Two dimensional char-array, the board to be drawn.
 	 */
-	public static void draw(char[][] chessboard, Chessboard board) {
+	public static void draw(char[][] chessboard, Move move/*, Chessboard board*/) {
 		for (int i = 0; i < 17; i++) {
 			for (int j = 0; j < 33; j++) {
 				// Draw chess board's top and bottom edge
@@ -52,7 +53,11 @@ public class UserInterface {
 								    i-1/2 equals chessboard's equivalent rownumber
 								    j-2/4 equals chessboard's equivalent colnumber
 								*/
-								System.out.print(chessboard[(i-1)/2][(j-2)/4]);
+								if (move != null && move.getEnd()/8 == (i-1)/2 && move.getEnd()%8 == (j-2)/4) {
+									System.out.print("\033[32m" + chessboard[(i-1)/2][(j-2)/4] + "\033[0m");
+								} else {
+									System.out.print(chessboard[(i-1)/2][(j-2)/4]);
+								}
 							} else {
 								System.out.print(" ");
 							}							

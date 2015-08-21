@@ -44,7 +44,7 @@ public class AI {
 		if (depth == 0 || chessboard.isItCheckMate() >= 0) {
 			return Evaluate.evaluate(chessboard);
 		}
-		int value = 0;
+		int value = Integer.MIN_VALUE, score = 0;
 		ArrayList<Piece> pieces = chessboard.getPieces(false);
 		for (Piece piece : pieces) {
 			ArrayList<Move> moves = piece.getPossibleMoves(chessboard);
@@ -54,19 +54,20 @@ public class AI {
 				}
 				Chessboard cloneBoard = chessboard.cloneBoardAndPieces(chessboard);
 				cloneBoard.movePiece(move);
-				value = min(alpha, beta, cloneBoard, depth - 1);
-				if (value >= beta)  {
-					return beta;
-				}
-				if (value > alpha) {
-					alpha = value;
+				score = min(alpha, beta, cloneBoard, depth - 1);
+				if (score > value) {
+					value = score;
 					if (depth == originalDepth) {
 						bestMove = move;
 					}
 				}
+				if (value >= beta) {
+					return value;
+				}
+				alpha = Math.max(alpha, value);
 			}
 		}
-		return alpha;
+		return value;
 	}
 	
 	/**
@@ -80,25 +81,24 @@ public class AI {
 		if (depth == 0 || chessboard.isItCheckMate() >= 0) {
 			return Evaluate.evaluate(chessboard);
 		}
-		int value = 0;
+		int value = Integer.MAX_VALUE, score = 0;
 		ArrayList<Piece> pieces = chessboard.getPieces(true);
 		for (Piece piece : pieces) {
 			ArrayList<Move> moves = piece.getPossibleMoves(chessboard);
 			for (Move move : moves) {
 				Chessboard cloneBoard = chessboard.cloneBoardAndPieces(chessboard);
 				cloneBoard.movePiece(move);
-				value = max(alpha, beta, cloneBoard, depth - 1);
+				score = max(alpha, beta, cloneBoard, depth - 1);
+				if (score < value) {
+					value = score;
+				}
 				if (value <= alpha) {
 					return alpha;
 				}
-				if (value < beta) {
-					beta = value;
-				}
+				beta = Math.min(beta, value);
 			}
 		}
-		return beta;
+		return value;
 	}
-	
-	
 	
 }
