@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class AI {
 	
 	private Move bestMove;
+	private int originalDepth;
 	
 	public AI() {
 		bestMove = null;
@@ -27,6 +28,7 @@ public class AI {
 	 */
 	public Move getMove(Chessboard chessboard, int depth) throws CloneNotSupportedException {
 		bestMove = null;
+		originalDepth = depth;
 		max(chessboard, depth);
 		return bestMove;
 	}
@@ -56,7 +58,9 @@ public class AI {
 				value = min(cloneBoard, depth - 1);
 				if (value > bestValue) {
 					bestValue = value;
-					bestMove = move;
+					if (depth == originalDepth) {
+						bestMove = move;
+					}
 				}
 			}
 		}

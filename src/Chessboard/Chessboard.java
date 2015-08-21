@@ -223,9 +223,6 @@ public class Chessboard {
 		int start = move.getStart();
 		int end = move.getEnd();
 		Piece piece = chessboard[start/8][start%8];
-		if (piece == null) {
-			return false;
-		}
 		if (piece.isMoveValid(this, end)) {
 			if (!this.performMove(move)) {
 				return false;
