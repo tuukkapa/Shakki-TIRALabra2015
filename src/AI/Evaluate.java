@@ -128,7 +128,7 @@ public class Evaluate {
 		ArrayList<Piece> pieces = chessboard.getPieces(white);
 		int row = 0, col = 0;
 		int gameSituationPoints = 0;
-		boolean isItEndGame = isItEndGame(chessboard, white);
+		boolean isItEndGame = white ? endGameForWhite : endGameForBlack;
 		
 		for (Piece piece : pieces) {
 			row = white ? piece.getPosition() / 8 : 7 - (piece.getPosition() / 8);

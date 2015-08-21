@@ -27,7 +27,7 @@ public class AI {
 	 * @throws CloneNotSupportedException 
 	 */
 	public Move getMove(Chessboard chessboard, int depth) throws CloneNotSupportedException {
-		bestMove = null;
+		bestMove = null; // remove previous move command
 		originalDepth = depth;
 		max(Integer.MIN_VALUE, Integer.MAX_VALUE, chessboard, depth);
 		return bestMove;
@@ -55,6 +55,16 @@ public class AI {
 				Chessboard cloneBoard = chessboard.cloneBoardAndPieces(chessboard);
 				cloneBoard.movePiece(move);
 				score = min(alpha, beta, cloneBoard, depth - 1);
+				// chessprogramming.wikispaces.com
+				/*if(score >= beta)
+					return beta;
+				if(score > alpha) {
+					alpha = score; // alpha acts like max in MiniMax
+					if (depth == originalDepth) {
+						bestMove = move;
+					}
+				}*/
+				// Helsingin yo
 				if (score > value) {
 					value = score;
 					if (depth == originalDepth) {
@@ -67,7 +77,8 @@ public class AI {
 				alpha = Math.max(alpha, value);
 			}
 		}
-		return value;
+		return value; // Helsingin yo
+		//return alpha; // chessprogramming.wikispaces.com
 	}
 	
 	/**
@@ -89,6 +100,12 @@ public class AI {
 				Chessboard cloneBoard = chessboard.cloneBoardAndPieces(chessboard);
 				cloneBoard.movePiece(move);
 				score = max(alpha, beta, cloneBoard, depth - 1);
+				// chessprogramming.wikispaces.com
+				/*if(score <= alpha)
+					return alpha;
+				if(score < beta)
+					beta = score;*/
+				// Helsingin yo
 				if (score < value) {
 					value = score;
 				}
@@ -98,7 +115,8 @@ public class AI {
 				beta = Math.min(beta, value);
 			}
 		}
-		return value;
+		return value; // Helsingin yo
+		//return beta; // chessprogramming.wikispaces.com
 	}
 	
 }

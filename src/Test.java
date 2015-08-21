@@ -1,4 +1,5 @@
 
+import AI.Evaluate;
 import Chessboard.Move;
 import Chessboard.Chessboard;
 import Chessboard.pieces.Piece;
@@ -15,13 +16,19 @@ import java.util.ArrayList;
 public class Test {
 	
 	public static void main(String[] args) throws CloneNotSupportedException {
-		Chessboard chessboard = new Chessboard();
-		Move move1 = new Move(4, 3);
-		boolean siirtoOnnistui = chessboard.movePiece(move1);
-		Move move2 = new Move(4, 5);
-		Chessboard clone = chessboard.cloneBoardAndPieces(chessboard);
-		boolean klooninSiirtoonnistui = chessboard.movePiece(move2);
-		System.out.println("moi");
+		
+		char[][] newboard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', ' ', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', 'p', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		Chessboard chessboard = new Chessboard(newboard);
+		int arvo = Evaluate.evaluate(chessboard);
 	}
 
 }
