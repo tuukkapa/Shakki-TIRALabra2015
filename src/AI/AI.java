@@ -29,7 +29,7 @@ public class AI {
 	public Move getMove(Chessboard chessboard, int depth) throws CloneNotSupportedException {
 		bestMove = null;
 		originalDepth = depth;
-		max(chessboard, depth);
+		max(Integer.MIN_VALUE, Integer.MAX_VALUE, chessboard, depth);
 		return bestMove;
 	}
 
@@ -40,11 +40,10 @@ public class AI {
 	 * @return Integer, value of the game situation.
 	 * @throws CloneNotSupportedException 
 	 */
-	public int max(Chessboard chessboard, int depth) throws CloneNotSupportedException {
+	public int max(int alpha, int beta, Chessboard chessboard, int depth) throws CloneNotSupportedException {
 		if (depth == 0 || chessboard.isItCheckMate() >= 0) {
 			return Evaluate.evaluate(chessboard);
 		}
-		int bestValue = Integer.MIN_VALUE;
 		int value = 0;
 		ArrayList<Piece> pieces = chessboard.getPieces(false);
 		for (Piece piece : pieces) {
@@ -55,16 +54,19 @@ public class AI {
 				}
 				Chessboard cloneBoard = chessboard.cloneBoardAndPieces(chessboard);
 				cloneBoard.movePiece(move);
-				value = min(cloneBoard, depth - 1);
-				if (value > bestValue) {
-					bestValue = value;
+				value = min(alpha, beta, cloneBoard, depth - 1);
+				if (value >= beta)  {
+					return beta;
+				}
+				if (value > alpha) {
+					alpha = value;
 					if (depth == originalDepth) {
 						bestMove = move;
 					}
 				}
 			}
 		}
-		return bestValue;
+		return alpha;
 	}
 	
 	/**
@@ -74,11 +76,10 @@ public class AI {
 	 * @return Integer, value of the game situation.
 	 * @throws CloneNotSupportedException 
 	 */
-	public int min(Chessboard chessboard, int depth) throws CloneNotSupportedException {
+	public int min(int alpha, int beta, Chessboard chessboard, int depth) throws CloneNotSupportedException {
 		if (depth == 0 || chessboard.isItCheckMate() >= 0) {
 			return Evaluate.evaluate(chessboard);
 		}
-		int bestValue = Integer.MAX_VALUE;
 		int value = 0;
 		ArrayList<Piece> pieces = chessboard.getPieces(true);
 		for (Piece piece : pieces) {
@@ -86,13 +87,16 @@ public class AI {
 			for (Move move : moves) {
 				Chessboard cloneBoard = chessboard.cloneBoardAndPieces(chessboard);
 				cloneBoard.movePiece(move);
-				value = max(cloneBoard, depth - 1);
-				if (value < bestValue) {
-					bestValue = value;
+				value = max(alpha, beta, cloneBoard, depth - 1);
+				if (value <= alpha) {
+					return alpha;
+				}
+				if (value < beta) {
+					beta = value;
 				}
 			}
 		}
-		return bestValue;
+		return beta;
 	}
 	
 	
