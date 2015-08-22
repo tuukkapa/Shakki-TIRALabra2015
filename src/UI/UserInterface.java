@@ -22,7 +22,6 @@ public class UserInterface {
 	
 	public static void runGame() {
 		chessboard = new Chessboard();
-		
 		ai = new AI();
 		input = new Scanner(System.in);
 		depth = 0;
@@ -31,7 +30,7 @@ public class UserInterface {
 						 + "============== (c) 2015 Tuukka Paukkunen ===============\n"
 						 + "========================================================\n");
 		System.out.println("Anna pelipuun syvyys (1-6).\n"
-				+ "Syvempi pelipuu tarkoittaa sekä parempaa tietokoneeen\n"
+				+ "Syvempi pelipuu tarkoittaa sekä parempaa tietokoneen\n"
 				+ "suoriutumista pelistä että pidempiä viiveitä tietokoneen\n"
 				+ "siirtovuorolla:");
 		while (depth  < 1 || depth > 6) {
@@ -64,15 +63,11 @@ public class UserInterface {
 	}
 	
 	/**
-	 * Method handles the UI at the user's turn.
+	 * Method handles the UI on the user's turn.
 	 * @param chessboard Chessboard-object, which game is played.
 	 * @return True, if user wants or can continue the game, false otherwise.
 	 */
 	private static boolean usersTurn() {
-		if (chessboard.isItCheckMate() == 1) {
-			System.out.println("Tietokone voitti sinut!");
-			return false;
-		}
 		boolean falseCommand = false;
 		do {
 			System.out.println("\nAnna siirtokomento (\"stop\" = lopeta):");
@@ -92,7 +87,7 @@ public class UserInterface {
 	}
 	
 	/**
-	 * Method handles the UI at the computer's turn.
+	 * Method handles the UI on the computer's turn.
 	 * @param ai AI-object, which determines the computer's next move.
 	 * @param chessboard Chessboard-object, which game is played.
 	 * @return True, if computer can continue the game, false otherwise.
@@ -113,7 +108,12 @@ public class UserInterface {
 			return false;
 		} else if (chessboard.movePiece(move)) {
 			drawBoard(chessboard.getBoardAsCharArray(), move);
-			return true;
+			if (chessboard.isItCheckMate() == 1) {
+				System.out.println("Tietokone voitti sinut!");
+				return false;
+			} else {
+				return true;
+			}
 		} else {
 			System.out.println("\n\nTietokoneen siirtovuorolla tapahtui virhe."
 					+ "Peli lopetetaan.");
