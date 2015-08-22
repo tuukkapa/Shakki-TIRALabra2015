@@ -22,6 +22,7 @@ public class UserInterface {
 	
 	public static void runGame() {
 		chessboard = new Chessboard();
+		
 		ai = new AI();
 		input = new Scanner(System.in);
 		depth = 0;

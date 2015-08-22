@@ -19,7 +19,7 @@ public class Test {
 		
 		char[][] newboard = {
 			{'r', 'n', 'R', ' ', 'k', 'b', 'n', 'r'},
-			{'p', 'p', ' ', ' ', 'p', 'p', 'p', 'p'},
+			{'p', 'p', ' ', 'P', 'p', 'p', 'p', 'p'},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', 'B', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', 'P', ' ', ' ', ' '},
@@ -28,8 +28,8 @@ public class Test {
 			{'R', 'N', 'B', 'Q', 'K', ' ', 'N', 'R'}
 		};
 		Chessboard chessboard = new Chessboard(newboard);
-		Piece bishop = chessboard.getSquareContents(3, 1);
-		ArrayList<Move> moves = bishop.getPossibleMoves(chessboard);
+		Move move = new Move(11, 3);
+		chessboard.movePiece(move);
 		System.out.println("Moi");
 	}
 

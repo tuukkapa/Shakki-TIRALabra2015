@@ -224,12 +224,39 @@ public class Chessboard {
 		int end = move.getEnd();
 		Piece piece = chessboard[start/8][start%8];
 		if (piece.isMoveValid(this, end)) {
-			if (!this.performMove(move)) {
+			if (this.performMove(move)) {
+				this.promotePawnToQueen(piece, move);
+				return true;
+			} else {
 				return false;
 			}
-			return true;
 		}
 		return false;
+	}
+	
+	/**
+	 * Promotes pawn to queen if pawn is moved to it's end row.
+	 * This method already trusts that the move command is valid.
+	 * If the piece isn't pawn or the pawn isn't moved to the end row,
+	 * method does nothing.
+	 * @param piece Piece to be moved.
+	 * @param move Move command of the piece.
+	 */
+	private void promotePawnToQueen(Piece piece, Move move) {
+		int start = move.getStart();
+		int end = move.getEnd();
+		boolean white = piece.amIWhite();
+		int endRow = white ? 0 : 7; // the pawn's end row according to it's colour
+		if (piece instanceof Pawn && move.getEnd()/8 == endRow) {
+			chessboard[end/8][end%8] = new Queen(white, end);
+			if (white) {
+				whitePieces.remove(piece);
+				whitePieces.add(chessboard[end/8][end%8]);
+			} else {
+				blackPieces.remove(piece);
+				blackPieces.add(chessboard[end/8][end%8]);
+			}
+		}
 	}
 	
 	/**
