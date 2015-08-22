@@ -11,7 +11,7 @@ import Chessboard.pieces.*;
 import java.util.ArrayList;
 
 /**
- * Concept of this evaluation method is by  Tomasz Michniewski.
+ * Concept of this evaluation method is by Tomasz Michniewski.
  * (https://chessprogramming.wikispaces.com/Simplified+evaluation+function)
  * 
  * Method determines the game situations value from black pieces' point of view.
@@ -132,6 +132,10 @@ public class Evaluate {
 		
 		if (chessboard.isItCheck(white)) {
 			gameSituationPoints -= 5000;
+			int thisSideIsCheckmated = white ? 1 : 0;
+			if (chessboard.isItCheckMate() == thisSideIsCheckmated) {
+				return -100000;
+			}
 		}
 		
 		for (Piece piece : pieces) {

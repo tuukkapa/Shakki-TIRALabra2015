@@ -58,7 +58,7 @@ public class UserInterface {
 				+ "Tietokoneen viimeiseksi siirtämä nappula näkyy vihreänä.");
 		boolean computersTurnOk = true;
 		drawBoard(chessboard.getBoardAsCharArray(), null);
-		while (usersTurn() && computersTurnOk) {
+		while (computersTurnOk && usersTurn()) {
 			computersTurnOk = computersTurn();
 		}
 	}
@@ -91,7 +91,7 @@ public class UserInterface {
 	 * Calculates, how much time has passed between startTime and endTime.
 	 * @param startTime Long, start time in milliseconds.
 	 * @param endTime Long, end time in milliseconds.
-	 * @return String, e.g. "3 min 25,322 s"
+	 * @return String, e.g. "3 min 25 s" or "5,433 s".
 	 */
 	private static String calculateMoveTime(long startTime, long endTime) {
 		StringBuilder moveTime = new StringBuilder();

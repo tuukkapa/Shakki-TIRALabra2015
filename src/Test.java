@@ -18,18 +18,17 @@ public class Test {
 	public static void main(String[] args) throws CloneNotSupportedException {
 		
 		char[][] newboard = {
-			{'r', 'n', 'R', ' ', 'k', 'b', 'n', 'r'},
-			{'p', 'p', ' ', 'P', 'p', 'p', 'p', 'p'},
+			{'r', 'n', 'R', ' ', 'k', ' ', ' ', 'r'},
+			{'p', 'p', ' ', ' ', ' ', ' ', 'p', 'p'},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', 'B', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', 'P', ' ', ' ', ' '},
+			{' ', ' ', ' ', 'R', 'Q', 'R', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{'P', 'P', 'P', 'P', ' ', 'P', 'P', 'P'},
-			{'R', 'N', 'B', 'Q', 'K', ' ', 'N', 'R'}
+			{'P', 'P', 'P', ' ', ' ', ' ', 'P', 'P'},
+			{'R', 'N', ' ', ' ', 'K', ' ', ' ', 'R'}
 		};
 		Chessboard chessboard = new Chessboard(newboard);
-		Move move = new Move(11, 3);
-		chessboard.movePiece(move);
+		int arvo = Evaluate.evaluate(chessboard);
 		System.out.println("Moi");
 	}
 
