@@ -17,14 +17,14 @@ public class UserInterface {
 	private static Chessboard chessboard;
 	private static AI ai;
 	private static Scanner input;
-	private static String command;
-	private static int depth;
+	private static String userCommand;
+	private static int gameTreeDepth;
 	
 	public static void runGame() {
 		chessboard = new Chessboard();
 		ai = new AI();
 		input = new Scanner(System.in);
-		depth = 0;
+		gameTreeDepth = 0;
 		System.out.println("========================================================\n"
 						 + "======================== SHAKKI ========================\n"
 						 + "============== (c) 2015 Tuukka Paukkunen ===============\n"
@@ -33,15 +33,15 @@ public class UserInterface {
 				+ "Syvempi pelipuu tarkoittaa sekä parempaa tietokoneen\n"
 				+ "suoriutumista pelistä että pidempiä viiveitä tietokoneen\n"
 				+ "siirtovuorolla:");
-		while (depth  < 1 || depth > 6) {
+		while (gameTreeDepth  < 1 || gameTreeDepth > 6) {
 			try {
 				String depthValue = input.nextLine();
-				depth = Integer.parseInt(depthValue);
-				if (depth < 1 || depth > 6) {
+				gameTreeDepth = Integer.parseInt(depthValue);
+				if (gameTreeDepth < 1 || gameTreeDepth > 6) {
 					throw new NumberFormatException();
 				}
 			} catch (NumberFormatException ex) {
-				if (depth > 6) {
+				if (gameTreeDepth > 6) {
 					System.out.println("En ole mikään Deep Blue. Anna luku yhdestä kuuteen:");
 				} else {
 					System.out.println("Syötit pelipuun syvyyden väärin. Anna luku yhdestä kuuteen:");
@@ -71,11 +71,11 @@ public class UserInterface {
 		boolean falseCommand = false;
 		do {
 			System.out.println("\nAnna siirtokomento (\"stop\" = lopeta):");
-			command = input.nextLine();
-			if (command.equals("stop")) {
+			userCommand = input.nextLine();
+			if (userCommand.equals("stop")) {
 				System.out.println("Poistutaan pelistä.");
 				return false;
-			} else if (UserMovement.movePiece(command, chessboard)) {
+			} else if (UserMovement.movePiece(userCommand, chessboard)) {
 				falseCommand = false; // user gave a valid command
 			} else {
 				System.out.println("Annoit virheellisen komennon. Yritä uudelleen.");
@@ -96,7 +96,7 @@ public class UserInterface {
 		System.out.println("\nOdota. Tietokone tekee siirtonsa...");
 		Move move = null;
 		try {
-			move = ai.getMove(chessboard, depth);
+			move = ai.getMove(chessboard, gameTreeDepth);
 		} catch (NullPointerException ne) {
 			Logger.getLogger(AI.class.getName()).log(Level.SEVERE, null, ne);
 		} catch (Exception e) {
