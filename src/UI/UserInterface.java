@@ -25,24 +25,25 @@ public class UserInterface {
 		ai = new AI();
 		input = new Scanner(System.in);
 		gameTreeDepth = 0;
+		int gameTreeDepthLimit = 10;
 		System.out.println("========================================================\n"
 						 + "======================== SHAKKI ========================\n"
 						 + "============== (c) 2015 Tuukka Paukkunen ===============\n"
 						 + "========================================================\n");
-		System.out.println("Anna pelipuun syvyys (1-6).\n"
+		System.out.println("Anna pelipuun syvyys (1- " + gameTreeDepthLimit + ").\n"
 				+ "Syvempi pelipuu tarkoittaa sekä parempaa tietokoneen\n"
 				+ "suoriutumista pelistä että pidempiä viiveitä tietokoneen\n"
 				+ "siirtovuorolla:");
-		while (gameTreeDepth  < 1 || gameTreeDepth > 6) {
+		while (gameTreeDepth  < 1 || gameTreeDepth > gameTreeDepthLimit) {
 			try {
 				String depthValue = input.nextLine();
 				gameTreeDepth = Integer.parseInt(depthValue);
-				if (gameTreeDepth < 1 || gameTreeDepth > 6) {
+				if (gameTreeDepth < 1 || gameTreeDepth > gameTreeDepthLimit) {
 					throw new NumberFormatException();
 				}
 			} catch (NumberFormatException ex) {
-				if (gameTreeDepth > 6) {
-					System.out.println("En ole mikään Deep Blue. Anna luku yhdestä kuuteen:");
+				if (gameTreeDepth > gameTreeDepthLimit) {
+					System.out.println("En ole mikään Deep Blue. Anna luku (1- " + gameTreeDepthLimit + "):");
 				} else {
 					System.out.println("Syötit pelipuun syvyyden väärin. Anna luku yhdestä kuuteen:");
 				}
@@ -87,6 +88,31 @@ public class UserInterface {
 	}
 	
 	/**
+	 * Calculates, how much time has passed between startTime and endTime.
+	 * @param startTime Long, start time in milliseconds.
+	 * @param endTime Long, end time in milliseconds.
+	 * @return String, e.g. "3 min 25,322 s"
+	 */
+	private static String calculateMoveTime(long startTime, long endTime) {
+		StringBuilder moveTime = new StringBuilder();
+		long timeInMillis = endTime - startTime;
+		int timeInSec = ((int)timeInMillis)/1000;
+		
+		if(timeInSec > 59) {
+			moveTime.append(timeInSec/60);
+			moveTime.append(" min ");
+		}
+		moveTime.append(timeInSec%60);
+		if (timeInSec < 10) {
+			moveTime.append(",");
+			moveTime.append(timeInMillis%1000);
+		}
+		moveTime.append(" s");
+		
+		return moveTime.toString();
+	}
+	
+	/**
 	 * Method handles the UI on the computer's turn.
 	 * @param ai AI-object, which determines the computer's next move.
 	 * @param chessboard Chessboard-object, which game is played.
@@ -94,6 +120,7 @@ public class UserInterface {
 	 */
 	private static boolean computersTurn() {
 		System.out.println("\nOdota. Tietokone tekee siirtonsa...");
+		long startTime = System.currentTimeMillis();
 		Move move = null;
 		try {
 			move = ai.getMove(chessboard, gameTreeDepth);
@@ -107,7 +134,9 @@ public class UserInterface {
 			System.out.println("Sinä voitit!");
 			return false;
 		} else if (chessboard.movePiece(move)) {
+			long endTime = System.currentTimeMillis();
 			drawBoard(chessboard.getBoardAsCharArray(), move);
+			System.out.println("Siirrossa kului aikaa " + calculateMoveTime(startTime, endTime) + ".");
 			if (chessboard.isItCheckMate() == 1) {
 				System.out.println("Tietokone voitti sinut!");
 				return false;
