@@ -482,14 +482,24 @@ public class Chessboard {
 	 * @return Integer: 1 = checkmate against white, 0 = checkmate against black, -1 = no checkmate
 	 */
 	public int isItCheckMate() {
-		// check from white's POW
-		ArrayList<Move> moves = whiteKing.getPossibleMoves(this);
-		if (this.isItCheck(true) && (moves == null || moves.isEmpty())) {
+		// check amount of possible moves for white pieces
+		ArrayList<Piece> whitePieces = this.getPieces(true);
+		int possibleMovesForWhite = 0;
+		for (Piece piece : whitePieces) {
+			possibleMovesForWhite += piece.getPossibleMoves(this).size();
+		}	
+		// are there any moves left for any piece
+		if (possibleMovesForWhite == 0) {
 			return 1;
 		}
-		// check from black's POW
-		moves = blackKing.getPossibleMoves(this);
-		if (this.isItCheck(false) && moves.isEmpty()) {
+		
+		// check amount of possible moves for black pieces
+		ArrayList<Piece> blackPieces = this.getPieces(false);
+		int possibleMovesForBlack = 0;
+		for (Piece piece : blackPieces) {
+			possibleMovesForBlack += piece.getPossibleMoves(this).size();
+		}
+		if (possibleMovesForBlack == 0) {
 			return 0;
 		}
 		return -1;

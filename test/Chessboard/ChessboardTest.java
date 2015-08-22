@@ -555,6 +555,52 @@ public class ChessboardTest {
 		assertEquals(expResult, result);
 	}
 	
+	/**
+	 * Test of movePiece method, of class Chessboard.
+	 */
+	@Test
+	public void testMovePieceWhiteIllegallyTryToCaptureKing() {
+		System.out.println("Chessboard, movePiece, move white Bishop illegally, try to capture King");
+		char[][] referencePieces = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', ' ', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'B', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', 'P', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', ' ', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard = new Chessboard(referencePieces);
+		Move move = new Move(25, 4);
+		boolean expResult = false;
+		boolean result = chessboard.movePiece(move);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of movePiece method, of class Chessboard.
+	 */
+	@Test
+	public void testMovePieceBlackIllegallyTryToCaptureKing() {
+		System.out.println("Chessboard, movePiece, move black Bishop illegally, try to capture King");
+		char[][] referencePieces = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', ' ', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'b', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', ' ', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard = new Chessboard(referencePieces);
+		Move move = new Move(3, 60);
+		boolean expResult = false;
+		boolean result = chessboard.movePiece(move);
+		assertEquals(expResult, result);
+	}
+	
 	//This test case passes because it was expecting NullPointerException
     @Test(expected = NullPointerException.class)
 	public void testMovePieceNonexistentPiece() {
@@ -582,7 +628,7 @@ public class ChessboardTest {
 		char[][] resultBoard = chessboard.getBoardAsCharArray();
 		assertArrayEquals(referenceBoard, resultBoard);
 	}
-	
+
 	/**
 	 * Test of movePiece method, of class Chessboard.
 	 */
@@ -999,7 +1045,7 @@ public class ChessboardTest {
 			{' ', ' ', ' ', 'r', 'q', 'r', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{'P', 'P', 'P', ' ', ' ', ' ', 'P', 'P'},
-			{'R', 'N', ' ', ' ', 'K', ' ', 'N', 'R'}
+			{'R', 'N', ' ', ' ', 'K', ' ', ' ', 'R'}
 		};
 		chessboard = new Chessboard(newboard);
 		int expResult = 1;
@@ -1013,10 +1059,23 @@ public class ChessboardTest {
 	@Test
 	public void testIsItCheckMateForWhiteInNonCheckMateSituation() {
 		System.out.println("Chessboard, isItCheckMate for white in checkmate situation");
+		char[][] newboard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'b', ' ', 'P', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', ' ', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard = new Chessboard(newboard);
 		int expResult = -1;
 		int result = chessboard.isItCheckMate();
 		assertEquals(expResult, result);
 	}
+	
+	
 	
 	/**
 	 * Test of isItCheckMate method, of class Chessboard.
@@ -1025,7 +1084,7 @@ public class ChessboardTest {
 	public void testIsItCheckMateForBlackInCheckMateSituation() {
 		System.out.println("Chessboard, isItCheckMate for black in checkmate situation");
 		char[][] newboard = {
-			{'r', 'n', 'b', ' ', 'k', ' ', 'n', 'r'},
+			{'r', 'n', ' ', ' ', 'k', ' ', ' ', 'r'},
 			{'p', 'p', 'p', ' ', ' ', ' ', 'p', 'p'},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
@@ -1045,7 +1104,18 @@ public class ChessboardTest {
 	 */
 	@Test
 	public void testIsItCheckMateForBlackInNonCheckMateSituation() {
-		System.out.println("Chessboard, isItCheckMate for black in checkmate situation");
+		System.out.println("Chessboard, isItCheckMate for black in non checkmate situation");
+		char[][] newboard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', ' ', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'B', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', ' ', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard = new Chessboard(newboard);
 		int expResult = -1;
 		int result = chessboard.isItCheckMate();
 		assertEquals(expResult, result);

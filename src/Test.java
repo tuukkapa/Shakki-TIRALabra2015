@@ -18,17 +18,19 @@ public class Test {
 	public static void main(String[] args) throws CloneNotSupportedException {
 		
 		char[][] newboard = {
-			{' ', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', ' ', 'p', 'p', 'p'},
+			{'r', 'n', 'R', ' ', 'k', 'b', 'n', 'r'},
+			{'p', 'p', ' ', ' ', 'p', 'p', 'p', 'p'},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', 'R', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'B', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', 'P', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{'P', 'P', 'P', 'P', ' ', 'P', 'P', 'P'},
-			{' ', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+			{'R', 'N', 'B', 'Q', 'K', ' ', 'N', 'R'}
 		};
 		Chessboard chessboard = new Chessboard(newboard);
-		int arvo = Evaluate.evaluate(chessboard);
+		Piece bishop = chessboard.getSquareContents(3, 1);
+		ArrayList<Move> moves = bishop.getPossibleMoves(chessboard);
+		System.out.println("Moi");
 	}
 
 }

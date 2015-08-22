@@ -323,7 +323,7 @@ public abstract class Piece implements Cloneable {
 		if (endContents == null) {
 			return true;
 		}
-		return white ? !endContents.amIWhite() : endContents.amIWhite();
+		return white ? !endContents.amIWhite() && !(endContents instanceof King) : endContents.amIWhite() && !(endContents instanceof King);
 	}
 	
 	/** Determines if end square contains enemy.
