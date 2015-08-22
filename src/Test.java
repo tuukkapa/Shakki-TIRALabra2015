@@ -28,7 +28,7 @@ public class Test {
 			{'R', 'N', ' ', ' ', 'K', ' ', ' ', 'R'}
 		};
 		Chessboard chessboard = new Chessboard(newboard);
-		int arvo = Evaluate.evaluate(chessboard);
+		Chessboard clone = chessboard.cloneBoardAndPieces(chessboard);
 		System.out.println("Moi");
 	}
 

@@ -8,7 +8,6 @@ import Chessboard.pieces.Pawn;
 import Chessboard.pieces.Piece;
 import Chessboard.pieces.Queen;
 import Chessboard.pieces.Rook;
-import UI.UserInterface;
 import java.util.ArrayList;
 
  /**
@@ -27,7 +26,7 @@ public class Chessboard {
 	private Piece[][] chessboard;
 	private ArrayList<Piece> blackPieces, whitePieces;
 	private Piece whiteKing, blackKing;
-	private boolean checkForWhite, checkForBlack;
+	private int numberOfWhiteOfficers, numberOfBlackOfficers;
 	
 	public Chessboard() {
 		chessboard = new Piece[8][8];
@@ -42,8 +41,6 @@ public class Chessboard {
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
 		this.setBoard(newboard);
-		checkForWhite = false;
-		checkForBlack = false;
 	}
 	
 	/**
@@ -56,27 +53,23 @@ public class Chessboard {
 	}
 	
 	/**
-	 * Constructor, creates the chessboard from Piece-array given as parameter.
-	 * @param newboard Two-dimensional char-array representation of the chess board.
-	 */
-	public Chessboard(Piece[][] newboard) {
-		chessboard = newboard;
-	}
-	
-	/**
 	 * Clones the contents of the Piece-array given as parameter.
 	 * @param newboard Piece-array of the board.
 	 * @throws CloneNotSupportedException 
 	 */
-	private void setBoardbyCloningOrig(Piece[][] newboard) throws CloneNotSupportedException {
+	private void setBoardbyCloningOrig(Chessboard anotherChessboard) throws CloneNotSupportedException {
 		blackPieces = new ArrayList<>();
 		whitePieces = new ArrayList<>();
+		Piece[][] anotherBoard = anotherChessboard.chessboard;
+		numberOfWhiteOfficers = anotherChessboard.numberOfWhiteOfficers;
+		numberOfBlackOfficers = anotherChessboard.numberOfBlackOfficers;
+		
 		for (int i = 0; i < 64; i++) {
-			if (newboard[i/8][i%8] == null) {
+			if (anotherBoard[i/8][i%8] == null) {
 				chessboard[i/8][i%8] = null;
 			} else {
-				chessboard[i/8][i%8] = (Piece)newboard[i/8][i%8].clone();
-				if (newboard[i/8][i%8].amIWhite()) {
+				chessboard[i/8][i%8] = (Piece)anotherBoard[i/8][i%8].clone();
+				if (anotherBoard[i/8][i%8].amIWhite()) {
 					whitePieces.add(chessboard[i/8][i%8]);
 				} else {
 					blackPieces.add(chessboard[i/8][i%8]);
@@ -92,27 +85,14 @@ public class Chessboard {
 	}
 	
 	/**
-	 * Makes a clone of the piece-array.
-	 * @return Two dimensional Piece-array.
-	 */
-	private Piece[][] clonePieceArray() {
-		Piece[][] newBoard = new Piece[8][8];
-		for (int i = 0; i < chessboard.length; i++) {
-			System.arraycopy(chessboard[i], 0, newBoard[i], 0, chessboard[i].length);
-		}
-		return newBoard;
-	}
-	
-	/**
 	 * This method returns a full clone of one Chessboard-object and all objects inside it.
 	 * @param chessboard Chessboard-object to be cloned.
 	 * @return The cloned Chessboard-object.
 	 * @throws CloneNotSupportedException 
 	 */
 	public Chessboard cloneBoardAndPieces(Chessboard chessboard) throws CloneNotSupportedException {
-		Piece[][] cloneArray = chessboard.clonePieceArray();
 		Chessboard clonedBoard = new Chessboard();
-		clonedBoard.setBoardbyCloningOrig(cloneArray);
+		clonedBoard.setBoardbyCloningOrig(this);
 		return clonedBoard;
 	}
 	
@@ -130,38 +110,48 @@ public class Chessboard {
 			} else if (newboard[i/8][i%8] == 'r') {
 				chessboard[i/8][i%8] = new Rook(false, i);
 				blackPieces.add(chessboard[i/8][i%8]);
+				numberOfBlackOfficers++;
 			} else if (newboard[i/8][i%8] == 'n') {
 				chessboard[i/8][i%8] = new Knight(false, i);
 				blackPieces.add(chessboard[i/8][i%8]);
+				numberOfBlackOfficers++;
 			} else if (newboard[i/8][i%8] == 'b') {
 				chessboard[i/8][i%8] = new Bishop(false, i);
 				blackPieces.add(chessboard[i/8][i%8]);
+				numberOfBlackOfficers++;
 			} else if (newboard[i/8][i%8] == 'q') {
 				chessboard[i/8][i%8] = new Queen(false, i);
 				blackPieces.add(chessboard[i/8][i%8]);
+				numberOfBlackOfficers++;
 			} else if (newboard[i/8][i%8] == 'k') {
 				blackKing = new King(false, i);
 				chessboard[i/8][i%8] = blackKing;
 				blackPieces.add(blackKing);
+				numberOfBlackOfficers++;
 			} else if (newboard[i/8][i%8] == 'P') {
 				chessboard[i/8][i%8] = new Pawn(true, i);
 				whitePieces.add(chessboard[i/8][i%8]);
 			} else if (newboard[i/8][i%8] == 'R') {
 				chessboard[i/8][i%8] = new Rook(true, i);
 				whitePieces.add(chessboard[i/8][i%8]);
+				numberOfWhiteOfficers++;
 			} else if (newboard[i/8][i%8] == 'N') {
 				chessboard[i/8][i%8] = new Knight(true, i);
 				whitePieces.add(chessboard[i/8][i%8]);
+				numberOfWhiteOfficers++;
 			} else if (newboard[i/8][i%8] == 'B') {
 				chessboard[i/8][i%8] = new Bishop(true, i);
 				whitePieces.add(chessboard[i/8][i%8]);
+				numberOfWhiteOfficers++;
 			} else if (newboard[i/8][i%8] == 'Q') {
 				chessboard[i/8][i%8] = new Queen(true, i);
 				whitePieces.add(chessboard[i/8][i%8]);
+				numberOfWhiteOfficers++;
 			} else if (newboard[i/8][i%8] == 'K') {
 				whiteKing = new King(true, i);
 				chessboard[i/8][i%8] = whiteKing;
 				whitePieces.add(whiteKing);
+				numberOfWhiteOfficers++;
 			} else {
 				chessboard[i/8][i%8] = null;
 			}
@@ -323,51 +313,152 @@ public class Chessboard {
 	}
 	
 	/**
-	 * Method is used for testing purposes. Removed after testing period.
-	 * @param piece Piece-object.
-	 * @param move Move-object.
-	 * @param end Ending coordinates.
-	 */
-	private void errorToScreen(Piece piece, Move move, int end) {
-		System.out.println("\n=====================================");
-		System.out.println("Siirtoa tehtäessä tapahtui virhe");
-		System.out.println("Nappulaa " + piece + " ei löytynyt laudalta");
-		if (piece != null) {
-			System.out.println("Nappula on omasta mielestään: r" + piece.getPosition()/8 + " s" + piece.getPosition()%8);
-			System.out.println("Loppukoordinaatit: r" + end/8 + " s" + end%8);
-		}
-		System.out.println("Lauta oli:");
-		//UserInterface.draw(this.getBoardAsCharArray());
-		System.out.println("\nMustat nappulat:");
-		ArrayList<Piece> pieces = this.getPieces(false);
-		for (Piece onePiece : pieces) {
-			System.out.println(onePiece.getSign() + " r" + (onePiece.getPosition()/8) + " s" + (onePiece.getPosition()%8));
-		}
-		System.out.println("\nValkoiset nappulat:");
-		ArrayList<Piece> wpieces = this.getPieces(true);
-		for (Piece onePiece : wpieces) {
-			System.out.println(onePiece.getSign() + " r" + (onePiece.getPosition()/8) + " s" + (onePiece.getPosition()%8));
-		}
-		System.out.println("\nSiirtokäsky sisälsi");
-		System.out.println("Alku: r" + move.getStart()/8 + " s" + move.getStart()%8 + " loppu: r" + move.getEnd()/8 + " s" + move.getEnd()%8);
-		System.out.println("=====================================\n");
-	}
-	
-	/**
 	 * Returns true, if game situation is check against the player colour given as parameter.
 	 * @param checkedIsWhite True, if player is white, false otherwise.
 	 * @return True if checked is white, false otherwise.
 	 */
 	public boolean isItCheck(boolean checkedIsWhite) {
-		int kRow, kCol;
-		
-		kRow = checkedIsWhite ? whiteKing.getPosition()/8 : blackKing.getPosition()/8;
-		kCol = checkedIsWhite ? whiteKing.getPosition()%8 : blackKing.getPosition()%8;
+		int kRow = checkedIsWhite ? whiteKing.getPosition()/8 : blackKing.getPosition()/8;
+		int kCol = checkedIsWhite ? whiteKing.getPosition()%8 : blackKing.getPosition()%8;
 		
 		boolean pieceIsEnemy;
+		boolean pieceIsPastKing; // is piece past enemy's king, e.g. pawn
 		
-		// is piece past enemy's king, e.g. pawn
-		boolean pieceIsPastKing;
+		/*ArrayList<Piece> pieces = checkedIsWhite ? blackPieces : whitePieces;
+		
+		for (Piece piece : pieces) {
+			int position = piece.getPosition();
+			int pRow = piece.getPosition()/8;
+			int pCol = piece.getPosition()%8;
+			if (piece instanceof Pawn) {
+				pieceIsPastKing = checkedIsWhite ? kRow < position/8 : kRow > position/8;
+				if (!pieceIsPastKing && Math.abs(kRow - pRow) == 1 && Math.abs(kCol - pCol) == 1) {
+					return true;
+				}
+			} else if (piece instanceof Knight) {
+				if ((Math.abs(kRow - pRow) == 2 && Math.abs(kCol - pCol) == 1) || 
+						(Math.abs(kRow - pRow) == 1 && Math.abs(kCol - pCol) == 2)) {
+					return true;
+				}
+			} else if (piece instanceof Bishop) {
+				if (Math.abs(kRow - pRow) == Math.abs(kCol - pCol)) {
+					boolean routeFree = true;
+					for (int j = 1; j < Math.abs(kRow - pRow); j++) {
+						if (pRow < kRow && pCol < kCol && chessboard[kRow-j][kCol-j] != null) {
+							routeFree = false;
+						}
+						// Check south-west
+						if (pRow > kRow && pCol < kCol && chessboard[kRow+j][kCol-j] != null) {
+							routeFree = false;
+						}
+						// Check north-east
+						if (pRow < kRow && pCol > kCol && chessboard[kRow-j][kCol+j] != null) {
+							routeFree = false;
+						}
+						// Check south-east
+						if (pRow > kRow && pCol > kCol && chessboard[kRow+j][kCol+j] != null) {
+							routeFree = false;
+						}
+					}
+					if (routeFree) {
+						return true;
+					}
+				}
+			} else if (piece instanceof Rook) {
+				boolean routeFree = false;
+				if (kRow == pRow) {
+					for (int j = 1; j < Math.abs(kCol - pCol); j++) {
+						if (kCol < pCol) {
+							if (chessboard[kRow][kCol+j] != null) {
+								routeFree = false;
+							}
+						} else {
+							if (chessboard[kRow][kCol-j] != null) {
+								routeFree = false;
+							}
+						}	
+					}
+					if (routeFree) {
+						return true;
+					}
+				} else	if (kCol == pCol) {
+					routeFree = true;
+					for (int j = 1; j < Math.abs(kRow - pRow); j++) {
+						if (kRow < pRow) {
+							if (chessboard[kRow+j][kCol] != null) {
+								routeFree = false;
+							}
+						} else {
+							if (chessboard[kRow-j][kCol] != null) {
+								routeFree = false;
+							}
+						}	
+					}
+					if (routeFree) {
+						return true;
+					}
+				}
+			} else if (piece instanceof Queen) {
+				boolean routeFree = true;
+				if (Math.abs(kRow - pRow) == Math.abs(kCol - pCol)) {
+					for (int j = 1; j < Math.abs(kRow - pRow); j++) {
+						if (pRow < kRow && pCol < kCol && chessboard[kRow-j][kCol-j] != null) {
+							routeFree = false;
+						}
+						// Check south-west
+						if (pRow > kRow && pCol < kCol && chessboard[kRow+j][kCol-j] != null) {
+							routeFree = false;
+						}
+						// Check north-east
+						if (pRow < kRow && pCol > kCol && chessboard[kRow-j][kCol+j] != null) {
+							routeFree = false;
+						}
+						// Check south-east
+						if (pRow > kRow && pCol > kCol && chessboard[kRow+j][kCol+j] != null) {
+							routeFree = false;
+						}
+					}
+					if (routeFree) {
+						return true;
+					}
+				} else if (kRow == pRow) {
+					for (int j = 1; j < Math.abs(kCol - pCol); j++) {
+						if (kCol < pCol) {
+							if (chessboard[kRow][kCol+j] != null) {
+								routeFree = false;
+							}
+						} else {
+							if (chessboard[kRow][kCol-j] != null) {
+								routeFree = false;
+							}
+						}	
+					}
+					if (routeFree) {
+						return true;
+					}
+				} else	if (kCol == pCol) {
+					routeFree = true;
+					for (int j = 1; j < Math.abs(kRow - pRow); j++) {
+						if (kRow < pRow) {
+							if (chessboard[kRow+j][kCol] != null) {
+								routeFree = false;
+							}
+						} else {
+							if (chessboard[kRow-j][kCol] != null) {
+								routeFree = false;
+							}
+						}	
+					}
+					if (routeFree) {
+						return true;
+					}
+				}
+			} else if (piece instanceof King) {
+				if (Math.abs(pRow - kRow) <= 1 && Math.abs(pCol - kCol) <= 1) {
+					return true;
+				}
+			}
+		}*/
 		
 		for (int i = 0; i < 64; i++) {
 			if (chessboard[i/8][i%8] != null) {
@@ -377,11 +468,6 @@ public class Chessboard {
 				if (Math.abs(kRow - (i/8)) == 1 && Math.abs(kCol - (i%8)) == 1) {
 					pieceIsPastKing = checkedIsWhite ? kRow < i/8 : kRow > i/8;
 					if (pieceIsEnemy && chessboard[i/8][i%8] instanceof Pawn && !pieceIsPastKing) {
-						if (checkedIsWhite) {
-							checkForWhite = true;
-						} else {
-							checkForBlack = true;
-						}
 						return true;
 					}
 				}
@@ -390,11 +476,6 @@ public class Chessboard {
 				if ((Math.abs(kRow - (i/8)) == 2 && Math.abs(kCol - (i%8)) == 1) || 
 						(Math.abs(kRow - (i/8)) == 1 && Math.abs(kCol - (i%8)) == 2)) {
 					if (pieceIsEnemy && chessboard[i/8][i%8] instanceof Knight) {
-						if (checkedIsWhite) {
-							checkForWhite = true;
-						} else {
-							checkForBlack = true;
-						}
 						return true;
 					}
 				}
@@ -403,14 +484,6 @@ public class Chessboard {
 				if (Math.abs(kRow - (i/8)) == Math.abs(kCol - (i%8)) && pieceIsEnemy && (chessboard[i/8][i%8] instanceof Bishop || chessboard[i/8][i%8] instanceof Queen)) {
 					boolean routeFree = true;
 					for (int j = 1; j < Math.abs(kRow -(i/8)); j++) {
-						/*	Index out of bounds doesn't happen because when either of the two first expressions are false
-							then the third one isn't checked. In other words, the first two prevent checking outside of
-							the array.
-						*/
-						/*	Check north-west:
-							current row is less than king's row
-							current column is less than stking's column
-						*/
 						if (i/8 < kRow && i%8 < kCol && chessboard[kRow-j][kCol-j] != null) {
 							routeFree = false;
 						}
@@ -428,11 +501,6 @@ public class Chessboard {
 						}
 					}
 					if (routeFree) {
-						if (checkedIsWhite) {
-							checkForWhite = true;
-						} else {
-							checkForBlack = true;
-						}
 						return true;
 					}
 				}
@@ -452,11 +520,6 @@ public class Chessboard {
 						}	
 					}
 					if (routeFree) {
-						if (checkedIsWhite) {
-							checkForWhite = true;
-						} else {
-							checkForBlack = true;
-						}
 						return true;
 					}
 				}
@@ -476,34 +539,19 @@ public class Chessboard {
 						}
 					}
 					if (routeFree) {
-						if (checkedIsWhite) {
-							checkForWhite = true;
-						} else {
-							checkForBlack = true;
-						}
 						return true;
 					}
 				}
 
 				// is opponent's King threatening
 				if (pieceIsEnemy && chessboard[i/8][i%8] instanceof King && (Math.abs((i/8) - kRow) <= 1 && Math.abs((i%8) - kCol) <= 1)) {
-					if (checkedIsWhite) {
-							checkForWhite = true;
-						} else {
-							checkForBlack = true;
-						}
 					return true;
 				}
-			}
-				
-		}
-		if (checkedIsWhite) {
-			checkForWhite = false;
-		} else {
-			checkForBlack = false;
+			}	
 		}
 		return false;
 	}
+	
 	 /**
 	 * Returns an integer value telling if game situation is checkmate.
 	 * @return Integer: 1 = checkmate against white, 0 = checkmate against black, -1 = no checkmate
@@ -532,61 +580,8 @@ public class Chessboard {
 		return -1;
 	}
 	
-	/**
-	 * Evaluates this chessboard's game situation and gives it an Integer value,
-	 * how good the game situation is to be able to win from it from computer's
-	 * (black pieces) point of view.
-	 * @return Integer, value of the game situation.
-	 */
-	public int evaluate() {
-		int points = 0;
-		int kingPoints = 200;
-		int queenPoints = 9;
-		int rookPoints = 5;
-		int knightPoints = 3;
-		int bishopPoints = 3;
-		int pawnPoints = 1;
-		boolean pieceIsWhite = false;
-		for (int i = 0; i < 64; i++) {
-			if (chessboard[i/8][i%8] != null) {
-				pieceIsWhite = chessboard[i/8][i%8].amIWhite();
-			}
-			if (chessboard[i/8][i%8] instanceof King && !pieceIsWhite) points += kingPoints;
-			if (chessboard[i/8][i%8] instanceof Queen && !pieceIsWhite) points += queenPoints;
-			if (chessboard[i/8][i%8] instanceof Rook && !pieceIsWhite) points += rookPoints;
-			if (chessboard[i/8][i%8] instanceof Knight && !pieceIsWhite) points += knightPoints;
-			if (chessboard[i/8][i%8] instanceof Bishop && !pieceIsWhite) points += bishopPoints;
-			if (chessboard[i/8][i%8] instanceof Pawn && !pieceIsWhite) points += pawnPoints;
-			if (chessboard[i/8][i%8] instanceof King && pieceIsWhite) points -= kingPoints;
-			if (chessboard[i/8][i%8] instanceof Queen && pieceIsWhite) points -= queenPoints;
-			if (chessboard[i/8][i%8] instanceof Rook && pieceIsWhite) points -= rookPoints;
-			if (chessboard[i/8][i%8] instanceof Knight && pieceIsWhite) points -= knightPoints;
-			if (chessboard[i/8][i%8] instanceof Bishop && pieceIsWhite) points -= bishopPoints;
-			if (chessboard[i/8][i%8] instanceof Pawn && pieceIsWhite) points -= pawnPoints;
-		}
-		int checkMate = this.isItCheckMate();
-		if (this.isItCheck(true)) {
-			points += 1000;
-			if (checkMate == 1) {
-				points = Integer.MAX_VALUE;
-			}
-		}
-		if (this.isItCheck(false)) {
-			points -= 1000;
-			if (checkMate == 0) {
-				points = Integer.MIN_VALUE;
-			}
-		}
-		return points;
-	}
-	
-	/**
-	 * Returns check status of the colour in question.
-	 * @param white Boolean, white is true, black is false.
-	 * @return Boolean value of the check situation for the colour in question.
-	 */
-	public boolean getCheckStatus(boolean white) {
-		return white ? checkForWhite : checkForBlack;
+	public int getNumberOfOfficers(boolean white) {
+		return white ? numberOfWhiteOfficers : numberOfBlackOfficers;
 	}
 	
 }

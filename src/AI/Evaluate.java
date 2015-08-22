@@ -174,14 +174,14 @@ public class Evaluate {
 	 * @return True, if it is end game for the side, false otherwise.
 	 */
 	private static boolean isItEndGame(Chessboard chessboard, boolean white) {
-		ArrayList<Piece> pieces = chessboard.getPieces(white);
+		/*ArrayList<Piece> pieces = chessboard.getPieces(white);
 		int officers = 0;
 		for (Piece piece : pieces) {
 			if (!(piece instanceof Pawn )) {
 				officers++;
 			}
-		}
-		return officers < 5;
+		}*/
+		return chessboard.getNumberOfOfficers(white) < 5 /*officers < 5*/;
 	}
 
 }
