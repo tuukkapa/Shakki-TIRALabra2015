@@ -30,7 +30,11 @@ public class AI {
 		bestMove = null; // remove previous move command
 		originalDepth = depth;
 		max(Integer.MIN_VALUE, Integer.MAX_VALUE, chessboard, depth);
-		return bestMove;
+		if (chessboard.isItCheckMate() == 0) {
+			return new Move(0, 0);
+		} else {
+			return bestMove;
+		}
 	}
 
 	/**
