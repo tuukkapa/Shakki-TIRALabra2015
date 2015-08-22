@@ -25,7 +25,7 @@ public class UserInterface {
 		ai = new AI();
 		input = new Scanner(System.in);
 		gameTreeDepth = 0;
-		int gameTreeDepthLimit = 10;
+		int gameTreeDepthLimit = 8;
 		System.out.println("========================================================\n"
 						 + "======================== SHAKKI ========================\n"
 						 + "============== (c) 2015 Tuukka Paukkunen ===============\n"
@@ -45,7 +45,7 @@ public class UserInterface {
 				if (gameTreeDepth > gameTreeDepthLimit) {
 					System.out.println("En ole mikään Deep Blue. Anna luku (1- " + gameTreeDepthLimit + "):");
 				} else {
-					System.out.println("Syötit pelipuun syvyyden väärin. Anna luku yhdestä kuuteen:");
+					System.out.println("Syötit pelipuun syvyyden väärin. Anna luku (1- " + gameTreeDepthLimit + "):");
 				}
 			}
 		}
