@@ -58,11 +58,13 @@ public class AI {
 				Chessboard cloneBoard = new Chessboard(chessboard);
 				ChessboardHandler.movePiece(cloneBoard, move);
 				score = min(alpha, beta, cloneBoard, depth - 1);
+				if (depth == originalDepth) {
+					System.out.println("Nappula: " + piece.getSign() + " paikka " + piece.getPosition() + " arvosana " + score);
+				}
 				if (score > value) {
 					value = score;
 					if (depth == originalDepth) {
 						bestMove = move;
-						System.out.println("Nappula: " + piece.getSign() + " paikka " + piece.getPosition() + " arvosana " + score);
 					}
 				}
 				if (value >= beta) {
