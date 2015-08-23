@@ -62,6 +62,7 @@ public class AI {
 					value = score;
 					if (depth == originalDepth) {
 						bestMove = move;
+						System.out.println("Nappula: " + piece.getSign() + " paikka " + piece.getPosition() + " arvosana " + score);
 					}
 				}
 				if (value >= beta) {

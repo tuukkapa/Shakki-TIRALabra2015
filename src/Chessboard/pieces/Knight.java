@@ -80,8 +80,8 @@ public class Knight extends Piece implements Cloneable {
 	
 	@Override
 	public Object clone() throws CloneNotSupportedException {
-		Knight newKight = (Knight) super.clone();
-		return newKight;
+		Knight newKnight = (Knight) super.clone();
+		return newKnight;
 	}
 
 }

@@ -49,6 +49,7 @@ public class Chessboard {
 			Piece piece = anotherboard.getFromList(true, i);
 			chessboard[row][col] = (Piece)piece.clone();
 			addToList(chessboard[row][col]);
+			whiteKingPosition = anotherboard.getKingPosition(true);
 		}
 		for (int i = 0; i < anotherboard.getListSize(false); i++) {
 			int row = anotherboard.getFromList(false, i).getPosition()/8;
@@ -56,6 +57,7 @@ public class Chessboard {
 			Piece piece = anotherboard.getFromList(false, i);
 			chessboard[row][col] = (Piece)piece.clone();
 			addToList(chessboard[row][col]);
+			blackKingPosition = anotherboard.getKingPosition(false);
 		}
 	}
 	
@@ -81,6 +83,7 @@ public class Chessboard {
 				this.add(new Queen(false, i));
 			} else if (newboard[i/8][i%8] == 'k') {
 				this.add(new King(false, i));
+				blackKingPosition = i;
 			} else if (newboard[i/8][i%8] == 'P') {
 				this.add(new Pawn(true, i));
 			} else if (newboard[i/8][i%8] == 'R') {
@@ -93,6 +96,7 @@ public class Chessboard {
 				this.add(new Queen(true, i));
 			} else if (newboard[i/8][i%8] == 'K') {
 				this.add(new King(true, i));
+				whiteKingPosition = i;
 			}
 		}
 	}
