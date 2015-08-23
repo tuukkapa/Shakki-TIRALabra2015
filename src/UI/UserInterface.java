@@ -31,7 +31,7 @@ public class UserInterface {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(newboard);
+		chessboard.setBoard(newboard);
 		input = new Scanner(System.in);
 		gameTreeDepth = 0;
 		int gameTreeDepthLimit = 8;

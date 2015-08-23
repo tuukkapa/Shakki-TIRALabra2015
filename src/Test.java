@@ -27,7 +27,7 @@ public class Test {
 			{'P', 'P', 'P', ' ', ' ', ' ', 'P', 'P'},
 			{'R', 'N', ' ', ' ', 'K', ' ', ' ', 'R'}
 		};
-		//Chessboard chessboard = ChessboardHandler.setBoard(newboard);
+		//Chessboard chessboard.setBoard(newboard);
 		//boolean value = ChessboardHandler.isItCheck(chessboard, false);
 		/*List<Piece> lista = new List<>();
 		lista.add(chessboard.getSquareContents(0));

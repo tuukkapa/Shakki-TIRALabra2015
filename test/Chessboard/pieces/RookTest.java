@@ -60,7 +60,7 @@ public class RookTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{' ', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
 		};
-		chessboard = ChessboardHandler.setBoard(newboard);
+		chessboard.setBoard(newboard);
 		Rook rook = null;
 		for (int i = 0; i < 64; i++) {
 			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'R') {
@@ -113,7 +113,7 @@ public class RookTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(newboard);
+		chessboard.setBoard(newboard);
 		Rook rook = null;
 		for (int i = 0; i < 64; i++) {
 			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'r') {
@@ -165,7 +165,7 @@ public class RookTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 32;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -194,7 +194,7 @@ public class RookTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 39;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -223,7 +223,7 @@ public class RookTest {
 			{'P', 'P', 'P', ' ', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 19;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -252,7 +252,7 @@ public class RookTest {
 			{'P', 'P', 'P', ' ', 'P', 'P', 'P', 'P'},
 			{' ', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
 		};
-		chessboard = ChessboardHandler.setBoard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 51;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -281,7 +281,7 @@ public class RookTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 39;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -310,7 +310,7 @@ public class RookTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 32;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -339,7 +339,7 @@ public class RookTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 11;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -368,7 +368,7 @@ public class RookTest {
 			{'P', 'P', 'P', 'p', 'P', 'P', 'P', 'P'},
 			{' ', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
 		};
-		chessboard = ChessboardHandler.setBoard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 51;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -397,7 +397,7 @@ public class RookTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 42;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -426,7 +426,7 @@ public class RookTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 11;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -455,7 +455,7 @@ public class RookTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{' ', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
 		};
-		chessboard = ChessboardHandler.setBoard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 51;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -484,7 +484,7 @@ public class RookTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 39;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -513,7 +513,7 @@ public class RookTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 32;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -542,7 +542,7 @@ public class RookTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 11;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -571,7 +571,7 @@ public class RookTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{' ', 'N', 'B', 'Q', 'K', 'B', 'N', ' '}
 		};
-		chessboard = ChessboardHandler.setBoard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 51;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -600,7 +600,7 @@ public class RookTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 39;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -629,7 +629,7 @@ public class RookTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 32;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -658,7 +658,7 @@ public class RookTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(newboard);
+		chessboard.setBoard(newboard);
 		int end = -1;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -687,7 +687,7 @@ public class RookTest {
 			{'P', 'P', 'P', 'P', ' ', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 40;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -716,7 +716,7 @@ public class RookTest {
 			{'P', 'P', 'P', ' ', ' ', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 43;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -745,7 +745,7 @@ public class RookTest {
 			{'P', 'P', 'P', ' ', ' ', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 35;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {

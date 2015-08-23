@@ -60,7 +60,7 @@ public class QueenTest {
 			{'P', ' ', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{' ', 'N', 'B', ' ', 'K', 'B', 'N', ' '}
 		};
-		chessboard = ChessboardHandler.setBoard(newboard);
+		chessboard.setBoard(newboard);
 		Queen queen = null;
 		for (int i = 0; i < 64; i++) {
 			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'Q') {
@@ -112,7 +112,7 @@ public class QueenTest {
 			{'P', ' ', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{' ', 'N', 'B', ' ', 'K', 'B', 'N', ' '}
 		};
-		chessboard = ChessboardHandler.setBoard(newboard);
+		chessboard.setBoard(newboard);
 		Queen queen = null;
 		for (int i = 0; i < 64; i++) {
 			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'Q') {
@@ -164,7 +164,7 @@ public class QueenTest {
 			{'P', ' ', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{' ', 'N', 'B', ' ', 'K', 'B', 'N', ' '}
 		};
-		chessboard = ChessboardHandler.setBoard(newboard);
+		chessboard.setBoard(newboard);
 		Queen queen = null;
 		for (int i = 0; i < 64; i++) {
 			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'q') {
@@ -216,7 +216,7 @@ public class QueenTest {
 			{'P', ' ', 'P', 'P', 'R', 'P', 'P', 'P'},
 			{' ', 'N', 'B', ' ', 'K', 'B', 'N', ' '}
 		};
-		chessboard = ChessboardHandler.setBoard(newboard);
+		chessboard.setBoard(newboard);
 		Queen queen = null;
 		for (int i = 0; i < 64; i++) {
 			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'q') {
@@ -268,7 +268,7 @@ public class QueenTest {
 			{'P', ' ', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{' ', 'N', 'B', ' ', 'K', 'B', 'N', ' '}
 		};
-		chessboard = ChessboardHandler.setBoard(newboard);
+		chessboard.setBoard(newboard);
 		Queen queen = null;
 		for (int i = 0; i < 64; i++) {
 			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'q') {
@@ -320,7 +320,7 @@ public class QueenTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', ' ', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(newboard);
+		chessboard.setBoard(newboard);
 		boolean[][] expectedMovementMap = {
 			{false, false, false, false, false, false, false, false},
 			{true, false, false, true, false, false, true, false},
