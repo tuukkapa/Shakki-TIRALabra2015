@@ -6,8 +6,13 @@
 
 package Chessboard;
 
+import Chessboard.pieces.Bishop;
 import Chessboard.pieces.King;
+import Chessboard.pieces.Knight;
+import Chessboard.pieces.Pawn;
 import Chessboard.pieces.Piece;
+import Chessboard.pieces.Queen;
+import Chessboard.pieces.Rook;
 import DataStructures.List;
 
 public class Chessboard {
@@ -21,6 +26,17 @@ public class Chessboard {
 		chessboard = new Piece[8][8];
 		whitePieces = new List<>();
 		blackPieces = new List<>();
+		char[][] newBoard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		setBoard(newBoard);
 	}
 	
 	public Chessboard(Chessboard anotherboard) throws CloneNotSupportedException {
@@ -40,6 +56,44 @@ public class Chessboard {
 			Piece piece = anotherboard.getFromList(false, i);
 			chessboard[row][col] = (Piece)piece.clone();
 			addToList(chessboard[row][col]);
+		}
+	}
+	
+	/**
+	 * Creates new chessboard from the char-array given as parameter.
+	 * @param newboard Two dimensional char-array representing the chessboard.
+	 * @return New Chessboard-object.
+	 */
+	public void setBoard(char[][] newboard) {
+		chessboard = new Piece[8][8];
+		whitePieces = new List<>();
+		blackPieces = new List<>();
+		for (int i = 0; i < 64; i++) {
+			if (newboard[i/8][i%8] == 'p') {
+				this.add(new Pawn(false, i));
+			} else if (newboard[i/8][i%8] == 'r') {
+				this.add(new Rook(false, i));
+			} else if (newboard[i/8][i%8] == 'n') {
+				this.add(new Knight(false, i));
+			} else if (newboard[i/8][i%8] == 'b') {
+				this.add(new Bishop(false, i));
+			} else if (newboard[i/8][i%8] == 'q') {
+				this.add(new Queen(false, i));
+			} else if (newboard[i/8][i%8] == 'k') {
+				this.add(new King(false, i));
+			} else if (newboard[i/8][i%8] == 'P') {
+				this.add(new Pawn(true, i));
+			} else if (newboard[i/8][i%8] == 'R') {
+				this.add(new Rook(true, i));
+			} else if (newboard[i/8][i%8] == 'N') {
+				this.add(new Knight(true, i));
+			} else if (newboard[i/8][i%8] == 'B') {
+				this.add(new Bishop(true, i));
+			} else if (newboard[i/8][i%8] == 'Q') {
+				this.add(new Queen(true, i));
+			} else if (newboard[i/8][i%8] == 'K') {
+				this.add(new King(true, i));
+			}
 		}
 	}
 	

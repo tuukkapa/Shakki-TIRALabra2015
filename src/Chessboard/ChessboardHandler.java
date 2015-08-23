@@ -347,8 +347,8 @@ public class ChessboardHandler {
 		
 		// check amount of possible moves for black pieces
 		int possibleMovesForBlack = 0;
-		for (int i = 0; i < chessboard.getListSize(true); i++) {
-			Piece piece = chessboard.getFromList(true, i);
+		for (int i = 0; i < chessboard.getListSize(false); i++) {
+			Piece piece = chessboard.getFromList(false, i);
 			possibleMovesForBlack += piece.getPossibleMoves(chessboard).size();
 		}
 		if (possibleMovesForBlack == 0) {

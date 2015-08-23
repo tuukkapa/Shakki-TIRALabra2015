@@ -7,6 +7,7 @@ package Chessboard.pieces;
 
 import Chessboard.Move;
 import Chessboard.Chessboard;
+import Chessboard.ChessboardHandler;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -59,7 +60,7 @@ public class BishopTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard = ChessboardHandler.setBoard(newboard);
 		Bishop bishop = null;
 		for (int i = 0; i < 64; i++) {
 			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'b') {
@@ -111,7 +112,7 @@ public class BishopTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', ' ', 'Q', 'K', ' ', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard = ChessboardHandler.setBoard(newboard);
 		Bishop bishop = null;
 		for (int i = 0; i < 64; i++) {
 			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'B') {
@@ -163,7 +164,7 @@ public class BishopTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', ' ', 'Q', 'K', ' ', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard = ChessboardHandler.setBoard(newboard);
 		Bishop bishop = null;
 		for (int i = 0; i < 64; i++) {
 			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'b') {
@@ -215,7 +216,7 @@ public class BishopTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', ' ', 'Q', 'K', ' ', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard = ChessboardHandler.setBoard(newboard);
 		Bishop bishop = null;
 		for (int i = 0; i < 64; i++) {
 			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'b') {
@@ -264,7 +265,7 @@ public class BishopTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard = ChessboardHandler.setBoard(newboard);
 		int end = 14;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -290,7 +291,7 @@ public class BishopTest {
 			{'P', 'P', 'P', 'P', 'P', 'p', 'P', 'P'},
 			{'R', 'N', ' ', 'Q', 'K', ' ', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard = ChessboardHandler.setBoard(newboard);
 		int end = 53;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -316,7 +317,7 @@ public class BishopTest {
 			{'P', 'p', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', ' ', 'Q', 'K', ' ', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard = ChessboardHandler.setBoard(newboard);
 		int end = 49;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -342,7 +343,7 @@ public class BishopTest {
 			{'P', 'p', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', ' ', 'Q', 'K', ' ', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard = ChessboardHandler.setBoard(newboard);
 		int end = 8;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -368,7 +369,7 @@ public class BishopTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard = ChessboardHandler.setBoard(newboard);
 		int end = 22;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -394,7 +395,7 @@ public class BishopTest {
 			{'P', 'P', 'P', 'P', 'P', ' ', 'P', 'P'},
 			{'R', 'N', ' ', 'Q', 'K', ' ', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard = ChessboardHandler.setBoard(newboard);
 		int end = 53;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -420,7 +421,7 @@ public class BishopTest {
 			{'P', ' ', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', ' ', 'Q', 'K', ' ', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard = ChessboardHandler.setBoard(newboard);
 		int end = 49;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -446,7 +447,7 @@ public class BishopTest {
 			{'P', 'p', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', ' ', 'Q', 'K', ' ', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard = ChessboardHandler.setBoard(newboard);
 		int end = 8;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -472,7 +473,7 @@ public class BishopTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard = ChessboardHandler.setBoard(newboard);
 		int end = 15;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -498,7 +499,7 @@ public class BishopTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', ' ', 'Q', 'K', ' ', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard = ChessboardHandler.setBoard(newboard);
 		int end = 53;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -524,7 +525,7 @@ public class BishopTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', ' ', 'Q', 'K', ' ', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard = ChessboardHandler.setBoard(newboard);
 		int end = 49;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -550,7 +551,7 @@ public class BishopTest {
 			{'P', 'p', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{' ', 'N', ' ', 'Q', 'K', ' ', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard = ChessboardHandler.setBoard(newboard);
 		int end = 8;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -576,7 +577,7 @@ public class BishopTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard = ChessboardHandler.setBoard(newboard);
 		int end = 22;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -602,7 +603,7 @@ public class BishopTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', ' ', 'Q', 'K', ' ', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard = ChessboardHandler.setBoard(newboard);
 		int end = 53;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -628,7 +629,7 @@ public class BishopTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', ' ', 'Q', 'K', ' ', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard = ChessboardHandler.setBoard(newboard);
 		int end = 49;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -654,7 +655,7 @@ public class BishopTest {
 			{'P', 'p', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{' ', 'N', ' ', 'Q', 'K', ' ', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard = ChessboardHandler.setBoard(newboard);
 		int end = 8;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -680,7 +681,7 @@ public class BishopTest {
 			{'P', 'p', 'P', 'B', 'P', 'P', 'P', 'P'},
 			{' ', 'N', ' ', 'Q', 'K', ' ', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard = ChessboardHandler.setBoard(newboard);
 		int end = 44;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -706,7 +707,7 @@ public class BishopTest {
 			{'P', 'p', 'P', 'B', 'P', 'P', 'P', 'P'},
 			{' ', 'N', ' ', 'Q', 'K', ' ', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard = ChessboardHandler.setBoard(newboard);
 		int end = 25;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
