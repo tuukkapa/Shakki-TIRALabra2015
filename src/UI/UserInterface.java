@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 public class UserInterface {
 	
 	private static Chessboard chessboard;
+	private static AI ai;
 	private static Scanner input;
 	private static String userCommand;
 	private static int gameTreeDepth;
@@ -31,7 +32,9 @@ public class UserInterface {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
+		chessboard = new Chessboard();
 		chessboard.setBoard(newboard);
+		ai = new AI();
 		input = new Scanner(System.in);
 		gameTreeDepth = 0;
 		int gameTreeDepthLimit = 8;
@@ -132,7 +135,7 @@ public class UserInterface {
 		long startTime = System.currentTimeMillis();
 		Move move = null;
 		try {
-			move = AI.getMove(chessboard, gameTreeDepth);
+			move = ai.getMove(chessboard, gameTreeDepth);
 		} catch (NullPointerException ne) {
 			Logger.getLogger(AI.class.getName()).log(Level.SEVERE, null, ne);
 		} catch (Exception e) {

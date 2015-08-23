@@ -13,8 +13,8 @@ import java.util.ArrayList;
  */
 public class AI {
 	
-	private static Move bestMove;
-	private static int originalDepth;
+	private Move bestMove;
+	private int originalDepth;
 	
 	/**
 	 * Starts the minimax-algorithm and returns computer's next move.
@@ -23,7 +23,7 @@ public class AI {
 	 * @return Move-object, includes start- and end-coordinates and possibly a captured piece.
 	 * @throws CloneNotSupportedException 
 	 */
-	public static Move getMove(Chessboard chessboard, int depth) throws CloneNotSupportedException {
+	public Move getMove(Chessboard chessboard, int depth) throws CloneNotSupportedException {
 		bestMove = null; // remove previous move command
 		originalDepth = depth;
 		max(Integer.MIN_VALUE, Integer.MAX_VALUE, chessboard, depth);
@@ -43,7 +43,7 @@ public class AI {
 	 * @return Integer, value of the game situation.
 	 * @throws CloneNotSupportedException 
 	 */
-	public static int max(int alpha, int beta, Chessboard chessboard, int depth) throws CloneNotSupportedException {
+	public int max(int alpha, int beta, Chessboard chessboard, int depth) throws CloneNotSupportedException {
 		if (depth == 0 || ChessboardHandler.isItCheckMate(chessboard) >= 0) {
 			return Evaluate.evaluate(chessboard);
 		}
@@ -82,7 +82,7 @@ public class AI {
 	 * @return Integer, value of the game situation.
 	 * @throws CloneNotSupportedException 
 	 */
-	public static int min(int alpha, int beta, Chessboard chessboard, int depth) throws CloneNotSupportedException {
+	public int min(int alpha, int beta, Chessboard chessboard, int depth) throws CloneNotSupportedException {
 		if (depth == 0 || ChessboardHandler.isItCheckMate(chessboard) >= 0) {
 			return Evaluate.evaluate(chessboard);
 		}
