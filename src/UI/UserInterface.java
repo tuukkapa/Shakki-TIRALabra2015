@@ -2,6 +2,7 @@ package UI;
 
 import AI.AI;
 import Chessboard.Chessboard;
+import Chessboard.ChessboardHandler;
 import Chessboard.Move;
 import User.UserMovement;
 import java.util.Scanner;
@@ -15,14 +16,22 @@ import java.util.logging.Logger;
 public class UserInterface {
 	
 	private static Chessboard chessboard;
-	private static AI ai;
 	private static Scanner input;
 	private static String userCommand;
 	private static int gameTreeDepth;
 	
 	public static void runGame() {
-		chessboard = new Chessboard();
-		ai = new AI();
+		char[][] newboard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard = ChessboardHandler.setBoard(newboard);
 		input = new Scanner(System.in);
 		gameTreeDepth = 0;
 		int gameTreeDepthLimit = 8;
@@ -36,7 +45,7 @@ public class UserInterface {
 				+ "siirtovuorolla:");
 		while (gameTreeDepth  < 1 || gameTreeDepth > gameTreeDepthLimit) {
 			try {
-				String depthValue = input.nextLine();
+ 				String depthValue = input.nextLine();
 				gameTreeDepth = Integer.parseInt(depthValue);
 				if (gameTreeDepth < 1 || gameTreeDepth > gameTreeDepthLimit) {
 					throw new NumberFormatException();
@@ -76,7 +85,7 @@ public class UserInterface {
 			if (userCommand.equals("stop")) {
 				System.out.println("Poistutaan pelistä.");
 				return false;
-			} else if (UserMovement.movePiece(userCommand, chessboard)) {
+			} else if (ChessboardHandler.userCommandParser(userCommand, chessboard)) {
 				falseCommand = false; // user gave a valid command
 			} else {
 				System.out.println("Annoit virheellisen komennon. Yritä uudelleen.");
@@ -123,7 +132,7 @@ public class UserInterface {
 		long startTime = System.currentTimeMillis();
 		Move move = null;
 		try {
-			move = ai.getMove(chessboard, gameTreeDepth);
+			move = AI.getMove(chessboard, gameTreeDepth);
 		} catch (NullPointerException ne) {
 			Logger.getLogger(AI.class.getName()).log(Level.SEVERE, null, ne);
 		} catch (Exception e) {
@@ -133,11 +142,11 @@ public class UserInterface {
 		if (move.getStart() == 0 && move.getEnd() == 0) {
 			System.out.println("Sinä voitit!");
 			return false;
-		} else if (chessboard.movePiece(move)) {
+		} else if (ChessboardHandler.movePiece(chessboard, move)) {
 			long endTime = System.currentTimeMillis();
 			drawBoard(chessboard.getBoardAsCharArray(), move);
 			System.out.println("Siirrossa kului aikaa " + calculateMoveTime(startTime, endTime) + ".");
-			if (chessboard.isItCheckMate() == 1) {
+			if (ChessboardHandler.isItCheckMate(chessboard) == 1) {
 				System.out.println("Tietokone voitti sinut!");
 				return false;
 			} else {

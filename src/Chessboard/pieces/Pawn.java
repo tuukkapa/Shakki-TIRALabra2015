@@ -2,6 +2,7 @@ package Chessboard.pieces;
 
 import Chessboard.Move;
 import Chessboard.Chessboard;
+import Chessboard.ChessboardHandler;
 import java.util.ArrayList;
 
 /**
@@ -79,7 +80,7 @@ public class Pawn extends Piece implements Cloneable {
 			}
 		}
 		
-		return movementOk && !chessboard.wouldItBeCheck(this, end);
+		return movementOk && !ChessboardHandler.wouldItBeCheck(chessboard, this, end);
 	}
 	
 	@Override

@@ -3,6 +3,7 @@ package User;
 
 import Chessboard.Move;
 import Chessboard.Chessboard;
+import Chessboard.ChessboardHandler;
 import Chessboard.pieces.Piece;
 
 /**
@@ -37,7 +38,7 @@ public class UserMovement {
 		}
 		// Is the piece player's own piece (i.e. white) and is the move successful
 		if (piece.amIWhite()) {
-			return chessboard.movePiece(move);
+			return ChessboardHandler.movePiece(chessboard, move);
 		} else {
 			return false;
 		}	

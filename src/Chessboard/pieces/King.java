@@ -2,6 +2,7 @@ package Chessboard.pieces;
 
 import Chessboard.Move;
 import Chessboard.Chessboard;
+import Chessboard.ChessboardHandler;
 import java.util.ArrayList;
 
 /**
@@ -53,7 +54,7 @@ public class King extends Piece implements Cloneable {
 			moveOk = true;
 		}
 		
-		return moveOk && !chessboard.wouldItBeCheck(this, end);
+		return moveOk && !ChessboardHandler.wouldItBeCheck(chessboard, this, end);
 	}
 	
 	/**

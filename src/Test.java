@@ -4,6 +4,7 @@ import Chessboard.Move;
 import Chessboard.Chessboard;
 import Chessboard.pieces.Piece;
 import Chessboard.pieces.Rook;
+import DataStructures.List;
 import UI.UserInterface;
 import java.util.ArrayList;
 
@@ -27,9 +28,15 @@ public class Test {
 			{'P', 'P', 'P', ' ', ' ', ' ', 'P', 'P'},
 			{'R', 'N', ' ', ' ', 'K', ' ', ' ', 'R'}
 		};
-		Chessboard chessboard = new Chessboard(newboard);
-		Chessboard clone = chessboard.cloneBoardAndPieces(chessboard);
-		System.out.println("Moi");
+	//	Chessboard chessboard = new Chessboard(newboard);
+		/*List<Piece> lista = new List<>();
+		lista.add(chessboard.getSquareContents(0));
+		lista.add(chessboard.getSquareContents(1));
+		lista.add(chessboard.getSquareContents(2));
+		int size = lista.size();
+		lista.remove(chessboard.getSquareContents(1));
+		int size2 = lista.size();
+		Piece piece = lista.get(0);*/
 	}
 
 }
