@@ -192,16 +192,12 @@ public class ChessboardHandler {
 		int kRow = kingPosition/8;
 		int kCol = kingPosition%8;
 		
-		boolean pieceIsEnemy;
-		boolean pieceIsPastKing; // is piece past enemy's king, e.g. pawn
-		
 		for (int i = 0; i < chessboard.getListSize(!checkedIsWhite); i++) {
 			Piece piece = chessboard.getFromList(!checkedIsWhite, i);
-			int position = piece.getPosition();
 			int pRow = piece.getPosition()/8;
 			int pCol = piece.getPosition()%8;
 			if (piece instanceof Pawn) {
-				pieceIsPastKing = checkedIsWhite ? kRow < pRow : kRow > pRow;
+				boolean pieceIsPastKing = checkedIsWhite ? kRow < pRow : kRow > pRow;
 				if (!pieceIsPastKing && Math.abs(kRow - pRow) == 1 && Math.abs(kCol - pCol) == 1) {
 					return true;
 				}
@@ -235,7 +231,7 @@ public class ChessboardHandler {
 					}
 				}
 			} else if (piece instanceof Rook) {
-				boolean routeFree = false;
+				boolean routeFree = true;
 				if (kRow == pRow) {
 					for (int j = 1; j < Math.abs(kCol - pCol); j++) {
 						if (kCol < pCol) {
@@ -292,6 +288,7 @@ public class ChessboardHandler {
 						return true;
 					}
 				} else if (kRow == pRow) {
+					routeFree = true;
 					for (int j = 1; j < Math.abs(kCol - pCol); j++) {
 						if (kCol < pCol) {
 							if (chessboard.getSquareContents(kRow, kCol+j) != null) {

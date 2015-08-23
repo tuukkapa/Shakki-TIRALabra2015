@@ -1,7 +1,6 @@
 
 import AI.Evaluate;
-import Chessboard.Move;
-import Chessboard.Chessboard;
+import Chessboard.*;
 import Chessboard.pieces.Piece;
 import Chessboard.pieces.Rook;
 import DataStructures.List;
@@ -19,16 +18,17 @@ public class Test {
 	public static void main(String[] args) throws CloneNotSupportedException {
 		
 		char[][] newboard = {
-			{'r', 'n', 'R', ' ', 'k', ' ', ' ', 'r'},
-			{'p', 'p', ' ', ' ', ' ', ' ', 'p', 'p'},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', 'B', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', 'R', 'Q', 'R', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'r', 'n', 'R', 'Q', ' ', ' ', ' ', 'r'},
+			{'p', 'p', ' ', ' ', ' ', ' ', ' ', 'p'},
+			{' ', ' ', ' ', ' ', 'k', ' ', ' ', 'R'},
+			{' ', ' ', ' ', ' ', 'p', ' ', ' ', ' '},
+			{' ', ' ', ' ', 'r', 'q', 'r', ' ', ' '},
+			{'B', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{'P', 'P', 'P', ' ', ' ', ' ', 'P', 'P'},
 			{'R', 'N', ' ', ' ', 'K', ' ', ' ', 'R'}
 		};
-	//	Chessboard chessboard = new Chessboard(newboard);
+		Chessboard chessboard = ChessboardHandler.setBoard(newboard);
+		boolean value = ChessboardHandler.isItCheck(chessboard, false);
 		/*List<Piece> lista = new List<>();
 		lista.add(chessboard.getSquareContents(0));
 		lista.add(chessboard.getSquareContents(1));
