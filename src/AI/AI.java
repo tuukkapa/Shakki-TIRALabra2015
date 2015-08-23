@@ -59,6 +59,9 @@ public class AI {
 				Chessboard cloneBoard = chessboard.cloneBoardAndPieces(chessboard);
 				cloneBoard.movePiece(move);
 				score = min(alpha, beta, cloneBoard, depth - 1);
+				if (depth == originalDepth) {
+					System.out.println("Nappula " + piece.getSign() + " @ " + piece.getPosition() + " arvosana " + score);
+				}
 				// chessprogramming.wikispaces.com
 				/*if(score >= beta)
 					return beta;
