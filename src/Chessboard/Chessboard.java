@@ -1,14 +1,7 @@
 
 package Chessboard;
 
-import Chessboard.pieces.Bishop;
-import Chessboard.pieces.King;
-import Chessboard.pieces.Knight;
-import Chessboard.pieces.Pawn;
-import Chessboard.pieces.Piece;
-import Chessboard.pieces.Queen;
-import Chessboard.pieces.Rook;
-import UI.UserInterface;
+import Chessboard.pieces.*;
 import java.util.ArrayList;
 
  /**
@@ -323,37 +316,6 @@ public class Chessboard {
 	}
 	
 	/**
-	 * Method is used for testing purposes. Removed after testing period.
-	 * @param piece Piece-object.
-	 * @param move Move-object.
-	 * @param end Ending coordinates.
-	 */
-	private void errorToScreen(Piece piece, Move move, int end) {
-		System.out.println("\n=====================================");
-		System.out.println("Siirtoa tehtäessä tapahtui virhe");
-		System.out.println("Nappulaa " + piece + " ei löytynyt laudalta");
-		if (piece != null) {
-			System.out.println("Nappula on omasta mielestään: r" + piece.getPosition()/8 + " s" + piece.getPosition()%8);
-			System.out.println("Loppukoordinaatit: r" + end/8 + " s" + end%8);
-		}
-		System.out.println("Lauta oli:");
-		//UserInterface.draw(this.getBoardAsCharArray());
-		System.out.println("\nMustat nappulat:");
-		ArrayList<Piece> pieces = this.getPieces(false);
-		for (Piece onePiece : pieces) {
-			System.out.println(onePiece.getSign() + " r" + (onePiece.getPosition()/8) + " s" + (onePiece.getPosition()%8));
-		}
-		System.out.println("\nValkoiset nappulat:");
-		ArrayList<Piece> wpieces = this.getPieces(true);
-		for (Piece onePiece : wpieces) {
-			System.out.println(onePiece.getSign() + " r" + (onePiece.getPosition()/8) + " s" + (onePiece.getPosition()%8));
-		}
-		System.out.println("\nSiirtokäsky sisälsi");
-		System.out.println("Alku: r" + move.getStart()/8 + " s" + move.getStart()%8 + " loppu: r" + move.getEnd()/8 + " s" + move.getEnd()%8);
-		System.out.println("=====================================\n");
-	}
-	
-	/**
 	 * Returns true, if game situation is check against the player colour given as parameter.
 	 * @param checkedIsWhite True, if player is white, false otherwise.
 	 * @return True if checked is white, false otherwise.
@@ -530,54 +492,6 @@ public class Chessboard {
 			return 0;
 		}
 		return -1;
-	}
-	
-	/**
-	 * Evaluates this chessboard's game situation and gives it an Integer value,
-	 * how good the game situation is to be able to win from it from computer's
-	 * (black pieces) point of view.
-	 * @return Integer, value of the game situation.
-	 */
-	public int evaluate() {
-		int points = 0;
-		int kingPoints = 200;
-		int queenPoints = 9;
-		int rookPoints = 5;
-		int knightPoints = 3;
-		int bishopPoints = 3;
-		int pawnPoints = 1;
-		boolean pieceIsWhite = false;
-		for (int i = 0; i < 64; i++) {
-			if (chessboard[i/8][i%8] != null) {
-				pieceIsWhite = chessboard[i/8][i%8].amIWhite();
-			}
-			if (chessboard[i/8][i%8] instanceof King && !pieceIsWhite) points += kingPoints;
-			if (chessboard[i/8][i%8] instanceof Queen && !pieceIsWhite) points += queenPoints;
-			if (chessboard[i/8][i%8] instanceof Rook && !pieceIsWhite) points += rookPoints;
-			if (chessboard[i/8][i%8] instanceof Knight && !pieceIsWhite) points += knightPoints;
-			if (chessboard[i/8][i%8] instanceof Bishop && !pieceIsWhite) points += bishopPoints;
-			if (chessboard[i/8][i%8] instanceof Pawn && !pieceIsWhite) points += pawnPoints;
-			if (chessboard[i/8][i%8] instanceof King && pieceIsWhite) points -= kingPoints;
-			if (chessboard[i/8][i%8] instanceof Queen && pieceIsWhite) points -= queenPoints;
-			if (chessboard[i/8][i%8] instanceof Rook && pieceIsWhite) points -= rookPoints;
-			if (chessboard[i/8][i%8] instanceof Knight && pieceIsWhite) points -= knightPoints;
-			if (chessboard[i/8][i%8] instanceof Bishop && pieceIsWhite) points -= bishopPoints;
-			if (chessboard[i/8][i%8] instanceof Pawn && pieceIsWhite) points -= pawnPoints;
-		}
-		int checkMate = this.isItCheckMate();
-		if (this.isItCheck(true)) {
-			points += 1000;
-			if (checkMate == 1) {
-				points = Integer.MAX_VALUE;
-			}
-		}
-		if (this.isItCheck(false)) {
-			points -= 1000;
-			if (checkMate == 0) {
-				points = Integer.MIN_VALUE;
-			}
-		}
-		return points;
 	}
 	
 	/**
