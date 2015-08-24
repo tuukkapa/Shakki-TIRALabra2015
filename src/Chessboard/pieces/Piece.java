@@ -2,6 +2,7 @@ package Chessboard.pieces;
 
 import Chessboard.Move;
 import Chessboard.Chessboard;
+import Chessboard.ChessboardHandler;
 import java.util.ArrayList;
 
 /**
@@ -92,9 +93,9 @@ public abstract class Piece implements Cloneable {
 			// check right
 			if (!rightBlocked && startCol + i < 8) {
 				int end = startRow * 8 + (startCol + i);
-				if (chessboard.getSquareContents(end) == null && !chessboard.wouldItBeCheck(this, end)) {
+				if (chessboard.getSquareContents(end) == null && !ChessboardHandler.wouldItBeCheck(chessboard, this, end)) {
 					moves.add(new Move(position, end));
-				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, end) && !chessboard.wouldItBeCheck(this, end)) {
+				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, end) && !ChessboardHandler.wouldItBeCheck(chessboard, this, end)) {
 					moves.add(new Move(position, end));
 					rightBlocked = true;
 				} else {
@@ -104,9 +105,9 @@ public abstract class Piece implements Cloneable {
 			// check down
 			if (!downBlocked && startRow + i < 8) {
 				int end = (startRow + i) * 8 + startCol;
-				if (chessboard.getSquareContents(end) == null && !chessboard.wouldItBeCheck(this, end)) {
+				if (chessboard.getSquareContents(end) == null && !ChessboardHandler.wouldItBeCheck(chessboard, this, end)) {
 					moves.add(new Move(position, end));
-				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, end) && !chessboard.wouldItBeCheck(this, end)) {
+				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, end) && !ChessboardHandler.wouldItBeCheck(chessboard, this, end)) {
 					moves.add(new Move(position, end));
 					downBlocked = true;
 				} else {
@@ -116,9 +117,9 @@ public abstract class Piece implements Cloneable {
 			// check left
 			if (!leftBlocked && startCol - i >= 0) {
 				int end = (startRow * 8) + startCol - i;
-				if (chessboard.getSquareContents(end) == null && !chessboard.wouldItBeCheck(this, end)) {
+				if (chessboard.getSquareContents(end) == null && !ChessboardHandler.wouldItBeCheck(chessboard, this, end)) {
 					moves.add(new Move(position, end));
-				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, end) && !chessboard.wouldItBeCheck(this, end)) {
+				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, end) && !ChessboardHandler.wouldItBeCheck(chessboard, this, end)) {
 					moves.add(new Move(position, end));
 					leftBlocked = true;
 				} else {
@@ -128,9 +129,9 @@ public abstract class Piece implements Cloneable {
 			// check up
 			if (!upBlocked && startRow - i >= 0) {
 				int end = (startRow - i) * 8 + startCol;
-				if (chessboard.getSquareContents(end) == null && !chessboard.wouldItBeCheck(this, end)) {
+				if (chessboard.getSquareContents(end) == null && !ChessboardHandler.wouldItBeCheck(chessboard, this, end)) {
 					moves.add(new Move(position, end));
-				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, end) && !chessboard.wouldItBeCheck(this, end)) {
+				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, end) && !ChessboardHandler.wouldItBeCheck(chessboard, this, end)) {
 					moves.add(new Move(position, end));
 					upBlocked = true;
 				} else {
@@ -174,9 +175,9 @@ public abstract class Piece implements Cloneable {
 			swPosition = (row + i) * 8 + col - i;
 			nwPosition = (row - i) * 8 + col - i;
 			if (!neBlocked && row - i >= 0 && col + i < 8) {
-				if (chessboard.getSquareContents(row-i, col+i) == null && !chessboard.wouldItBeCheck(this, nePosition)) {
+				if (chessboard.getSquareContents(row-i, col+i) == null && !ChessboardHandler.wouldItBeCheck(chessboard, this, nePosition)) {
 					moves.add(new Move(position, nePosition));
-				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, nePosition) && !chessboard.wouldItBeCheck(this, nePosition)) {
+				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, nePosition) && !ChessboardHandler.wouldItBeCheck(chessboard, this, nePosition)) {
 					moves.add(new Move(position, nePosition));
 					neBlocked = true;
 				} else {
@@ -185,9 +186,9 @@ public abstract class Piece implements Cloneable {
 			}
 			// check south-east
 			if (!seBlocked && row + i < 8 && col + i < 8) {
-				if (chessboard.getSquareContents(row+i, col+i) == null && !chessboard.wouldItBeCheck(this, sePosition)) {
+				if (chessboard.getSquareContents(row+i, col+i) == null && !ChessboardHandler.wouldItBeCheck(chessboard, this, sePosition)) {
 					moves.add(new Move(position, sePosition));
-				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, sePosition) && !chessboard.wouldItBeCheck(this, sePosition)) {
+				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, sePosition) && !ChessboardHandler.wouldItBeCheck(chessboard, this, sePosition)) {
 					moves.add(new Move(position, sePosition));
 					seBlocked = true;
 				} else {
@@ -196,9 +197,9 @@ public abstract class Piece implements Cloneable {
 			}
 			// check south-west
 			if (!swBlocked && row + i < 8 && col - i >= 0) {
-				if (chessboard.getSquareContents(row+i, col-i) == null && !chessboard.wouldItBeCheck(this, swPosition)) {
+				if (chessboard.getSquareContents(row+i, col-i) == null && !ChessboardHandler.wouldItBeCheck(chessboard, this, swPosition)) {
 					moves.add(new Move(position, swPosition));
-				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, swPosition) && !chessboard.wouldItBeCheck(this, swPosition)) {
+				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, swPosition) && !ChessboardHandler.wouldItBeCheck(chessboard, this, swPosition)) {
 					moves.add(new Move(position, swPosition));
 					swBlocked = true;
 				} else {
@@ -207,9 +208,9 @@ public abstract class Piece implements Cloneable {
 			}
 			// check nort-west
 			if (!nwBlocked && row - i >= 0 && col - i >= 0) {
-				if (chessboard.getSquareContents(row-i, col-i) == null && !chessboard.wouldItBeCheck(this, nwPosition)) {
+				if (chessboard.getSquareContents(row-i, col-i) == null && !ChessboardHandler.wouldItBeCheck(chessboard, this, nwPosition)) {
 					moves.add(new Move(position, nwPosition));
-				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, nwPosition) && !chessboard.wouldItBeCheck(this, nwPosition)) {
+				} else if (this.endSquareContainsEnemyOrEmpty(chessboard, nwPosition) && !ChessboardHandler.wouldItBeCheck(chessboard, this, nwPosition)) {
 					moves.add(new Move(position, nwPosition));
 					nwBlocked = true;
 				} else {

@@ -2,6 +2,7 @@ package UI;
 
 import AI.AI;
 import Chessboard.Chessboard;
+import Chessboard.ChessboardHandler;
 import Chessboard.Move;
 import User.UserMovement;
 import java.util.Scanner;
@@ -21,7 +22,18 @@ public class UserInterface {
 	private static int gameTreeDepth;
 	
 	public static void runGame() {
+		char[][] newboard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
 		chessboard = new Chessboard();
+		chessboard.setBoard(newboard);
 		ai = new AI();
 		input = new Scanner(System.in);
 		gameTreeDepth = 0;
@@ -36,7 +48,7 @@ public class UserInterface {
 				+ "siirtovuorolla:");
 		while (gameTreeDepth  < 1 || gameTreeDepth > gameTreeDepthLimit) {
 			try {
-				String depthValue = input.nextLine();
+ 				String depthValue = input.nextLine();
 				gameTreeDepth = Integer.parseInt(depthValue);
 				if (gameTreeDepth < 1 || gameTreeDepth > gameTreeDepthLimit) {
 					throw new NumberFormatException();
@@ -76,7 +88,7 @@ public class UserInterface {
 			if (userCommand.equals("stop")) {
 				System.out.println("Poistutaan pelistä.");
 				return false;
-			} else if (UserMovement.movePiece(userCommand, chessboard)) {
+			} else if (ChessboardHandler.userCommandParser(userCommand, chessboard)) {
 				falseCommand = false; // user gave a valid command
 			} else {
 				System.out.println("Annoit virheellisen komennon. Yritä uudelleen.");
@@ -133,11 +145,11 @@ public class UserInterface {
 		if (move.getStart() == 0 && move.getEnd() == 0) {
 			System.out.println("Sinä voitit!");
 			return false;
-		} else if (chessboard.movePiece(move)) {
+		} else if (ChessboardHandler.movePiece(chessboard, move)) {
 			long endTime = System.currentTimeMillis();
 			drawBoard(chessboard.getBoardAsCharArray(), move);
 			System.out.println("Siirrossa kului aikaa " + calculateMoveTime(startTime, endTime) + ".");
-			if (chessboard.isItCheckMate() == 1) {
+			if (ChessboardHandler.isItCheckMate(chessboard) == 1) {
 				System.out.println("Tietokone voitti sinut!");
 				return false;
 			} else {

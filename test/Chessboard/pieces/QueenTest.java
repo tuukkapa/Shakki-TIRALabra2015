@@ -7,6 +7,7 @@ package Chessboard.pieces;
 
 import Chessboard.Move;
 import Chessboard.Chessboard;
+import Chessboard.ChessboardHandler;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -59,7 +60,7 @@ public class QueenTest {
 			{'P', ' ', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{' ', 'N', 'B', ' ', 'K', 'B', 'N', ' '}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		Queen queen = null;
 		for (int i = 0; i < 64; i++) {
 			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'Q') {
@@ -111,7 +112,7 @@ public class QueenTest {
 			{'P', ' ', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{' ', 'N', 'B', ' ', 'K', 'B', 'N', ' '}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		Queen queen = null;
 		for (int i = 0; i < 64; i++) {
 			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'Q') {
@@ -163,7 +164,7 @@ public class QueenTest {
 			{'P', ' ', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{' ', 'N', 'B', ' ', 'K', 'B', 'N', ' '}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		Queen queen = null;
 		for (int i = 0; i < 64; i++) {
 			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'q') {
@@ -215,7 +216,7 @@ public class QueenTest {
 			{'P', ' ', 'P', 'P', 'R', 'P', 'P', 'P'},
 			{' ', 'N', 'B', ' ', 'K', 'B', 'N', ' '}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		Queen queen = null;
 		for (int i = 0; i < 64; i++) {
 			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'q') {
@@ -267,7 +268,7 @@ public class QueenTest {
 			{'P', ' ', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{' ', 'N', 'B', ' ', 'K', 'B', 'N', ' '}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		Queen queen = null;
 		for (int i = 0; i < 64; i++) {
 			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'q') {
@@ -319,7 +320,7 @@ public class QueenTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', ' ', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		boolean[][] expectedMovementMap = {
 			{false, false, false, false, false, false, false, false},
 			{true, false, false, true, false, false, true, false},

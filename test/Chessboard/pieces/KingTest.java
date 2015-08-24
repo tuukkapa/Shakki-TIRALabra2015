@@ -7,6 +7,7 @@ package Chessboard.pieces;
 
 import Chessboard.Move;
 import Chessboard.Chessboard;
+import Chessboard.ChessboardHandler;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -59,7 +60,7 @@ public class KingTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		Piece king = chessboard.getSquareContents(60);
 		ArrayList<Move> expResult = new ArrayList<>();
 		ArrayList<Move> result = king.getPossibleMoves(chessboard);
@@ -82,7 +83,7 @@ public class KingTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		Piece king = chessboard.getSquareContents(4);
 		ArrayList<Move> expResult = new ArrayList<>();
 		ArrayList<Move> result = king.getPossibleMoves(chessboard);
@@ -105,7 +106,7 @@ public class KingTest {
 			{'P', 'P', 'P', 'P', 'P', 'K', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', ' ', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		King king = null;
 		for (int i = 0; i < 64; i++) {
 			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'K') {
@@ -157,7 +158,7 @@ public class KingTest {
 			{'P', 'P', 'P', 'P', 'P', 'K', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', ' ', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		King king = null;
 		for (int i = 0; i < 64; i++) {
 			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'k') {
@@ -209,7 +210,7 @@ public class KingTest {
 			{'P', 'P', 'P', 'P', 'P', ' ', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', ' ', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		King king = null;
 		for (int i = 0; i < 64; i++) {
 			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'K') {
@@ -261,7 +262,7 @@ public class KingTest {
 			{'P', 'P', 'P', 'P', 'P', ' ', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', ' ', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		King king = null;
 		for (int i = 0; i < 64; i++) {
 			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'k') {
@@ -313,7 +314,7 @@ public class KingTest {
 			{'P', 'P', 'P', 'P', 'p', 'K', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', ' ', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		King king = null;
 		for (int i = 0; i < 64; i++) {
 			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'K') {
@@ -365,7 +366,7 @@ public class KingTest {
 			{'P', 'P', 'P', 'P', 'P', 'K', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', ' ', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		King king = null;
 		for (int i = 0; i < 64; i++) {
 			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'k') {
@@ -417,7 +418,7 @@ public class KingTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', ' ', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 26;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -446,7 +447,7 @@ public class KingTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', ' ', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 27;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -475,7 +476,7 @@ public class KingTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', ' ', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 28;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -504,7 +505,7 @@ public class KingTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', ' ', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 34;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -533,7 +534,7 @@ public class KingTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', ' ', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 36;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -562,7 +563,7 @@ public class KingTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', ' ', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 42;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -591,7 +592,7 @@ public class KingTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', ' ', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 43;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -620,7 +621,7 @@ public class KingTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', ' ', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 44;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -649,7 +650,7 @@ public class KingTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', ' ', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 17;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
@@ -678,7 +679,7 @@ public class KingTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', ' ', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 26;
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {

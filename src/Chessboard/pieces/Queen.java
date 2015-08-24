@@ -8,6 +8,7 @@ package Chessboard.pieces;
 
 import Chessboard.Move;
 import Chessboard.Chessboard;
+import Chessboard.ChessboardHandler;
 import java.util.ArrayList;
 
 /**
@@ -57,7 +58,7 @@ public class Queen extends Piece implements Cloneable {
 			return false;
 		}
 		
-		return moveOk && this.endSquareContainsEnemyOrEmpty(chessboard, end) && !chessboard.wouldItBeCheck(this, end);
+		return moveOk && this.endSquareContainsEnemyOrEmpty(chessboard, end) && !ChessboardHandler.wouldItBeCheck(chessboard, this, end);
 	}
 	
 	@Override

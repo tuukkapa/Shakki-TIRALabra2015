@@ -7,6 +7,7 @@ package Chessboard.pieces;
 
 import Chessboard.Move;
 import Chessboard.Chessboard;
+import Chessboard.ChessboardHandler;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -60,7 +61,7 @@ public class PawnTest {
 			{' ', ' ', 'P', ' ', ' ', ' ', ' ', ' '},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
 			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'P') {
@@ -112,7 +113,7 @@ public class PawnTest {
 			{' ', ' ', 'P', ' ', ' ', ' ', ' ', ' '},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
 			if (chessboard.getSquareContents(i) != null) {
@@ -166,7 +167,7 @@ public class PawnTest {
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
 			if (chessboard.getSquareContents(i) != null) {
@@ -220,7 +221,7 @@ public class PawnTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
 			if (chessboard.getSquareContents(i) != null) {
@@ -274,7 +275,7 @@ public class PawnTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
 			if (chessboard.getSquareContents(i) != null) {
@@ -328,7 +329,7 @@ public class PawnTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
 			if (chessboard.getSquareContents(i) != null) {
@@ -382,7 +383,7 @@ public class PawnTest {
 			{' ', ' ', 'P', ' ', ' ', ' ', ' ', ' '},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
 			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'P') {
@@ -434,7 +435,7 @@ public class PawnTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		Piece piece = null;
 		for (int i = 0; i < 64; i++) {
 			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'p') {
@@ -512,7 +513,7 @@ public class PawnTest {
 			{'P', 'P', 'P', 'P', 'P', ' ', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 45;
 		Pawn instance = (Pawn)chessboard.getSquareContents(37);
 		boolean expResult = false;
@@ -536,7 +537,7 @@ public class PawnTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 43;
 		Pawn instance = (Pawn)chessboard.getSquareContents(53);
 		boolean expResult = false;
@@ -560,7 +561,7 @@ public class PawnTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 36;
 		Pawn instance = (Pawn)chessboard.getSquareContents(53);
 		boolean expResult = false;
@@ -584,7 +585,7 @@ public class PawnTest {
 			{'P', 'P', 'P', 'P', 'P', ' ', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 18;
 		Pawn instance = (Pawn)chessboard.getSquareContents(26);
 		boolean expResult = false;
@@ -608,7 +609,7 @@ public class PawnTest {
 			{'P', 'P', 'P', 'P', 'P', ' ', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 17;
 		Pawn instance = (Pawn)chessboard.getSquareContents(10);
 		boolean expResult = false;
@@ -632,7 +633,7 @@ public class PawnTest {
 			{'P', 'P', 'P', 'P', 'P', ' ', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		int end = 87;
 		Pawn instance = (Pawn)chessboard.getSquareContents(37);
 		boolean expResult = false;
@@ -656,7 +657,7 @@ public class PawnTest {
 			{'P', 'P', 'P', 'P', 'P', ' ', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = new Chessboard(newboard);
+		chessboard.setBoard(newboard);
 		int end = -5;
 		Pawn instance = (Pawn)chessboard.getSquareContents(37);
 		boolean expResult = false;

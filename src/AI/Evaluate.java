@@ -7,8 +7,8 @@
 package AI;
 
 import Chessboard.Chessboard;
+import Chessboard.ChessboardHandler;
 import Chessboard.pieces.*;
-import java.util.ArrayList;
 
 /**
  * Concept of this evaluation method is by Tomasz Michniewski.
@@ -125,20 +125,20 @@ public class Evaluate {
 	 * @return Integer, value of the game situation for the colour in the parameter..
 	 */
 	private static int calculatePointsFromPieces(Chessboard chessboard, boolean white) {
-		ArrayList<Piece> pieces = chessboard.getPieces(white);
 		int row = 0, col = 0;
 		int gameSituationPoints = 0;
 		boolean isItEndGame = white ? endGameForWhite : endGameForBlack;
 		
-		if (chessboard.isItCheck(white)) {
+		if (ChessboardHandler.isItCheck(chessboard, white)) {
 			gameSituationPoints -= 5000;
 			int thisSideIsCheckmated = white ? 1 : 0;
-			if (chessboard.isItCheckMate() == thisSideIsCheckmated) {
+			if (ChessboardHandler.isItCheckMate(chessboard) == thisSideIsCheckmated) {
 				return -100000;
 			}
 		}
 		
-		for (Piece piece : pieces) {
+		for (int i = 0; i < chessboard.getListSize(white); i++) {
+			Piece piece = chessboard.getFromList(white, i);
 			row = white ? piece.getPosition() / 8 : 7 - (piece.getPosition() / 8);
 			col = piece.getPosition() % 8;
 			if (piece instanceof Pawn) {
@@ -174,9 +174,10 @@ public class Evaluate {
 	 * @return True, if it is end game for the side, false otherwise.
 	 */
 	private static boolean isItEndGame(Chessboard chessboard, boolean white) {
-		ArrayList<Piece> pieces = chessboard.getPieces(white);
+		//ArrayList<Piece> pieces = chessboard.getPieces(white);
 		int officers = 0;
-		for (Piece piece : pieces) {
+		for (int i = 0; i < chessboard.getListSize(white); i++) {
+			Piece piece = chessboard.getFromList(white, i);
 			if (!(piece instanceof Pawn )) {
 				officers++;
 			}

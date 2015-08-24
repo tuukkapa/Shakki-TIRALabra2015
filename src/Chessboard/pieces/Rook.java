@@ -8,6 +8,7 @@ package Chessboard.pieces;
 
 import Chessboard.Move;
 import Chessboard.Chessboard;
+import Chessboard.ChessboardHandler;
 import java.util.ArrayList;
 
 /**
@@ -30,7 +31,7 @@ public class Rook extends Piece implements Cloneable {
 	
 	@Override
 	public boolean isMoveValid(Chessboard chessboard, int end) {
-		return this.isCommandValid(end) && this.checkStraightRoutes(chessboard, end) && !chessboard.wouldItBeCheck(this, end);
+		return this.isCommandValid(end) && this.checkStraightRoutes(chessboard, end) && !ChessboardHandler.wouldItBeCheck(chessboard, this, end);
 	}
 	
 	@Override
