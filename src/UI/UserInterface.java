@@ -1,10 +1,7 @@
 package UI;
 
 import AI.AI;
-import Chessboard.Chessboard;
-import Chessboard.ChessboardHandler;
-import Chessboard.Move;
-import User.UserMovement;
+import Chessboard.*;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -225,16 +222,6 @@ public class UserInterface {
 			System.out.println("");
 		}
 		System.out.println("    A   B   C   D   E   F   G   H");
-		/*System.out.println("\nMustat nappulat:");
-		ArrayList<Piece> pieces = board.getPieces(false);
-		for (Piece onePiece : pieces) {
-			System.out.println(onePiece.getSign() + " r" + (onePiece.getPosition()/8) + " s" + (onePiece.getPosition()%8));
-		}
-		System.out.println("\nValkoiset nappulat:");
-		ArrayList<Piece> wpieces = board.getPieces(true);
-		for (Piece onePiece : wpieces) {
-			System.out.println(onePiece.getSign() + " r" + (onePiece.getPosition()/8) + " s" + (onePiece.getPosition()%8));
-		}*/
 	}
 	
 }

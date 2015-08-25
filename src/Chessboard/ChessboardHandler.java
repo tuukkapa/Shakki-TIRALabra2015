@@ -1,13 +1,7 @@
 
 package Chessboard;
 
-import Chessboard.pieces.Bishop;
-import Chessboard.pieces.King;
-import Chessboard.pieces.Knight;
-import Chessboard.pieces.Pawn;
-import Chessboard.pieces.Piece;
-import Chessboard.pieces.Queen;
-import Chessboard.pieces.Rook;
+import Chessboard.pieces.*;
 
  /**
   * This class does everything related to the chess board and it's pieces' movement.
@@ -93,6 +87,7 @@ public class ChessboardHandler {
 	
 	/**
 	 * Moves one piece on the board.
+	 * @param chessboard Chessboard-object, which contains the game situation.
 	 * @param move Move-object, consisting of start and end coordinates.
 	 * @return Move-object.
 	 */
@@ -168,6 +163,7 @@ public class ChessboardHandler {
 	
 	/**
 	 * Returns true, if a move would cause check situation for moving an own piece.
+	 * @param chessboard
 	 * @param piece Piece-object to be moved.
 	 * @param end Integer, ending coordinates (0 = top left, 63 = bottom right).
 	 * @return Boolean, true if command is successful, false otherwise.
@@ -183,6 +179,7 @@ public class ChessboardHandler {
 	
 	/**
 	 * Returns true, if game situation is check against the player colour given as parameter.
+	 * @param chessboard Chessboard-object, which contains the game situation.
 	 * @param checkedIsWhite True, if player is white, false otherwise.
 	 * @return True if checked is white, false otherwise.
 	 */
@@ -331,6 +328,7 @@ public class ChessboardHandler {
 	
 	 /**
 	 * Returns an integer value telling if game situation is checkmate.
+	 * @param chessboard Chessboard-object, which contains the game situation.
 	 * @return Integer: 1 = checkmate against white, 0 = checkmate against black, -1 = no checkmate
 	 */
 	public static int isItCheckMate(Chessboard chessboard) {

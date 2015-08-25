@@ -2,9 +2,7 @@ package AI;
 
 
 import Chessboard.pieces.Piece;
-import Chessboard.Chessboard;
-import Chessboard.ChessboardHandler;
-import Chessboard.Move;
+import Chessboard.*;
 import java.util.ArrayList;
 
 /**
@@ -36,8 +34,8 @@ public class AI {
 
 	/**
 	 * Maximizing player's part of minimax-algorithm.
-	 * @param alpha
-	 * @param beta
+	 * @param alpha Integer, maximizing player's best option (i.e. highest value) so far.
+	 * @param beta Integer, minimizing player's best option (i.e. lowest value) so far.
 	 * @param chessboard Chessboard, which the game is on.
 	 * @param depth Integer, how many levels the game tree is built.
 	 * @return Integer, value of the game situation.
@@ -76,8 +74,8 @@ public class AI {
 	
 	/**
 	 * Minimizing player's part of minimax-algorithm.
-	 * @param alpha
-	 * @param beta
+	 * @param alpha Integer, maximizing player's best option (i.e. highest value) so far.
+	 * @param beta Integer, minimizing player's best option (i.e. lowest value) so far.
 	 * @param chessboard Chessboard, which the game is on.
 	 * @param depth Integer, how many levels the game tree is built.
 	 * @return Integer, value of the game situation.
