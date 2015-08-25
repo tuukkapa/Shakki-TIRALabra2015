@@ -134,7 +134,7 @@ public class Evaluate {
 			gameSituationPoints -= 5000;
 			int thisSideIsCheckmated = white ? 1 : 0;
 			if (ChessboardHandler.isItCheckMate(chessboard) == thisSideIsCheckmated) {
-				return -100000;
+				return -50000;
 			}
 		}
 		
