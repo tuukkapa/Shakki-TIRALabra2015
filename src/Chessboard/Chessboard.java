@@ -58,7 +58,6 @@ public class Chessboard {
 	/**
 	 * Creates new chessboard from the char-array given as parameter.
 	 * @param newboard Two dimensional char-array representing the chessboard.
-	 * @return New Chessboard-object.
 	 */
 	public void setBoard(char[][] newboard) {
 		chessboard = new Piece[8][8];
