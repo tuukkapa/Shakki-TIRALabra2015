@@ -47,43 +47,29 @@ public class AI {
 		if (depth == 0 || ChessboardHandler.isItCheckMate(chessboard) >= 0) {
 			return Evaluate.evaluate(chessboard);
 		}
-		int value = Integer.MIN_VALUE, score = 0;	
+		int score = 0;	
 		for (int i = 0; i < chessboard.getListSize(false); i++) {
 			Piece piece = chessboard.getFromList(false, i);
 			ArrayList<Move> moves = piece.getPossibleMoves(chessboard);
 			for (Move move : moves) {
-				if (bestMove == null) {
-					bestMove = move;
-				}
 				Chessboard cloneBoard = new Chessboard(chessboard);
 				ChessboardHandler.movePiece(cloneBoard, move);
 				score = min(alpha, beta, cloneBoard, depth - 1);
 				if (depth == originalDepth) {
-					System.out.println("Nappula " + piece.getSign() + " @ " + piece.getPosition() + " arvosana " + score);
+					System.out.println(piece.getSign() + " " + (char)(piece.getPosition()%8+65) + (8-(piece.getPosition()/8)) + 
+							"->" + (char)(move.getEnd()%8+65) + (8-(move.getEnd()/8)) + ": arvosana " + score);
 				}
-				// chessprogramming.wikispaces.com
-				/*if(score >= beta)
+				if(score >= beta)
 					return beta;
 				if(score > alpha) {
-					alpha = score; // alpha acts like max in MiniMax
-					if (depth == originalDepth) {
-						bestMove = move;
-					}
-				}*/
-				// Helsingin yo
-				if (score > value) {
-					value = score;
+					alpha = score;
 					if (depth == originalDepth) {
 						bestMove = move;
 					}
 				}
-				if (value >= beta) {
-					return value;
-				}
-				alpha = Math.max(alpha, value);
 			}
 		}
-		return value;
+		return alpha;
 	}
 	
 	/**
@@ -99,7 +85,7 @@ public class AI {
 		if (depth == 0 || ChessboardHandler.isItCheckMate(chessboard) >= 0) {
 			return Evaluate.evaluate(chessboard);
 		}
-		int value = Integer.MAX_VALUE, score = 0;
+		int score = 0;
 		for (int i = 0; i < chessboard.getListSize(true); i++) {
 			Piece piece = chessboard.getFromList(true, i);
 			ArrayList<Move> moves = piece.getPossibleMoves(chessboard);
@@ -107,16 +93,13 @@ public class AI {
 				Chessboard cloneBoard = new Chessboard(chessboard);
 				ChessboardHandler.movePiece(cloneBoard, move);
 				score = max(alpha, beta, cloneBoard, depth - 1);
-				if (score < value) {
-					value = score;
-				}
-				if (value <= alpha) {
+				if (score <= alpha) {
 					return alpha;
 				}
-				beta = Math.min(beta, value);
+				beta = Math.min(score, beta);				
 			}
 		}
-		return value;
+		return beta;
 	}
 	
 }
