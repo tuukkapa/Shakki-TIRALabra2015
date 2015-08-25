@@ -118,7 +118,7 @@ public class Evaluate {
 		
 		return gameSituationPoints;
 	}
-	
+		
 	/**
 	 * Calculates game situation points from one player's pieces.
 	 * @param chessboard Chessboard-object, which game is on.

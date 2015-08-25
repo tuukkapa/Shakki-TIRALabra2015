@@ -41,7 +41,7 @@ public class AI {
 	 * @return Integer, value of the game situation.
 	 * @throws CloneNotSupportedException 
 	 */
-	public int max(int alpha, int beta, Chessboard chessboard, int depth) throws CloneNotSupportedException {
+	private int max(int alpha, int beta, Chessboard chessboard, int depth) throws CloneNotSupportedException {
 		if (depth == 0 || ChessboardHandler.isItCheckMate(chessboard) >= 0) {
 			return Evaluate.evaluate(chessboard);
 		}
@@ -81,7 +81,7 @@ public class AI {
 	 * @return Integer, value of the game situation.
 	 * @throws CloneNotSupportedException 
 	 */
-	public int min(int alpha, int beta, Chessboard chessboard, int depth) throws CloneNotSupportedException {
+	private int min(int alpha, int beta, Chessboard chessboard, int depth) throws CloneNotSupportedException {
 		if (depth == 0 || ChessboardHandler.isItCheckMate(chessboard) >= 0) {
 			return Evaluate.evaluate(chessboard);
 		}
