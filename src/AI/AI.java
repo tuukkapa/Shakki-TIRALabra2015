@@ -49,9 +49,6 @@ public class AI {
 		for (int i = 0; i < chessboard.getListSize(false); i++) {
 			Piece piece = chessboard.getFromList(false, i);
 			ArrayList<Move> moves = piece.getPossibleMoves(chessboard);
-			if (moves.isEmpty() && depth == originalDepth) {
-				System.out.println("Max: taso" + (originalDepth - depth) + " moves on tyhjä, nappula on " + piece.getSign());
-			}
 			for (Move move : moves) {
 				Chessboard cloneBoard = new Chessboard(chessboard);
 				ChessboardHandler.movePiece(cloneBoard, move);
@@ -66,10 +63,11 @@ public class AI {
 						bestMove = move;
 					}
 				}
-				if (bestValue >= beta) {
+				alpha = Math.max(alpha, bestValue);
+				if (alpha >= beta) {
 					return bestValue;
 				}
-				alpha = Math.max(alpha, bestValue);
+				
 			}
 		}
 		return bestValue;
@@ -99,10 +97,10 @@ public class AI {
 				if (score < bestValue) {
 					bestValue = score;
 				}
-				if (bestValue <= alpha) {
-					return bestValue; // this was alpha before, and Integer.Min_VALUE() wasn't returned?
-				}
 				beta = Math.min(beta, bestValue);
+				if (beta <= alpha) {
+					return bestValue;
+				}
 			}
 		}
 		return bestValue;
