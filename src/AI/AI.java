@@ -3,6 +3,7 @@ package AI;
 
 import Chessboard.pieces.Piece;
 import Chessboard.*;
+import UI.UserInterface;
 import java.util.ArrayList;
 
 /**
@@ -45,7 +46,7 @@ public class AI {
 		if (depth == 0 || ChessboardHandler.isItCheckMate(chessboard) >= 0) {
 			return Evaluate.evaluate(chessboard);
 		}
-		int bestValue = Integer.MIN_VALUE, score = 0;	
+		int score = 0;	
 		for (int i = 0; i < chessboard.getListSize(false); i++) {
 			Piece piece = chessboard.getFromList(false, i);
 			ArrayList<Move> moves = piece.getPossibleMoves(chessboard);
@@ -57,19 +58,18 @@ public class AI {
 					System.out.println(piece.getSign() + " " + (char)(piece.getPosition()%8+65) + (8-(piece.getPosition()/8)) + 
 							"->" + (char)(move.getEnd()%8+65) + (8-(move.getEnd()/8)) + ": arvosana " + score);
 				}
-				if (bestValue < score) {
-					bestValue = score;
+				if (score > alpha) {
+					alpha = score;
 					if (depth == originalDepth) {
 						bestMove = move;
 					}
 				}
-				if (bestValue >= beta) {
-					return bestValue;
+				if (alpha >= beta) {
+					return alpha;
 				}
-				alpha = Math.max(alpha, bestValue);
 			}
 		}
-		return bestValue;
+		return alpha;
 	}
 	
 	/**
@@ -85,7 +85,7 @@ public class AI {
 		if (depth == 0 || ChessboardHandler.isItCheckMate(chessboard) >= 0) {
 			return Evaluate.evaluate(chessboard);
 		}
-		int bestValue = Integer.MAX_VALUE, score = 0;
+		int score = 0;
 		for (int i = 0; i < chessboard.getListSize(true); i++) {
 			Piece piece = chessboard.getFromList(true, i);
 			ArrayList<Move> moves = piece.getPossibleMoves(chessboard);
@@ -93,16 +93,15 @@ public class AI {
 				Chessboard cloneBoard = new Chessboard(chessboard);
 				ChessboardHandler.movePiece(cloneBoard, move);
 				score = max(alpha, beta, cloneBoard, depth - 1);
-				if (bestValue > score) {
-					bestValue = score;
+				if (score < beta) {
+					beta = score;
 				}
-				if (bestValue <= alpha) {
-					return bestValue;
+				if (alpha >= beta) {
+					return beta;
 				}
-				beta = Math.min(beta, bestValue);
 			}
 		}
-		return bestValue;
+		return beta;
 	}
 	
 }
