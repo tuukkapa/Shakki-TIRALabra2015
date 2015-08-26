@@ -46,7 +46,7 @@ public class AI {
 		if (depth == 0 || ChessboardHandler.isItCheckMate(chessboard) >= 0) {
 			return Evaluate.evaluate(chessboard);
 		}
-		int score = 0;
+		int bestValue = Integer.MIN_VALUE, score = 0;
 		for (int i = 0; i < chessboard.getListSize(false); i++) {
 			Piece piece = chessboard.getFromList(false, i);
 			ArrayList<Move> moves = piece.getPossibleMoves(chessboard);
