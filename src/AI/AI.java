@@ -36,18 +36,18 @@ public class AI {
 
 	/**
 	 * Maximizing player's part of minimax-algorithm.
-	 * @param alpha
-	 * @param beta
+	 * @param alpha Integer, maximizing player's best (i.e. highest) value so far.
+	 * @param beta Integer, minimizing player's best (i.e. lowest) value so far.
 	 * @param chessboard Chessboard, which the game is on.
 	 * @param depth Integer, how many levels the game tree is built.
 	 * @return Integer, value of the game situation.
 	 * @throws CloneNotSupportedException 
 	 */
-	public int max(int alpha, int beta, Chessboard chessboard, int depth) throws CloneNotSupportedException {
+	private int max(int alpha, int beta, Chessboard chessboard, int depth) throws CloneNotSupportedException {
 		if (depth == 0 || ChessboardHandler.isItCheckMate(chessboard) >= 0) {
 			return Evaluate.evaluate(chessboard);
 		}
-		int value = Integer.MIN_VALUE, score = 0;	
+		int bestValue = Integer.MIN_VALUE, score = 0;	
 		for (int i = 0; i < chessboard.getListSize(false); i++) {
 			Piece piece = chessboard.getFromList(false, i);
 			ArrayList<Move> moves = piece.getPossibleMoves(chessboard);
@@ -59,47 +59,38 @@ public class AI {
 				ChessboardHandler.movePiece(cloneBoard, move);
 				score = min(alpha, beta, cloneBoard, depth - 1);
 				if (depth == originalDepth) {
-					System.out.println("Nappula " + piece.getSign() + " @ " + piece.getPosition() + " arvosana " + score);
+					System.out.println(piece.getSign() + " " + (char)(piece.getPosition()%8+65) + (8-(piece.getPosition()/8)) + 
+							"->" + (char)(move.getEnd()%8+65) + (8-(move.getEnd()/8)) + ": arvosana " + score);
 				}
-				// chessprogramming.wikispaces.com
-				/*if(score >= beta)
-					return beta;
-				if(score > alpha) {
-					alpha = score; // alpha acts like max in MiniMax
-					if (depth == originalDepth) {
-						bestMove = move;
-					}
-				}*/
-				// Helsingin yo
-				if (score > value) {
-					value = score;
+				if (score > bestValue) {
+					bestValue = score;
 					if (depth == originalDepth) {
 						bestMove = move;
 					}
 				}
-				if (value >= beta) {
-					return value;
+				if (bestValue >= beta) {
+					return bestValue;
 				}
-				alpha = Math.max(alpha, value);
+				alpha = Math.max(alpha, bestValue);
 			}
 		}
-		return value;
+		return bestValue;
 	}
 	
 	/**
 	 * Minimizing player's part of minimax-algorithm.
-	 * @param alpha
-	 * @param beta
+	 * @param alpha Integer, maximizing player's best (i.e. highest) value so far.
+	 * @param beta Integer, minimizing player's best (i.e. lowest) value so far.
 	 * @param chessboard Chessboard, which the game is on.
 	 * @param depth Integer, how many levels the game tree is built.
 	 * @return Integer, value of the game situation.
 	 * @throws CloneNotSupportedException 
 	 */
-	public int min(int alpha, int beta, Chessboard chessboard, int depth) throws CloneNotSupportedException {
+	private int min(int alpha, int beta, Chessboard chessboard, int depth) throws CloneNotSupportedException {
 		if (depth == 0 || ChessboardHandler.isItCheckMate(chessboard) >= 0) {
 			return Evaluate.evaluate(chessboard);
 		}
-		int value = Integer.MAX_VALUE, score = 0;
+		int bestValue = Integer.MAX_VALUE, score = 0;
 		for (int i = 0; i < chessboard.getListSize(true); i++) {
 			Piece piece = chessboard.getFromList(true, i);
 			ArrayList<Move> moves = piece.getPossibleMoves(chessboard);
@@ -107,16 +98,16 @@ public class AI {
 				Chessboard cloneBoard = new Chessboard(chessboard);
 				ChessboardHandler.movePiece(cloneBoard, move);
 				score = max(alpha, beta, cloneBoard, depth - 1);
-				if (score < value) {
-					value = score;
+				if (score < bestValue) {
+					bestValue = score;
 				}
-				if (value <= alpha) {
-					return alpha;
+				if (bestValue <= alpha) {
+					return bestValue; // this was alpha before, and Integer.Min_VALUE() wasn't returned?
 				}
-				beta = Math.min(beta, value);
+				beta = Math.min(beta, bestValue);
 			}
 		}
-		return value;
+		return bestValue;
 	}
 	
 }
