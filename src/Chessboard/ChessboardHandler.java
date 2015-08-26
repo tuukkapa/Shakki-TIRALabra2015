@@ -87,7 +87,8 @@ public class ChessboardHandler {
 	
 	/**
 	 * Moves one piece on the board.
-	 * @param chessboard Chessboard-object, which contains the game situation.
+	 * @param chessboard Chessboard-object, contains two dimensional piece-array
+	 * and two lists of pieces (black and white).
 	 * @param move Move-object, consisting of start and end coordinates.
 	 * @return Move-object.
 	 */
@@ -163,7 +164,8 @@ public class ChessboardHandler {
 	
 	/**
 	 * Returns true, if a move would cause check situation for moving an own piece.
-	 * @param chessboard
+	 * @param chessboard Chessboard-object, contains two dimensional piece-array
+	 * and two lists of pieces (black and white).
 	 * @param piece Piece-object to be moved.
 	 * @param end Integer, ending coordinates (0 = top left, 63 = bottom right).
 	 * @return Boolean, true if command is successful, false otherwise.
@@ -179,7 +181,8 @@ public class ChessboardHandler {
 	
 	/**
 	 * Returns true, if game situation is check against the player colour given as parameter.
-	 * @param chessboard Chessboard-object, which contains the game situation.
+	 * @param chessboard Chessboard-object, contains two dimensional piece-array
+	 * and two lists of pieces (black and white).
 	 * @param checkedIsWhite True, if player is white, false otherwise.
 	 * @return True if checked is white, false otherwise.
 	 */
@@ -328,7 +331,8 @@ public class ChessboardHandler {
 	
 	 /**
 	 * Returns an integer value telling if game situation is checkmate.
-	 * @param chessboard Chessboard-object, which contains the game situation.
+	 * @param chessboard Chessboard-object, contains two dimensional piece-array
+	 * and two lists of pieces (black and white).
 	 * @return Integer: 1 = checkmate against white, 0 = checkmate against black, -1 = no checkmate
 	 */
 	public static int isItCheckMate(Chessboard chessboard) {

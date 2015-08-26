@@ -35,8 +35,8 @@ public class AI {
 
 	/**
 	 * Maximizing player's part of minimax-algorithm.
-	 * @param alpha Integer, maximizing player's best option (i.e. highest value) so far.
-	 * @param beta Integer, minimizing player's best option (i.e. lowest value) so far.
+	 * @param alpha Integer, maximizing player's best (i.e. highest) value so far.
+	 * @param beta Integer, minimizing player's best (i.e. lowest) value so far.
 	 * @param chessboard Chessboard, which the game is on.
 	 * @param depth Integer, how many levels the game tree is built.
 	 * @return Integer, value of the game situation.
@@ -46,7 +46,7 @@ public class AI {
 		if (depth == 0 || ChessboardHandler.isItCheckMate(chessboard) >= 0) {
 			return Evaluate.evaluate(chessboard);
 		}
-		int score = 0;	
+		int score = 0;
 		for (int i = 0; i < chessboard.getListSize(false); i++) {
 			Piece piece = chessboard.getFromList(false, i);
 			ArrayList<Move> moves = piece.getPossibleMoves(chessboard);
@@ -74,8 +74,8 @@ public class AI {
 	
 	/**
 	 * Minimizing player's part of minimax-algorithm.
-	 * @param alpha Integer, maximizing player's best option (i.e. highest value) so far.
-	 * @param beta Integer, minimizing player's best option (i.e. lowest value) so far.
+	 * @param alpha Integer, maximizing player's best (i.e. highest) value so far.
+	 * @param beta Integer, minimizing player's best (i.e. lowest) value so far.
 	 * @param chessboard Chessboard, which the game is on.
 	 * @param depth Integer, how many levels the game tree is built.
 	 * @return Integer, value of the game situation.

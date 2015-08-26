@@ -113,9 +113,8 @@ public class Chessboard {
 	}
 	
 	/**
-	 * Adds a piece to the position on the chessboard, where the piece's position
-	 * attribute says, piece should be situated.
-	 * @param piece Piece-object to be added to the chessboard.
+	 * Add one piece to the chessboard and the correct List.
+	 * @param piece Piece-object, to be added to the board and list.
 	 */
 	protected void add(Piece piece) {
 		if (piece == null) {
@@ -141,8 +140,9 @@ public class Chessboard {
 	}
 	
 	/**
-	 * Removes piece from the position on the parameter.
-	 * @param position Integer, position on the board. 0 = top left, 63 = bottom right.
+	 * Removes piece from the position mentioned in the parameter, if piece is
+	 * present at the position.
+	 * @param position Integer, 0 = top left, 63 = bottom right.
 	 */
 	protected void remove(int position) {
 		if (position < 0 || position > 63) {
@@ -156,9 +156,9 @@ public class Chessboard {
 	}
 	
 	/**
-	 * Returns Piece-object from the list told at the white-parameter.
-	 * @param white Boolean, colour of the piece. True is white, false is black.
-	 * @param index Integer, index of the piece on the list.
+	 * Returns one piece from the correct list.
+	 * @param white Boolean, true is white, false is black.
+	 * @param index Index of the piece on the list.
 	 * @return Piece-object.
 	 */
 	public Piece getFromList(boolean white, int index) {
@@ -170,10 +170,11 @@ public class Chessboard {
 	}
 	
 	/**
-	 * Returns contents of one chessboard square.
+	 * Returns contents of one chessboard square, e.g. Piece, if piece is present,
+	 * otherwise null.
 	 * @param row Integer, row of the contents.
 	 * @param col Integer, column of the contents.
-	 * @return Piece-object or null, if the square is empty.
+	 * @return Piece-object.
 	 */
 	public Piece getSquareContents(int row, int col) {
 		if (row < 0 || row > 7 || col < 0 || col > 7) {
@@ -183,9 +184,10 @@ public class Chessboard {
 	}
 	
 	/**
-	 * Returns contents of one chessboard square.
-	 * @param position Integer, position on the board. 0 = top left, 63 = bottom right.
-	 * @return Piece-object or null, if the square is empty.
+	 * Returns contents of one chessboard square, e.g. Piece, if piece is present,
+	 * otherwise null.
+	 * @param position Position of the contents. 0 = top left, 63 = bottom right.
+	 * @return Piece-object.
 	 */
 	public Piece getSquareContents(int position) {
 		if (position < 0 || position > 63) {
@@ -196,27 +198,29 @@ public class Chessboard {
 	}
 	
 	/**
-	 * Returns the position of the king on chessboard.
-	 * @param white Boolean, colour of the king. True is white, false is black.
-	 * @return Integer, position on the board. 0 = top left, 63 = bottom right.
+	 * Returns position of the king with the colour mentioned in the parameter.
+	 * @param white Boolean, white is true, black is false.
+	 * @return Integer, Position of the king. 0 = top left, 63 = bottom right.
+
 	 */
 	public int getKingPosition(boolean white) {
 		return white ? whiteKingPosition : blackKingPosition;
 	}
 	
 	/**
-	 * Returns size of the chess piece list.
-	 * @param white Boolean, colour of the piece list. True is white, false is black.
-	 * @return Integer, size of the piece list.
+	 * Returns size of the list mentioned in the parameter.
+	 * @param white Boolean, white is true, black is false.
+	 * @return Integer, size of the list.
+
 	 */
 	public int getListSize(boolean white) {
 		return white ? whitePieces.size() : blackPieces.size();
 	}
 	
 	/**
-	 * Adds one piece to the correct list. The correct list is determined
-	 * from the Piece's colour-attribute.
-	 * @param piece Piece-object to be added to the list.
+	 * Adds the piece to the list. The correct list is selected by the piece's
+	 * white-attribute.
+	 * @param piece Piece to be added to the list.
 	 */
 	private void addToList(Piece piece) {
 		if (piece.amIWhite()) {
@@ -227,8 +231,10 @@ public class Chessboard {
 	}
 	
 	/**
-	 * Removes one Piece-object from the correct list.
-	 * @param piece Piece-object to be removed to the list.
+	 * Removes the piece from the list. The correct list is selected by the piece's
+	 * white-attribute.
+	 * @param piece  Piece to be removed from the list.
+
 	 */
 	private void removeFromList(Piece piece) {
 		if (piece.amIWhite()) {

@@ -1,7 +1,9 @@
 package UI;
 
 import AI.AI;
-import Chessboard.*;
+import Chessboard.Chessboard;
+import Chessboard.ChessboardHandler;
+import Chessboard.Move;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
