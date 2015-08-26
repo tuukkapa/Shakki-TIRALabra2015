@@ -3,6 +3,7 @@ package AI;
 
 import Chessboard.pieces.Piece;
 import Chessboard.*;
+import UI.UserInterface;
 import java.util.ArrayList;
 
 /**
@@ -45,11 +46,17 @@ public class AI {
 		if (depth == 0 || ChessboardHandler.isItCheckMate(chessboard) >= 0) {
 			return Evaluate.evaluate(chessboard);
 		}
-		int bestValue = Integer.MIN_VALUE, score = 0;	
+		int bestValue = Integer.MIN_VALUE, score = 0;
+		int fLaskuri = 0, pLaskuri = 0;
 		for (int i = 0; i < chessboard.getListSize(false); i++) {
 			Piece piece = chessboard.getFromList(false, i);
 			ArrayList<Move> moves = piece.getPossibleMoves(chessboard);
+			if (moves.isEmpty() && depth == originalDepth) {
+				System.out.println("Max: taso" + (originalDepth - depth) + " moves on tyhjä, nappula on " + piece.getSign());
+			}
+			pLaskuri++;
 			for (Move move : moves) {
+				fLaskuri++;
 				Chessboard cloneBoard = new Chessboard(chessboard);
 				ChessboardHandler.movePiece(cloneBoard, move);
 				score = min(alpha, beta, cloneBoard, depth - 1);
@@ -57,7 +64,7 @@ public class AI {
 					System.out.println(piece.getSign() + " " + (char)(piece.getPosition()%8+65) + (8-(piece.getPosition()/8)) + 
 							"->" + (char)(move.getEnd()%8+65) + (8-(move.getEnd()/8)) + ": arvosana " + score);
 				}
-				if (bestValue < score) {
+				if (score > bestValue) {
 					bestValue = score;
 					if (depth == originalDepth) {
 						bestMove = move;
@@ -68,6 +75,11 @@ public class AI {
 				}
 				alpha = Math.max(alpha, bestValue);
 			}
+		}
+		if (bestValue < -150000) {
+			System.out.println("Lauta");
+			UserInterface.drawBoard(chessboard.getBoardAsCharArray(), null);
+			System.out.println("Max, flaskuri " + fLaskuri + " plaskuri " + pLaskuri + " for-loopin loppu: palautetaan arvo " + bestValue + " tasolla " + (originalDepth - depth));
 		}
 		return bestValue;
 	}
@@ -93,7 +105,7 @@ public class AI {
 				Chessboard cloneBoard = new Chessboard(chessboard);
 				ChessboardHandler.movePiece(cloneBoard, move);
 				score = max(alpha, beta, cloneBoard, depth - 1);
-				if (bestValue > score) {
+				if (score < bestValue) {
 					bestValue = score;
 				}
 				if (bestValue <= alpha) {

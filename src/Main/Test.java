@@ -18,27 +18,22 @@ import java.util.ArrayList;
 public class Test {
 	
 	public static void main(String[] args) throws CloneNotSupportedException {
-		
+		Chessboard chessboard = new Chessboard();
 		char[][] newboard = {
-			{'r', 'n', 'R', 'Q', ' ', ' ', ' ', 'r'},
-			{'p', 'p', ' ', ' ', ' ', ' ', ' ', 'p'},
-			{' ', ' ', ' ', ' ', 'k', ' ', ' ', 'R'},
-			{' ', ' ', ' ', ' ', 'p', ' ', ' ', ' '},
-			{' ', ' ', ' ', 'r', 'q', 'r', ' ', ' '},
-			{'B', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{'P', 'P', 'P', ' ', ' ', ' ', 'P', 'P'},
-			{'R', 'N', ' ', ' ', 'K', ' ', ' ', 'R'}
+			{'r', 'n', 'b', ' ', 'k', 'b', 'n', 'r'},
+			{'p', ' ', 'p', 'p', ' ', 'B', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'p', ' ', ' ', 'p', 'p', ' ', ' '},
+			{' ', ' ', ' ', 'r', 'P', ' ', ' ', 'q'},
+			{' ', ' ', ' ', ' ', ' ', ' ', 'P', ' '},
+			{'P', 'P', 'P', 'P', ' ', 'P', ' ', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', ' ', ' ', 'R'}
 		};
-		//Chessboard chessboard.setBoard(newboard);
-		//boolean value = ChessboardHandler.isItCheck(chessboard, false);
-		/*List<Piece> lista = new List<>();
-		lista.add(chessboard.getSquareContents(0));
-		lista.add(chessboard.getSquareContents(1));
-		lista.add(chessboard.getSquareContents(2));
-		int size = lista.size();
-		lista.remove(chessboard.getSquareContents(1));
-		int size2 = lista.size();
-		Piece piece = lista.get(0);*/
+		chessboard.setBoard(newboard);
+		Piece piece = chessboard.getSquareContents(4);
+		ArrayList<Move> moves = piece.getPossibleMoves(chessboard);
+		System.out.println("Moi");
+		
 	}
 
 }
