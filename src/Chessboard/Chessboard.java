@@ -20,6 +20,8 @@ public class Chessboard {
 		chessboard = new Piece[8][8];
 		whitePieces = new List<>();
 		blackPieces = new List<>();
+		whiteOfficers = 0;
+		blackOfficers = 0;
 		char[][] newBoard = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
@@ -65,43 +67,35 @@ public class Chessboard {
 		chessboard = new Piece[8][8];
 		whitePieces = new List<>();
 		blackPieces = new List<>();
+		whiteOfficers = 0;
+		blackOfficers = 0;
 		for (int i = 0; i < 64; i++) {
 			if (newboard[i/8][i%8] == 'p') {
 				this.add(new Pawn(false, i));
 			} else if (newboard[i/8][i%8] == 'r') {
 				this.add(new Rook(false, i));
-				blackOfficers++;
 			} else if (newboard[i/8][i%8] == 'n') {
 				this.add(new Knight(false, i));
-				blackOfficers++;
 			} else if (newboard[i/8][i%8] == 'b') {
 				this.add(new Bishop(false, i));
-				blackOfficers++;
 			} else if (newboard[i/8][i%8] == 'q') {
 				this.add(new Queen(false, i));
-				blackOfficers++;
 			} else if (newboard[i/8][i%8] == 'k') {
 				this.add(new King(false, i));
 				blackKingPosition = i;
-				blackOfficers++;
 			} else if (newboard[i/8][i%8] == 'P') {
 				this.add(new Pawn(true, i));
 			} else if (newboard[i/8][i%8] == 'R') {
 				this.add(new Rook(true, i));
-				whiteOfficers++;
 			} else if (newboard[i/8][i%8] == 'N') {
 				this.add(new Knight(true, i));
-				whiteOfficers++;
 			} else if (newboard[i/8][i%8] == 'B') {
 				this.add(new Bishop(true, i));
-				whiteOfficers++;
 			} else if (newboard[i/8][i%8] == 'Q') {
 				this.add(new Queen(true, i));
-				whiteOfficers++;
 			} else if (newboard[i/8][i%8] == 'K') {
 				this.add(new King(true, i));
 				whiteKingPosition = i;
-				whiteOfficers++;
 			}
 		}
 	}

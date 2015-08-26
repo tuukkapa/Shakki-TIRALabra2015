@@ -20,7 +20,7 @@ import java.util.Random;
 public class Test {
 	
 	public static void main(String[] args) throws CloneNotSupportedException {
-		
+		Chessboard chessboard = new Chessboard();
 		char[][] newboard = {
 			{'r', 'n', 'R', 'Q', ' ', ' ', ' ', 'r'},
 			{'p', 'p', ' ', ' ', ' ', ' ', ' ', 'p'},
@@ -31,8 +31,10 @@ public class Test {
 			{'P', 'P', 'P', ' ', ' ', ' ', 'P', 'P'},
 			{'R', 'N', ' ', ' ', 'K', ' ', ' ', 'R'}
 		};
+		chessboard.setBoard(newboard);
 		//int rand = Tools.randInt();
 		Random random = new Random();
+		int ups = chessboard.getOfficersAmount(true);
 		int[] testirandomit = new int[10];
 		for (int i = 0; i < 10; i++) {
 			testirandomit[i] = random.nextInt(5);
