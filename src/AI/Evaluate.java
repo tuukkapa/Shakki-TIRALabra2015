@@ -116,7 +116,7 @@ public class Evaluate {
 		gameSituationPoints -= calculatePointsFromPieces(chessboard, true); // points for white
 		gameSituationPoints += calculatePointsFromPieces(chessboard, false); // points for black
 		
-		return gameSituationPoints;
+		return gameSituationPoints + Tools.randInt(5);
 	}
 		
 	/**
@@ -175,14 +175,7 @@ public class Evaluate {
 	 * @return True, if it is end game for the side, false otherwise.
 	 */
 	private static boolean isItEndGame(Chessboard chessboard, boolean white) {
-		int officers = 0;
-		for (int i = 0; i < chessboard.getListSize(white); i++) {
-			Piece piece = chessboard.getFromList(white, i);
-			if (!(piece instanceof Pawn )) {
-				officers++;
-			}
-		}
-		return officers < 5;
+		return chessboard.getOfficersAmount(white) < 5;
 	}
 
 }

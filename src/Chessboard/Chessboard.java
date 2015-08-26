@@ -14,7 +14,7 @@ public class Chessboard {
 	private Piece[][] chessboard;
 	private List<Piece> whitePieces, blackPieces;
 	private int whiteKingPosition, blackKingPosition;
-	private int numberOfBlackOfficers, numberOfWhiteOfficers; // TODO make support for this
+	private int blackOfficers, whiteOfficers; // TODO make support for this
 	
 	public Chessboard() {
 		chessboard = new Piece[8][8];
@@ -44,6 +44,7 @@ public class Chessboard {
 			chessboard[row][col] = (Piece)piece.clone();
 			addToList(chessboard[row][col]);
 			whiteKingPosition = anotherboard.getKingPosition(true);
+			whiteOfficers = anotherboard.getOfficersAmount(true);
 		}
 		for (int i = 0; i < anotherboard.getListSize(false); i++) {
 			int row = anotherboard.getFromList(false, i).getPosition()/8;
@@ -52,6 +53,7 @@ public class Chessboard {
 			chessboard[row][col] = (Piece)piece.clone();
 			addToList(chessboard[row][col]);
 			blackKingPosition = anotherboard.getKingPosition(false);
+			blackOfficers = anotherboard.getOfficersAmount(false);
 		}
 	}
 	
@@ -68,28 +70,38 @@ public class Chessboard {
 				this.add(new Pawn(false, i));
 			} else if (newboard[i/8][i%8] == 'r') {
 				this.add(new Rook(false, i));
+				blackOfficers++;
 			} else if (newboard[i/8][i%8] == 'n') {
 				this.add(new Knight(false, i));
+				blackOfficers++;
 			} else if (newboard[i/8][i%8] == 'b') {
 				this.add(new Bishop(false, i));
+				blackOfficers++;
 			} else if (newboard[i/8][i%8] == 'q') {
 				this.add(new Queen(false, i));
+				blackOfficers++;
 			} else if (newboard[i/8][i%8] == 'k') {
 				this.add(new King(false, i));
 				blackKingPosition = i;
+				blackOfficers++;
 			} else if (newboard[i/8][i%8] == 'P') {
 				this.add(new Pawn(true, i));
 			} else if (newboard[i/8][i%8] == 'R') {
 				this.add(new Rook(true, i));
+				whiteOfficers++;
 			} else if (newboard[i/8][i%8] == 'N') {
 				this.add(new Knight(true, i));
+				whiteOfficers++;
 			} else if (newboard[i/8][i%8] == 'B') {
 				this.add(new Bishop(true, i));
+				whiteOfficers++;
 			} else if (newboard[i/8][i%8] == 'Q') {
 				this.add(new Queen(true, i));
+				whiteOfficers++;
 			} else if (newboard[i/8][i%8] == 'K') {
 				this.add(new King(true, i));
 				whiteKingPosition = i;
+				whiteOfficers++;
 			}
 		}
 	}
@@ -217,6 +229,10 @@ public class Chessboard {
 		return white ? whitePieces.size() : blackPieces.size();
 	}
 	
+	public int getOfficersAmount(boolean white) {
+		return white ? whiteOfficers : blackOfficers;
+	}
+	
 	/**
 	 * Adds the piece to the list. The correct list is selected by the piece's
 	 * white-attribute.
@@ -225,8 +241,14 @@ public class Chessboard {
 	private void addToList(Piece piece) {
 		if (piece.amIWhite()) {
 			whitePieces.add(piece);
+			if (!(piece instanceof Pawn)) {
+				whiteOfficers++;
+			}
 		} else {
 			blackPieces.add(piece);
+			if (!(piece instanceof Pawn)) {
+				blackOfficers++;
+			}
 		}
 	}
 	
@@ -239,8 +261,14 @@ public class Chessboard {
 	private void removeFromList(Piece piece) {
 		if (piece.amIWhite()) {
 			whitePieces.remove(piece);
+			if (!(piece instanceof Pawn)) {
+				whiteOfficers--;
+			}
 		} else {
 			blackPieces.remove(piece);
+			if (!(piece instanceof Pawn)) {
+				blackOfficers--;
+			}
 		}
 	}
 

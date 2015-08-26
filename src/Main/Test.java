@@ -2,12 +2,14 @@ package Main;
 
 
 import AI.Evaluate;
+import AI.Tools;
 import Chessboard.*;
 import Chessboard.pieces.Piece;
 import Chessboard.pieces.Rook;
 import DataStructures.List;
 import UI.UserInterface;
 import java.util.ArrayList;
+import java.util.Random;
 
 /*
  * Copyright (C) 2015
@@ -29,6 +31,13 @@ public class Test {
 			{'P', 'P', 'P', ' ', ' ', ' ', 'P', 'P'},
 			{'R', 'N', ' ', ' ', 'K', ' ', ' ', 'R'}
 		};
+		//int rand = Tools.randInt();
+		Random random = new Random();
+		int[] testirandomit = new int[10];
+		for (int i = 0; i < 10; i++) {
+			testirandomit[i] = random.nextInt(5);
+		}
+
 		//Chessboard chessboard.setBoard(newboard);
 		//boolean value = ChessboardHandler.isItCheck(chessboard, false);
 		/*List<Piece> lista = new List<>();
