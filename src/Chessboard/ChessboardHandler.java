@@ -1,13 +1,7 @@
 
 package Chessboard;
 
-import Chessboard.pieces.Bishop;
-import Chessboard.pieces.King;
-import Chessboard.pieces.Knight;
-import Chessboard.pieces.Pawn;
-import Chessboard.pieces.Piece;
-import Chessboard.pieces.Queen;
-import Chessboard.pieces.Rook;
+import Chessboard.pieces.*;
 
  /**
   * This class does everything related to the chess board and it's pieces' movement.

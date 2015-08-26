@@ -2,9 +2,7 @@ package AI;
 
 
 import Chessboard.pieces.Piece;
-import Chessboard.Chessboard;
-import Chessboard.ChessboardHandler;
-import Chessboard.Move;
+import Chessboard.*;
 import java.util.ArrayList;
 
 /**
@@ -47,14 +45,14 @@ public class AI {
 		if (depth == 0 || ChessboardHandler.isItCheckMate(chessboard) >= 0) {
 			return Evaluate.evaluate(chessboard);
 		}
-		int bestValue = Integer.MIN_VALUE, score = 0;	
+		int bestValue = Integer.MIN_VALUE, score = 0;
 		for (int i = 0; i < chessboard.getListSize(false); i++) {
 			Piece piece = chessboard.getFromList(false, i);
 			ArrayList<Move> moves = piece.getPossibleMoves(chessboard);
+			if (moves.isEmpty() && depth == originalDepth) {
+				System.out.println("Max: taso" + (originalDepth - depth) + " moves on tyhjä, nappula on " + piece.getSign());
+			}
 			for (Move move : moves) {
-				if (bestMove == null) {
-					bestMove = move;
-				}
 				Chessboard cloneBoard = new Chessboard(chessboard);
 				ChessboardHandler.movePiece(cloneBoard, move);
 				score = min(alpha, beta, cloneBoard, depth - 1);

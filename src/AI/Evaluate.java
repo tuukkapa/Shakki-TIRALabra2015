@@ -12,6 +12,7 @@ import Chessboard.pieces.*;
 
 /**
  * Concept of this evaluation method is by Tomasz Michniewski.
+ * I have added modifications of my own.
  * (https://chessprogramming.wikispaces.com/Simplified+evaluation+function)
  * 
  * Method determines the game situations value from black pieces' point of view.
@@ -117,7 +118,7 @@ public class Evaluate {
 		
 		return gameSituationPoints;
 	}
-	
+		
 	/**
 	 * Calculates game situation points from one player's pieces.
 	 * @param chessboard Chessboard-object, which game is on.
@@ -174,7 +175,6 @@ public class Evaluate {
 	 * @return True, if it is end game for the side, false otherwise.
 	 */
 	private static boolean isItEndGame(Chessboard chessboard, boolean white) {
-		//ArrayList<Piece> pieces = chessboard.getPieces(white);
 		int officers = 0;
 		for (int i = 0; i < chessboard.getListSize(white); i++) {
 			Piece piece = chessboard.getFromList(white, i);

@@ -113,8 +113,14 @@ public class Chessboard {
 	}
 	
 	/**
+<<<<<<< HEAD
 	 * Add one piece to the chessboard and the correct List.
 	 * @param piece Piece-object, to be added to the board and list.
+=======
+	 * Adds a piece to the position on the chessboard, where the piece's position
+	 * attribute says, piece should be situated.
+	 * @param piece Piece-object to be added to the chessboard.
+>>>>>>> master
 	 */
 	protected void add(Piece piece) {
 		if (piece == null) {
@@ -140,9 +146,14 @@ public class Chessboard {
 	}
 	
 	/**
+<<<<<<< HEAD
 	 * Removes piece from the position metioned in the parameter, if piece is
 	 * present at the position.
 	 * @param position Integer, 0 = top left, 63 = bottom right.
+=======
+	 * Removes piece from the position on the parameter.
+	 * @param position Integer, position on the board. 0 = top left, 63 = bottom right.
+>>>>>>> master
 	 */
 	protected void remove(int position) {
 		if (position < 0 || position > 63) {
@@ -156,9 +167,15 @@ public class Chessboard {
 	}
 	
 	/**
+<<<<<<< HEAD
 	 * Returns one piece from the correct list.
 	 * @param white Boolean, true is white, false is black.
 	 * @param index Index of the piece on the list.
+=======
+	 * Returns Piece-object from the list told at the white-parameter.
+	 * @param white Boolean, colour of the piece. True is white, false is black.
+	 * @param index Integer, index of the piece on the list.
+>>>>>>> master
 	 * @return Piece-object.
 	 */
 	public Piece getFromList(boolean white, int index) {
@@ -170,11 +187,18 @@ public class Chessboard {
 	}
 	
 	/**
+<<<<<<< HEAD
 	 * Returns contents of one chessboard square, e.g. Piece, if piece is present,
 	 * otherwise null.
 	 * @param row Integer, row of the contents.
 	 * @param col Integer, column of the contents.
 	 * @return Piece-object.
+=======
+	 * Returns contents of one chessboard square.
+	 * @param row Integer, row of the contents.
+	 * @param col Integer, column of the contents.
+	 * @return Piece-object or null, if the square is empty.
+>>>>>>> master
 	 */
 	public Piece getSquareContents(int row, int col) {
 		if (row < 0 || row > 7 || col < 0 || col > 7) {
@@ -184,10 +208,16 @@ public class Chessboard {
 	}
 	
 	/**
+<<<<<<< HEAD
 	 * Returns contents of one chessboard square, e.g. Piece, if piece is present,
 	 * otherwise null.
 	 * @param position Position of the contents. 0 = top left, 63 = bottom right.
 	 * @return Piece-object.
+=======
+	 * Returns contents of one chessboard square.
+	 * @param position Integer, position on the board. 0 = top left, 63 = bottom right.
+	 * @return Piece-object or null, if the square is empty.
+>>>>>>> master
 	 */
 	public Piece getSquareContents(int position) {
 		if (position < 0 || position > 63) {
@@ -201,6 +231,7 @@ public class Chessboard {
 	 * Returns position of the king with the colour mentioned in the parameter.
 	 * @param white Boolean, white is true, black is false.
 	 * @return Integer, Position of the king. 0 = top left, 63 = bottom right.
+
 	 */
 	public int getKingPosition(boolean white) {
 		return white ? whiteKingPosition : blackKingPosition;
@@ -210,6 +241,7 @@ public class Chessboard {
 	 * Returns size of the list mentioned in the parameter.
 	 * @param white Boolean, white is true, black is false.
 	 * @return Integer, size of the list.
+
 	 */
 	public int getListSize(boolean white) {
 		return white ? whitePieces.size() : blackPieces.size();
@@ -232,6 +264,7 @@ public class Chessboard {
 	 * Removes the piece from the list. The correct list is selected by the piece's
 	 * white-attribute.
 	 * @param piece  Piece to be removed from the list.
+
 	 */
 	private void removeFromList(Piece piece) {
 		if (piece.amIWhite()) {

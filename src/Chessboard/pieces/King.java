@@ -1,8 +1,6 @@
 package Chessboard.pieces;
 
-import Chessboard.Move;
-import Chessboard.Chessboard;
-import Chessboard.ChessboardHandler;
+import Chessboard.*;
 import java.util.ArrayList;
 
 /**

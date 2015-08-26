@@ -166,7 +166,7 @@ public class UserInterface {
 	 * readable ASCII-character version of the chess board.
 	 * @param chessboard Two dimensional char-array, the board to be drawn.
 	 */
-	private static void drawBoard(char[][] chessboard, Move move/*, Chessboard board*/) {
+	public static void drawBoard(char[][] chessboard, Move move/*, Chessboard board*/) {
 		for (int i = 0; i < 17; i++) {
 			for (int j = 0; j < 33; j++) {
 				// Draw chess board's top and bottom edge
