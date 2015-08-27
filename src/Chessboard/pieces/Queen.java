@@ -7,7 +7,7 @@
 package Chessboard.pieces;
 
 import Chessboard.*;
-import java.util.ArrayList;
+import DataStructures.List;
 
 /**
  * Class for Queen, creates Queen-objects.
@@ -16,6 +16,12 @@ import java.util.ArrayList;
  */
 public class Queen extends Piece implements Cloneable {
 	
+	/**
+	 * Constructor of object Queen.
+	 * @param white Boolean, colour of the piece. True is white, false is black.
+	 * @param position Integer, position of the piece on the board. 0 = top left,
+	 * 63 = bottom right.
+	 */
 	public Queen(boolean white, int position) {
 		this.position = position;
 		this.white = white;
@@ -28,10 +34,9 @@ public class Queen extends Piece implements Cloneable {
 	 * @return
 	 */
 	@Override
-	public ArrayList<Move> getPossibleMoves(Chessboard chessboard) {
-		ArrayList<Move> moves = this.createStraightMoves(chessboard);
-		ArrayList<Move> diagonalMoves = this.createDiagonalMoves(chessboard);
-		moves.removeAll(diagonalMoves); // this should be redundant?
+	public List<Move> getPossibleMoves(Chessboard chessboard) {
+		List<Move> moves = this.createStraightMoves(chessboard);
+		List<Move> diagonalMoves = this.createDiagonalMoves(chessboard);
 		moves.addAll(diagonalMoves);
 		return moves;
 	}

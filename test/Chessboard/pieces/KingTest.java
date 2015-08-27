@@ -8,6 +8,7 @@ package Chessboard.pieces;
 import Chessboard.Move;
 import Chessboard.Chessboard;
 import Chessboard.ChessboardHandler;
+import DataStructures.List;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -62,9 +63,9 @@ public class KingTest {
 		};
 		chessboard.setBoard(newboard);
 		Piece king = chessboard.getSquareContents(60);
-		ArrayList<Move> expResult = new ArrayList<>();
-		ArrayList<Move> result = king.getPossibleMoves(chessboard);
-		assertEquals(expResult, result);
+
+		List<Move> result = king.getPossibleMoves(chessboard);
+		assertTrue(result.size() == 0);
 	}
 	
 	/**
@@ -85,9 +86,8 @@ public class KingTest {
 		};
 		chessboard.setBoard(newboard);
 		Piece king = chessboard.getSquareContents(4);
-		ArrayList<Move> expResult = new ArrayList<>();
-		ArrayList<Move> result = king.getPossibleMoves(chessboard);
-		assertEquals(expResult, result);
+		List<Move> result = king.getPossibleMoves(chessboard);
+		assertTrue(result.size() == 0);
 	}
 	
 	/**
@@ -113,7 +113,7 @@ public class KingTest {
 				king = (King)chessboard.getSquareContents(i);
 			}
 		}
-		ArrayList<Move> resultList = king.getPossibleMoves(chessboard);
+		List<Move> resultList = king.getPossibleMoves(chessboard);
 		boolean[][] expectedMovementMap = {
 			{false, false, false, false, false, false, false, false},
 			{false, false, false, false, false, false, false, false},
@@ -165,7 +165,7 @@ public class KingTest {
 				king = (King)chessboard.getSquareContents(i);
 			}
 		}
-		ArrayList<Move> resultList = king.getPossibleMoves(chessboard);
+		List<Move> resultList = king.getPossibleMoves(chessboard);
 		boolean[][] expectedMovementMap = {
 			{false, false, true, false, false, false, false, false},
 			{false, false, false, false, false, false, false, false},
@@ -217,7 +217,7 @@ public class KingTest {
 				king = (King)chessboard.getSquareContents(i);
 			}
 		}
-		ArrayList<Move> resultList = king.getPossibleMoves(chessboard);
+		List<Move> resultList = king.getPossibleMoves(chessboard);
 		boolean[][] expectedMovementMap = {
 			{false, false, false, false, false, false, false, false},
 			{false, false, false, false, false, false, false, false},
@@ -269,7 +269,7 @@ public class KingTest {
 				king = (King)chessboard.getSquareContents(i);
 			}
 		}
-		ArrayList<Move> resultList = king.getPossibleMoves(chessboard);
+		List<Move> resultList = king.getPossibleMoves(chessboard);
 		boolean[][] expectedMovementMap = {
 			{false, false, false, false, false, false, false, false},
 			{false, false, false, false, false, false, false, false},
@@ -321,7 +321,7 @@ public class KingTest {
 				king = (King)chessboard.getSquareContents(i);
 			}
 		}
-		ArrayList<Move> resultList = king.getPossibleMoves(chessboard);
+		List<Move> resultList = king.getPossibleMoves(chessboard);
 		boolean[][] expectedMovementMap = {
 			{false, false, false, false, false, false, false, false},
 			{false, false, false, false, false, false, false, false},
@@ -373,7 +373,7 @@ public class KingTest {
 				king = (King)chessboard.getSquareContents(i);
 			}
 		}
-		ArrayList<Move> resultList = king.getPossibleMoves(chessboard);
+		List<Move> resultList = king.getPossibleMoves(chessboard);
 		boolean[][] expectedMovementMap = {
 			{false, false, false, false, false, false, false, false},
 			{false, true, false, false, false, false, false, false},

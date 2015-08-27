@@ -1,7 +1,7 @@
 package Chessboard.pieces;
 
 import Chessboard.*;
-import java.util.ArrayList;
+import DataStructures.List;
 
 /**
  * Class for Pawn, creates Pawn-objects.
@@ -10,6 +10,12 @@ import java.util.ArrayList;
  */
 public class Pawn extends Piece implements Cloneable {
 	
+	/**
+	 * Constructor of object Pawn.
+	 * @param white Boolean, colour of the piece. True is white, false is black.
+	 * @param position Integer, position of the piece on the board. 0 = top left,
+	 * 63 = bottom right.
+	 */
 	public Pawn(boolean white, int position) {
 		this.position = position;
 		this.white = white;
@@ -17,8 +23,8 @@ public class Pawn extends Piece implements Cloneable {
 	}
 	
 	@Override
-	public ArrayList<Move> getPossibleMoves(Chessboard chessboard) {
-		ArrayList<Move> moves = new ArrayList<>();
+	public List<Move> getPossibleMoves(Chessboard chessboard) {
+		List<Move> moves = new List<>();
 		int pawnRow = position / 8;
 		int pawnCol = position % 8;
 		int movement = white ? -1 : 1;

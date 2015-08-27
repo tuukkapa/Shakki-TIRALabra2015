@@ -9,13 +9,28 @@ package Chessboard;
 import Chessboard.pieces.*;
 import DataStructures.List;
 
+/**
+ * Instances of this class contain a two dimensional Piece-object array, which
+ * contains the chess pieces situated at the chessboard in formation of the current
+ * chess game position.
+ * 
+ * Instances also contain:
+ * - each colour's pieces in a List-object
+ * - integer marking the current position of kings
+ * - integer containing the amount of current white and black officers
+ * 
+ * @author Tuukka Paukkunen
+ */
 public class Chessboard {
 	
 	private Piece[][] chessboard;
 	private List<Piece> whitePieces, blackPieces;
 	private int whiteKingPosition, blackKingPosition;
-	private int blackOfficers, whiteOfficers; // TODO make support for this
+	private int blackOfficers, whiteOfficers;
 	
+	/**
+	 * Constructor
+	 */
 	public Chessboard() {
 		chessboard = new Piece[8][8];
 		whitePieces = new List<>();
@@ -35,6 +50,11 @@ public class Chessboard {
 		setBoard(newBoard);
 	}
 	
+	/**
+	 * Constructor, clones the board given as a parameter.
+	 * @param anotherboard Chessboard-object from which the contents is cloned.
+	 * @throws CloneNotSupportedException 
+	 */
 	public Chessboard(Chessboard anotherboard) throws CloneNotSupportedException {
 		chessboard = new Piece[8][8];
 		whitePieces = new List<>();
@@ -217,12 +237,16 @@ public class Chessboard {
 	 * Returns size of the list mentioned in the parameter.
 	 * @param white Boolean, white is true, black is false.
 	 * @return Integer, size of the list.
-
 	 */
 	public int getListSize(boolean white) {
 		return white ? whitePieces.size() : blackPieces.size();
 	}
 	
+	/**
+	 * Returns amount of officers of the colour specified at the parameter currently on board.
+	 * @param white Boolean, true is white, false is black.
+	 * @return Integer, amount of officers.
+	 */
 	public int getOfficersAmount(boolean white) {
 		return white ? whiteOfficers : blackOfficers;
 	}
@@ -250,7 +274,6 @@ public class Chessboard {
 	 * Removes the piece from the list. The correct list is selected by the piece's
 	 * white-attribute.
 	 * @param piece  Piece to be removed from the list.
-
 	 */
 	private void removeFromList(Piece piece) {
 		if (piece.amIWhite()) {

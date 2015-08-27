@@ -8,7 +8,7 @@ package Chessboard.pieces;
 import Chessboard.Move;
 import Chessboard.Chessboard;
 import Chessboard.ChessboardHandler;
-import java.util.ArrayList;
+import DataStructures.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -67,7 +67,7 @@ public class QueenTest {
 				queen = (Queen)chessboard.getSquareContents(i);
 			}
 		}
-		ArrayList<Move> resultList = queen.getPossibleMoves(chessboard);
+		List<Move> resultList = queen.getPossibleMoves(chessboard);
 		boolean[][] expectedMovementMap = {
 			{false, false, false, false, false, false, false, false},
 			{true, false, false, true, false, false, true, false},
@@ -119,7 +119,7 @@ public class QueenTest {
 				queen = (Queen)chessboard.getSquareContents(i);
 			}
 		}
-		ArrayList<Move> resultList = queen.getPossibleMoves(chessboard);
+		List<Move> resultList = queen.getPossibleMoves(chessboard);
 		boolean[][] expectedMovementMap = {
 			{false, false, false, false, false, false, false, false},
 			{false,  true, false, false,  true, false, false,  true},
@@ -171,7 +171,7 @@ public class QueenTest {
 				queen = (Queen)chessboard.getSquareContents(i);
 			}
 		}
-		ArrayList<Move> resultList = queen.getPossibleMoves(chessboard);
+		List<Move> resultList = queen.getPossibleMoves(chessboard);
 		boolean[][] expectedMovementMap = {
 			{false, false, false, false, false, false, false, false},
 			{false, false, false, false, false, false, false, false},
@@ -223,7 +223,7 @@ public class QueenTest {
 				queen = (Queen)chessboard.getSquareContents(i);
 			}
 		}
-		ArrayList<Move> resultList = queen.getPossibleMoves(chessboard);
+		List<Move> resultList = queen.getPossibleMoves(chessboard);
 		boolean[][] expectedMovementMap = {
 			{false, false, false, false, false, false, false, false},
 			{false, false, false, false, true, false, false, false},
@@ -275,7 +275,7 @@ public class QueenTest {
 				queen = (Queen)chessboard.getSquareContents(i);
 			}
 		}
-		ArrayList<Move> resultList = queen.getPossibleMoves(chessboard);
+		List<Move> resultList = queen.getPossibleMoves(chessboard);
 		boolean[][] expectedMovementMap = {
 			{false, false, false, false, false, false, false, false},
 			{false, false, false, false, false, false, false, false},

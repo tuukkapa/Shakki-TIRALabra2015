@@ -7,7 +7,7 @@
 package Chessboard.pieces;
 
 import Chessboard.*;
-import java.util.ArrayList;
+import DataStructures.List;
 
 /**
  * Class for Knight, creates Knight-objects.
@@ -16,6 +16,12 @@ import java.util.ArrayList;
  */
 public class Knight extends Piece implements Cloneable {
 	
+	/**
+	 * Constructor of object Knight.
+	 * @param white Boolean, colour of the piece. True is white, false is black.
+	 * @param position Integer, position of the piece on the board. 0 = top left,
+	 * 63 = bottom right.
+	 */
 	public Knight(boolean white, int position) {
 		this.position = position;
 		this.white = white;
@@ -23,8 +29,8 @@ public class Knight extends Piece implements Cloneable {
 	}
 
 	@Override
-	public ArrayList<Move> getPossibleMoves(Chessboard chessboard) {
-		ArrayList<Move> moves = new ArrayList<>();
+	public List<Move> getPossibleMoves(Chessboard chessboard) {
+		List<Move> moves = new List<>();
 		int row = position / 8;
 		int col = position % 8;
 		if (row - 1 >= 0 && col - 2 >= 0 && this.endSquareContainsEnemyOrEmpty(chessboard, (row - 1) * 8 + (col - 2)) && !ChessboardHandler.wouldItBeCheck(chessboard, this, (row - 1) * 8 + (col - 2))) {

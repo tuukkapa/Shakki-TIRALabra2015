@@ -7,7 +7,7 @@
 package Chessboard.pieces;
 
 import Chessboard.*;
-import java.util.ArrayList;
+import DataStructures.List;
 
 /**
  * Class for Bishop. Creates Bishop-objects.
@@ -16,6 +16,12 @@ import java.util.ArrayList;
  */
 public class Bishop extends Piece implements Cloneable {
 	
+	/**
+	 * Constructor of object Bishop.
+	 * @param white Boolean, colour of the piece. True is white, false is black.
+	 * @param position Integer, position of the piece on the board. 0 = top left,
+	 * 63 = bottom right.
+	 */
 	public Bishop(boolean white, int position) {
 		this.position = position;
 		this.white = white;
@@ -23,7 +29,7 @@ public class Bishop extends Piece implements Cloneable {
 	}
 
 	@Override
-	public ArrayList<Move> getPossibleMoves(Chessboard chessboard) {
+	public List<Move> getPossibleMoves(Chessboard chessboard) {
 		return this.createDiagonalMoves(chessboard);
 	}
 

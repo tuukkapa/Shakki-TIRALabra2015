@@ -3,7 +3,7 @@ package AI;
 
 import Chessboard.pieces.Piece;
 import Chessboard.*;
-import java.util.ArrayList;
+import DataStructures.List;
 
 /**
  * This class does everything related to the game tree.
@@ -48,19 +48,20 @@ public class AI {
 		int score = 0;
 		for (int i = 0; i < chessboard.getListSize(false); i++) {
 			Piece piece = chessboard.getFromList(false, i);
-			ArrayList<Move> moves = piece.getPossibleMoves(chessboard);
-			for (Move move : moves) {
+			//ArrayList<Move> moves = piece.getPossibleMoves(chessboard);
+			List<Move> moves = piece.getPossibleMoves(chessboard);
+			for (int j = 0; j < moves.size(); j++) {
 				Chessboard cloneBoard = new Chessboard(chessboard);
-				ChessboardHandler.movePiece(cloneBoard, move);
+				ChessboardHandler.movePiece(cloneBoard, moves.get(j));
 				score = min(alpha, beta, cloneBoard, depth - 1);
 				if (depth == originalDepth) {
 					System.out.println(piece.getSign() + " " + (char)(piece.getPosition()%8+65) + (8-(piece.getPosition()/8)) + 
-							"->" + (char)(move.getEnd()%8+65) + (8-(move.getEnd()/8)) + ": arvosana " + score);
+							"->" + (char)(moves.get(j).getEnd()%8+65) + (8-(moves.get(j).getEnd()/8)) + ": arvosana " + score);
 				}
 				if (score > alpha) {
 					alpha = score;
 					if (depth == originalDepth) {
-						bestMove = move;
+						bestMove = moves.get(j);
 					}
 				}
 				if (alpha >= beta) {
@@ -87,10 +88,11 @@ public class AI {
 		int score = 0;
 		for (int i = 0; i < chessboard.getListSize(true); i++) {
 			Piece piece = chessboard.getFromList(true, i);
-			ArrayList<Move> moves = piece.getPossibleMoves(chessboard);
-			for (Move move : moves) {
+			//ArrayList<Move> moves = piece.getPossibleMoves(chessboard);
+			List<Move> moves = piece.getPossibleMoves(chessboard);
+			for (int j = 0; j < moves.size(); j++) {
 				Chessboard cloneBoard = new Chessboard(chessboard);
-				ChessboardHandler.movePiece(cloneBoard, move);
+				ChessboardHandler.movePiece(cloneBoard, moves.get(j));
 				score = max(alpha, beta, cloneBoard, depth - 1);
 				if (score < beta) {
 					beta = score;

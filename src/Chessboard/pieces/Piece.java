@@ -1,6 +1,7 @@
 package Chessboard.pieces;
 
 import Chessboard.*;
+import DataStructures.List;
 import java.util.ArrayList;
 
 /**
@@ -15,8 +16,19 @@ import java.util.ArrayList;
  */
 public abstract class Piece implements Cloneable {
 	
+	/**
+	 *
+	 */
 	protected int position;
+
+	/**
+	 *
+	 */
 	protected boolean white;
+
+	/**
+	 *
+	 */
 	protected char sign;
 	
 	/**
@@ -62,7 +74,7 @@ public abstract class Piece implements Cloneable {
 	 * @param chessboard Chessboard-object, which pieces are to be moved.
 	 * @return ArrayList of Move-objects.
 	 */
-	public abstract ArrayList<Move> getPossibleMoves(Chessboard chessboard);
+	public abstract List<Move> getPossibleMoves(Chessboard chessboard);
 	
 	/**
 	 * Verifies if this Piece can be moved to the end position according to the chess rules.
@@ -78,8 +90,8 @@ public abstract class Piece implements Cloneable {
 	 * @param chessboard Chessboard-object, which pieces are to be moved.
 	 * @return ArrayList of Move-objects.
 	 */
-	protected ArrayList<Move> createStraightMoves(Chessboard chessboard) {
-		ArrayList<Move> moves = new ArrayList<>();
+	protected List<Move> createStraightMoves(Chessboard chessboard) {
+		List<Move> moves = new List<>();
 		int startRow = position / 8;
 		int startCol = position % 8;
 		
@@ -150,8 +162,8 @@ public abstract class Piece implements Cloneable {
 	 * @param chessboard Chessboard-object, which pieces are to be moved.
 	 * @return ArrayList of Move-objects.
 	 */
-	protected ArrayList<Move> createDiagonalMoves(Chessboard chessboard) {
-		ArrayList<Move> moves = new ArrayList<>();
+	protected List<Move> createDiagonalMoves(Chessboard chessboard) {
+		List<Move> moves = new List<>();
 		int row = position / 8;
 		int col = position % 8;
 		int maxMovement = 0;

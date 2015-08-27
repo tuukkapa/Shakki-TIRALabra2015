@@ -46,6 +46,7 @@ public class AITest {
 
 	/**
 	 * Test of minimax method, of class AI.
+	 * @throws java.lang.Exception
 	 */
 	@Test
 	public void testMinimaxMaximizingPlayerDepth1() throws Exception {

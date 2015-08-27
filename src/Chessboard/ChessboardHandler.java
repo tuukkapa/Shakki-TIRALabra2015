@@ -7,11 +7,6 @@ import Chessboard.pieces.*;
   * This class does everything related to the chess board and it's pieces' movement.
   * It contains both the board and the piece-objects.
   * 
-  * Fiels:
-  * - Two-dimensional Piece-array, the chessboard.
-  * - Piece variables for black and white king
-  * - Two Arraylists consisting of the pieces.
-  * 
   * @author Tuukka Paukkunen
   */
 public class ChessboardHandler {

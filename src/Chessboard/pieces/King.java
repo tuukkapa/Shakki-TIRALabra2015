@@ -1,7 +1,7 @@
 package Chessboard.pieces;
 
 import Chessboard.*;
-import java.util.ArrayList;
+import DataStructures.List;
 
 /**
  * Class for King, creates King-objects.
@@ -10,6 +10,12 @@ import java.util.ArrayList;
  */
 public class King extends Piece implements Cloneable {
 	
+	/**
+	 * Constructor of object King.
+	 * @param white Boolean, colour of the piece. True is white, false is black.
+	 * @param position Integer, position of the piece on the board. 0 = top left,
+	 * 63 = bottom right.
+	 */
 	public King(boolean white, int position) {
 		this.position = position;
 		this.white = white;
@@ -17,8 +23,8 @@ public class King extends Piece implements Cloneable {
 	}
 	
 	@Override
-	public ArrayList<Move> getPossibleMoves(Chessboard chessboard) {
-		ArrayList<Move> moves = new ArrayList<>();
+	public List<Move> getPossibleMoves(Chessboard chessboard) {
+		List<Move> moves = new List<>();
 		int kRow = position / 8;
 		int kCol = position % 8;
 		for (int row = -1; row <= 1; row++) {

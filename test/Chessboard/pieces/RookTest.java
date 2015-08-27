@@ -8,7 +8,7 @@ package Chessboard.pieces;
 import Chessboard.Move;
 import Chessboard.Chessboard;
 import Chessboard.ChessboardHandler;
-import java.util.ArrayList;
+import DataStructures.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -67,7 +67,7 @@ public class RookTest {
 				rook = (Rook)chessboard.getSquareContents(i);
 			}
 		}
-		ArrayList<Move> resultList = rook.getPossibleMoves(chessboard);
+		List<Move> resultList = rook.getPossibleMoves(chessboard);
 		boolean[][] expectedMovementMap = {
 			{false, false, true, false, false, false, false, false},
 			{false, false, true, false, false, false, false, false},
@@ -120,7 +120,7 @@ public class RookTest {
 				rook = (Rook)chessboard.getSquareContents(i);
 			}
 		}
-		ArrayList<Move> resultList = rook.getPossibleMoves(chessboard);
+		List<Move> resultList = rook.getPossibleMoves(chessboard);
 		boolean[][] expectedMovementMap = {
 			{false, false, false, false, false, false, false, false},
 			{false, false, true, false, false, false, false, false},

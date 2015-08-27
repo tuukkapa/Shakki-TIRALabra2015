@@ -18,6 +18,9 @@ public class List<SomeElement> {
 	private int firstEmptySlot;
 	private Object[] array;
 	
+	/**
+	 * Constructor
+	 */
 	public List() {
 		this.array = new Object[32];
 		this.firstEmptySlot = 0;
@@ -68,6 +71,16 @@ public class List<SomeElement> {
 	 */
 	public int size() {
 		return firstEmptySlot;
+	}
+	
+	/**
+	 * Adds all elements in the list on the parameter to this list.
+	 * @param anotherList List
+	 */
+	public void addAll(List anotherList) {
+		for (int i = 0; i < anotherList.size(); i++) {
+			this.add((SomeElement)anotherList.get(i));
+		}
 	}
 	
 	/**

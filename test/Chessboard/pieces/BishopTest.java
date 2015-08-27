@@ -8,6 +8,7 @@ package Chessboard.pieces;
 import Chessboard.Move;
 import Chessboard.Chessboard;
 import Chessboard.ChessboardHandler;
+import DataStructures.List;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -67,7 +68,7 @@ public class BishopTest {
 				bishop = (Bishop)chessboard.getSquareContents(i);
 			}
 		}
-		ArrayList<Move> resultList = bishop.getPossibleMoves(chessboard);
+		List<Move> resultList = bishop.getPossibleMoves(chessboard);
 		boolean[][] expectedMovementMap = {
 			{false, false, false, false, false, false, false, false},
 			{false, false, false, false, false, false, false, false},
@@ -119,7 +120,7 @@ public class BishopTest {
 				bishop = (Bishop)chessboard.getSquareContents(i);
 			}
 		}
-		ArrayList<Move> resultList = bishop.getPossibleMoves(chessboard);
+		List<Move> resultList = bishop.getPossibleMoves(chessboard);
 		boolean[][] expectedMovementMap = {
 			{false, false, false, false, false, false, false, false},
 			{false, true, false, true, false, false, false, false},
@@ -171,7 +172,7 @@ public class BishopTest {
 				bishop = (Bishop)chessboard.getSquareContents(i);
 			}
 		}
-		ArrayList<Move> resultList = bishop.getPossibleMoves(chessboard);
+		List<Move> resultList = bishop.getPossibleMoves(chessboard);
 		boolean[][] expectedMovementMap = {
 			{false, false, false, false, false, false, false, false},
 			{false, false, false, false, false, false, false, false},
@@ -223,7 +224,7 @@ public class BishopTest {
 				bishop = (Bishop)chessboard.getSquareContents(i);
 			}
 		}
-		ArrayList<Move> resultList = bishop.getPossibleMoves(chessboard);
+		List<Move> resultList = bishop.getPossibleMoves(chessboard);
 		boolean[][] expectedMovementMap = {
 			{false, false, false, false, false, false, false, false},
 			{false, false, false, false, false, false, false, false},
