@@ -4,8 +4,8 @@ package Chessboard;
 import Chessboard.pieces.*;
 
  /**
-  * This class does everything related to the chess board and it's pieces' movement.
-  * It contains both the board and the piece-objects.
+  * This class enforces the chess rules to the Chessboard-object. The chessboard
+  * can be altered only through this class.
   * 
   * @author Tuukka Paukkunen
   */
