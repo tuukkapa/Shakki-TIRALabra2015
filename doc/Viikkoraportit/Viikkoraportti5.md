@@ -10,15 +10,16 @@ ChessboardHandler-luokaksi, jonka tarkoituksena on olla Chessboard-luokan
 päällä ikään kuin kerroksena, jonka tehtävänä on varmistaa, että
 shakkilaudalla toimitaan sääntöjen puitteissa.
 
-Lukuun ottamatta näitä loppusilauksia  sain sovelluksen pääpiirteissään
-valmiiksi edellisellä viikolla, olen kuluneella viikolla keskittynyt
+Lukuun ottamatta näitä loppusilauksia sain sovelluksen pääpiirteissään
+valmiiksi edellisellä viikolla, joten olen kuluneella viikolla keskittynyt
 sovelluksen tutkivaan testaamiseen. Käytännössä olen pelannut peliä
 tietokonetta vastaan eri kokoisilla pelipuilla. Kun virheitä on ilmaantunut,
 olen selvittänyt niitä koettamalla toistaa tilanne uudelleen ja katsomalla
 rivi riviltä, mitä sovelluksessa tapahtuu. Hankalimpia tilanteita ovat ne,
 kun virhe tapahtuu jossain rekursiivisen minimax/alpha-beta-algoritmin
 syövereissä, mutta onneksi niistäkin on selvitty, kun sovelluksen eteneminen
-on saatu pysäytettyä esimerkiksi sopivalla väliaikaisella if-lauseella.
+on saatu pysäytettyä Netbeansin debug-moodissa tekemällä breakpoint sopivan
+väliaikaisen if-lauseen kohdalle.
 
 Seuraavaksi aion tehdä sovellukseen vielä seuraavat ominaisuudet:
 
