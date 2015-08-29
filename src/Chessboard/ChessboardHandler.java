@@ -174,14 +174,15 @@ public class ChessboardHandler {
 	private static boolean undoMove(Chessboard chessboard, Move move) {
 		Piece capturedPiece = move.getCapturedPiece();
 		Piece movedPiece = chessboard.getSquareContents(move.getEnd());
-		chessboard.remove(move.getEnd());
 		movedPiece.setPosition(move.getStart());
 		chessboard.add(movedPiece);
 		if (capturedPiece == null) {
 			chessboard.remove(move.getEnd());
 		} else {
+			chessboard.remove(move.getEnd());
 			chessboard.add(capturedPiece);
 		}
+		
 		return true;
 	}
 	
@@ -196,6 +197,12 @@ public class ChessboardHandler {
 	public static boolean wouldItBeCheck(Chessboard chessboard, Piece piece, int end) {
 		int start = piece.getPosition();
 		boolean hasItMoved = piece.getHasMoved();
+		boolean enPassant = false;
+		Pawn pawn = null;
+		if (piece instanceof Pawn) {
+			pawn = (Pawn)piece;
+			enPassant = pawn.getEnPassant();
+		}
 		Move move = new Move(start, end);
 		performMove(chessboard, move);
 		UserInterface.drawBoard(chessboard.getBoardAsCharArray(), null); // temp
@@ -203,6 +210,9 @@ public class ChessboardHandler {
 		undoMove(chessboard, move);
 		UserInterface.drawBoard(chessboard.getBoardAsCharArray(), null); // temp
 		piece.setHasMoved(hasItMoved);
+		if (pawn != null) {
+			pawn.setEnPassant(enPassant);
+		}
 		return checkSituation;
 	}
 	
@@ -410,8 +420,11 @@ public class ChessboardHandler {
 		int endCol = move.getEnd() % 8;
 		if (chessboard.getSquareContents(startRow, startCol) instanceof Pawn) {
 			if (chessboard.getSquareContents(startRow, endCol) instanceof Pawn) {
-				if (chessboard.getSquareContents(endRow, endCol) == null) {
-					return true;
+				Pawn pawnBeside = (Pawn)chessboard.getSquareContents(startRow, endCol);
+				if (pawnBeside.getEnPassant()) {
+					if (chessboard.getSquareContents(endRow, endCol) == null) {
+						return true;
+					}
 				}
 			}
 		}

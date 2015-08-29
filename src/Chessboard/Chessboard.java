@@ -59,6 +59,7 @@ public class Chessboard {
 		chessboard = new Piece[8][8];
 		whitePieces = new List<>();
 		blackPieces = new List<>();
+		// white pieces
 		for (int i = 0; i < anotherboard.getListSize(true); i++) {
 			int row = anotherboard.getFromList(true, i).getPosition()/8;
 			int col = anotherboard.getFromList(true, i).getPosition()%8;
@@ -68,6 +69,7 @@ public class Chessboard {
 			whiteKingPosition = anotherboard.getKingPosition(true);
 			whiteOfficers = anotherboard.getOfficersAmount(true);
 		}
+		// black pieces
 		for (int i = 0; i < anotherboard.getListSize(false); i++) {
 			int row = anotherboard.getFromList(false, i).getPosition()/8;
 			int col = anotherboard.getFromList(false, i).getPosition()%8;

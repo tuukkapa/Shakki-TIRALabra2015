@@ -20,6 +20,7 @@ public abstract class Piece implements Cloneable {
 	protected boolean white;
 	protected char sign;
 	protected boolean hasMoved;
+	protected boolean enPassant;
 	
 	/**
 	 * Returns the position of this Piece.
@@ -61,6 +62,7 @@ public abstract class Piece implements Cloneable {
 	
 	/**
 	 * Sets the hasMoved value to true meaning that the piece has moved in the game.
+	 * @param value Boolean, value for hasMoved.
 	 */
 	public void setHasMoved(boolean value) {
 		this.hasMoved = value;
@@ -72,6 +74,14 @@ public abstract class Piece implements Cloneable {
 	 */
 	public boolean getHasMoved() {
 		return this.hasMoved;
+	}
+	
+	public void setEnPassant(boolean value) {
+		this.enPassant = value;
+	}
+	
+	public boolean getEnPassant() {
+		return enPassant;
 	}
 	
 	/**

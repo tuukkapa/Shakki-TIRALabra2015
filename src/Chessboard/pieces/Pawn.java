@@ -10,8 +10,6 @@ import DataStructures.List;
  */
 public class Pawn extends Piece implements Cloneable {
 	
-	private boolean enPassant;
-	
 	/**
 	 * Constructor of object Pawn.
 	 * @param white Boolean, colour of the piece. True is white, false is black.
@@ -41,14 +39,6 @@ public class Pawn extends Piece implements Cloneable {
 		} else {
 			return false;
 		}
-	}
-	
-	public void setEnPassant(boolean value) {
-		this.enPassant = value;
-	}
-	
-	public boolean getEnPassant() {
-		return enPassant;
 	}
 	
 	@Override

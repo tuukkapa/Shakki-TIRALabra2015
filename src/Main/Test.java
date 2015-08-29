@@ -25,18 +25,18 @@ public class Test {
 		char[][] newboard = {
 			{'r', 'n', 'R', 'Q', ' ', ' ', ' ', 'r'},
 			{'p', ' ', ' ', ' ', ' ', ' ', ' ', 'p'},
-			{' ', ' ', ' ', ' ', 'k', ' ', ' ', 'R'},
+			{' ', ' ', ' ', ' ', 'k', ' ', ' ', ' '},
 			{'P', 'p', ' ', ' ', 'p', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', 'P', 'p', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', 'P', 'P', ' ', ' ', ' ', 'P', 'P'},
 			{'R', 'N', ' ', ' ', 'K', ' ', ' ', 'R'}
 		};
 		chessboard.setBoard(newboard);
 		UserInterface.drawBoard(chessboard.getBoardAsCharArray(), null);
-		Pawn pawn = (Pawn)chessboard.getSquareContents(25);
+		Pawn pawn = (Pawn)chessboard.getSquareContents(35);
 		pawn.setEnPassant(true);
-		Move move = new Move(24, 17);
+		Move move = new Move(36, 43);
 		ChessboardHandler.movePiece(chessboard, move);
 		UserInterface.drawBoard(chessboard.getBoardAsCharArray(), null);
 	}
