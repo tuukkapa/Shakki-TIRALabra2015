@@ -2,6 +2,7 @@
 package Chessboard;
 
 import Chessboard.pieces.*;
+import UI.UserInterface;
 
  /**
   * This class enforces the chess rules to the Chessboard-object. The chessboard
@@ -145,6 +146,15 @@ public class ChessboardHandler {
 			chessboard.add(rook);
 			rook.setHasMoved(true);
 		}
+		if (isItEnPassant(chessboard, move)) {
+			int startRow = move.getStart() / 8;
+			int startCol = move.getStart() % 8;
+			int endRow = move.getEnd() / 8;
+			int endCol = move.getEnd() % 8;
+			Piece capturedPiece = chessboard.getSquareContents(startRow, endCol);
+			move.setCapturedPiece(capturedPiece);
+			chessboard.remove(startRow, endCol);
+		}
 		if (piece.endSquareContainsEnemy(chessboard, end)) {
 				Piece capturedPiece = chessboard.getSquareContents(end);
 				move.setCapturedPiece(capturedPiece);
@@ -164,6 +174,7 @@ public class ChessboardHandler {
 	private static boolean undoMove(Chessboard chessboard, Move move) {
 		Piece capturedPiece = move.getCapturedPiece();
 		Piece movedPiece = chessboard.getSquareContents(move.getEnd());
+		chessboard.remove(move.getEnd());
 		movedPiece.setPosition(move.getStart());
 		chessboard.add(movedPiece);
 		if (capturedPiece == null) {
@@ -187,8 +198,10 @@ public class ChessboardHandler {
 		boolean hasItMoved = piece.getHasMoved();
 		Move move = new Move(start, end);
 		performMove(chessboard, move);
+		UserInterface.drawBoard(chessboard.getBoardAsCharArray(), null); // temp
 		boolean checkSituation = isItCheck(chessboard, piece.amIWhite());
 		undoMove(chessboard, move);
+		UserInterface.drawBoard(chessboard.getBoardAsCharArray(), null); // temp
 		piece.setHasMoved(hasItMoved);
 		return checkSituation;
 	}
@@ -388,6 +401,21 @@ public class ChessboardHandler {
 		} else {
 			return false;
 		}
+	}
+	
+	public static boolean isItEnPassant(Chessboard chessboard, Move move) {
+		int startRow = move.getStart() / 8;
+		int startCol = move.getStart() % 8;
+		int endRow = move.getEnd() / 8;
+		int endCol = move.getEnd() % 8;
+		if (chessboard.getSquareContents(startRow, startCol) instanceof Pawn) {
+			if (chessboard.getSquareContents(startRow, endCol) instanceof Pawn) {
+				if (chessboard.getSquareContents(endRow, endCol) == null) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 	
 }

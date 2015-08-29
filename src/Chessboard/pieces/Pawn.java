@@ -10,6 +10,8 @@ import DataStructures.List;
  */
 public class Pawn extends Piece implements Cloneable {
 	
+	private boolean enPassant;
+	
 	/**
 	 * Constructor of object Pawn.
 	 * @param white Boolean, colour of the piece. True is white, false is black.
@@ -21,6 +23,32 @@ public class Pawn extends Piece implements Cloneable {
 		this.white = white;
 		this.sign = white ? 'P' : 'p';
 		this.hasMoved = false;
+		this.enPassant = false;
+	}
+	
+	/**
+	 * Sets the position of this Piece. Sets en Passant flag on, if en passant
+	 * capturing for this piece is possible.
+	 * @param position Integer, position of this piece.
+	 * @return True, if given position is valid, false otherwise.
+	 */
+	@Override
+	public boolean setPosition(int position) {
+		if (0 <= position && position < 64) {
+			this.enPassant = Math.abs(this.getPosition()/8 - position/8) == 2;
+			this.position = position;
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public void setEnPassant(boolean value) {
+		this.enPassant = value;
+	}
+	
+	public boolean getEnPassant() {
+		return enPassant;
 	}
 	
 	@Override
@@ -78,6 +106,8 @@ public class Pawn extends Piece implements Cloneable {
 				}
 			
 		// check capture
+		} else if (isEnPassantOk(chessboard, end)) {
+			movementOk = true;
 		} else {
 			movementOk = false;
 			if (Math.abs(startCol - endCol) == 1 && Math.abs(startRow - endRow) == 1 && this.endSquareContainsEnemy(chessboard, end)) {
@@ -86,6 +116,23 @@ public class Pawn extends Piece implements Cloneable {
 		}
 		
 		return movementOk && !ChessboardHandler.wouldItBeCheck(chessboard, this, end);
+	}
+	
+	private boolean isEnPassantOk(Chessboard chessboard, int end) {
+		int startRow = this.getPosition() / 8;
+		int startCol = this.getPosition() % 8;
+		int endRow = end / 8;
+		int endCol = end % 8;
+		int movement = white ? -1 : 1;
+		if (chessboard.getSquareContents(startRow, endCol) instanceof Pawn &&
+				chessboard.getSquareContents(startRow, endCol).amIWhite() != this.amIWhite() &&
+				chessboard.getSquareContents(endRow, endCol) == null) {
+			Pawn pawn = (Pawn)chessboard.getSquareContents(startRow, endCol);
+			if (pawn.getEnPassant()) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	@Override

@@ -182,6 +182,21 @@ public class Chessboard {
 	}
 	
 	/**
+	 * Removes piece from the position mentioned in the parameter, if piece is
+	 * present at the position.
+	 * @param row Integer, row.
+	 * @param col Integer, column.
+	 */
+	protected void remove(int row, int col) {
+		if (row < 0 ||row > 7 || col < 0 || col > 7) {
+			return;
+		}
+		Piece piece = chessboard[row][col];
+		removeFromList(piece);
+		chessboard[row][col] = null;	
+	}
+	
+	/**
 	 * Returns one piece from the correct list.
 	 * @param white Boolean, true is white, false is black.
 	 * @param index Index of the piece on the list.
