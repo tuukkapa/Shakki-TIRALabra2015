@@ -2,6 +2,8 @@ package Chessboard.pieces;
 
 import Chessboard.*;
 import DataStructures.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Class for King, creates King-objects.
@@ -113,7 +115,6 @@ public class King extends Piece implements Cloneable {
 		if (Math.abs(endRow-startRow) <= 1 && Math.abs(endCol-startCol) <= 1 && this.endSquareContainsEnemyOrEmpty(chessboard, end)) {
 			moveOk = true;
 		}
-		
 		return moveOk && !ChessboardHandler.wouldItBeCheck(chessboard, this, end);
 	}
 	

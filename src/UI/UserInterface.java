@@ -15,7 +15,6 @@ import java.util.logging.Logger;
 public class UserInterface {
 	
 	private static Chessboard chessboard;
-	private static AI ai;
 	private static Scanner input;
 	private static String userCommand;
 	private static int gameTreeDepth;
@@ -33,7 +32,6 @@ public class UserInterface {
 		};
 		chessboard = new Chessboard();
 		chessboard.setBoard(newboard);
-		ai = new AI();
 		input = new Scanner(System.in);
 		gameTreeDepth = 0;
 		int gameTreeDepthLimit = 8;
@@ -60,6 +58,33 @@ public class UserInterface {
 				}
 			}
 		}
+		System.out.println("Haluatko, että tietokone pelaa itseänsä vastaan?\n"
+				+ "Vastaa \"k\" tai \"e\".");
+		String command = input.nextLine();
+		if (command.equals("k")) {
+			pcVsPC();
+		} else {
+			humanVsPC();
+		}
+	}
+	
+	private static void pcVsPC() {
+		AI ai1 = new AI(true);
+		AI ai2 = new AI(false);
+		boolean ai1Ok = true, ai2Ok = true;
+		while (ai2Ok && ai1Ok) {
+			ai1Ok = computersTurn(ai1, false);
+			if (ai1Ok) {
+				ai2Ok = computersTurn(ai2, false);
+			}
+		}
+	}
+	
+	/**
+	 * Method to handle the human vs. PC game.
+	 */
+	private static void humanVsPC() {
+		AI ai = new AI(false);
 		System.out.println("\nPeli vastaanottaa siirtokomennot koordinaatteina.\n"
 				+ "Esimerkiksi komento c2c4 siirtää koordinaatissa c2 olevan\n"
 				+ "nappulan koordinaattiin c4. Peli tarkistaa, etteivät\n"
@@ -70,7 +95,7 @@ public class UserInterface {
 		boolean computersTurnOk = true;
 		drawBoard(chessboard.getBoardAsCharArray(), null);
 		while (computersTurnOk && usersTurn()) {
-			computersTurnOk = computersTurn();
+			computersTurnOk = computersTurn(ai, true);
 		}
 	}
 	
@@ -129,7 +154,8 @@ public class UserInterface {
 	 * @param chessboard Chessboard-object, which game is played.
 	 * @return True, if computer can continue the game, false otherwise.
 	 */
-	private static boolean computersTurn() {
+	private static boolean computersTurn(AI ai, boolean humanVsPC) {
+		String computersColour = ai.getColour() ? "mustilla" : "valkoisilla";
 		System.out.println("\nOdota. Tietokone tekee siirtonsa...");
 		long startTime = System.currentTimeMillis();
 		Move move = null;
@@ -142,14 +168,19 @@ public class UserInterface {
 		}
 		// move from 0 to 0 means black lost the game
 		if (move.getStart() == 0 && move.getEnd() == 0) {
-			System.out.println("Sinä voitit!");
+			if (humanVsPC) {
+				System.out.println("Sinä voitit!");
+			} else {
+				System.out.println("Tietokone voitti " + computersColour + "!");
+			}
 			return false;
 		} else if (ChessboardHandler.movePiece(chessboard, move)) {
 			long endTime = System.currentTimeMillis();
 			drawBoard(chessboard.getBoardAsCharArray(), move);
 			System.out.println("Siirrossa kului aikaa " + calculateMoveTime(startTime, endTime) + ".");
-			if (ChessboardHandler.isItCheckMate(chessboard) == 1) {
-				System.out.println("Tietokone voitti sinut!");
+			int checkMateValue = ai.getColour() ? 0 : 1;
+			if (ChessboardHandler.isItCheckMate(chessboard) == checkMateValue) {
+				System.out.println("aTietokone voitti " + computersColour + "!");
 				return false;
 			} else {
 				return true;

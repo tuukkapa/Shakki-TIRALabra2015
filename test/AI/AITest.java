@@ -37,7 +37,7 @@ public class AITest {
 	@Before
 	public void setUp() {
 		chessboard = new Chessboard();
-		ai = new AI();
+		ai = new AI(false);
 	}
 	
 	@After

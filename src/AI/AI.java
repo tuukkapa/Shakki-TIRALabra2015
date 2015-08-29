@@ -13,6 +13,15 @@ public class AI {
 	
 	private Move bestMove;
 	private int originalDepth;
+	private boolean white;
+	
+	public AI(boolean white) {
+		this.white = white;
+	}
+	
+	public boolean getColour() {
+		return white;
+	}
 	
 	/**
 	 * Starts the minimax-algorithm and returns computer's next move.
@@ -24,8 +33,8 @@ public class AI {
 	public Move getMove(Chessboard chessboard, int depth) throws CloneNotSupportedException {
 		bestMove = null; // remove previous move command
 		originalDepth = depth;
-		max(Integer.MIN_VALUE, Integer.MAX_VALUE, chessboard, depth);
-		if (ChessboardHandler.isItCheckMate(chessboard) == 0) {
+		max(Integer.MIN_VALUE, Integer.MAX_VALUE, chessboard, depth, white);
+		if (ChessboardHandler.isItCheckMate(chessboard) >= 0) {
 			return new Move(0, 0);
 		} else {
 			return bestMove;
@@ -41,18 +50,21 @@ public class AI {
 	 * @return Integer, value of the game situation.
 	 * @throws CloneNotSupportedException 
 	 */
-	private int max(int alpha, int beta, Chessboard chessboard, int depth) throws CloneNotSupportedException {
+	private int max(int alpha, int beta, Chessboard chessboard, int depth, boolean white) throws CloneNotSupportedException {
 		if (depth == 0 || ChessboardHandler.isItCheckMate(chessboard) >= 0) {
 			return Evaluate.evaluate(chessboard);
 		}
 		int score = 0;
-		for (int i = 0; i < chessboard.getListSize(false); i++) {
-			Piece piece = chessboard.getFromList(false, i);
+		for (int i = 0; i < chessboard.getListSize(white); i++) {
+			Piece piece = chessboard.getFromList(white, i);
 			List<Move> moves = piece.getPossibleMoves(chessboard);
 			for (int j = 0; j < moves.size(); j++) {
+				if (bestMove == null) {
+					bestMove = moves.get(j);
+				}
 				Chessboard cloneBoard = new Chessboard(chessboard);
 				ChessboardHandler.movePiece(cloneBoard, moves.get(j));
-				score = min(alpha, beta, cloneBoard, depth - 1);
+				score = min(alpha, beta, cloneBoard, depth - 1, white);
 				/*if (depth == originalDepth) {
 					System.out.println(piece.getSign() + " " + (char)(piece.getPosition()%8+65) + (8-(piece.getPosition()/8)) + 
 							"->" + (char)(moves.get(j).getEnd()%8+65) + (8-(moves.get(j).getEnd()/8)) + ": arvosana " + score);
@@ -80,18 +92,18 @@ public class AI {
 	 * @return Integer, value of the game situation.
 	 * @throws CloneNotSupportedException 
 	 */
-	private int min(int alpha, int beta, Chessboard chessboard, int depth) throws CloneNotSupportedException {
+	private int min(int alpha, int beta, Chessboard chessboard, int depth, boolean white) throws CloneNotSupportedException {
 		if (depth == 0 || ChessboardHandler.isItCheckMate(chessboard) >= 0) {
 			return Evaluate.evaluate(chessboard);
 		}
 		int score = 0;
-		for (int i = 0; i < chessboard.getListSize(true); i++) {
-			Piece piece = chessboard.getFromList(true, i);
+		for (int i = 0; i < chessboard.getListSize(!white); i++) {
+			Piece piece = chessboard.getFromList(!white, i);
 			List<Move> moves = piece.getPossibleMoves(chessboard);
 			for (int j = 0; j < moves.size(); j++) {
 				Chessboard cloneBoard = new Chessboard(chessboard);
 				ChessboardHandler.movePiece(cloneBoard, moves.get(j));
-				score = max(alpha, beta, cloneBoard, depth - 1);
+				score = max(alpha, beta, cloneBoard, depth - 1, white);
 				if (score < beta) {
 					beta = score;
 				}

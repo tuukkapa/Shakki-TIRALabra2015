@@ -22,7 +22,7 @@ public class List<SomeElement> {
 	 * Constructor
 	 */
 	public List() {
-		this.array = new Object[32];
+		this.array = new Object[20];
 		this.firstEmptySlot = 0;
 	}
 	
@@ -31,11 +31,20 @@ public class List<SomeElement> {
 	 * @param element Object of the type specified at the diamond operator.
 	 */
 	public void add(SomeElement element) {
-		if (firstEmptySlot == array.length) {
+		array[firstEmptySlot] = element;
+		searchFirstEmptySlot();
+	}
+	
+	private void searchFirstEmptySlot() {
+		if (array[array.length - 1] != null) {
 			increaseSize();
 		}
-		array[firstEmptySlot] = element;
-		firstEmptySlot++;
+		for (int i = 0; i < array.length; i++) {
+			if (array[i] == null) {
+				firstEmptySlot = i;
+				break;
+			}
+		}
 	}
 	
 	/**
@@ -48,7 +57,16 @@ public class List<SomeElement> {
 		if (index >= firstEmptySlot) {
 			return null;
 		}
-		return (SomeElement)array[index];
+		if (array[index] == null) {
+			for (int i = 0; i < array.length; i++) {
+				if (array[i] != null) {
+					return (SomeElement)array[i];
+				}
+			}
+		} else {
+			return (SomeElement)array[index];
+		}
+		return null;
 	}
 	
 	/**
@@ -58,8 +76,9 @@ public class List<SomeElement> {
 	public void remove(SomeElement element) {
 		for (int i = firstEmptySlot-1; i >= 0; i--) {
 			if (element.equals(array[i])) {
-				array[i] = array[firstEmptySlot - 1];
-				firstEmptySlot--;
+				//array[i] = array[firstEmptySlot - 1];
+				array[i] = null;
+				firstEmptySlot = i;
 				break;
 			}
 		}
