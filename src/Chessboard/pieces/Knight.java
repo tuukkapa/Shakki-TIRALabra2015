@@ -26,6 +26,7 @@ public class Knight extends Piece implements Cloneable {
 		this.position = position;
 		this.white = white;
 		this.sign = white ? 'N' : 'n';
+		this.hasMoved = false;
 	}
 
 	@Override

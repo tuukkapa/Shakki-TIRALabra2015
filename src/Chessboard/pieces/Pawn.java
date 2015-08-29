@@ -20,6 +20,7 @@ public class Pawn extends Piece implements Cloneable {
 		this.position = position;
 		this.white = white;
 		this.sign = white ? 'P' : 'p';
+		this.hasMoved = false;
 	}
 	
 	@Override

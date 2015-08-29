@@ -14,7 +14,7 @@ import Chessboard.pieces.Piece;
  */
 public class Move {
 
-	private int start, end;
+	private int start, end, castlingRookStart, castlingRookEnd;
 	private Piece capturedPiece;
 	
 	/**
@@ -25,7 +25,16 @@ public class Move {
 	public Move(int start, int end) {
 		this.start = start;
 		this.end = end;
+		this.castlingRookStart = -1;
+		this.castlingRookEnd = -1;
 		this.capturedPiece = null;
+	}
+	
+	public Move(int start, int end, int castlingRookStart, int castlingRookEnd) {
+		this.start = start;
+		this.end = end;
+		this.castlingRookStart = castlingRookStart;
+		this.castlingRookEnd = castlingRookEnd;
 	}
 	
 	/**
@@ -42,6 +51,14 @@ public class Move {
 	 */
 	public int getEnd() {
 		return end;
+	}
+	
+	public int getCastlingRookStart() {
+		return castlingRookStart;
+	}
+	
+	public int getCastlingRookEnd() {
+		return castlingRookEnd;
 	}
 	
 	/**

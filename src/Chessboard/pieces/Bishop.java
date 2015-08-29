@@ -26,6 +26,7 @@ public class Bishop extends Piece implements Cloneable {
 		this.position = position;
 		this.white = white;
 		this.sign = white ? 'B' : 'b';
+		this.hasMoved = false;
 	}
 
 	@Override

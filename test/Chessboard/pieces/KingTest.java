@@ -403,6 +403,694 @@ public class KingTest {
 	}
 	
 	/**
+	 * Test of getPossibleMoves method, of class King.
+	 */
+	@Test
+	public void testGetPossibleMovesWhiteKingCastleRight() {
+		System.out.println("King: getPossibleMoves, white, Castle right");
+		char[][] newboard = {
+			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
+			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'N'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', ' ', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', ' ', ' ', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		King king = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'K') {
+				king = (King)chessboard.getSquareContents(i);
+			}
+		}
+		List<Move> resultList = king.getPossibleMoves(chessboard);
+		boolean[][] expectedMovementMap = {
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false,  true, false, false},
+			{false, false, false, false, false,  true,  true, false}
+		};
+		int correctMovementsExpected = 0;
+		for (int i = 0; i < 64; i++) {
+			if (expectedMovementMap[i/8][i%8]) {
+				correctMovementsExpected++;
+			}
+		}
+		int correctMovementsResult = 0;
+		boolean noWrongMovementFound = true;
+		for (int i = 0; i < resultList.size(); i++) {
+			if (expectedMovementMap[resultList.get(i).getEnd()/8][resultList.get(i).getEnd()%8]) {
+				correctMovementsResult++;
+			} else {
+				noWrongMovementFound = false;
+			}
+		}
+		assertTrue(noWrongMovementFound && correctMovementsExpected == correctMovementsResult);
+	}
+	
+	/**
+	 * Test of getPossibleMoves method, of class King.
+	 */
+	@Test
+	public void testGetPossibleMovesWhiteKingCastleRightKingHasMoved() {
+		System.out.println("King: getPossibleMoves, white, Castle right, King has moved");
+		char[][] newboard = {
+			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
+			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'N'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', ' ', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', ' ', ' ', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		King king = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'K') {
+				king = (King)chessboard.getSquareContents(i);
+			}
+		}
+		king.setHasMoved(true);
+		List<Move> resultList = king.getPossibleMoves(chessboard);
+		boolean[][] expectedMovementMap = {
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false,  true, false, false},
+			{false, false, false, false, false,  true, false, false}
+		};
+		int correctMovementsExpected = 0;
+		for (int i = 0; i < 64; i++) {
+			if (expectedMovementMap[i/8][i%8]) {
+				correctMovementsExpected++;
+			}
+		}
+		int correctMovementsResult = 0;
+		boolean noWrongMovementFound = true;
+		for (int i = 0; i < resultList.size(); i++) {
+			if (expectedMovementMap[resultList.get(i).getEnd()/8][resultList.get(i).getEnd()%8]) {
+				correctMovementsResult++;
+			} else {
+				noWrongMovementFound = false;
+			}
+		}
+		assertTrue(noWrongMovementFound && correctMovementsExpected == correctMovementsResult);
+	}
+	
+	/**
+	 * Test of getPossibleMoves method, of class King.
+	 */
+	@Test
+	public void testGetPossibleMovesWhiteKingCastleRightRookHasMoved() {
+		System.out.println("King: getPossibleMoves, white, Castle right, Rook has moved");
+		char[][] newboard = {
+			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
+			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'N'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', ' ', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', ' ', ' ', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		King king = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'K') {
+				king = (King)chessboard.getSquareContents(i);
+			}
+		}
+		Rook rook = (Rook)chessboard.getSquareContents(63);
+		rook.setHasMoved(true);
+		List<Move> resultList = king.getPossibleMoves(chessboard);
+		boolean[][] expectedMovementMap = {
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false,  true, false, false},
+			{false, false, false, false, false,  true, false, false}
+		};
+		int correctMovementsExpected = 0;
+		for (int i = 0; i < 64; i++) {
+			if (expectedMovementMap[i/8][i%8]) {
+				correctMovementsExpected++;
+			}
+		}
+		int correctMovementsResult = 0;
+		boolean noWrongMovementFound = true;
+		for (int i = 0; i < resultList.size(); i++) {
+			if (expectedMovementMap[resultList.get(i).getEnd()/8][resultList.get(i).getEnd()%8]) {
+				correctMovementsResult++;
+			} else {
+				noWrongMovementFound = false;
+			}
+		}
+		assertTrue(noWrongMovementFound && correctMovementsExpected == correctMovementsResult);
+	}
+	
+	/**
+	 * Test of getPossibleMoves method, of class King.
+	 */
+	@Test
+	public void testGetPossibleMovesWhiteKingCastleLeft() {
+		System.out.println("King: getPossibleMoves, white, Castle left");
+		char[][] newboard = {
+			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
+			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'N'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', ' ', 'P', 'P'},
+			{'R', ' ', ' ', ' ', 'K', 'B', ' ', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		King king = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'K') {
+				king = (King)chessboard.getSquareContents(i);
+			}
+		}
+		List<Move> resultList = king.getPossibleMoves(chessboard);
+		boolean[][] expectedMovementMap = {
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false,  true, false, false},
+			{false, false,  true,  true, false, false, false, false}
+		};
+		int correctMovementsExpected = 0;
+		for (int i = 0; i < 64; i++) {
+			if (expectedMovementMap[i/8][i%8]) {
+				correctMovementsExpected++;
+			}
+		}
+		int correctMovementsResult = 0;
+		boolean noWrongMovementFound = true;
+		for (int i = 0; i < resultList.size(); i++) {
+			if (expectedMovementMap[resultList.get(i).getEnd()/8][resultList.get(i).getEnd()%8]) {
+				correctMovementsResult++;
+			} else {
+				noWrongMovementFound = false;
+			}
+		}
+		assertTrue(noWrongMovementFound && correctMovementsExpected == correctMovementsResult);
+	}
+	
+	/**
+	 * Test of getPossibleMoves method, of class King.
+	 */
+	@Test
+	public void testGetPossibleMovesWhiteKingCastleLeftKingHasMoved() {
+		System.out.println("King: getPossibleMoves, white, Castle left, King has moved");
+		char[][] newboard = {
+			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
+			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'N'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', ' ', 'P', 'P'},
+			{'R', ' ', ' ', ' ', 'K', 'B', ' ', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		King king = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'K') {
+				king = (King)chessboard.getSquareContents(i);
+			}
+		}
+		king.setHasMoved(true);
+		List<Move> resultList = king.getPossibleMoves(chessboard);
+		boolean[][] expectedMovementMap = {
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false,  true, false, false},
+			{false, false, false,  true, false, false, false, false}
+		};
+		int correctMovementsExpected = 0;
+		for (int i = 0; i < 64; i++) {
+			if (expectedMovementMap[i/8][i%8]) {
+				correctMovementsExpected++;
+			}
+		}
+		int correctMovementsResult = 0;
+		boolean noWrongMovementFound = true;
+		for (int i = 0; i < resultList.size(); i++) {
+			if (expectedMovementMap[resultList.get(i).getEnd()/8][resultList.get(i).getEnd()%8]) {
+				correctMovementsResult++;
+			} else {
+				noWrongMovementFound = false;
+			}
+		}
+		assertTrue(noWrongMovementFound && correctMovementsExpected == correctMovementsResult);
+	}
+	
+	/**
+	 * Test of getPossibleMoves method, of class King.
+	 */
+	@Test
+	public void testGetPossibleMovesWhiteKingCastleLeftRookHasMoved() {
+		System.out.println("King: getPossibleMoves, white, Castle left, Rook has moved");
+		char[][] newboard = {
+			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
+			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'N'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', ' ', 'P', 'P'},
+			{'R', ' ', ' ', ' ', 'K', 'B', ' ', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		King king = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'K') {
+				king = (King)chessboard.getSquareContents(i);
+			}
+		}
+		Rook rook = (Rook)chessboard.getSquareContents(56);
+		rook.setHasMoved(true);
+		List<Move> resultList = king.getPossibleMoves(chessboard);
+		boolean[][] expectedMovementMap = {
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false,  true, false, false},
+			{false, false, false,  true, false, false, false, false}
+		};
+		int correctMovementsExpected = 0;
+		for (int i = 0; i < 64; i++) {
+			if (expectedMovementMap[i/8][i%8]) {
+				correctMovementsExpected++;
+			}
+		}
+		int correctMovementsResult = 0;
+		boolean noWrongMovementFound = true;
+		for (int i = 0; i < resultList.size(); i++) {
+			if (expectedMovementMap[resultList.get(i).getEnd()/8][resultList.get(i).getEnd()%8]) {
+				correctMovementsResult++;
+			} else {
+				noWrongMovementFound = false;
+			}
+		}
+		assertTrue(noWrongMovementFound && correctMovementsExpected == correctMovementsResult);
+	}
+	
+	/**
+	 * Test of getPossibleMoves method, of class King.
+	 */
+	@Test
+	public void testGetPossibleMovesBlackKingCastleRight() {
+		System.out.println("King: getPossibleMoves, black, Castle right");
+		char[][] newboard = {
+			{' ', 'n', 'b', 'q', 'k', ' ', ' ', 'r'},
+			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'N'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', ' ', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', ' ', ' ', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		King king = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'k') {
+				king = (King)chessboard.getSquareContents(i);
+			}
+		}
+		List<Move> resultList = king.getPossibleMoves(chessboard);
+		boolean[][] expectedMovementMap = {
+			{false, false, false, false, false,  true,  true, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false}
+		};
+		int correctMovementsExpected = 0;
+		for (int i = 0; i < 64; i++) {
+			if (expectedMovementMap[i/8][i%8]) {
+				correctMovementsExpected++;
+			}
+		}
+		int correctMovementsResult = 0;
+		boolean noWrongMovementFound = true;
+		for (int i = 0; i < resultList.size(); i++) {
+			if (expectedMovementMap[resultList.get(i).getEnd()/8][resultList.get(i).getEnd()%8]) {
+				correctMovementsResult++;
+			} else {
+				noWrongMovementFound = false;
+			}
+		}
+		assertTrue(noWrongMovementFound && correctMovementsExpected == correctMovementsResult);
+	}
+	
+	/**
+	 * Test of getPossibleMoves method, of class King.
+	 */
+	@Test
+	public void testGetPossibleMovesBlackKingCastleRightKingHasMoved() {
+		System.out.println("King: getPossibleMoves, black, Castle right, King has moved");
+		char[][] newboard = {
+			{' ', 'n', 'b', 'q', 'k', ' ', ' ', 'r'},
+			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'N'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', ' ', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', ' ', ' ', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		King king = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'k') {
+				king = (King)chessboard.getSquareContents(i);
+			}
+		}
+		king.setHasMoved(true);
+		List<Move> resultList = king.getPossibleMoves(chessboard);
+		boolean[][] expectedMovementMap = {
+			{false, false, false, false, false,  true, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false}
+		};
+		int correctMovementsExpected = 0;
+		for (int i = 0; i < 64; i++) {
+			if (expectedMovementMap[i/8][i%8]) {
+				correctMovementsExpected++;
+			}
+		}
+		int correctMovementsResult = 0;
+		boolean noWrongMovementFound = true;
+		for (int i = 0; i < resultList.size(); i++) {
+			if (expectedMovementMap[resultList.get(i).getEnd()/8][resultList.get(i).getEnd()%8]) {
+				correctMovementsResult++;
+			} else {
+				noWrongMovementFound = false;
+			}
+		}
+		assertTrue(noWrongMovementFound && correctMovementsExpected == correctMovementsResult);
+	}
+	
+	/**
+	 * Test of getPossibleMoves method, of class King.
+	 */
+	@Test
+	public void testGetPossibleMovesBlackKingCastleRightRookHasMoved() {
+		System.out.println("King: getPossibleMoves, black, Castle right, Rook has moved");
+		char[][] newboard = {
+			{' ', 'n', 'b', 'q', 'k', ' ', ' ', 'r'},
+			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'N'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', ' ', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', ' ', ' ', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		King king = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'k') {
+				king = (King)chessboard.getSquareContents(i);
+			}
+		}
+		Rook rook = (Rook)chessboard.getSquareContents(7);
+		rook.setHasMoved(true);
+		List<Move> resultList = king.getPossibleMoves(chessboard);
+		boolean[][] expectedMovementMap = {
+			{false, false, false, false, false,  true, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false}
+		};
+		int correctMovementsExpected = 0;
+		for (int i = 0; i < 64; i++) {
+			if (expectedMovementMap[i/8][i%8]) {
+				correctMovementsExpected++;
+			}
+		}
+		int correctMovementsResult = 0;
+		boolean noWrongMovementFound = true;
+		for (int i = 0; i < resultList.size(); i++) {
+			if (expectedMovementMap[resultList.get(i).getEnd()/8][resultList.get(i).getEnd()%8]) {
+				correctMovementsResult++;
+			} else {
+				noWrongMovementFound = false;
+			}
+		}
+		assertTrue(noWrongMovementFound && correctMovementsExpected == correctMovementsResult);
+	}
+	
+	/**
+	 * Test of getPossibleMoves method, of class King.
+	 */
+	@Test
+	public void testGetPossibleMovesBlackKingCastleLeft() {
+		System.out.println("King: getPossibleMoves, black, Castle left");
+		char[][] newboard = {
+			{'r', ' ', ' ', ' ', 'k', 'b', 'n', ' '},
+			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'N'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', ' ', 'P', 'P'},
+			{'R', ' ', ' ', ' ', 'K', 'B', ' ', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		King king = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'k') {
+				king = (King)chessboard.getSquareContents(i);
+			}
+		}
+		List<Move> resultList = king.getPossibleMoves(chessboard);
+		boolean[][] expectedMovementMap = {
+			{false, false,  true,  true, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false}
+		};
+		int correctMovementsExpected = 0;
+		for (int i = 0; i < 64; i++) {
+			if (expectedMovementMap[i/8][i%8]) {
+				correctMovementsExpected++;
+			}
+		}
+		int correctMovementsResult = 0;
+		boolean noWrongMovementFound = true;
+		for (int i = 0; i < resultList.size(); i++) {
+			if (expectedMovementMap[resultList.get(i).getEnd()/8][resultList.get(i).getEnd()%8]) {
+				correctMovementsResult++;
+			} else {
+				noWrongMovementFound = false;
+			}
+		}
+		assertTrue(noWrongMovementFound && correctMovementsExpected == correctMovementsResult);
+	}
+	
+	/**
+	 * Test of getPossibleMoves method, of class King.
+	 */
+	@Test
+	public void testGetPossibleMoveBlackKingCastleLeftKingHasMoved() {
+		System.out.println("King: getPossibleMoves, black, Castle left, King has moved");
+		char[][] newboard = {
+			{'r', ' ', ' ', ' ', 'k', 'b', 'n', ' '},
+			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'N'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', ' ', 'P', 'P'},
+			{'R', ' ', ' ', ' ', 'K', 'B', ' ', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		King king = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'k') {
+				king = (King)chessboard.getSquareContents(i);
+			}
+		}
+		king.setHasMoved(true);
+		List<Move> resultList = king.getPossibleMoves(chessboard);
+		boolean[][] expectedMovementMap = {
+			{false, false, false,  true, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false}
+		};
+		int correctMovementsExpected = 0;
+		for (int i = 0; i < 64; i++) {
+			if (expectedMovementMap[i/8][i%8]) {
+				correctMovementsExpected++;
+			}
+		}
+		int correctMovementsResult = 0;
+		boolean noWrongMovementFound = true;
+		for (int i = 0; i < resultList.size(); i++) {
+			if (expectedMovementMap[resultList.get(i).getEnd()/8][resultList.get(i).getEnd()%8]) {
+				correctMovementsResult++;
+			} else {
+				noWrongMovementFound = false;
+			}
+		}
+		assertTrue(noWrongMovementFound && correctMovementsExpected == correctMovementsResult);
+	}
+	
+	/**
+	 * Test of getPossibleMoves method, of class King.
+	 */
+	@Test
+	public void testGetPossibleMovesBlackKingCastleLeftRookHasMoved() {
+		System.out.println("King: getPossibleMoves, black, Castle left, Rook has moved");
+		char[][] newboard = {
+			{'r', ' ', ' ', ' ', 'k', 'b', 'n', ' '},
+			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'N'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', ' ', 'P', 'P'},
+			{'R', ' ', ' ', ' ', 'K', 'B', ' ', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		King king = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'k') {
+				king = (King)chessboard.getSquareContents(i);
+			}
+		}
+		Rook rook = (Rook)chessboard.getSquareContents(0);
+		rook.setHasMoved(true);
+		List<Move> resultList = king.getPossibleMoves(chessboard);
+		boolean[][] expectedMovementMap = {
+			{false, false, false,  true, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false}
+		};
+		int correctMovementsExpected = 0;
+		for (int i = 0; i < 64; i++) {
+			if (expectedMovementMap[i/8][i%8]) {
+				correctMovementsExpected++;
+			}
+		}
+		int correctMovementsResult = 0;
+		boolean noWrongMovementFound = true;
+		for (int i = 0; i < resultList.size(); i++) {
+			if (expectedMovementMap[resultList.get(i).getEnd()/8][resultList.get(i).getEnd()%8]) {
+				correctMovementsResult++;
+			} else {
+				noWrongMovementFound = false;
+			}
+		}
+		assertTrue(noWrongMovementFound && correctMovementsExpected == correctMovementsResult);
+	}
+	
+	/**
+	 * Test of getPossibleMoves method, of class King.
+	 */
+	@Test
+	public void testGetPossibleMovesWhiteKingCastleRightWrongRook() {
+		System.out.println("King: getPossibleMoves, black, Castle left, wrong rook");
+		char[][] newboard = {
+			{'r', ' ', ' ', ' ', 'k', 'b', 'n', ' '},
+			{'p', 'p', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'N'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', ' ', 'P', 'P'},
+			{'R', ' ', ' ', ' ', 'K', ' ', ' ', 'r'}
+		};
+		chessboard.setBoard(newboard);
+		King king = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'K') {
+				king = (King)chessboard.getSquareContents(i);
+			}
+		}
+		List<Move> resultList = king.getPossibleMoves(chessboard);
+		boolean[][] expectedMovementMap = {
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false, false, false, false},
+			{false, false, false, false, false,  true, false, false},
+			{false, false, false, false, false, false, false, false}
+		};
+		int correctMovementsExpected = 0;
+		for (int i = 0; i < 64; i++) {
+			if (expectedMovementMap[i/8][i%8]) {
+				correctMovementsExpected++;
+			}
+		}
+		int correctMovementsResult = 0;
+		boolean noWrongMovementFound = true;
+		for (int i = 0; i < resultList.size(); i++) {
+			if (expectedMovementMap[resultList.get(i).getEnd()/8][resultList.get(i).getEnd()%8]) {
+				correctMovementsResult++;
+			} else {
+				noWrongMovementFound = false;
+			}
+		}
+		assertTrue(noWrongMovementFound && correctMovementsExpected == correctMovementsResult);
+	}
+	
+	/**
 	 * Test of isMoveValid method, of class King.
 	 */
 	@Test

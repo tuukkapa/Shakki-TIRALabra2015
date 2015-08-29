@@ -26,6 +26,7 @@ public class Queen extends Piece implements Cloneable {
 		this.position = position;
 		this.white = white;
 		this.sign = white ? 'Q' : 'q';
+		this.hasMoved = false;
 	}
 
 	/**

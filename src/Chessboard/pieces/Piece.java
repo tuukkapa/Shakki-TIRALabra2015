@@ -16,20 +16,10 @@ import java.util.ArrayList;
  */
 public abstract class Piece implements Cloneable {
 	
-	/**
-	 *
-	 */
 	protected int position;
-
-	/**
-	 *
-	 */
 	protected boolean white;
-
-	/**
-	 *
-	 */
 	protected char sign;
+	protected boolean hasMoved;
 	
 	/**
 	 * Returns the position of this Piece.
@@ -67,6 +57,21 @@ public abstract class Piece implements Cloneable {
 	 */
 	public boolean amIWhite() {
 		return white;
+	}
+	
+	/**
+	 * Sets the hasMoved value to true meaning that the piece has moved in the game.
+	 */
+	public void setHasMoved(boolean value) {
+		this.hasMoved = value;
+	}
+	
+	/**
+	 * Returns the boolean value, whether this piece has moved yet in the game.
+	 * @return Boolean, true means piece has moved, false means it hasn't.
+	 */
+	public boolean getHasMoved() {
+		return this.hasMoved;
 	}
 	
 	/**

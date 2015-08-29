@@ -694,6 +694,166 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
+	 * Test of movePiece method, of class Chessboard.
+	 */
+	@Test
+	public void testMoveWhiteCastleRight() {
+		System.out.println("Chessboard, movePiece, white, castle right");
+		char[][] referenceBoard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', 'R', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'r', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', ' ', ' ', 'R'}
+		};
+		chessboard.setBoard(referenceBoard);
+		int start = 60;
+		int end = 62;
+		Move move = new Move(start, end);
+		boolean moveResult = ChessboardHandler.movePiece(chessboard, move);
+		boolean kingOk = true;
+		if (!(chessboard.getSquareContents(end) instanceof King)) {
+			kingOk = false;
+		} else {
+			if (!chessboard.getSquareContents(end).amIWhite()) {
+				kingOk = false;
+			}
+		}
+		boolean rookOk = true;
+		if (!(chessboard.getSquareContents(61) instanceof Rook)) {
+			rookOk = false;
+		} else {
+			if (!chessboard.getSquareContents(61).amIWhite()) {
+				rookOk = false;
+			}
+		}
+		assertTrue(moveResult && kingOk && rookOk);
+	}
+	
+	/**
+	 * Test of movePiece method, of class Chessboard.
+	 */
+	@Test
+	public void testMoveWhiteCastleLeft() {
+		System.out.println("Chessboard, movePiece, white, castle left");
+		char[][] referenceBoard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', 'R', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'r', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', ' ', ' ', ' ', 'K', ' ', ' ', 'R'}
+		};
+		chessboard.setBoard(referenceBoard);
+		int start = 60;
+		int end = 58;
+		Move move = new Move(start, end);
+		boolean moveResult = ChessboardHandler.movePiece(chessboard, move);
+		boolean kingOk = true;
+		if (!(chessboard.getSquareContents(end) instanceof King)) {
+			kingOk = false;
+		} else {
+			if (!chessboard.getSquareContents(end).amIWhite()) {
+				kingOk = false;
+			}
+		}
+		boolean rookOk = true;
+		if (!(chessboard.getSquareContents(59) instanceof Rook)) {
+			rookOk = false;
+		} else {
+			if (!chessboard.getSquareContents(59).amIWhite()) {
+				rookOk = false;
+			}
+		}
+		assertTrue(moveResult && kingOk && rookOk);
+	}
+	
+	/**
+	 * Test of movePiece method, of class Chessboard.
+	 */
+	@Test
+	public void testMoveBlackCastleRight() {
+		System.out.println("Chessboard, movePiece, black, castle right");
+		char[][] referenceBoard = {
+			{'r', ' ', ' ', ' ', 'k', ' ', ' ', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', 'R', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'r', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', ' ', ' ', 'R'}
+		};
+		chessboard.setBoard(referenceBoard);
+		int start = 4;
+		int end = 6;
+		Move move = new Move(start, end);
+		boolean moveResult = ChessboardHandler.movePiece(chessboard, move);
+		boolean kingOk = true;
+		if (!(chessboard.getSquareContents(end) instanceof King)) {
+			kingOk = false;
+		} else {
+			if (chessboard.getSquareContents(end).amIWhite()) {
+				kingOk = false;
+			}
+		}
+		boolean rookOk = true;
+		if (!(chessboard.getSquareContents(5) instanceof Rook)) {
+			rookOk = false;
+		} else {
+			if (chessboard.getSquareContents(5).amIWhite()) {
+				rookOk = false;
+			}
+		}
+		assertTrue(moveResult && kingOk && rookOk);
+	}
+	
+	/**
+	 * Test of movePiece method, of class Chessboard.
+	 */
+	@Test
+	public void testMoveBlackCastleLeft() {
+		System.out.println("Chessboard, movePiece, black, castle left");
+		char[][] referenceBoard = {
+			{'r', ' ', ' ', ' ', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', 'R', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'r', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', ' ', ' ', ' ', 'K', ' ', ' ', 'R'}
+		};
+		chessboard.setBoard(referenceBoard);
+		int start = 4;
+		int end = 2;
+		Move move = new Move(start, end);
+		boolean moveResult = ChessboardHandler.movePiece(chessboard, move);
+		boolean kingOk = true;
+		if (!(chessboard.getSquareContents(end) instanceof King)) {
+			kingOk = false;
+		} else {
+			if (chessboard.getSquareContents(end).amIWhite()) {
+				kingOk = false;
+			}
+		}
+		boolean rookOk = true;
+		if (!(chessboard.getSquareContents(3) instanceof Rook)) {
+			rookOk = false;
+		} else {
+			if (chessboard.getSquareContents(3).amIWhite()) {
+				rookOk = false;
+			}
+		}
+		assertTrue(moveResult && kingOk && rookOk);
+	}
+	
+	/**
 	 * Test of isItCheck method, of class Chessboard.
 	 */
 	@Test
@@ -909,7 +1069,7 @@ public class ChessboardHandlerTest {
 			{' ', ' ', ' ', 'r', 'q', 'r', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{'P', 'P', 'P', ' ', ' ', ' ', 'P', 'P'},
-			{'R', 'N', ' ', ' ', 'K', ' ', ' ', 'R'}
+			{'R', 'N', ' ', ' ', 'K', ' ', ' ', ' '}
 		};
 		chessboard.setBoard(newboard);
 		int expResult = 1;
@@ -948,7 +1108,7 @@ public class ChessboardHandlerTest {
 	public void testIsItCheckMateForBlackInCheckMateSituation() {
 		System.out.println("Chessboard, isItCheckMate for black in checkmate situation");
 		char[][] newboard = {
-			{'r', 'n', ' ', ' ', 'k', ' ', ' ', 'r'},
+			{'r', 'n', ' ', ' ', 'k', ' ', ' ', ' '},
 			{'p', 'p', 'p', ' ', ' ', ' ', 'p', 'p'},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},

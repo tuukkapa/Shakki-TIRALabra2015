@@ -26,6 +26,7 @@ public class Rook extends Piece implements Cloneable {
 		this.position = position;
 		this.white = white;
 		this.sign = white ? 'R' : 'r';
+		this.hasMoved = false;
 	}
 	
 	@Override

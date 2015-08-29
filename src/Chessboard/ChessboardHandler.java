@@ -92,6 +92,13 @@ public class ChessboardHandler {
 		int end = move.getEnd();
 		Piece piece = chessboard.getSquareContents(start);
 		if (piece.isMoveValid(chessboard, end)) {
+			if (isItCastling(chessboard, move)) {
+				if (move.getEnd() > move.getStart()) {
+					move = new Move(move.getStart(), move.getEnd(), move.getStart() + 3, move.getStart() + 1);
+				} else {
+					move = new Move(move.getStart(), move.getEnd(), move.getStart() - 4, move.getStart() - 1);
+				}
+			}
 			if (performMove(chessboard, move)) {
 				promotePawnToQueen(chessboard, piece, move);
 				return true;
@@ -122,6 +129,7 @@ public class ChessboardHandler {
 	
 	/**
 	 * Performs one move and saves the possibly captured piece to the Move-object.
+	 * This method trusts, that the move is already checked to be a valid chess move.
 	 * @param move Move-object, consisting of starting and ending coordinates and possibly a captured Piece.
 	 * @return Boolean, true if command is successful, false otherwise.
 	 */
@@ -129,6 +137,14 @@ public class ChessboardHandler {
 		Piece piece = chessboard.getSquareContents(move.getStart());
 		int start = move.getStart();
 		int end = move.getEnd();
+		// if the move is castling, move the rook
+		if (move.getCastlingRookStart() != -1 && move.getCastlingRookEnd() != -1) {
+			Piece rook = chessboard.getSquareContents(move.getCastlingRookStart());
+			rook.setPosition(move.getCastlingRookEnd());
+			chessboard.remove(move.getCastlingRookStart());
+			chessboard.add(rook);
+			rook.setHasMoved(true);
+		}
 		if (piece.endSquareContainsEnemy(chessboard, end)) {
 				Piece capturedPiece = chessboard.getSquareContents(end);
 				move.setCapturedPiece(capturedPiece);
@@ -136,6 +152,7 @@ public class ChessboardHandler {
 		piece.setPosition(end);
 		chessboard.remove(start);
 		chessboard.add(piece);
+		piece.setHasMoved(true);
 		return true;
 	}
 	
@@ -167,10 +184,12 @@ public class ChessboardHandler {
 	 */
 	public static boolean wouldItBeCheck(Chessboard chessboard, Piece piece, int end) {
 		int start = piece.getPosition();
+		boolean hasItMoved = piece.getHasMoved();
 		Move move = new Move(start, end);
 		performMove(chessboard, move);
 		boolean checkSituation = isItCheck(chessboard, piece.amIWhite());
 		undoMove(chessboard, move);
+		piece.setHasMoved(hasItMoved);
 		return checkSituation;
 	}
 	
@@ -352,6 +371,23 @@ public class ChessboardHandler {
 			return 0;
 		}
 		return -1;
+	}
+	
+	/**
+	 * Returns true, if the move seems to be castling. It doesn't check,
+	 * whether this castling is a valid one.
+	 * @param chessboard Chessboard where the pieces are situated.
+	 * @param move Move-object in question.
+	 * @return True, if the move seems to be castling, false otherwise.
+	 */
+	public static boolean isItCastling(Chessboard chessboard, Move move) {
+		int startCol = move.getStart() % 8;
+		int endCol = move.getEnd() % 8;
+		if (chessboard.getSquareContents(move.getStart()) instanceof King && Math.abs(endCol - startCol) > 1) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 }
