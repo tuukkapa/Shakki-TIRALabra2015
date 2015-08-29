@@ -171,7 +171,7 @@ public class UserInterface {
 			if (humanVsPC) {
 				System.out.println("Sinä voitit!");
 			} else {
-				System.out.println("Tietokone voitti " + computersColour + "!");
+				System.out.println("1Tietokone voitti " + computersColour + "!");
 			}
 			return false;
 		} else if (ChessboardHandler.movePiece(chessboard, move)) {
@@ -180,7 +180,7 @@ public class UserInterface {
 			System.out.println("Siirrossa kului aikaa " + calculateMoveTime(startTime, endTime) + ".");
 			int checkMateValue = ai.getColour() ? 0 : 1;
 			if (ChessboardHandler.isItCheckMate(chessboard) == checkMateValue) {
-				System.out.println("aTietokone voitti " + computersColour + "!");
+				System.out.println("2Tietokone voitti " + computersColour + "!");
 				return false;
 			} else {
 				return true;

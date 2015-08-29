@@ -23,18 +23,18 @@ public class Test {
 	public static void main(String[] args) throws CloneNotSupportedException {
 		Chessboard chessboard = new Chessboard();
 		char[][] newboard = {
-			{'r', 'n', 'b', ' ', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', ' ', ' ', 'p', 'p'},
-			{' ', ' ', ' ', ' ', 'p', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', 'p', ' ', ' ', ' '},
+			{'r', ' ', 'b', 'k', ' ', 'b', ' ', 'r'},
+			{'p', 'p', 'p', ' ', ' ', 'p', 'p', 'p'},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', 'P', ' ', ' ', 'P', 'P', ' '},
-			{'P', 'P', ' ', 'P', 'P', ' ', ' ', 'P'},
-			{'R', 'N', 'B', 'K', ' ', 'q', 'N', 'R'}
+			{' ', 'B', ' ', ' ', 'p', 'n', ' ', ' '},
+			{'P', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'B', 'q', 'P', 'n', 'P', 'P', 'P', ' '},
+			{'R', ' ', ' ', 'P', ' ', ' ', ' ', 'P'},
+			{' ', 'N', 'K', ' ', ' ', ' ', 'N', 'R'}
 		};
 		chessboard.setBoard(newboard);
-		King king = (King)chessboard.getSquareContents(59);
-		List<Move> moves = king.getPossibleMoves(chessboard);
+		//King king = (King)chessboard.getSquareContents(59);
+		//List<Move> moves = king.getPossibleMoves(chessboard);
 		int value = ChessboardHandler.isItCheckMate(chessboard);
 	}
 

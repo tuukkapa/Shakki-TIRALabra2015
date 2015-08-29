@@ -352,9 +352,14 @@ public class ChessboardHandler {
 	public static int isItCheckMate(Chessboard chessboard) {
 		// check amount of possible moves for white pieces
 		int possibleMovesForWhite = 0;
+		Piece[] arrayWhite = new Piece[chessboard.getListSize(true)];
+		for (int i = 0; i < arrayWhite.length; i++) {
+			arrayWhite[i] = chessboard.getFromList(true, i);
+		}
 		for (int i = 0; i < chessboard.getListSize(true); i++) {
-			Piece piece = chessboard.getFromList(true, i);
-			possibleMovesForWhite += piece.getPossibleMoves(chessboard).size();
+			//Piece piece = chessboard.getFromList(true, i);
+			//possibleMovesForWhite += piece.getPossibleMoves(chessboard).size();
+			possibleMovesForWhite += arrayWhite[i].getPossibleMoves(chessboard).size();
 		}	
 		// are there any moves left for any piece
 		if (possibleMovesForWhite == 0) {
@@ -363,9 +368,14 @@ public class ChessboardHandler {
 		
 		// check amount of possible moves for black pieces
 		int possibleMovesForBlack = 0;
+		Piece[] arrayBlack = new Piece[chessboard.getListSize(false)];
+		for (int i = 0; i < arrayBlack.length; i++) {
+			arrayBlack[i] = chessboard.getFromList(false, i);
+		}
 		for (int i = 0; i < chessboard.getListSize(false); i++) {
-			Piece piece = chessboard.getFromList(false, i);
-			possibleMovesForBlack += piece.getPossibleMoves(chessboard).size();
+			//Piece piece = chessboard.getFromList(false, i);
+			//possibleMovesForBlack += piece.getPossibleMoves(chessboard).size();
+			possibleMovesForBlack += arrayBlack[i].getPossibleMoves(chessboard).size();
 		}
 		if (possibleMovesForBlack == 0) {
 			return 0;
