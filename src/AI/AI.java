@@ -19,6 +19,10 @@ public class AI {
 		this.white = white;
 	}
 	
+	/**
+	 * Returns boolean value, which colour this AI plays.
+	 * @return Boolean, true is white, false is black.
+	 */
 	public boolean getColour() {
 		return white;
 	}
@@ -47,12 +51,13 @@ public class AI {
 	 * @param beta Integer, minimizing player's best (i.e. lowest) value so far.
 	 * @param chessboard Chessboard, which the game is on.
 	 * @param depth Integer, how many levels the game tree is built.
+	 * @param white Boolean, which colour this AI plays. True is white, false is black.
 	 * @return Integer, value of the game situation.
 	 * @throws CloneNotSupportedException 
 	 */
 	private int max(int alpha, int beta, Chessboard chessboard, int depth, boolean white) throws CloneNotSupportedException {
 		if (depth == 0 || ChessboardHandler.isItCheckMate(chessboard) >= 0) {
-			return Evaluate.evaluate(chessboard);
+			return Evaluate.evaluate(chessboard, white);
 		}
 		int score = 0;
 		for (int i = 0; i < chessboard.getListSize(white); i++) {
@@ -89,12 +94,13 @@ public class AI {
 	 * @param beta Integer, minimizing player's best (i.e. lowest) value so far.
 	 * @param chessboard Chessboard, which the game is on.
 	 * @param depth Integer, how many levels the game tree is built.
+	 * @param white Boolean, which colour this AI plays. True is white, false is black.
 	 * @return Integer, value of the game situation.
 	 * @throws CloneNotSupportedException 
 	 */
 	private int min(int alpha, int beta, Chessboard chessboard, int depth, boolean white) throws CloneNotSupportedException {
 		if (depth == 0 || ChessboardHandler.isItCheckMate(chessboard) >= 0) {
-			return Evaluate.evaluate(chessboard);
+			return Evaluate.evaluate(chessboard, !white);
 		}
 		int score = 0;
 		for (int i = 0; i < chessboard.getListSize(!white); i++) {

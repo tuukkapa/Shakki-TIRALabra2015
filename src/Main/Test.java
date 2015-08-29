@@ -23,14 +23,14 @@ public class Test {
 	public static void main(String[] args) throws CloneNotSupportedException {
 		Chessboard chessboard = new Chessboard();
 		char[][] newboard = {
-			{'r', ' ', 'b', 'k', ' ', 'b', ' ', 'r'},
-			{'p', 'p', 'p', ' ', ' ', 'p', 'p', 'p'},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', 'B', ' ', ' ', 'p', 'n', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', 'k', ' '},
+			{'R', ' ', ' ', 'p', ' ', ' ', 'p', ' '},
+			{'b', ' ', ' ', ' ', ' ', ' ', 'n', ' '},
 			{'P', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{'B', 'q', 'P', 'n', 'P', 'P', 'P', ' '},
-			{'R', ' ', ' ', 'P', ' ', ' ', ' ', 'P'},
-			{' ', 'N', 'K', ' ', ' ', ' ', 'N', 'R'}
+			{' ', ' ', ' ', 'p', 'P', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', 'p', ' '},
+			{' ', ' ', ' ', 'K', ' ', ' ', ' ', 'r'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
 		};
 		chessboard.setBoard(newboard);
 		//King king = (King)chessboard.getSquareContents(59);

@@ -107,14 +107,14 @@ public class Evaluate {
 	 * @param chessboard Chessboard-object, which game is being evaluated.
 	 * @return Integer, value of the game situation.
 	 */
-	public static int evaluate(Chessboard chessboard) {
+	public static int evaluate(Chessboard chessboard, boolean white) {
 		endGameForWhite = isItEndGame(chessboard, true);
 		endGameForBlack = isItEndGame(chessboard, false);
 		
 		int gameSituationPoints = 0;
 		
-		gameSituationPoints -= calculatePointsFromPieces(chessboard, true); // points for white
-		gameSituationPoints += calculatePointsFromPieces(chessboard, false); // points for black
+		gameSituationPoints -= calculatePointsFromPieces(chessboard, !white);
+		gameSituationPoints += calculatePointsFromPieces(chessboard, white);
 		
 		return gameSituationPoints + Tools.randInt(5);
 	}
