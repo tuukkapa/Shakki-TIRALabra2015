@@ -62,6 +62,9 @@ public class AI {
 		int score = 0;
 		for (int i = 0; i < chessboard.getListSize(white); i++) {
 			Piece piece = chessboard.getFromList(white, i);
+			if (piece.getPosition() == -1) {
+				continue;
+			}
 			List<Move> moves = piece.getPossibleMoves(chessboard);
 			for (int j = 0; j < moves.size(); j++) {
 				if (bestMove == null) {
@@ -100,11 +103,14 @@ public class AI {
 	 */
 	private int min(int alpha, int beta, Chessboard chessboard, int depth, boolean white) throws CloneNotSupportedException {
 		if (depth == 0 || ChessboardHandler.isItCheckMate(chessboard) >= 0) {
-			return Evaluate.evaluate(chessboard, !white);
+			return Evaluate.evaluate(chessboard, white);
 		}
 		int score = 0;
 		for (int i = 0; i < chessboard.getListSize(!white); i++) {
 			Piece piece = chessboard.getFromList(!white, i);
+			if (piece.getPosition() == -1) {
+				continue;
+			}
 			List<Move> moves = piece.getPossibleMoves(chessboard);
 			for (int j = 0; j < moves.size(); j++) {
 				Chessboard cloneBoard = new Chessboard(chessboard);

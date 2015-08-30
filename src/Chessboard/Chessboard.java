@@ -63,8 +63,11 @@ public class Chessboard {
 			int row = anotherboard.getFromList(true, i).getPosition()/8;
 			int col = anotherboard.getFromList(true, i).getPosition()%8;
 			Piece piece = anotherboard.getFromList(true, i);
-			chessboard[row][col] = (Piece)piece.clone();
-			addToList(chessboard[row][col]);
+			Piece clonedPiece = (Piece)piece.clone();
+			if (clonedPiece.getPosition() != -1) {
+				chessboard[row][col] = clonedPiece;
+				addToList(clonedPiece);
+			}
 			whiteKingPosition = anotherboard.getKingPosition(true);
 			whiteOfficers = anotherboard.getOfficersAmount(true);
 		}
@@ -72,8 +75,11 @@ public class Chessboard {
 			int row = anotherboard.getFromList(false, i).getPosition()/8;
 			int col = anotherboard.getFromList(false, i).getPosition()%8;
 			Piece piece = anotherboard.getFromList(false, i);
-			chessboard[row][col] = (Piece)piece.clone();
-			addToList(chessboard[row][col]);
+			Piece clonedPiece = (Piece)piece.clone();
+			if (clonedPiece.getPosition() != -1) {
+				chessboard[row][col] = clonedPiece;
+				addToList(clonedPiece);
+			}
 			blackKingPosition = anotherboard.getKingPosition(false);
 			blackOfficers = anotherboard.getOfficersAmount(false);
 		}
@@ -166,6 +172,25 @@ public class Chessboard {
 	}
 	
 	/**
+	 * Switches piece-object into another. Used in promoting pawn to queen.
+	 * @param oldPiece Piece-object, old piece to be promoted.
+	 * @param newPiece Piece-object, new piece, replaces the old one.
+	 */
+	protected void switchPiece(Piece oldPiece, Piece newPiece) {
+		if (oldPiece == null || newPiece == null) {
+			return;
+		}
+		int row = oldPiece.getPosition() / 8;
+		int col = oldPiece.getPosition() % 8;
+		chessboard[row][col] = newPiece;
+		if (newPiece.amIWhite()) {
+			whitePieces.switchElement(oldPiece, newPiece);
+		} else {
+			blackPieces.switchElement(oldPiece, newPiece);
+		}
+	}
+	
+	/**
 	 * Removes piece from the position mentioned in the parameter, if piece is
 	 * present at the position.
 	 * @param position Integer, 0 = top left, 63 = bottom right.
@@ -179,6 +204,68 @@ public class Chessboard {
 		Piece piece = chessboard[row][col];
 		removeFromList(piece);
 		chessboard[row][col] = null;	
+	}
+	
+	/**
+	 * Updates piece's position at the board. Piece to be moved is at the startPosition.
+	 * @param startPosition Integer, position of the piece, 0 = top left, 63 = bottom right.
+	 * @param endPosition Integer, position, where the piece is to be moved. 0 = top left, 63 = bottom right.
+	 */
+	protected boolean updatePiecePosition(int startPosition, int endPosition) {
+		if (startPosition < 0 || startPosition > 63 || endPosition < 0 || endPosition > 63) {
+			return false;
+		}
+		if (this.getSquareContents(startPosition) == null) {
+			return false;
+		}
+		
+		int startRow = startPosition / 8;
+		int startCol = startPosition % 8;
+		int endRow = endPosition / 8;
+		int endCol = endPosition % 8;
+		
+		Piece piece = this.getSquareContents(startPosition);
+		Piece capturedPiece = this.getSquareContents(endPosition);
+		
+		// move the piece
+		chessboard[startRow][startCol] = null;
+		chessboard[endRow][endCol] = piece;
+		piece.setPosition(endPosition);
+		if (piece instanceof King) {
+			if (piece.amIWhite()) {
+				whiteKingPosition = endPosition;
+			} else {
+				blackKingPosition = endPosition;
+			}
+		}
+		
+		// move captured piece outside the board, if it exists
+		if (capturedPiece != null) {
+			capturedPiece.setPosition(-1);	
+		}
+		return true;
+	}
+	
+	/**
+	 * Updates piece's position at the board. Piece to be moved is at the startPosition.
+	 * @param startPosition Integer, position of the piece, 0 = top left, 63 = bottom right.
+	 * @param endPosition Integer, position, where the piece is to be moved. 0 = top left, 63 = bottom right.
+	 */
+	protected boolean capturedPieceBackToBoard(Piece piece, int endPosition) {
+		if (endPosition < 0 || endPosition > 63) {
+			return false;
+		}
+		if (piece == null) {
+			return false;
+		}
+		
+		int endRow = endPosition / 8;
+		int endCol = endPosition % 8;
+		
+		// move the piece
+		chessboard[endRow][endCol] = piece;
+		piece.setPosition(endPosition);
+		return true;
 	}
 	
 	/**

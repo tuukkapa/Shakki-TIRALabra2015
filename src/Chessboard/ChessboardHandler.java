@@ -123,7 +123,8 @@ public class ChessboardHandler {
 		boolean white = piece.amIWhite();
 		int endRow = white ? 0 : 7; // the pawn's end row according to it's colour
 		if (piece instanceof Pawn && move.getEnd()/8 == endRow) {
-			chessboard.add(new Queen(white, end));
+			//chessboard.add(new Queen(white, end));
+			chessboard.switchPiece(piece, new Queen(white, end));
 		}
 	}
 	
@@ -139,20 +140,13 @@ public class ChessboardHandler {
 		int end = move.getEnd();
 		// if the move is castling, move the rook
 		if (move.getCastlingRookStart() != -1 && move.getCastlingRookEnd() != -1) {
-			Piece rook = chessboard.getSquareContents(move.getCastlingRookStart());
-			rook.setPosition(move.getCastlingRookEnd());
-			chessboard.remove(move.getCastlingRookStart());
-			chessboard.add(rook);
-			rook.setHasMoved(true);
+			chessboard.updatePiecePosition(move.getCastlingRookStart(), move.getCastlingRookEnd());
 		}
 		if (piece.endSquareContainsEnemy(chessboard, end)) {
 				Piece capturedPiece = chessboard.getSquareContents(end);
 				move.setCapturedPiece(capturedPiece);
 		}
-		piece.setPosition(end);
-		chessboard.remove(start);
-		chessboard.add(piece);
-		piece.setHasMoved(true);
+		chessboard.updatePiecePosition(start, end);
 		return true;
 	}
 	
@@ -163,13 +157,9 @@ public class ChessboardHandler {
 	 */
 	private static boolean undoMove(Chessboard chessboard, Move move) {
 		Piece capturedPiece = move.getCapturedPiece();
-		Piece movedPiece = chessboard.getSquareContents(move.getEnd());
-		movedPiece.setPosition(move.getStart());
-		chessboard.add(movedPiece);
-		if (capturedPiece == null) {
-			chessboard.remove(move.getEnd());
-		} else {
-			chessboard.add(capturedPiece);
+		chessboard.updatePiecePosition(move.getEnd(), move.getStart());
+		if (capturedPiece != null) {
+			chessboard.capturedPieceBackToBoard(capturedPiece, move.getEnd());
 		}
 		return true;
 	}
@@ -208,6 +198,9 @@ public class ChessboardHandler {
 		
 		for (int i = 0; i < chessboard.getListSize(!checkedIsWhite); i++) {
 			Piece piece = chessboard.getFromList(!checkedIsWhite, i);
+			if (piece.getPosition() == -1) {
+				continue;
+			}
 			int pRow = piece.getPosition()/8;
 			int pCol = piece.getPosition()%8;
 			if (piece instanceof Pawn) {
@@ -352,14 +345,12 @@ public class ChessboardHandler {
 	public static int isItCheckMate(Chessboard chessboard) {
 		// check amount of possible moves for white pieces
 		int possibleMovesForWhite = 0;
-		Piece[] arrayWhite = new Piece[chessboard.getListSize(true)];
-		for (int i = 0; i < arrayWhite.length; i++) {
-			arrayWhite[i] = chessboard.getFromList(true, i);
-		}
 		for (int i = 0; i < chessboard.getListSize(true); i++) {
-			//Piece piece = chessboard.getFromList(true, i);
-			//possibleMovesForWhite += piece.getPossibleMoves(chessboard).size();
-			possibleMovesForWhite += arrayWhite[i].getPossibleMoves(chessboard).size();
+			Piece piece = chessboard.getFromList(true, i);
+			if (piece.getPosition() == -1) {
+				continue;
+			}
+			possibleMovesForWhite += piece.getPossibleMoves(chessboard).size();
 		}	
 		// are there any moves left for any piece
 		if (possibleMovesForWhite == 0) {
@@ -368,14 +359,12 @@ public class ChessboardHandler {
 		
 		// check amount of possible moves for black pieces
 		int possibleMovesForBlack = 0;
-		Piece[] arrayBlack = new Piece[chessboard.getListSize(false)];
-		for (int i = 0; i < arrayBlack.length; i++) {
-			arrayBlack[i] = chessboard.getFromList(false, i);
-		}
 		for (int i = 0; i < chessboard.getListSize(false); i++) {
-			//Piece piece = chessboard.getFromList(false, i);
-			//possibleMovesForBlack += piece.getPossibleMoves(chessboard).size();
-			possibleMovesForBlack += arrayBlack[i].getPossibleMoves(chessboard).size();
+			Piece piece = chessboard.getFromList(false, i);
+			if (piece.getPosition() == -1) {
+				continue;
+			}
+			possibleMovesForBlack += piece.getPossibleMoves(chessboard).size();
 		}
 		if (possibleMovesForBlack == 0) {
 			return 0;

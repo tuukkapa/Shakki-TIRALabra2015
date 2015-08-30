@@ -39,6 +39,19 @@ public class List<SomeElement> {
 	}
 	
 	/**
+	 * Switches an element in the list into another, at the same spot.
+	 * @param oldElement old element.
+	 * @param newElement new element.
+	 */
+	public void switchElement(SomeElement oldElement, SomeElement newElement) {
+		for (int i = 0; i < firstEmptySlot; i++) {
+			if (array[i].equals(oldElement)) {
+				array[i] = newElement;
+			}
+		}
+	}
+	
+	/**
 	 * Returns one element from the list on the index.
 	 * If the given index is too high, method returns null.
 	 * @param index Index of the object in the List.

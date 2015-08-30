@@ -30,13 +30,14 @@ public abstract class Piece implements Cloneable {
 	}
 	
 	/**
-	 * Sets the position of this Piece.
+	 * Sets the position of this Piece. -1 means piece is outside the board.
 	 * @param position Integer, position of this piece.
 	 * @return True, if given position is valid, false otherwise.
 	 */
 	public boolean setPosition(int position) {
-		if (0 <= position && position < 64) {
+		if (-1 <= position && position < 64) {
 			this.position = position;
+			this.hasMoved = true;
 			return true;
 		} else {
 			return false;

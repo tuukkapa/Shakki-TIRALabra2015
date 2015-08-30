@@ -116,6 +116,10 @@ public class Evaluate {
 		gameSituationPoints -= calculatePointsFromPieces(chessboard, !white);
 		gameSituationPoints += calculatePointsFromPieces(chessboard, white);
 		
+		// originals, which work
+		//gameSituationPoints -= calculatePointsFromPieces(chessboard, true);
+		//gameSituationPoints += calculatePointsFromPieces(chessboard, false);
+		
 		return gameSituationPoints + Tools.randInt(5);
 	}
 		
@@ -140,6 +144,9 @@ public class Evaluate {
 		
 		for (int i = 0; i < chessboard.getListSize(white); i++) {
 			Piece piece = chessboard.getFromList(white, i);
+			if (piece.getPosition() == -1) {
+				continue;
+			}
 			row = white ? piece.getPosition() / 8 : 7 - (piece.getPosition() / 8);
 			col = piece.getPosition() % 8;
 			if (piece instanceof Pawn) {
