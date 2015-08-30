@@ -210,6 +210,7 @@ public class Chessboard {
 	 * Updates piece's position at the board. Piece to be moved is at the startPosition.
 	 * @param startPosition Integer, position of the piece, 0 = top left, 63 = bottom right.
 	 * @param endPosition Integer, position, where the piece is to be moved. 0 = top left, 63 = bottom right.
+	 * @return 
 	 */
 	protected boolean updatePiecePosition(int startPosition, int endPosition) {
 		if (startPosition < 0 || startPosition > 63 || endPosition < 0 || endPosition > 63) {
@@ -247,9 +248,10 @@ public class Chessboard {
 	}
 	
 	/**
-	 * Updates piece's position at the board. Piece to be moved is at the startPosition.
-	 * @param startPosition Integer, position of the piece, 0 = top left, 63 = bottom right.
+	 * Moves a captured piece back to the board. Used in undoing moves (e.g. wouldItBeCheck()).
+	 * @param piece
 	 * @param endPosition Integer, position, where the piece is to be moved. 0 = top left, 63 = bottom right.
+	 * @return 
 	 */
 	protected boolean capturedPieceBackToBoard(Piece piece, int endPosition) {
 		if (endPosition < 0 || endPosition > 63) {

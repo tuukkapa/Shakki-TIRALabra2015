@@ -73,40 +73,43 @@ public class ChessboardHandler {
 			return false;
 		}
 		// Is the piece player's own piece (i.e. white) and is the move successful
-		if (piece.amIWhite()) {
-			return movePiece(chessboard, move);
+		if (piece.amIWhite() && piece.isMoveValid(chessboard, end)) {
+			makeMove(chessboard, move);
+			return true;
 		} else {
 			return false;
 		}	
 	}
 	
 	/**
-	 * Moves one piece on the board.
+	 * Makes one whole move at the board.
 	 * @param chessboard Chessboard-object, contains two dimensional piece-array
 	 * and two lists of pieces (black and white).
 	 * @param move Move-object, consisting of start and end coordinates.
 	 * @return Move-object.
 	 */
-	public static boolean movePiece(Chessboard chessboard, Move move) {
-		int start = move.getStart();
-		int end = move.getEnd();
-		Piece piece = chessboard.getSquareContents(start);
-		if (piece.isMoveValid(chessboard, end)) {
-			if (isItCastling(chessboard, move)) {
-				if (move.getEnd() > move.getStart()) {
-					move = new Move(move.getStart(), move.getEnd(), move.getStart() + 3, move.getStart() + 1);
-				} else {
-					move = new Move(move.getStart(), move.getEnd(), move.getStart() - 4, move.getStart() - 1);
-				}
-			}
-			if (performMove(chessboard, move)) {
-				promotePawnToQueen(chessboard, piece, move);
-				return true;
+	public static boolean makeMove(Chessboard chessboard, Move move) {
+		Piece piece = chessboard.getSquareContents(move.getStart());
+		if (piece == null) {
+			return false;
+		}
+		if (isItCastling(chessboard, move)) {
+			if (move.getEnd() > move.getStart()) {
+				move = new Move(move.getStart(), move.getEnd(), move.getStart() + 3, move.getStart() + 1);
 			} else {
-				return false;
+				move = new Move(move.getStart(), move.getEnd(), move.getStart() - 4, move.getStart() - 1);
 			}
 		}
-		return false;
+		if (move.getCastlingRookStart() != -1 && move.getCastlingRookEnd() != -1) {
+			chessboard.updatePiecePosition(move.getCastlingRookStart(), move.getCastlingRookEnd());
+		}
+		if (piece.endSquareContainsEnemy(chessboard, move.getEnd())) {
+				Piece capturedPiece = chessboard.getSquareContents(move.getEnd());
+				move.setCapturedPiece(capturedPiece);
+		}
+		chessboard.updatePiecePosition(move.getStart(), move.getEnd());
+		promotePawnToQueen(chessboard, piece, move);
+		return true;
 	}
 	
 	/**
@@ -118,40 +121,36 @@ public class ChessboardHandler {
 	 * @param move Move command of the piece.
 	 */
 	private static void promotePawnToQueen(Chessboard chessboard, Piece piece, Move move) {
-		int start = move.getStart();
-		int end = move.getEnd();
-		boolean white = piece.amIWhite();
-		int endRow = white ? 0 : 7; // the pawn's end row according to it's colour
+		int endRow = piece.amIWhite() ? 0 : 7; // the pawn's end row according to it's colour
 		if (piece instanceof Pawn && move.getEnd()/8 == endRow) {
-			//chessboard.add(new Queen(white, end));
-			chessboard.switchPiece(piece, new Queen(white, end));
+			chessboard.switchPiece(piece, new Queen(piece.amIWhite(), move.getEnd()));
 		}
 	}
 	
 	/**
-	 * Performs one move and saves the possibly captured piece to the Move-object.
+	 * Moves one piece at the board and saves the possibly captured piece to the Move-object.
+	 * This is used only with wouldItBeCheck-method.
 	 * This method trusts, that the move is already checked to be a valid chess move.
 	 * @param move Move-object, consisting of starting and ending coordinates and possibly a captured Piece.
 	 * @return Boolean, true if command is successful, false otherwise.
 	 */
-	private static boolean performMove(Chessboard chessboard, Move move) {
+	private static boolean movePiece(Chessboard chessboard, Move move) {
 		Piece piece = chessboard.getSquareContents(move.getStart());
-		int start = move.getStart();
-		int end = move.getEnd();
 		// if the move is castling, move the rook
 		if (move.getCastlingRookStart() != -1 && move.getCastlingRookEnd() != -1) {
 			chessboard.updatePiecePosition(move.getCastlingRookStart(), move.getCastlingRookEnd());
 		}
-		if (piece.endSquareContainsEnemy(chessboard, end)) {
-				Piece capturedPiece = chessboard.getSquareContents(end);
+		if (piece.endSquareContainsEnemy(chessboard, move.getEnd())) {
+				Piece capturedPiece = chessboard.getSquareContents(move.getEnd());
 				move.setCapturedPiece(capturedPiece);
 		}
-		chessboard.updatePiecePosition(start, end);
+		chessboard.updatePiecePosition(move.getStart(), move.getEnd());
 		return true;
 	}
 	
 	/**
 	 * Undoes the move given as parameter.
+	 * This is used only with wouldItBeCheck-method.
 	 * @param move Move-object, to be undone.
 	 * @return Boolean, true if command is successful, false otherwise.
 	 */
@@ -176,7 +175,7 @@ public class ChessboardHandler {
 		int start = piece.getPosition();
 		boolean hasItMoved = piece.getHasMoved();
 		Move move = new Move(start, end);
-		performMove(chessboard, move);
+		movePiece(chessboard, move);
 		boolean checkSituation = isItCheck(chessboard, piece.amIWhite());
 		undoMove(chessboard, move);
 		piece.setHasMoved(hasItMoved);

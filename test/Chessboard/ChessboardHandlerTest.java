@@ -6,7 +6,6 @@
 package Chessboard;
 
 import Chessboard.pieces.*;
-import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -43,11 +42,11 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceMoveWhitePawnIllegally1() {
-		System.out.println("Chessboard, movePiece, move white Pawn illegally 1");
-		Move move = new Move(48, 48);
+	public void testUserCommandParserMoveWhitePawnIllegally1() {
+		System.out.println("Chessboard, userCommandParser, move white Pawn illegally 1");
+		String command = "a2a2";
 		boolean expResult = false;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
 		assertEquals(expResult, result);
 	}
 	
@@ -55,11 +54,11 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceMoveWhitePawnIllegally2() {
-		System.out.println("Chessboard, movePiece, move white Pawn illegally 2");
-		Move move = new Move(48, 39);
+	public void testUserCommandParserMoveWhitePawnIllegally2() {
+		System.out.println("Chessboard, userCommandParser, move white Pawn illegally 2");
+		String command = "a2h4";
 		boolean expResult = false;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
 		assertEquals(expResult, result);
 	}
 	
@@ -67,11 +66,11 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceMoveWhitePawnIllegally3() {
-		System.out.println("Chessboard, movePiece, move white Pawn illegally 3");
-		Move move = new Move(48, 41);
+	public void testUserCommandParserMoveWhitePawnIllegally3() {
+		System.out.println("Chessboard, userCommandParser, move white Pawn illegally 3");
+		String command = "a2b3";
 		boolean expResult = false;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
 		assertEquals(expResult, result);
 	}
 	
@@ -79,11 +78,11 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceMoveWhitePawnIllegally4() {
-		System.out.println("Chessboard, movePiece, move white Pawn illegally 4");
-		Move move = new Move(48, 49);
+	public void testUserCommandParserMoveWhitePawnIllegally4() {
+		System.out.println("Chessboard, userCommandParser, move white Pawn illegally 4");
+		String command = "a2b2";
 		boolean expResult = false;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
 		assertEquals(expResult, result);
 	}
 	
@@ -91,11 +90,11 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceMoveWhitePawnIllegally5() {
-		System.out.println("Chessboard, movePiece, move white Pawn illegally 5");
-		Move move = new Move(48, 55);
+	public void testUserCommandParserMoveWhitePawnIllegally5() {
+		System.out.println("Chessboard, userCommandParser, move white Pawn illegally 5");
+		String command = "a2h2";
 		boolean expResult = false;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
 		assertEquals(expResult, result);
 	}
 	
@@ -103,11 +102,11 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceMoveWhitePawnIllegally6() {
-		System.out.println("Chessboard, movePiece, move white Pawn illegally 6");
-		Move move = new Move(48, 56);
+	public void testUserCommandParserMoveWhitePawnIllegally6() {
+		System.out.println("Chessboard, userCommandParser, move white Pawn illegally 6");
+		String command = "a2a1";
 		boolean expResult = false;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
 		assertEquals(expResult, result);
 	}
 	
@@ -115,11 +114,11 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceMoveWhitePawnIllegally7() {
-		System.out.println("Chessboard, movePiece, move white Pawn illegally 7");
-		Move move = new Move(48, 57);
+	public void testUserCommandParserMoveWhitePawnIllegally7() {
+		System.out.println("Chessboard, userCommandParser, move white Pawn illegally 7");
+		String command = "a2b1";
 		boolean expResult = false;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
 		assertEquals(expResult, result);
 	}
 	
@@ -127,11 +126,11 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceMoveWhitePawnIllegally8() {
-		System.out.println("Chessboard, movePiece, move white Pawn illegally 8");
-		Move move = new Move(48, 31);
+	public void testUserCommandParserMoveWhitePawnIllegally8() {
+		System.out.println("Chessboard, userCommandParser, move white Pawn illegally 8");
+		String command = "a2h5";
 		boolean expResult = false;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
 		assertEquals(expResult, result);
 	}
 	
@@ -139,11 +138,11 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceMoveWhitePawnIllegally9() {
-		System.out.println("Chessboard, movePiece, move white Pawn illegally 9");
-		Move move = new Move(48, 33);
+	public void testUserCommandParserMoveWhitePawnIllegally9() {
+		System.out.println("Chessboard, userCommandParser, move white Pawn illegally 9");
+		String command = "a2b4";
 		boolean expResult = false;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
 		assertEquals(expResult, result);
 	}
 	
@@ -151,8 +150,8 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceMoveWhitePawnIllegallyCaptureOwn1Up() {
-		System.out.println("Chessboard, movePiece, move white Pawn illegally, capture own 1 up");
+	public void testUserCommandParserMoveWhitePawnIllegallyCaptureOwn1Up() {
+		System.out.println("Chessboard, userCommandParser, move white Pawn illegally, capture own 1 up");
 		char[][] referencePieces = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
@@ -163,10 +162,10 @@ public class ChessboardHandlerTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(referencePieces);
-		Move move = new Move(51, 43);
+		chessboard.setBoard(referencePieces);
+		String command = "d2d3";
 		boolean expResult = false;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
 		assertEquals(expResult, result);
 	}
 	
@@ -174,8 +173,8 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceMoveWhitePawnIllegallyCaptureOwn2Up() {
-		System.out.println("Chessboard, movePiece, move white Pawn illegally, capture own 2 Up");
+	public void testtUserCommandParserMoveWhitePawnIllegallyCaptureOwn2Up() {
+		System.out.println("Chessboard, userCommandParser, move white Pawn illegally, capture own 2 Up");
 		char[][] referencePieces = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
@@ -186,10 +185,10 @@ public class ChessboardHandlerTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(referencePieces);
-		Move move = new Move(51, 35);
+		chessboard.setBoard(referencePieces);
+		String command = "d2d4";
 		boolean expResult = false;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
 		assertEquals(expResult, result);
 	}
 	
@@ -197,8 +196,8 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceMoveWhitePawnIllegallyCaptureOwnLeft() {
-		System.out.println("Chessboard, movePiece, move white Pawn illegally, capture own left");
+	public void testUserCommandParserMoveWhitePawnIllegallyCaptureOwnLeft() {
+		System.out.println("Chessboard, userCommandParser, move white Pawn illegally, capture own left");
 		char[][] referencePieces = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
@@ -209,10 +208,10 @@ public class ChessboardHandlerTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(referencePieces);
-		Move move = new Move(51, 42);
+		chessboard.setBoard(referencePieces);
+		String command = "d2c3";
 		boolean expResult = false;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
 		assertEquals(expResult, result);
 	}
 	
@@ -220,8 +219,8 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceMoveWhitePawnIllegallyCaptureOwnRight() {
-		System.out.println("Chessboard, movePiece, move white Pawn illegally, capture own right");
+	public void testUserCommandParserMoveWhitePawnIllegallyCaptureOwnRight() {
+		System.out.println("Chessboard, userCommandParser, move white Pawn illegally, capture own right");
 		char[][] referencePieces = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
@@ -232,10 +231,10 @@ public class ChessboardHandlerTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(referencePieces);
-		Move move = new Move(51, 44);
+		chessboard.setBoard(referencePieces);
+		String command = "d2e3";
 		boolean expResult = false;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
 		assertEquals(expResult, result);
 	}
 	
@@ -243,8 +242,8 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceMoveBlackPawnIllegallyCaptureOwn1Up() {
-		System.out.println("Chessboard, movePiece, move black Pawn illegally, capture own 1 up");
+	public void testUserCommandParserMoveBlackPawnIllegallyCaptureOwn1Up() {
+		System.out.println("Chessboard, userCommandParser, move black Pawn illegally, capture own 1 up");
 		char[][] referencePieces = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
@@ -255,10 +254,10 @@ public class ChessboardHandlerTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(referencePieces);
-		Move move = new Move(11, 19);
+		chessboard.setBoard(referencePieces);
+		String command = "d7d6";
 		boolean expResult = false;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
 		assertEquals(expResult, result);
 	}
 	
@@ -266,8 +265,8 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceMoveBlackPawnIllegallyCaptureOwn2Up() {
-		System.out.println("Chessboard, movePiece, move black Pawn illegally, capture own 2 Up");
+	public void testUserCommandParserMoveBlackPawnIllegallyCaptureOwn2Up() {
+		System.out.println("Chessboard, userCommandParser, move black Pawn illegally, capture own 2 Up");
 		char[][] referencePieces = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
@@ -278,10 +277,10 @@ public class ChessboardHandlerTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(referencePieces);
-		Move move = new Move(11, 27);
+		chessboard.setBoard(referencePieces);
+		String command = "d7d5";
 		boolean expResult = false;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
 		assertEquals(expResult, result);
 	}
 	
@@ -289,8 +288,8 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceMoveBlackPawnIllegallyCaptureOwnLeft() {
-		System.out.println("Chessboard, movePiece, move black Pawn illegally, capture own left");
+	public void testUserCommandParserMoveBlackPawnIllegallyCaptureOwnLeft() {
+		System.out.println("Chessboard, userCommandParser, move black Pawn illegally, capture own left");
 		char[][] referencePieces = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
@@ -301,10 +300,10 @@ public class ChessboardHandlerTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(referencePieces);
-		Move move = new Move(11, 18);
+		chessboard.setBoard(referencePieces);
+		String command = "d7c6";
 		boolean expResult = false;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
 		assertEquals(expResult, result);
 	}
 	
@@ -312,8 +311,8 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceMoveBlackPawnIllegallyCaptureOwnRight() {
-		System.out.println("Chessboard, movePiece, move black Pawn illegally, capture own right");
+	public void testUserCommandParserMoveBlackPawnIllegallyCaptureOwnRight() {
+		System.out.println("Chessboard, userCommandParser, move black Pawn illegally, capture own right");
 		char[][] referencePieces = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
@@ -324,10 +323,10 @@ public class ChessboardHandlerTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(referencePieces);
-		Move move = new Move(11, 20);
+		chessboard.setBoard(referencePieces);
+		String command = "d7e6";
 		boolean expResult = false;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
 		assertEquals(expResult, result);
 	}
 	
@@ -335,11 +334,11 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceMoveBlackPawnIllegally1() {
-		System.out.println("Chessboard, movePiece, move black Pawn illegally 1");
-		Move move = new Move(10, 17);
+	public void testUserCommandParserMoveBlackPawnIllegally1() {
+		System.out.println("Chessboard, userCommandParser, move black Pawn illegally 1");
+		String command = "c7b6";
 		boolean expResult = false;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
 		assertEquals(expResult, result);
 	}
 	
@@ -347,11 +346,11 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceMoveBlackPawnIllegally2() {
-		System.out.println("Chessboard, movePiece, move black Pawn illegally 2");
-		Move move = new Move(10, 9);
+	public void testUserCommandParserMoveBlackPawnIllegally2() {
+		System.out.println("Chessboard, userCommandParser, move black Pawn illegally 2");
+		String command = "c7b7";
 		boolean expResult = false;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
 		assertEquals(expResult, result);
 	}
 	
@@ -359,11 +358,11 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceMoveBlackPawnIllegally3() {
-		System.out.println("Chessboard, movePiece, move black Pawn illegally 3");
-		Move move = new Move(10, 1);
+	public void testUserCommandParserMoveBlackPawnIllegally3() {
+		System.out.println("Chessboard, userCommandParser, move black Pawn illegally 3");
+		String command = "c7b8";
 		boolean expResult = false;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
 		assertEquals(expResult, result);
 	}
 	
@@ -371,11 +370,11 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceMoveBlackPawnIllegally4() {
-		System.out.println("Chessboard, movePiece, move black Pawn illegally 4");
-		Move move = new Move(10, 2);
+	public void testUserCommandParserMoveBlackPawnIllegally4() {
+		System.out.println("Chessboard, userCommandParser, move black Pawn illegally 4");
+		String command = "c7c8";
 		boolean expResult = false;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
 		assertEquals(expResult, result);
 	}
 	
@@ -383,11 +382,11 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceMoveBlackPawnIllegally5() {
-		System.out.println("Chessboard, movePiece, move black Pawn illegally 5");
-		Move move = new Move(10, 3);
+	public void testUserCommandParserMoveBlackPawnIllegally5() {
+		System.out.println("Chessboard, userCommandParser, move black Pawn illegally 5");
+		String command = "c7d8";
 		boolean expResult = false;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
 		assertEquals(expResult, result);
 	}
 	
@@ -395,11 +394,11 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceMoveBlackPawnIllegally6() {
-		System.out.println("Chessboard, movePiece, move black Pawn illegally 6");
-		Move move = new Move(10, 11);
+	public void testUserCommandParserMoveBlackPawnIllegally6() {
+		System.out.println("Chessboard, userCommandParser, move black Pawn illegally 6");
+		String command = "c7d7";
 		boolean expResult = false;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
 		assertEquals(expResult, result);
 	}
 	
@@ -407,11 +406,11 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceMoveBlackPawnIllegally7() {
-		System.out.println("Chessboard, movePiece, move black Pawn illegally 7");
-		Move move = new Move(10, 19);
+	public void testUserCommandParserMoveBlackPawnIllegally7() {
+		System.out.println("Chessboard, userCommandParser, move black Pawn illegally 7");
+		String command = "c7d6";
 		boolean expResult = false;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
 		assertEquals(expResult, result);
 	}
 	
@@ -419,11 +418,11 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceMoveBlackPawnIllegally8() {
-		System.out.println("Chessboard, movePiece, move black Pawn illegally 8");
-		Move move = new Move(10, 25);
+	public void testUserCommandParserMoveBlackPawnIllegally8() {
+		System.out.println("Chessboard, userCommandParser, move black Pawn illegally 8");
+		String command = "c7b5";
 		boolean expResult = false;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
 		assertEquals(expResult, result);
 	}
 	
@@ -431,11 +430,11 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceMoveBlackPawnIllegally9() {
-		System.out.println("Chessboard, movePiece, move black Pawn illegally 9");
-		Move move = new Move(10, 27);
+	public void testUserCommandParserMoveBlackPawnIllegally9() {
+		System.out.println("Chessboard, userCommandParser, move black Pawn illegally 9");
+		String command = "c7c5";
 		boolean expResult = false;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
 		assertEquals(expResult, result);
 	}
 	
@@ -443,8 +442,8 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceWhiteIllegallyTryToCaptureKing() {
-		System.out.println("Chessboard, movePiece, move white Bishop illegally, try to capture King");
+	public void testUserCommandParserWhiteIllegallyTryToCaptureKing() {
+		System.out.println("Chessboard, userCommandParser, move white Bishop illegally, try to capture King");
 		char[][] referencePieces = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', ' ', 'p', 'p', 'p', 'p'},
@@ -455,10 +454,10 @@ public class ChessboardHandlerTest {
 			{'P', 'P', 'P', 'P', ' ', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(referencePieces);
-		Move move = new Move(25, 4);
+		chessboard.setBoard(referencePieces);
+		String command = "b5e8";
 		boolean expResult = false;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
 		assertEquals(expResult, result);
 	}
 	
@@ -466,30 +465,30 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceBlackIllegallyTryToCaptureKing() {
-		System.out.println("Chessboard, movePiece, move black Bishop illegally, try to capture King");
+	public void testUserCommandParseBlackIllegallyTryToCaptureKing() {
+		System.out.println("Chessboard, userCommandParser, move black Bishop illegally, try to capture King");
 		char[][] referencePieces = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', ' ', 'p', 'p', 'p', 'p'},
+			{'r', 'n', 'b', ' ', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', ' ', 'q', 'p', 'p', 'p'},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', 'b', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{'P', 'P', 'P', ' ', 'P', 'P', 'P', 'P'},
+			{'P', 'P', 'P', ' ', ' ', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(referencePieces);
-		Move move = new Move(3, 60);
+		chessboard.setBoard(referencePieces);
+		String command = "e7e1";
 		boolean expResult = false;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
 		assertEquals(expResult, result);
 	}
 	
 	//This test case passes because it was expecting NullPointerException
     @Test(expected = NullPointerException.class)
-	public void testMovePieceNonexistentPiece() {
+	public void testMakeMoveNonexistentPiece() {
 		Move move = new Move(16, 24);
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.makeMove(chessboard, move);
 		throw new NullPointerException();
     }
 
@@ -497,11 +496,11 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceWhitePawn1Up() {
+	public void testMakeMoveWhitePawn1Up() {
 		System.out.println("Chessboard, movePiece, white, 1 up");
 		Move move = new Move(50, 42);
 		boolean expResult = true;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.makeMove(chessboard, move);
 		assertEquals(expResult, result);
 	}
 	
@@ -509,11 +508,11 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceWhitePawn2Up() {
+	public void testMakeMoveWhitePawn2Up() {
 		System.out.println("Chessboard, movePiece, white, 2 up");
 		Move move = new Move(51, 35);
 		boolean expResult = true;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.makeMove(chessboard, move);
 		assertEquals(expResult, result);
 	}
 	
@@ -521,11 +520,11 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceBlackPawn1Up() {
+	public void testMakeMoveBlackPawn1Up() {
 		System.out.println("Chessboard, movePiece, black, 1 up");
 		Move move = new Move(14, 22);
 		boolean expResult = true;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.makeMove(chessboard, move);
 		assertEquals(expResult, result);
 	}
 	
@@ -533,11 +532,11 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceBlackPawn2Up() {
+	public void testMakeMoveBlackPawn2Up() {
 		System.out.println("Chessboard, movePiece, black, 2 up");
 		Move move = new Move(13, 29);
 		boolean expResult = true;
-		boolean result = ChessboardHandler.movePiece(chessboard, move);
+		boolean result = ChessboardHandler.makeMove(chessboard, move);
 		assertEquals(expResult, result);
 	}
 	
@@ -545,14 +544,14 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceWhiteCorrectInputBoardUpdated() {
+	public void testMakeMoveWhiteCorrectInputBoardUpdated() {
 		System.out.println("Chessboard, movePiece, white, correct input, board updated");
 		int start = 48;
 		int end = 40;
 		Move move = new Move(48, 40);
 		char expectedStart = ' ', expectedEnd = 'P';
 		int expectedPosition = end;
-		boolean moveResult = ChessboardHandler.movePiece(chessboard, move);
+		boolean moveResult = ChessboardHandler.makeMove(chessboard, move);
 		int resultPosition = chessboard.getSquareContents(expectedPosition).getPosition();
 		char resultStart = chessboard.getSquareContents(start) == null ? ' ' : 'x';
 		char resultEnd = chessboard.getSquareContents(end).getSign();
@@ -563,14 +562,14 @@ public class ChessboardHandlerTest {
 	 * Test of movePiece method, of class Chessboard.
 	 */
 	@Test
-	public void testMovePieceBlackCorrectInputBoardUpdated() {
+	public void testMakeMoveBlackCorrectInputBoardUpdated() {
 		System.out.println("Chessboard, movePiece, black, correct input, board updated");
 		int start = 11;
 		int end = 27;
 		Move move = new Move(11, 27);
 		char expectedStart = ' ', expectedEnd = 'p';
 		int expectedPosition = end;
-		boolean moveResult = ChessboardHandler.movePiece(chessboard, move);
+		boolean moveResult = ChessboardHandler.makeMove(chessboard, move);
 		int resultPosition = chessboard.getSquareContents(expectedPosition).getPosition();
 		char resultStart = chessboard.getSquareContents(start) == null ? ' ' : 'x';
 		char resultEnd = chessboard.getSquareContents(end).getSign();
@@ -599,7 +598,7 @@ public class ChessboardHandlerTest {
 		Move move = new Move(8, 17);
 		char expectedStart = ' ', expectedEnd = 'p';
 		int expectedPosition = end;
-		boolean moveResult = ChessboardHandler.movePiece(chessboard, move);
+		boolean moveResult = ChessboardHandler.makeMove(chessboard, move);
 		int resultPosition = chessboard.getSquareContents(expectedPosition).getPosition();
 		char resultStart = chessboard.getSquareContents(start) == null ? ' ' : 'x';
 		char resultEnd = chessboard.getSquareContents(end).getSign();
@@ -628,7 +627,7 @@ public class ChessboardHandlerTest {
 		Move move = new Move(10, 17);
 		char expectedStart = ' ', expectedEnd = 'p';
 		int expectedPosition = end;
-		boolean moveResult = ChessboardHandler.movePiece(chessboard, move);
+		boolean moveResult = ChessboardHandler.makeMove(chessboard, move);
 		int resultPosition = chessboard.getSquareContents(expectedPosition).getPosition();
 		char resultStart = chessboard.getSquareContents(start) == null ? ' ' : 'x';
 		char resultEnd = chessboard.getSquareContents(end).getSign();
@@ -657,7 +656,7 @@ public class ChessboardHandlerTest {
 		Move move = new Move(start, end);
 		char expectedStart = ' ', expectedEnd = 'P';
 		int expectedPosition = end;
-		boolean moveResult = ChessboardHandler.movePiece(chessboard, move);
+		boolean moveResult = ChessboardHandler.makeMove(chessboard, move);
 		int resultPosition = chessboard.getSquareContents(expectedPosition).getPosition();
 		char resultStart = chessboard.getSquareContents(start) == null ? ' ' : 'x';
 		char resultEnd = chessboard.getSquareContents(end).getSign();
@@ -686,7 +685,7 @@ public class ChessboardHandlerTest {
 		Move move = new Move(start, end);
 		char expectedStart = ' ', expectedEnd = 'P';
 		int expectedPosition = end;
-		boolean moveResult = ChessboardHandler.movePiece(chessboard, move);
+		boolean moveResult = ChessboardHandler.makeMove(chessboard, move);
 		int resultPosition = chessboard.getSquareContents(expectedPosition).getPosition();
 		char resultStart = chessboard.getSquareContents(start) == null ? ' ' : 'x';
 		char resultEnd = chessboard.getSquareContents(end).getSign();
@@ -713,7 +712,7 @@ public class ChessboardHandlerTest {
 		int start = 60;
 		int end = 62;
 		Move move = new Move(start, end);
-		boolean moveResult = ChessboardHandler.movePiece(chessboard, move);
+		boolean moveResult = ChessboardHandler.makeMove(chessboard, move);
 		boolean kingOk = true;
 		if (!(chessboard.getSquareContents(end) instanceof King)) {
 			kingOk = false;
@@ -753,7 +752,7 @@ public class ChessboardHandlerTest {
 		int start = 60;
 		int end = 58;
 		Move move = new Move(start, end);
-		boolean moveResult = ChessboardHandler.movePiece(chessboard, move);
+		boolean moveResult = ChessboardHandler.makeMove(chessboard, move);
 		boolean kingOk = true;
 		if (!(chessboard.getSquareContents(end) instanceof King)) {
 			kingOk = false;
@@ -793,7 +792,7 @@ public class ChessboardHandlerTest {
 		int start = 4;
 		int end = 6;
 		Move move = new Move(start, end);
-		boolean moveResult = ChessboardHandler.movePiece(chessboard, move);
+		boolean moveResult = ChessboardHandler.makeMove(chessboard, move);
 		boolean kingOk = true;
 		if (!(chessboard.getSquareContents(end) instanceof King)) {
 			kingOk = false;
@@ -833,7 +832,7 @@ public class ChessboardHandlerTest {
 		int start = 4;
 		int end = 2;
 		Move move = new Move(start, end);
-		boolean moveResult = ChessboardHandler.movePiece(chessboard, move);
+		boolean moveResult = ChessboardHandler.makeMove(chessboard, move);
 		boolean kingOk = true;
 		if (!(chessboard.getSquareContents(end) instanceof King)) {
 			kingOk = false;

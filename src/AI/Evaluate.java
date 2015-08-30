@@ -120,7 +120,7 @@ public class Evaluate {
 		//gameSituationPoints -= calculatePointsFromPieces(chessboard, true);
 		//gameSituationPoints += calculatePointsFromPieces(chessboard, false);
 		
-		return gameSituationPoints + Tools.randInt(5);
+		return gameSituationPoints + Tools.randInt(50);
 	}
 		
 	/**

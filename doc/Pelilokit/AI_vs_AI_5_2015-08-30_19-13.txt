@@ -1,0 +1,4880 @@
+ant -f /home/tuukka/Koodaus/Koulu/Shakki-TIRALabra2015 -Djavac.includes=Main/Main.java -Dnb.internal.action.name=debug.single -Ddebug.class=Main.Main debug-single
+init:
+Deleting: /home/tuukka/Koodaus/Koulu/Shakki-TIRALabra2015/build/built-jar.properties
+deps-jar:
+Updating property file: /home/tuukka/Koodaus/Koulu/Shakki-TIRALabra2015/build/built-jar.properties
+Compiling 1 source file to /home/tuukka/Koodaus/Koulu/Shakki-TIRALabra2015/build/classes
+compile-single:
+========================================================
+======================== SHAKKI ========================
+============== (c) 2015 Tuukka Paukkunen ===============
+========================================================
+
+Anna pelipuun syvyys (1- 8).
+Syvempi pelipuu tarkoittaa sekä parempaa tietokoneen
+suoriutumista pelistä että pidempiä viiveitä tietokoneen
+siirtovuorolla:
+5
+Haluatko, että tietokone pelaa itseänsä vastaan?
+Vastaa "k" tai "e".
+k
+
+Odota. Tietokone tekee siirtonsa...
+P A2->A3: arvosana -2
+P A2->A4: arvosana -2
+P B2->B3: arvosana 20
+P B2->B4: arvosana 20
+P C2->C3: arvosana 44
+P C2->C4: arvosana 58
+P D2->D3: arvosana 58
+P D2->D4: arvosana 63
+P E2->E3: arvosana 259
+P E2->E4: arvosana 279
+P F2->F3: arvosana 279
+P F2->F4: arvosana 279
+P G2->G3: arvosana 279
+P G2->G4: arvosana 279
+P H2->H3: arvosana 279
+P H2->H4: arvosana 279
+N B1->A3: arvosana 279
+N B1->C3: arvosana 279
+N G1->F3: arvosana 279
+N G1->H3: arvosana 279
+  ---------------------------------
+8 | r | n | b | q | k | b | n | r | musta
+  |-------------------------------|
+7 | p | p | p | p | p | p | p | p |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   |   |   |   | P |   |   |   |
+  |-------------------------------|
+3 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 | P | P | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R | N | B | Q | K | B | N | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 1,696 s.
+
+Odota. Tietokone tekee siirtonsa...
+n B8->C6: arvosana 93
+n B8->A6: arvosana 93
+n G8->H6: arvosana 93
+n G8->F6: arvosana 93
+p A7->A6: arvosana 93
+p A7->A5: arvosana 93
+p B7->B6: arvosana 93
+p B7->B5: arvosana 93
+p C7->C6: arvosana 93
+p C7->C5: arvosana 93
+p D7->D6: arvosana 93
+p D7->D5: arvosana 93
+p E7->E6: arvosana 225
+p E7->E5: arvosana 225
+p F7->F6: arvosana 225
+p F7->F5: arvosana 225
+p G7->G6: arvosana 225
+p G7->G5: arvosana 225
+p H7->H6: arvosana 225
+p H7->H5: arvosana 225
+  ---------------------------------
+8 | r | n | b | q | k | b | n | r | musta
+  |-------------------------------|
+7 | p | p | p | p |   | p | p | p |
+  |-------------------------------|
+6 |   |   |   |   | p |   |   |   |
+  |-------------------------------|
+5 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   |   |   |   | P |   |   |   |
+  |-------------------------------|
+3 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 | P | P | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R | N | B | Q | K | B | N | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 0,729 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A2->A3: arvosana 124
+P A2->A4: arvosana 124
+P B2->B3: arvosana 124
+P B2->B4: arvosana 124
+P C2->C3: arvosana 124
+P C2->C4: arvosana 124
+P D2->D3: arvosana 124
+P D2->D4: arvosana 124
+P E4->E5: arvosana 124
+P F2->F3: arvosana 124
+P F2->F4: arvosana 124
+P G2->G3: arvosana 124
+P G2->G4: arvosana 124
+P H2->H3: arvosana 124
+P H2->H4: arvosana 124
+N B1->A3: arvosana 124
+N B1->C3: arvosana 174
+Q D1->E2: arvosana 241
+Q D1->F3: arvosana 292
+Q D1->G4: arvosana 292
+Q D1->H5: arvosana 292
+K E1->E2: arvosana 292
+B F1->E2: arvosana 292
+B F1->D3: arvosana 292
+B F1->C4: arvosana 292
+B F1->B5: arvosana 292
+B F1->A6: arvosana 292
+N G1->E2: arvosana 292
+N G1->F3: arvosana 292
+N G1->H3: arvosana 292
+  ---------------------------------
+8 | r | n | b | q | k | b | n | r | musta
+  |-------------------------------|
+7 | p | p | p | p |   | p | p | p |
+  |-------------------------------|
+6 |   |   |   |   | p |   |   |   |
+  |-------------------------------|
+5 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   |   |   |   | P |   |   |   |
+  |-------------------------------|
+3 |   |   |   |   |   | Q |   |   |
+  |-------------------------------|
+2 | P | P | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R | N | B |   | K | B | N | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 1,973 s.
+
+Odota. Tietokone tekee siirtonsa...
+n B8->C6: arvosana 150
+n B8->A6: arvosana 150
+q D8->E7: arvosana 265
+q D8->F6: arvosana 265
+q D8->G5: arvosana 741
+q D8->H4: arvosana 741
+k E8->E7: arvosana 741
+b F8->E7: arvosana 741
+b F8->D6: arvosana 741
+b F8->C5: arvosana 741
+b F8->B4: arvosana 741
+b F8->A3: arvosana 741
+n G8->H6: arvosana 741
+n G8->F6: arvosana 741
+n G8->E7: arvosana 741
+p A7->A6: arvosana 741
+p A7->A5: arvosana 741
+p B7->B6: arvosana 741
+p B7->B5: arvosana 741
+p C7->C6: arvosana 741
+p C7->C5: arvosana 741
+p D7->D6: arvosana 741
+p D7->D5: arvosana 741
+p E6->E5: arvosana 741
+p F7->F6: arvosana 741
+p F7->F5: arvosana 741
+p G7->G6: arvosana 741
+p G7->G5: arvosana 741
+p H7->H6: arvosana 741
+p H7->H5: arvosana 741
+  ---------------------------------
+8 | r | n | b |   | k | b | n | r | musta
+  |-------------------------------|
+7 | p | p | p | p |   | p | p | p |
+  |-------------------------------|
+6 |   |   |   |   | p |   |   |   |
+  |-------------------------------|
+5 |   |   |   |   |   |   | q |   |
+  |-------------------------------|
+4 |   |   |   |   | P |   |   |   |
+  |-------------------------------|
+3 |   |   |   |   |   | Q |   |   |
+  |-------------------------------|
+2 | P | P | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R | N | B |   | K | B | N | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 3,842 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A2->A3: arvosana 290
+P A2->A4: arvosana 290
+P B2->B3: arvosana 290
+P B2->B4: arvosana 290
+P C2->C3: arvosana 290
+P C2->C4: arvosana 290
+P D2->D3: arvosana 290
+P D2->D4: arvosana 290
+P E4->E5: arvosana 290
+P G2->G3: arvosana 290
+P G2->G4: arvosana 290
+P H2->H3: arvosana 290
+P H2->H4: arvosana 815
+N B1->A3: arvosana 815
+N B1->C3: arvosana 815
+Q F3->G3: arvosana 815
+Q F3->E3: arvosana 815
+Q F3->F4: arvosana 815
+Q F3->H3: arvosana 815
+Q F3->D3: arvosana 815
+Q F3->F5: arvosana 815
+Q F3->C3: arvosana 815
+Q F3->F6: arvosana 815
+Q F3->B3: arvosana 815
+Q F3->F7: arvosana 815
+Q F3->A3: arvosana 815
+Q F3->G4: arvosana 815
+Q F3->E2: arvosana 815
+Q F3->H5: arvosana 815
+Q F3->D1: arvosana 815
+K E1->E2: arvosana 815
+K E1->D1: arvosana 815
+B F1->E2: arvosana 815
+B F1->D3: arvosana 815
+B F1->C4: arvosana 815
+B F1->B5: arvosana 815
+B F1->A6: arvosana 815
+N G1->E2: arvosana 815
+N G1->H3: arvosana 834
+  ---------------------------------
+8 | r | n | b |   | k | b | n | r | musta
+  |-------------------------------|
+7 | p | p | p | p |   | p | p | p |
+  |-------------------------------|
+6 |   |   |   |   | p |   |   |   |
+  |-------------------------------|
+5 |   |   |   |   |   |   | q |   |
+  |-------------------------------|
+4 |   |   |   |   | P |   |   |   |
+  |-------------------------------|
+3 |   |   |   |   |   | Q |   | N |
+  |-------------------------------|
+2 | P | P | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R | N | B |   | K | B |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 13 s.
+
+Odota. Tietokone tekee siirtonsa...
+n B8->C6: arvosana -136
+n B8->A6: arvosana -136
+q G5->H5: arvosana -136
+q G5->G4: arvosana -136
+q G5->F5: arvosana -136
+q G5->G6: arvosana 192
+q G5->G3: arvosana 192
+q G5->E5: arvosana 192
+q G5->G2: arvosana 192
+q G5->D5: arvosana 192
+q G5->C5: arvosana 192
+q G5->B5: arvosana 192
+q G5->A5: arvosana 248
+q G5->H6: arvosana 248
+q G5->H4: arvosana 252
+q G5->F4: arvosana 252
+q G5->F6: arvosana 252
+q G5->E3: arvosana 252
+q G5->E7: arvosana 255
+q G5->D2: arvosana 255
+q G5->D8: arvosana 255
+k E8->D8: arvosana 255
+k E8->E7: arvosana 255
+b F8->E7: arvosana 255
+b F8->D6: arvosana 255
+b F8->C5: arvosana 255
+b F8->B4: arvosana 255
+b F8->A3: arvosana 255
+n G8->H6: arvosana 255
+n G8->F6: arvosana 255
+n G8->E7: arvosana 255
+p A7->A6: arvosana 255
+p A7->A5: arvosana 255
+p B7->B6: arvosana 255
+p B7->B5: arvosana 255
+p C7->C6: arvosana 255
+p C7->C5: arvosana 255
+p D7->D6: arvosana 255
+p D7->D5: arvosana 255
+p E6->E5: arvosana 255
+p F7->F6: arvosana 255
+p F7->F5: arvosana 255
+p G7->G6: arvosana 255
+p H7->H6: arvosana 255
+p H7->H5: arvosana 255
+  ---------------------------------
+8 | r | n | b |   | k | b | n | r | musta
+  |-------------------------------|
+7 | p | p | p | p | q | p | p | p |
+  |-------------------------------|
+6 |   |   |   |   | p |   |   |   |
+  |-------------------------------|
+5 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   |   |   |   | P |   |   |   |
+  |-------------------------------|
+3 |   |   |   |   |   | Q |   | N |
+  |-------------------------------|
+2 | P | P | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R | N | B |   | K | B |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 18 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A2->A3: arvosana 300
+P A2->A4: arvosana 300
+P B2->B3: arvosana 302
+P B2->B4: arvosana 302
+P C2->C3: arvosana 302
+P C2->C4: arvosana 302
+P D2->D3: arvosana 302
+P D2->D4: arvosana 302
+P E4->E5: arvosana 321
+P G2->G3: arvosana 321
+P G2->G4: arvosana 321
+N B1->A3: arvosana 321
+N B1->C3: arvosana 377
+Q F3->G3: arvosana 377
+Q F3->E3: arvosana 377
+Q F3->F4: arvosana 964
+Q F3->D3: arvosana 964
+Q F3->F5: arvosana 964
+Q F3->C3: arvosana 964
+Q F3->F6: arvosana 964
+Q F3->B3: arvosana 964
+Q F3->F7: arvosana 964
+Q F3->A3: arvosana 964
+Q F3->G4: arvosana 964
+Q F3->E2: arvosana 964
+Q F3->H5: arvosana 964
+Q F3->D1: arvosana 964
+K E1->E2: arvosana 964
+K E1->D1: arvosana 964
+B F1->E2: arvosana 964
+B F1->D3: arvosana 964
+B F1->C4: arvosana 964
+B F1->B5: arvosana 964
+B F1->A6: arvosana 964
+N H3->F4: arvosana 964
+N H3->G5: arvosana 964
+N H3->G1: arvosana 964
+R H1->G1: arvosana 964
+  ---------------------------------
+8 | r | n | b |   | k | b | n | r | musta
+  |-------------------------------|
+7 | p | p | p | p | q | p | p | p |
+  |-------------------------------|
+6 |   |   |   |   | p |   |   |   |
+  |-------------------------------|
+5 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   |   |   |   | P | Q |   |   |
+  |-------------------------------|
+3 |   |   |   |   |   |   |   | N |
+  |-------------------------------|
+2 | P | P | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R | N | B |   | K | B |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 3,475 s.
+
+Odota. Tietokone tekee siirtonsa...
+n B8->C6: arvosana 324
+n B8->A6: arvosana 324
+q E7->F6: arvosana 324
+q E7->D6: arvosana 324
+q E7->D8: arvosana 324
+q E7->G5: arvosana 324
+q E7->C5: arvosana 795
+q E7->H4: arvosana 795
+q E7->B4: arvosana 795
+q E7->A3: arvosana 795
+k E8->D8: arvosana 795
+n G8->H6: arvosana 795
+n G8->F6: arvosana 795
+p A7->A6: arvosana 795
+p A7->A5: arvosana 795
+p B7->B6: arvosana 795
+p B7->B5: arvosana 795
+p C7->C6: arvosana 795
+p C7->C5: arvosana 795
+p D7->D6: arvosana 795
+p D7->D5: arvosana 795
+p E6->E5: arvosana 795
+p F7->F6: arvosana 795
+p F7->F5: arvosana 795
+p G7->G6: arvosana 795
+p G7->G5: arvosana 795
+p H7->H6: arvosana 795
+p H7->H5: arvosana 795
+  ---------------------------------
+8 | r | n | b |   | k | b | n | r | musta
+  |-------------------------------|
+7 | p | p | p | p |   | p | p | p |
+  |-------------------------------|
+6 |   |   |   |   | p |   |   |   |
+  |-------------------------------|
+5 |   |   | q |   |   |   |   |   |
+  |-------------------------------|
+4 |   |   |   |   | P | Q |   |   |
+  |-------------------------------|
+3 |   |   |   |   |   |   |   | N |
+  |-------------------------------|
+2 | P | P | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R | N | B |   | K | B |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 3,642 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A2->A3: arvosana 189
+P A2->A4: arvosana 300
+P B2->B3: arvosana 300
+P B2->B4: arvosana 915
+P C2->C3: arvosana 915
+P C2->C4: arvosana 915
+P D2->D3: arvosana 915
+P D2->D4: arvosana 915
+P E4->E5: arvosana 915
+P F2->F3: arvosana 915
+P G2->G3: arvosana 915
+P G2->G4: arvosana 915
+N B1->A3: arvosana 915
+N B1->C3: arvosana 915
+Q F4->G4: arvosana 915
+Q F4->F3: arvosana 915
+Q F4->F5: arvosana 915
+Q F4->H4: arvosana 915
+Q F4->F6: arvosana 915
+Q F4->F7: arvosana 915
+Q F4->G5: arvosana 915
+Q F4->G3: arvosana 915
+Q F4->E3: arvosana 915
+Q F4->E5: arvosana 915
+Q F4->H6: arvosana 915
+Q F4->D6: arvosana 915
+Q F4->C7: arvosana 915
+K E1->E2: arvosana 915
+K E1->D1: arvosana 915
+B F1->E2: arvosana 915
+B F1->D3: arvosana 915
+B F1->C4: arvosana 915
+B F1->B5: arvosana 988
+B F1->A6: arvosana 988
+N H3->G5: arvosana 988
+N H3->G1: arvosana 988
+R H1->G1: arvosana 988
+  ---------------------------------
+8 | r | n | b |   | k | b | n | r | musta
+  |-------------------------------|
+7 | p | p | p | p |   | p | p | p |
+  |-------------------------------|
+6 |   |   |   |   | p |   |   |   |
+  |-------------------------------|
+5 |   | B | q |   |   |   |   |   |
+  |-------------------------------|
+4 |   |   |   |   | P | Q |   |   |
+  |-------------------------------|
+3 |   |   |   |   |   |   |   | N |
+  |-------------------------------|
+2 | P | P | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R | N | B |   | K |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 12 s.
+
+Odota. Tietokone tekee siirtonsa...
+n B8->C6: arvosana 450
+n B8->A6: arvosana 450
+q C5->D5: arvosana 450
+q C5->C4: arvosana 450
+q C5->B5: arvosana 635
+q C5->C6: arvosana 635
+q C5->E5: arvosana 635
+q C5->C3: arvosana 635
+q C5->F5: arvosana 635
+q C5->C2: arvosana 635
+q C5->G5: arvosana 635
+q C5->H5: arvosana 635
+q C5->D6: arvosana 635
+q C5->D4: arvosana 635
+q C5->B4: arvosana 635
+q C5->B6: arvosana 635
+q C5->E7: arvosana 635
+q C5->E3: arvosana 635
+q C5->A3: arvosana 635
+q C5->F2: arvosana 635
+k E8->D8: arvosana 635
+k E8->E7: arvosana 635
+b F8->E7: arvosana 635
+b F8->D6: arvosana 635
+n G8->H6: arvosana 635
+n G8->F6: arvosana 635
+n G8->E7: arvosana 635
+p A7->A6: arvosana 635
+p A7->A5: arvosana 635
+p B7->B6: arvosana 635
+p C7->C6: arvosana 635
+p E6->E5: arvosana 635
+p F7->F6: arvosana 635
+p F7->F5: arvosana 635
+p G7->G6: arvosana 635
+p G7->G5: arvosana 635
+p H7->H6: arvosana 635
+p H7->H5: arvosana 635
+  ---------------------------------
+8 | r | n | b |   | k | b | n | r | musta
+  |-------------------------------|
+7 | p | p | p | p |   | p | p | p |
+  |-------------------------------|
+6 |   |   |   |   | p |   |   |   |
+  |-------------------------------|
+5 |   | q |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   |   |   |   | P | Q |   |   |
+  |-------------------------------|
+3 |   |   |   |   |   |   |   | N |
+  |-------------------------------|
+2 | P | P | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R | N | B |   | K |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 5,916 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A2->A3: arvosana 667
+P A2->A4: arvosana 671
+P B2->B3: arvosana 671
+P B2->B4: arvosana 671
+P C2->C3: arvosana 671
+P C2->C4: arvosana 671
+P D2->D3: arvosana 671
+P D2->D4: arvosana 671
+P E4->E5: arvosana 671
+P F2->F3: arvosana 671
+P G2->G3: arvosana 671
+P G2->G4: arvosana 671
+N B1->A3: arvosana 671
+N B1->C3: arvosana 721
+Q F4->G4: arvosana 721
+Q F4->F3: arvosana 721
+Q F4->F5: arvosana 721
+Q F4->H4: arvosana 721
+Q F4->F6: arvosana 721
+Q F4->F7: arvosana 721
+Q F4->G5: arvosana 721
+Q F4->G3: arvosana 721
+Q F4->E3: arvosana 721
+Q F4->E5: arvosana 721
+Q F4->H6: arvosana 721
+Q F4->D6: arvosana 721
+Q F4->C7: arvosana 721
+K E1->D1: arvosana 721
+N H3->G5: arvosana 721
+N H3->G1: arvosana 721
+R H1->G1: arvosana 721
+R H1->F1: arvosana 721
+  ---------------------------------
+8 | r | n | b |   | k | b | n | r | musta
+  |-------------------------------|
+7 | p | p | p | p |   | p | p | p |
+  |-------------------------------|
+6 |   |   |   |   | p |   |   |   |
+  |-------------------------------|
+5 |   | q |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   |   |   |   | P | Q |   |   |
+  |-------------------------------|
+3 |   |   | N |   |   |   |   | N |
+  |-------------------------------|
+2 | P | P | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R |   | B |   | K |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 6,901 s.
+
+Odota. Tietokone tekee siirtonsa...
+n B8->C6: arvosana -616
+n B8->A6: arvosana -540
+q B5->C5: arvosana 582
+q B5->B4: arvosana 582
+q B5->A5: arvosana 582
+q B5->B6: arvosana 582
+q B5->D5: arvosana 582
+q B5->B3: arvosana 582
+q B5->E5: arvosana 582
+q B5->B2: arvosana 582
+q B5->F5: arvosana 582
+q B5->G5: arvosana 582
+q B5->H5: arvosana 582
+q B5->C6: arvosana 582
+q B5->C4: arvosana 640
+q B5->A4: arvosana 640
+q B5->A6: arvosana 640
+q B5->D3: arvosana 640
+q B5->E2: arvosana 640
+q B5->F1: arvosana 640
+k E8->D8: arvosana 640
+k E8->E7: arvosana 640
+b F8->E7: arvosana 640
+b F8->D6: arvosana 640
+b F8->C5: arvosana 640
+b F8->B4: arvosana 640
+b F8->A3: arvosana 640
+n G8->H6: arvosana 640
+n G8->F6: arvosana 640
+n G8->E7: arvosana 640
+p A7->A6: arvosana 640
+p A7->A5: arvosana 640
+p B7->B6: arvosana 640
+p C7->C6: arvosana 640
+p C7->C5: arvosana 640
+p D7->D6: arvosana 640
+p D7->D5: arvosana 640
+p E6->E5: arvosana 640
+p F7->F6: arvosana 640
+p F7->F5: arvosana 640
+p G7->G6: arvosana 640
+p G7->G5: arvosana 640
+p H7->H6: arvosana 640
+p H7->H5: arvosana 640
+  ---------------------------------
+8 | r | n | b |   | k | b | n | r | musta
+  |-------------------------------|
+7 | p | p | p | p |   | p | p | p |
+  |-------------------------------|
+6 |   |   |   |   | p |   |   |   |
+  |-------------------------------|
+5 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   |   | q |   | P | Q |   |   |
+  |-------------------------------|
+3 |   |   | N |   |   |   |   | N |
+  |-------------------------------|
+2 | P | P | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R |   | B |   | K |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 8,276 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A2->A3: arvosana 290
+P A2->A4: arvosana 290
+P B2->B3: arvosana 721
+P B2->B4: arvosana 721
+P D2->D3: arvosana 721
+P D2->D4: arvosana 721
+P E4->E5: arvosana 721
+P F2->F3: arvosana 721
+P G2->G3: arvosana 721
+P G2->G4: arvosana 721
+R A1->B1: arvosana 721
+N C3->A4: arvosana 721
+N C3->B5: arvosana 721
+N C3->D5: arvosana 721
+N C3->E2: arvosana 721
+N C3->D1: arvosana 721
+N C3->B1: arvosana 721
+Q F4->G4: arvosana 721
+Q F4->F3: arvosana 721
+Q F4->F5: arvosana 721
+Q F4->H4: arvosana 721
+Q F4->F6: arvosana 721
+Q F4->F7: arvosana 721
+Q F4->G5: arvosana 721
+Q F4->G3: arvosana 721
+Q F4->E3: arvosana 721
+Q F4->E5: arvosana 721
+Q F4->H6: arvosana 721
+Q F4->D6: arvosana 721
+Q F4->C7: arvosana 721
+K E1->D1: arvosana 721
+N H3->G5: arvosana 721
+N H3->G1: arvosana 721
+R H1->G1: arvosana 721
+R H1->F1: arvosana 721
+  ---------------------------------
+8 | r | n | b |   | k | b | n | r | musta
+  |-------------------------------|
+7 | p | p | p | p |   | p | p | p |
+  |-------------------------------|
+6 |   |   |   |   | p |   |   |   |
+  |-------------------------------|
+5 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   |   | q |   | P | Q |   |   |
+  |-------------------------------|
+3 |   | P | N |   |   |   |   | N |
+  |-------------------------------|
+2 | P |   | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R |   | B |   | K |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 8,565 s.
+
+Odota. Tietokone tekee siirtonsa...
+n B8->C6: arvosana -369
+n B8->A6: arvosana -332
+q C4->D4: arvosana 547
+q C4->C3: arvosana 547
+q C4->B4: arvosana 570
+q C4->C5: arvosana 570
+q C4->E4: arvosana 570
+q C4->A4: arvosana 570
+q C4->C6: arvosana 570
+q C4->D5: arvosana 570
+q C4->D3: arvosana 570
+q C4->B3: arvosana 570
+q C4->B5: arvosana 570
+q C4->E2: arvosana 570
+q C4->A6: arvosana 570
+q C4->F1: arvosana 570
+k E8->D8: arvosana 570
+k E8->E7: arvosana 570
+b F8->E7: arvosana 570
+b F8->D6: arvosana 570
+b F8->C5: arvosana 570
+b F8->B4: arvosana 570
+b F8->A3: arvosana 570
+n G8->H6: arvosana 570
+n G8->F6: arvosana 570
+n G8->E7: arvosana 570
+p A7->A6: arvosana 570
+p A7->A5: arvosana 570
+p B7->B6: arvosana 570
+p B7->B5: arvosana 570
+p C7->C6: arvosana 570
+p C7->C5: arvosana 570
+p D7->D6: arvosana 570
+p D7->D5: arvosana 570
+p E6->E5: arvosana 570
+p F7->F6: arvosana 570
+p F7->F5: arvosana 570
+p G7->G6: arvosana 570
+p G7->G5: arvosana 570
+p H7->H6: arvosana 570
+p H7->H5: arvosana 570
+  ---------------------------------
+8 | r | n | b |   | k | b | n | r | musta
+  |-------------------------------|
+7 | p | p | p | p |   | p | p | p |
+  |-------------------------------|
+6 |   |   |   |   | p |   |   |   |
+  |-------------------------------|
+5 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   | q |   |   | P | Q |   |   |
+  |-------------------------------|
+3 |   | P | N |   |   |   |   | N |
+  |-------------------------------|
+2 | P |   | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R |   | B |   | K |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 3,618 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A2->A3: arvosana 652
+P A2->A4: arvosana 652
+P D2->D3: arvosana 652
+P D2->D4: arvosana 652
+P E4->E5: arvosana 652
+P F2->F3: arvosana 652
+P G2->G3: arvosana 652
+P G2->G4: arvosana 652
+R A1->B1: arvosana 652
+N C3->A4: arvosana 652
+N C3->B5: arvosana 3665
+N C3->D5: arvosana 4507
+N C3->E2: arvosana 4507
+N C3->D1: arvosana 4507
+N C3->B1: arvosana 4507
+B C1->B2: arvosana 4507
+B C1->A3: arvosana 4507
+Q F4->G4: arvosana 4507
+Q F4->F3: arvosana 4507
+Q F4->F5: arvosana 4507
+Q F4->H4: arvosana 4507
+Q F4->F6: arvosana 4507
+Q F4->F7: arvosana 4507
+Q F4->G5: arvosana 4507
+Q F4->G3: arvosana 4507
+Q F4->E3: arvosana 4507
+Q F4->E5: arvosana 4507
+Q F4->H6: arvosana 4507
+Q F4->D6: arvosana 4507
+Q F4->C7: arvosana 4507
+K E1->G1: arvosana 4507
+K E1->E2: arvosana 4507
+K E1->D1: arvosana 4507
+K E1->F1: arvosana 4507
+N H3->G5: arvosana 4507
+N H3->G1: arvosana 4507
+R H1->G1: arvosana 4507
+R H1->F1: arvosana 4507
+  ---------------------------------
+8 | r | n | b |   | k | b | n | r | musta
+  |-------------------------------|
+7 | p | p | p | p |   | p | p | p |
+  |-------------------------------|
+6 |   |   |   |   | p |   |   |   |
+  |-------------------------------|
+5 |   |   |   | N |   |   |   |   |
+  |-------------------------------|
+4 |   | q |   |   | P | Q |   |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   | N |
+  |-------------------------------|
+2 | P |   | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R |   | B |   | K |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 6,598 s.
+
+Odota. Tietokone tekee siirtonsa...
+n B8->C6: arvosana -199
+n B8->A6: arvosana -199
+q B4->C4: arvosana -199
+q B4->B3: arvosana -199
+q B4->A4: arvosana -199
+q B4->B5: arvosana -199
+q B4->D4: arvosana 399
+q B4->B6: arvosana 399
+q B4->E4: arvosana 399
+q B4->C5: arvosana 399
+q B4->C3: arvosana 399
+q B4->A3: arvosana 399
+q B4->A5: arvosana 399
+q B4->D6: arvosana 399
+q B4->D2: arvosana 399
+q B4->E7: arvosana 399
+k E8->D8: arvosana 399
+b F8->E7: arvosana 399
+b F8->D6: arvosana 399
+b F8->C5: arvosana 399
+n G8->H6: arvosana 399
+n G8->F6: arvosana 399
+n G8->E7: arvosana 399
+p A7->A6: arvosana 399
+p A7->A5: arvosana 399
+p B7->B6: arvosana 399
+p B7->B5: arvosana 399
+p C7->C6: arvosana 399
+p C7->C5: arvosana 399
+p D7->D6: arvosana 399
+p E6->D5: arvosana 544
+p E6->E5: arvosana 544
+p F7->F6: arvosana 544
+p F7->F5: arvosana 544
+p G7->G6: arvosana 544
+p G7->G5: arvosana 544
+p H7->H6: arvosana 544
+p H7->H5: arvosana 544
+  ---------------------------------
+8 | r | n | b |   | k | b | n | r | musta
+  |-------------------------------|
+7 | p | p | p | p |   | p | p | p |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | p |   |   |   |   |
+  |-------------------------------|
+4 |   | q |   |   | P | Q |   |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   | N |
+  |-------------------------------|
+2 | P |   | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R |   | B |   | K |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 4,130 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A2->A3: arvosana 93
+P A2->A4: arvosana 93
+P C2->C3: arvosana 157
+P C2->C4: arvosana 342
+P E4->D5: arvosana 342
+P E4->E5: arvosana 342
+P F2->F3: arvosana 342
+P G2->G3: arvosana 342
+P G2->G4: arvosana 342
+R A1->B1: arvosana 342
+B C1->B2: arvosana 342
+B C1->A3: arvosana 342
+Q F4->G4: arvosana 342
+Q F4->F3: arvosana 342
+Q F4->F5: arvosana 342
+Q F4->H4: arvosana 342
+Q F4->F6: arvosana 342
+Q F4->F7: arvosana 342
+Q F4->G5: arvosana 342
+Q F4->G3: arvosana 342
+Q F4->E3: arvosana 342
+Q F4->E5: arvosana 4405
+Q F4->H6: arvosana 4405
+Q F4->D6: arvosana 4405
+Q F4->C7: arvosana 4405
+K E1->G1: arvosana 4405
+K E1->E2: arvosana 4405
+K E1->D1: arvosana 4405
+K E1->F1: arvosana 4405
+N H3->G5: arvosana 4405
+N H3->G1: arvosana 4405
+R H1->G1: arvosana 4405
+R H1->F1: arvosana 4405
+  ---------------------------------
+8 | r | n | b |   | k | b | n | r | musta
+  |-------------------------------|
+7 | p | p | p | p |   | p | p | p |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | p | Q |   |   |   |
+  |-------------------------------|
+4 |   | q |   |   | P |   |   |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   | N |
+  |-------------------------------|
+2 | P |   | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R |   | B |   | K |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 5,144 s.
+
+Odota. Tietokone tekee siirtonsa...
+q B4->E7: arvosana 661
+k E8->D8: arvosana 673
+b F8->E7: arvosana 759
+n G8->E7: arvosana 798
+  ---------------------------------
+8 | r | n | b |   | k | b |   | r | musta
+  |-------------------------------|
+7 | p | p | p | p | n | p | p | p |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | p | Q |   |   |   |
+  |-------------------------------|
+4 |   | q |   |   | P |   |   |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   | N |
+  |-------------------------------|
+2 | P |   | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R |   | B |   | K |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 0,803 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A2->A3: arvosana -730
+P A2->A4: arvosana -730
+P C2->C3: arvosana -730
+P C2->C4: arvosana 145
+P E4->D5: arvosana 283
+P F2->F3: arvosana 283
+P F2->F4: arvosana 283
+P G2->G3: arvosana 283
+P G2->G4: arvosana 283
+R A1->B1: arvosana 283
+B C1->B2: arvosana 283
+B C1->A3: arvosana 283
+Q E5->F5: arvosana 283
+Q E5->D5: arvosana 283
+Q E5->E6: arvosana 283
+Q E5->G5: arvosana 283
+Q E5->E7: arvosana 283
+Q E5->H5: arvosana 283
+Q E5->F6: arvosana 283
+Q E5->F4: arvosana 283
+Q E5->D4: arvosana 283
+Q E5->D6: arvosana 283
+Q E5->G7: arvosana 283
+Q E5->G3: arvosana 283
+Q E5->C3: arvosana 283
+Q E5->C7: arvosana 283
+Q E5->B2: arvosana 283
+K E1->G1: arvosana 283
+K E1->E2: arvosana 283
+K E1->D1: arvosana 283
+K E1->F1: arvosana 283
+N H3->F4: arvosana 283
+N H3->G5: arvosana 283
+N H3->G1: arvosana 283
+R H1->G1: arvosana 283
+R H1->F1: arvosana 283
+  ---------------------------------
+8 | r | n | b |   | k | b |   | r | musta
+  |-------------------------------|
+7 | p | p | p | p | n | p | p | p |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | P | Q |   |   |   |
+  |-------------------------------|
+4 |   | q |   |   |   |   |   |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   | N |
+  |-------------------------------|
+2 | P |   | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R |   | B |   | K |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 3,83 s.
+
+Odota. Tietokone tekee siirtonsa...
+n B8->C6: arvosana 860
+n B8->A6: arvosana 1094
+q B4->C4: arvosana 1094
+q B4->B3: arvosana 1094
+q B4->A4: arvosana 1094
+q B4->B5: arvosana 1094
+q B4->D4: arvosana 1094
+q B4->B6: arvosana 1094
+q B4->E4: arvosana 1094
+q B4->F4: arvosana 1094
+q B4->G4: arvosana 1111
+q B4->H4: arvosana 1111
+q B4->C5: arvosana 1111
+q B4->C3: arvosana 1111
+q B4->A3: arvosana 1111
+q B4->A5: arvosana 1111
+q B4->D6: arvosana 1111
+q B4->D2: arvosana 1111
+k E8->D8: arvosana 1111
+r H8->G8: arvosana 1111
+p A7->A6: arvosana 1111
+p A7->A5: arvosana 1111
+p B7->B6: arvosana 1111
+p B7->B5: arvosana 1111
+p C7->C6: arvosana 1111
+p C7->C5: arvosana 1111
+p D7->D6: arvosana 1111
+p F7->F6: arvosana 1111
+p F7->F5: arvosana 1111
+p G7->G6: arvosana 1111
+p G7->G5: arvosana 1111
+p H7->H6: arvosana 1111
+p H7->H5: arvosana 1111
+  ---------------------------------
+8 | r | n | b |   | k | b |   | r | musta
+  |-------------------------------|
+7 | p | p | p | p | n | p | p | p |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | P | Q |   |   |   |
+  |-------------------------------|
+4 |   |   |   |   |   |   | q |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   | N |
+  |-------------------------------|
+2 | P |   | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R |   | B |   | K |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 5,722 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A2->A3: arvosana -212
+P A2->A4: arvosana -212
+P B3->B4: arvosana -209
+P C2->C3: arvosana -209
+P C2->C4: arvosana -209
+P D2->D3: arvosana -209
+P D2->D4: arvosana -172
+P D5->D6: arvosana -166
+P F2->F3: arvosana -166
+P F2->F4: arvosana -166
+P G2->G3: arvosana -166
+R A1->B1: arvosana -166
+B C1->B2: arvosana -166
+B C1->A3: arvosana -96
+Q E5->F5: arvosana -96
+Q E5->E4: arvosana -96
+Q E5->E6: arvosana -96
+Q E5->G5: arvosana -96
+Q E5->E3: arvosana -96
+Q E5->E7: arvosana -96
+Q E5->H5: arvosana -96
+Q E5->E2: arvosana -96
+Q E5->F6: arvosana -96
+Q E5->F4: arvosana -96
+Q E5->D4: arvosana -96
+Q E5->D6: arvosana -96
+Q E5->G7: arvosana -96
+Q E5->G3: arvosana -96
+Q E5->C3: arvosana -96
+Q E5->C7: arvosana -96
+Q E5->B2: arvosana -96
+K E1->G1: arvosana -96
+K E1->F1: arvosana -96
+N H3->F4: arvosana 209
+N H3->G5: arvosana 209
+N H3->G1: arvosana 209
+R H1->G1: arvosana 209
+R H1->F1: arvosana 209
+  ---------------------------------
+8 | r | n | b |   | k | b |   | r | musta
+  |-------------------------------|
+7 | p | p | p | p | n | p | p | p |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | P | Q |   |   |   |
+  |-------------------------------|
+4 |   |   |   |   |   | N | q |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   |   |
+  |-------------------------------|
+2 | P |   | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R |   | B |   | K |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 8,194 s.
+
+Odota. Tietokone tekee siirtonsa...
+n B8->C6: arvosana 917
+n B8->A6: arvosana 1075
+q G4->H4: arvosana 1075
+q G4->G3: arvosana 1075
+q G4->F4: arvosana 1075
+q G4->G5: arvosana 1075
+q G4->G2: arvosana 1075
+q G4->G6: arvosana 1075
+q G4->H5: arvosana 1075
+q G4->H3: arvosana 1075
+q G4->F3: arvosana 1075
+q G4->F5: arvosana 1075
+q G4->E2: arvosana 1075
+q G4->E6: arvosana 1075
+q G4->D1: arvosana 1075
+k E8->D8: arvosana 1075
+r H8->G8: arvosana 1075
+p A7->A6: arvosana 1075
+p A7->A5: arvosana 1075
+p B7->B6: arvosana 1075
+p B7->B5: arvosana 1075
+p C7->C6: arvosana 1075
+p C7->C5: arvosana 1075
+p D7->D6: arvosana 1075
+p F7->F6: arvosana 1075
+p F7->F5: arvosana 1075
+p G7->G6: arvosana 1075
+p G7->G5: arvosana 1075
+p H7->H6: arvosana 1075
+p H7->H5: arvosana 1075
+  ---------------------------------
+8 | r |   | b |   | k | b |   | r | musta
+  |-------------------------------|
+7 | p | p | p | p | n | p | p | p |
+  |-------------------------------|
+6 | n |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | P | Q |   |   |   |
+  |-------------------------------|
+4 |   |   |   |   |   | N | q |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   |   |
+  |-------------------------------|
+2 | P |   | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R |   | B |   | K |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 5,540 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A2->A3: arvosana -90
+P A2->A4: arvosana -90
+P B3->B4: arvosana 195
+P C2->C3: arvosana 195
+P C2->C4: arvosana 195
+P D2->D3: arvosana 195
+P D2->D4: arvosana 333
+P D5->D6: arvosana 333
+P F2->F3: arvosana 333
+P G2->G3: arvosana 333
+P H2->H3: arvosana 333
+P H2->H4: arvosana 333
+R A1->B1: arvosana 333
+B C1->B2: arvosana 333
+B C1->A3: arvosana 395
+Q E5->F5: arvosana 395
+Q E5->E4: arvosana 395
+Q E5->E6: arvosana 395
+Q E5->G5: arvosana 395
+Q E5->E3: arvosana 395
+Q E5->E7: arvosana 395
+Q E5->H5: arvosana 395
+Q E5->E2: arvosana 395
+Q E5->F6: arvosana 395
+Q E5->D4: arvosana 395
+Q E5->D6: arvosana 395
+Q E5->G7: arvosana 395
+Q E5->C3: arvosana 395
+Q E5->C7: arvosana 395
+Q E5->B2: arvosana 395
+K E1->G1: arvosana 395
+K E1->F1: arvosana 395
+N F4->E6: arvosana 395
+N F4->G6: arvosana 395
+N F4->H5: arvosana 395
+N F4->H3: arvosana 395
+N F4->E2: arvosana 395
+N F4->D3: arvosana 395
+R H1->G1: arvosana 395
+R H1->F1: arvosana 395
+  ---------------------------------
+8 | r |   | b |   | k | b |   | r | musta
+  |-------------------------------|
+7 | p | p | p | p | n | p | p | p |
+  |-------------------------------|
+6 | n |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | P | Q |   |   |   |
+  |-------------------------------|
+4 |   |   |   |   |   | N | q |   |
+  |-------------------------------|
+3 | B | P |   |   |   |   |   |   |
+  |-------------------------------|
+2 | P |   | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R |   |   |   | K |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 5,104 s.
+
+Odota. Tietokone tekee siirtonsa...
+r A8->B8: arvosana 832
+n A6->B8: arvosana 832
+n A6->C5: arvosana 832
+n A6->B4: arvosana 832
+q G4->H4: arvosana 832
+q G4->G3: arvosana 832
+q G4->F4: arvosana 832
+q G4->G5: arvosana 832
+q G4->G2: arvosana 832
+q G4->G6: arvosana 832
+q G4->H5: arvosana 832
+q G4->H3: arvosana 832
+q G4->F3: arvosana 832
+q G4->F5: arvosana 832
+q G4->E2: arvosana 832
+q G4->E6: arvosana 832
+q G4->D1: arvosana 832
+k E8->D8: arvosana 849
+r H8->G8: arvosana 849
+p B7->B6: arvosana 849
+p B7->B5: arvosana 849
+p C7->C6: arvosana 856
+p C7->C5: arvosana 1066
+p D7->D6: arvosana 1066
+p F7->F6: arvosana 1066
+p F7->F5: arvosana 1066
+p G7->G6: arvosana 1066
+p G7->G5: arvosana 1066
+p H7->H6: arvosana 1066
+p H7->H5: arvosana 1066
+  ---------------------------------
+8 | r |   | b |   | k | b |   | r | musta
+  |-------------------------------|
+7 | p | p |   | p | n | p | p | p |
+  |-------------------------------|
+6 | n |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   | p | P | Q |   |   |   |
+  |-------------------------------|
+4 |   |   |   |   |   | N | q |   |
+  |-------------------------------|
+3 | B | P |   |   |   |   |   |   |
+  |-------------------------------|
+2 | P |   | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R |   |   |   | K |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 10 s.
+
+Odota. Tietokone tekee siirtonsa...
+P B3->B4: arvosana 217
+P C2->C3: arvosana 217
+P C2->C4: arvosana 217
+P D2->D3: arvosana 233
+P D2->D4: arvosana 256
+P D5->D6: arvosana 430
+P F2->F3: arvosana 430
+P G2->G3: arvosana 430
+P H2->H3: arvosana 430
+P H2->H4: arvosana 430
+R A1->B1: arvosana 430
+R A1->C1: arvosana 430
+R A1->D1: arvosana 430
+B A3->B4: arvosana 430
+B A3->B2: arvosana 430
+B A3->C5: arvosana 430
+B A3->C1: arvosana 430
+Q E5->F5: arvosana 430
+Q E5->E4: arvosana 430
+Q E5->E6: arvosana 430
+Q E5->G5: arvosana 430
+Q E5->E3: arvosana 430
+Q E5->E7: arvosana 430
+Q E5->H5: arvosana 430
+Q E5->E2: arvosana 430
+Q E5->F6: arvosana 430
+Q E5->D4: arvosana 430
+Q E5->D6: arvosana 430
+Q E5->G7: arvosana 430
+Q E5->C3: arvosana 430
+Q E5->C7: arvosana 430
+Q E5->B2: arvosana 430
+Q E5->B8: arvosana 430
+K E1->G1: arvosana 430
+K E1->F1: arvosana 430
+N F4->E6: arvosana 430
+N F4->G6: arvosana 430
+N F4->H5: arvosana 430
+N F4->H3: arvosana 430
+N F4->E2: arvosana 430
+N F4->D3: arvosana 430
+R H1->G1: arvosana 430
+R H1->F1: arvosana 430
+  ---------------------------------
+8 | r |   | b |   | k | b |   | r | musta
+  |-------------------------------|
+7 | p | p |   | p | n | p | p | p |
+  |-------------------------------|
+6 | n |   |   | P |   |   |   |   |
+  |-------------------------------|
+5 |   |   | p |   | Q |   |   |   |
+  |-------------------------------|
+4 |   |   |   |   |   | N | q |   |
+  |-------------------------------|
+3 | B | P |   |   |   |   |   |   |
+  |-------------------------------|
+2 | P |   | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R |   |   |   | K |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 6,502 s.
+
+Odota. Tietokone tekee siirtonsa...
+r A8->B8: arvosana 824
+n A6->B8: arvosana 824
+n A6->C7: arvosana 824
+n A6->B4: arvosana 1093
+q G4->H4: arvosana 1093
+q G4->G3: arvosana 1093
+q G4->F4: arvosana 1093
+q G4->G5: arvosana 1093
+q G4->G2: arvosana 1093
+q G4->G6: arvosana 1093
+q G4->H5: arvosana 1093
+q G4->H3: arvosana 1093
+q G4->F3: arvosana 1093
+q G4->F5: arvosana 1093
+q G4->E2: arvosana 1093
+q G4->E6: arvosana 1093
+q G4->D1: arvosana 1093
+k E8->D8: arvosana 1093
+r H8->G8: arvosana 1093
+p B7->B6: arvosana 1093
+p B7->B5: arvosana 1093
+p C5->C4: arvosana 1093
+p F7->F6: arvosana 1093
+p F7->F5: arvosana 1093
+p G7->G6: arvosana 1093
+p G7->G5: arvosana 1093
+p H7->H6: arvosana 1093
+p H7->H5: arvosana 1093
+  ---------------------------------
+8 | r |   | b |   | k | b |   | r | musta
+  |-------------------------------|
+7 | p | p |   | p | n | p | p | p |
+  |-------------------------------|
+6 |   |   |   | P |   |   |   |   |
+  |-------------------------------|
+5 |   |   | p |   | Q |   |   |   |
+  |-------------------------------|
+4 |   | n |   |   |   | N | q |   |
+  |-------------------------------|
+3 | B | P |   |   |   |   |   |   |
+  |-------------------------------|
+2 | P |   | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R |   |   |   | K |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 4,993 s.
+
+Odota. Tietokone tekee siirtonsa...
+P C2->C3: arvosana -205
+P C2->C4: arvosana -195
+P D2->D3: arvosana -161
+P D2->D4: arvosana -134
+P D6->E7: arvosana 545
+P F2->F3: arvosana 545
+P G2->G3: arvosana 545
+P H2->H3: arvosana 545
+P H2->H4: arvosana 545
+R A1->B1: arvosana 545
+R A1->C1: arvosana 545
+R A1->D1: arvosana 545
+B A3->B4: arvosana 728
+B A3->B2: arvosana 728
+B A3->C1: arvosana 728
+Q E5->F5: arvosana 728
+Q E5->E4: arvosana 728
+Q E5->D5: arvosana 728
+Q E5->E6: arvosana 728
+Q E5->G5: arvosana 728
+Q E5->E3: arvosana 728
+Q E5->C5: arvosana 728
+Q E5->E7: arvosana 728
+Q E5->H5: arvosana 728
+Q E5->E2: arvosana 728
+Q E5->F6: arvosana 728
+Q E5->D4: arvosana 728
+Q E5->G7: arvosana 728
+Q E5->C3: arvosana 728
+Q E5->B2: arvosana 728
+K E1->G1: arvosana 728
+K E1->F1: arvosana 728
+N F4->D5: arvosana 728
+N F4->E6: arvosana 728
+N F4->G6: arvosana 728
+N F4->H5: arvosana 728
+N F4->H3: arvosana 728
+N F4->E2: arvosana 728
+N F4->D3: arvosana 728
+R H1->G1: arvosana 728
+R H1->F1: arvosana 728
+  ---------------------------------
+8 | r |   | b |   | k | b |   | r | musta
+  |-------------------------------|
+7 | p | p |   | p | n | p | p | p |
+  |-------------------------------|
+6 |   |   |   | P |   |   |   |   |
+  |-------------------------------|
+5 |   |   | p |   | Q |   |   |   |
+  |-------------------------------|
+4 |   | B |   |   |   | N | q |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   |   |
+  |-------------------------------|
+2 | P |   | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R |   |   |   | K |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 3,215 s.
+
+Odota. Tietokone tekee siirtonsa...
+r A8->B8: arvosana 493
+q G4->H4: arvosana 493
+q G4->G3: arvosana 493
+q G4->F4: arvosana 493
+q G4->G5: arvosana 493
+q G4->G2: arvosana 493
+q G4->G6: arvosana 493
+q G4->H5: arvosana 493
+q G4->H3: arvosana 493
+q G4->F3: arvosana 493
+q G4->F5: arvosana 493
+q G4->E2: arvosana 493
+q G4->E6: arvosana 493
+q G4->D1: arvosana 493
+k E8->D8: arvosana 493
+r H8->G8: arvosana 493
+p A7->A6: arvosana 496
+p A7->A5: arvosana 496
+p B7->B6: arvosana 496
+p B7->B5: arvosana 496
+p C5->B4: arvosana 633
+p C5->C4: arvosana 633
+p F7->F6: arvosana 633
+p F7->F5: arvosana 633
+p G7->G6: arvosana 633
+p G7->G5: arvosana 633
+p H7->H6: arvosana 633
+p H7->H5: arvosana 633
+  ---------------------------------
+8 | r |   | b |   | k | b |   | r | musta
+  |-------------------------------|
+7 | p | p |   | p | n | p | p | p |
+  |-------------------------------|
+6 |   |   |   | P |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   |   | Q |   |   |   |
+  |-------------------------------|
+4 |   | p |   |   |   | N | q |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   |   |
+  |-------------------------------|
+2 | P |   | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R |   |   |   | K |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 6,81 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A2->A3: arvosana 395
+P A2->A4: arvosana 395
+P C2->C3: arvosana 395
+P C2->C4: arvosana 395
+P D2->D3: arvosana 416
+P D2->D4: arvosana 437
+P D6->E7: arvosana 4114
+P F2->F3: arvosana 4114
+P G2->G3: arvosana 4114
+P H2->H3: arvosana 4114
+P H2->H4: arvosana 4114
+R A1->B1: arvosana 4114
+R A1->C1: arvosana 4114
+R A1->D1: arvosana 4114
+Q E5->F5: arvosana 4114
+Q E5->E4: arvosana 4114
+Q E5->D5: arvosana 4114
+Q E5->E6: arvosana 4114
+Q E5->G5: arvosana 4114
+Q E5->E3: arvosana 4114
+Q E5->C5: arvosana 4114
+Q E5->E7: arvosana 4114
+Q E5->H5: arvosana 4114
+Q E5->E2: arvosana 4114
+Q E5->B5: arvosana 4114
+Q E5->A5: arvosana 4114
+Q E5->F6: arvosana 4114
+Q E5->D4: arvosana 4114
+Q E5->G7: arvosana 4114
+Q E5->C3: arvosana 4114
+Q E5->B2: arvosana 4114
+K E1->G1: arvosana 4114
+K E1->F1: arvosana 4114
+N F4->D5: arvosana 4715
+N F4->E6: arvosana 4715
+N F4->G6: arvosana 4715
+N F4->H5: arvosana 4715
+N F4->H3: arvosana 4715
+N F4->E2: arvosana 4715
+N F4->D3: arvosana 4715
+R H1->G1: arvosana 4715
+R H1->F1: arvosana 4715
+  ---------------------------------
+8 | r |   | b |   | k | b |   | r | musta
+  |-------------------------------|
+7 | p | p |   | p | n | p | p | p |
+  |-------------------------------|
+6 |   |   |   | P |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | N | Q |   |   |   |
+  |-------------------------------|
+4 |   | p |   |   |   |   | q |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   |   |
+  |-------------------------------|
+2 | P |   | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R |   |   |   | K |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 3,69 s.
+
+Odota. Tietokone tekee siirtonsa...
+r A8->B8: arvosana 11
+q G4->H4: arvosana 325
+q G4->G3: arvosana 325
+q G4->F4: arvosana 325
+q G4->G5: arvosana 325
+q G4->G2: arvosana 445
+q G4->E4: arvosana 445
+q G4->G6: arvosana 445
+q G4->D4: arvosana 445
+q G4->C4: arvosana 445
+q G4->H5: arvosana 445
+q G4->H3: arvosana 445
+q G4->F3: arvosana 445
+q G4->F5: arvosana 445
+q G4->E2: arvosana 445
+q G4->E6: arvosana 445
+q G4->D1: arvosana 445
+k E8->D8: arvosana 445
+r H8->G8: arvosana 445
+p A7->A6: arvosana 445
+p A7->A5: arvosana 445
+p B7->B6: arvosana 445
+p B7->B5: arvosana 445
+p F7->F6: arvosana 808
+p F7->F5: arvosana 808
+p G7->G6: arvosana 808
+p G7->G5: arvosana 808
+p H7->H6: arvosana 808
+p H7->H5: arvosana 808
+  ---------------------------------
+8 | r |   | b |   | k | b |   | r | musta
+  |-------------------------------|
+7 | p | p |   | p | n |   | p | p |
+  |-------------------------------|
+6 |   |   |   | P |   | p |   |   |
+  |-------------------------------|
+5 |   |   |   | N | Q |   |   |   |
+  |-------------------------------|
+4 |   | p |   |   |   |   | q |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   |   |
+  |-------------------------------|
+2 | P |   | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R |   |   |   | K |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 4,794 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A2->A3: arvosana -980
+P A2->A4: arvosana -980
+P C2->C3: arvosana -980
+P C2->C4: arvosana -980
+P D2->D3: arvosana -153
+P D2->D4: arvosana -153
+P D6->E7: arvosana 3784
+P F2->F3: arvosana 3784
+P F2->F4: arvosana 3784
+P G2->G3: arvosana 3784
+P H2->H3: arvosana 3784
+P H2->H4: arvosana 3784
+R A1->B1: arvosana 3784
+R A1->C1: arvosana 3784
+R A1->D1: arvosana 3784
+Q E5->F5: arvosana 3784
+Q E5->E4: arvosana 3784
+Q E5->E6: arvosana 3784
+Q E5->G5: arvosana 3784
+Q E5->E3: arvosana 3784
+Q E5->E7: arvosana 3784
+Q E5->H5: arvosana 3784
+Q E5->E2: arvosana 3784
+Q E5->F6: arvosana 3784
+Q E5->F4: arvosana 3784
+Q E5->D4: arvosana 3784
+Q E5->G3: arvosana 3784
+Q E5->C3: arvosana 3784
+Q E5->B2: arvosana 3784
+K E1->G1: arvosana 3784
+K E1->F1: arvosana 3784
+N D5->B6: arvosana 3784
+N D5->C7: arvosana 3784
+N D5->E7: arvosana 3784
+N D5->F6: arvosana 3784
+N D5->F4: arvosana 3784
+N D5->E3: arvosana 3784
+N D5->C3: arvosana 3784
+N D5->B4: arvosana 3784
+R H1->G1: arvosana 3784
+R H1->F1: arvosana 3784
+  ---------------------------------
+8 | r |   | b |   | k | b |   | r | musta
+  |-------------------------------|
+7 | p | p |   | p | P |   | p | p |
+  |-------------------------------|
+6 |   |   |   |   |   | p |   |   |
+  |-------------------------------|
+5 |   |   |   | N | Q |   |   |   |
+  |-------------------------------|
+4 |   | p |   |   |   |   | q |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   |   |
+  |-------------------------------|
+2 | P |   | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R |   |   |   | K |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 7,942 s.
+
+Odota. Tietokone tekee siirtonsa...
+r A8->B8: arvosana -556
+q G4->H4: arvosana -556
+q G4->G3: arvosana -556
+q G4->F4: arvosana -556
+q G4->G5: arvosana -556
+q G4->G2: arvosana -451
+q G4->E4: arvosana -451
+q G4->G6: arvosana -451
+q G4->D4: arvosana -451
+q G4->C4: arvosana -259
+q G4->H5: arvosana -259
+q G4->H3: arvosana -259
+q G4->F3: arvosana -259
+q G4->F5: arvosana -259
+q G4->E2: arvosana -259
+q G4->E6: arvosana -1
+q G4->D1: arvosana 5
+k E8->F7: arvosana 5
+b F8->E7: arvosana -122951
+r H8->G8: arvosana 5
+p A7->A6: arvosana 5
+p A7->A5: arvosana 5
+p B7->B6: arvosana 5
+p B7->B5: arvosana 5
+p D7->D6: arvosana 5
+p F6->E5: arvosana 920
+p F6->F5: arvosana 920
+p G7->G6: arvosana 920
+p G7->G5: arvosana 920
+p H7->H6: arvosana 920
+p H7->H5: arvosana 920
+  ---------------------------------
+8 | r |   | b |   | k | b |   | r | musta
+  |-------------------------------|
+7 | p | p |   | p | P |   | p | p |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | N | p |   |   |   |
+  |-------------------------------|
+4 |   | p |   |   |   |   | q |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   |   |
+  |-------------------------------|
+2 | P |   | P | P |   | P | P | P |
+  |-------------------------------|
+1 | R |   |   |   | K |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 2,910 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A2->A3: arvosana -834
+P A2->A4: arvosana -834
+P C2->C3: arvosana -834
+P C2->C4: arvosana -834
+P D2->D3: arvosana -329
+P D2->D4: arvosana -329
+P E7->F8: arvosana -329
+P F2->F3: arvosana -300
+P F2->F4: arvosana -300
+P G2->G3: arvosana -300
+P H2->H3: arvosana -258
+P H2->H4: arvosana -258
+R A1->B1: arvosana -258
+R A1->C1: arvosana -258
+R A1->D1: arvosana -258
+K E1->G1: arvosana -258
+K E1->F1: arvosana -258
+N D5->B6: arvosana -258
+N D5->C7: arvosana -258
+N D5->F6: arvosana -258
+N D5->F4: arvosana -258
+N D5->E3: arvosana -258
+N D5->C3: arvosana -258
+N D5->B4: arvosana -258
+R H1->G1: arvosana -258
+R H1->F1: arvosana -258
+  ---------------------------------
+8 | r |   | b |   | k | b |   | r | musta
+  |-------------------------------|
+7 | p | p |   | p | P |   | p | p |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | N | p |   |   |   |
+  |-------------------------------|
+4 |   | p |   |   |   |   | q |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   | P |
+  |-------------------------------|
+2 | P |   | P | P |   | P | P |   |
+  |-------------------------------|
+1 | R |   |   |   | K |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 1,828 s.
+
+Odota. Tietokone tekee siirtonsa...
+r A8->B8: arvosana 129
+q G4->H4: arvosana 1000
+q G4->G3: arvosana 1000
+q G4->F4: arvosana 1000
+q G4->G5: arvosana 1030
+q G4->G2: arvosana 1378
+q G4->E4: arvosana 1378
+q G4->G6: arvosana 1378
+q G4->D4: arvosana 1378
+q G4->C4: arvosana 1378
+q G4->H5: arvosana 1378
+q G4->H3: arvosana 1378
+q G4->F3: arvosana 1378
+q G4->F5: arvosana 1378
+q G4->E2: arvosana 1378
+q G4->E6: arvosana 1378
+q G4->D1: arvosana 1378
+k E8->F7: arvosana 1378
+b F8->E7: arvosana 1378
+r H8->G8: arvosana 1378
+p A7->A6: arvosana 1378
+p A7->A5: arvosana 1378
+p B7->B6: arvosana 1378
+p B7->B5: arvosana 1378
+p D7->D6: arvosana 1378
+p E5->E4: arvosana 1378
+p G7->G6: arvosana 1378
+p G7->G5: arvosana 1378
+p H7->H6: arvosana 1378
+p H7->H5: arvosana 1378
+  ---------------------------------
+8 | r |   | b |   | k | b |   | r | musta
+  |-------------------------------|
+7 | p | p |   | p | P |   | p | p |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | N | p |   |   |   |
+  |-------------------------------|
+4 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   | P |
+  |-------------------------------|
+2 | P |   | P | P |   | P | q |   |
+  |-------------------------------|
+1 | R |   |   |   | K |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 1,187 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A2->A3: arvosana -1671
+P A2->A4: arvosana -1671
+P C2->C3: arvosana -1671
+P C2->C4: arvosana -1671
+P D2->D3: arvosana -1328
+P D2->D4: arvosana -1201
+P E7->F8: arvosana -1201
+P F2->F3: arvosana -1201
+P F2->F4: arvosana -1201
+P H3->H4: arvosana -1201
+R A1->B1: arvosana -1201
+R A1->C1: arvosana -1201
+R A1->D1: arvosana -1201
+K E1->C1: arvosana -927
+K E1->E2: arvosana -927
+K E1->D1: arvosana -927
+N D5->B6: arvosana -927
+N D5->C7: arvosana -890
+N D5->F6: arvosana -890
+N D5->F4: arvosana -890
+N D5->E3: arvosana -890
+N D5->C3: arvosana -890
+N D5->B4: arvosana -890
+R H1->G1: arvosana -890
+R H1->H2: arvosana -890
+R H1->F1: arvosana -890
+  ---------------------------------
+8 | r |   | b |   | k | b |   | r | musta
+  |-------------------------------|
+7 | p | p | N | p | P |   | p | p |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   |   | p |   |   |   |
+  |-------------------------------|
+4 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   | P |
+  |-------------------------------|
+2 | P |   | P | P |   | P | q |   |
+  |-------------------------------|
+1 | R |   |   |   | K |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 1,313 s.
+
+Odota. Tietokone tekee siirtonsa...
+k E8->E7: arvosana 1664
+k E8->F7: arvosana 1664
+  ---------------------------------
+8 | r |   | b |   |   | b |   | r | musta
+  |-------------------------------|
+7 | p | p | N | p | k |   | p | p |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   |   | p |   |   |   |
+  |-------------------------------|
+4 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   | P |
+  |-------------------------------|
+2 | P |   | P | P |   | P | q |   |
+  |-------------------------------|
+1 | R |   |   |   | K |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 0,194 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A2->A3: arvosana -1846
+P A2->A4: arvosana -1846
+P C2->C3: arvosana -1846
+P C2->C4: arvosana -1846
+P D2->D3: arvosana -1324
+P D2->D4: arvosana -1324
+P F2->F3: arvosana -1324
+P F2->F4: arvosana -1324
+P H3->H4: arvosana -1324
+R A1->B1: arvosana -1324
+R A1->C1: arvosana -1324
+R A1->D1: arvosana -1324
+K E1->C1: arvosana -940
+K E1->E2: arvosana -940
+K E1->D1: arvosana -940
+N C7->A8: arvosana -940
+N C7->E8: arvosana -940
+N C7->E6: arvosana -940
+N C7->D5: arvosana -940
+N C7->B5: arvosana -940
+N C7->A6: arvosana -940
+R H1->G1: arvosana -940
+R H1->H2: arvosana -940
+R H1->F1: arvosana -940
+  ---------------------------------
+8 | r |   | b |   |   | b |   | r | musta
+  |-------------------------------|
+7 | p | p | N | p | k |   | p | p |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   |   | p |   |   |   |
+  |-------------------------------|
+4 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   | P |
+  |-------------------------------|
+2 | P |   | P | P |   | P | q |   |
+  |-------------------------------|
+1 |   |   | K | R |   |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 0,824 s.
+
+Odota. Tietokone tekee siirtonsa...
+r A8->B8: arvosana 1441
+q G2->H2: arvosana 1441
+q G2->G1: arvosana 1441
+q G2->F2: arvosana 1704
+q G2->G3: arvosana 1704
+q G2->G4: arvosana 1704
+q G2->G5: arvosana 1704
+q G2->G6: arvosana 1704
+q G2->H3: arvosana 1704
+q G2->H1: arvosana 1704
+q G2->F1: arvosana 1704
+q G2->F3: arvosana 1750
+q G2->E4: arvosana 1750
+q G2->D5: arvosana 1750
+q G2->C6: arvosana 1817
+k E7->D8: arvosana 1817
+k E7->F7: arvosana 1817
+k E7->D6: arvosana 1817
+k E7->F6: arvosana 1817
+r H8->G8: arvosana 1817
+p A7->A6: arvosana 1817
+p A7->A5: arvosana 1817
+p B7->B6: arvosana 1817
+p B7->B5: arvosana 1817
+p D7->D6: arvosana 1817
+p D7->D5: arvosana 1817
+p E5->E4: arvosana 1817
+p G7->G6: arvosana 1817
+p G7->G5: arvosana 1817
+p H7->H6: arvosana 1817
+p H7->H5: arvosana 1817
+  ---------------------------------
+8 | r |   | b |   |   | b |   | r | musta
+  |-------------------------------|
+7 | p | p | N | p | k |   | p | p |
+  |-------------------------------|
+6 |   |   | q |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   |   | p |   |   |   |
+  |-------------------------------|
+4 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   | P |
+  |-------------------------------|
+2 | P |   | P | P |   | P |   |   |
+  |-------------------------------|
+1 |   |   | K | R |   |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 1,560 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A2->A3: arvosana -1544
+P A2->A4: arvosana -1544
+P C2->C3: arvosana -1544
+P C2->C4: arvosana -1544
+P D2->D3: arvosana -1522
+P D2->D4: arvosana -1422
+P F2->F3: arvosana -1422
+P F2->F4: arvosana -1422
+P H3->H4: arvosana -1422
+R D1->E1: arvosana -1422
+R D1->F1: arvosana -1422
+R D1->G1: arvosana -1422
+K C1->B2: arvosana -1422
+K C1->B1: arvosana -1422
+N C7->A8: arvosana -822
+N C7->E8: arvosana -822
+N C7->E6: arvosana -822
+N C7->D5: arvosana -822
+N C7->B5: arvosana -822
+N C7->A6: arvosana -822
+R H1->G1: arvosana -822
+R H1->H2: arvosana -822
+R H1->F1: arvosana -822
+R H1->E1: arvosana -822
+  ---------------------------------
+8 | N |   | b |   |   | b |   | r | musta
+  |-------------------------------|
+7 | p | p |   | p | k |   | p | p |
+  |-------------------------------|
+6 |   |   | q |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   |   | p |   |   |   |
+  |-------------------------------|
+4 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   | P |
+  |-------------------------------|
+2 | P |   | P | P |   | P |   |   |
+  |-------------------------------|
+1 |   |   | K | R |   |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 1,448 s.
+
+Odota. Tietokone tekee siirtonsa...
+q C6->D6: arvosana 1225
+q C6->C5: arvosana 5832
+q C6->B6: arvosana 5832
+q C6->C7: arvosana 5832
+q C6->E6: arvosana 5832
+q C6->C4: arvosana 5832
+q C6->A6: arvosana 5889
+q C6->F6: arvosana 5889
+q C6->C3: arvosana 5889
+q C6->G6: arvosana 5889
+q C6->C2: arvosana 5889
+q C6->H6: arvosana 5889
+q C6->D5: arvosana 5889
+q C6->B5: arvosana 5889
+q C6->E4: arvosana 5889
+q C6->A4: arvosana 5889
+q C6->F3: arvosana 5889
+q C6->G2: arvosana 5889
+q C6->H1: arvosana 5889
+k E7->D8: arvosana 5890
+k E7->E8: arvosana 5890
+k E7->F7: arvosana 5890
+k E7->D6: arvosana 5890
+k E7->E6: arvosana 5890
+k E7->F6: arvosana 5890
+r H8->G8: arvosana 5890
+p A7->A6: arvosana 5890
+p A7->A5: arvosana 5890
+p B7->B6: arvosana 5890
+p B7->B5: arvosana 5890
+p D7->D6: arvosana 5904
+p D7->D5: arvosana 5925
+p E5->E4: arvosana 5925
+p G7->G6: arvosana 5925
+p G7->G5: arvosana 5925
+p H7->H6: arvosana 5925
+p H7->H5: arvosana 5925
+  ---------------------------------
+8 | N |   | b |   |   | b |   | r | musta
+  |-------------------------------|
+7 | p | p |   |   | k |   | p | p |
+  |-------------------------------|
+6 |   |   | q |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | p | p |   |   |   |
+  |-------------------------------|
+4 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   | P |
+  |-------------------------------|
+2 | P |   | P | P |   | P |   |   |
+  |-------------------------------|
+1 |   |   | K | R |   |   |   | R | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 2,406 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A2->A3: arvosana -985
+P A2->A4: arvosana -901
+P C2->C3: arvosana -901
+P C2->C4: arvosana -901
+P D2->D3: arvosana -867
+P D2->D4: arvosana -865
+P F2->F3: arvosana -865
+P F2->F4: arvosana -865
+P H3->H4: arvosana -865
+R D1->E1: arvosana -725
+R D1->F1: arvosana -725
+R D1->G1: arvosana -725
+K C1->B2: arvosana -725
+K C1->B1: arvosana -725
+N A8->C7: arvosana -725
+N A8->B6: arvosana -725
+R H1->G1: arvosana -725
+R H1->H2: arvosana -725
+R H1->F1: arvosana -725
+R H1->E1: arvosana -720
+  ---------------------------------
+8 | N |   | b |   |   | b |   | r | musta
+  |-------------------------------|
+7 | p | p |   |   | k |   | p | p |
+  |-------------------------------|
+6 |   |   | q |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | p | p |   |   |   |
+  |-------------------------------|
+4 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   | P |
+  |-------------------------------|
+2 | P |   | P | P |   | P |   |   |
+  |-------------------------------|
+1 |   |   | K | R | R |   |   |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 1,697 s.
+
+Odota. Tietokone tekee siirtonsa...
+b C8->D7: arvosana 1047
+b C8->E6: arvosana 1335
+b C8->F5: arvosana 1335
+b C8->G4: arvosana 1335
+b C8->H3: arvosana 1335
+q C6->D6: arvosana 1335
+q C6->C5: arvosana 1335
+q C6->B6: arvosana 1335
+q C6->C7: arvosana 1335
+q C6->E6: arvosana 1335
+q C6->C4: arvosana 1335
+q C6->A6: arvosana 1335
+q C6->F6: arvosana 1335
+q C6->C3: arvosana 1335
+q C6->G6: arvosana 1335
+q C6->C2: arvosana 1335
+q C6->H6: arvosana 1335
+q C6->D7: arvosana 1335
+q C6->B5: arvosana 1335
+q C6->E8: arvosana 1335
+q C6->A4: arvosana 1335
+k E7->D8: arvosana 5042
+k E7->E8: arvosana 5042
+k E7->D7: arvosana 5042
+k E7->F7: arvosana 5169
+k E7->D6: arvosana 5169
+k E7->E6: arvosana 5169
+k E7->F6: arvosana 5169
+r H8->G8: arvosana 5169
+p A7->A6: arvosana 5169
+p A7->A5: arvosana 5169
+p B7->B6: arvosana 5169
+p B7->B5: arvosana 5169
+p D5->D4: arvosana 5169
+p E5->E4: arvosana 5169
+p G7->G6: arvosana 5169
+p G7->G5: arvosana 5169
+p H7->H6: arvosana 5169
+p H7->H5: arvosana 5169
+  ---------------------------------
+8 | N |   | b |   |   | b |   | r | musta
+  |-------------------------------|
+7 | p | p |   |   |   | k | p | p |
+  |-------------------------------|
+6 |   |   | q |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | p | p |   |   |   |
+  |-------------------------------|
+4 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   | P |
+  |-------------------------------|
+2 | P |   | P | P |   | P |   |   |
+  |-------------------------------|
+1 |   |   | K | R | R |   |   |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 2,807 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A2->A3: arvosana -925
+P A2->A4: arvosana -902
+P C2->C3: arvosana -902
+P C2->C4: arvosana -902
+P D2->D3: arvosana -868
+P D2->D4: arvosana -866
+P F2->F3: arvosana -866
+P F2->F4: arvosana -866
+P H3->H4: arvosana -866
+K C1->B2: arvosana -866
+K C1->B1: arvosana -866
+N A8->C7: arvosana -866
+N A8->B6: arvosana -866
+R E1->F1: arvosana -866
+R E1->E2: arvosana -866
+R E1->G1: arvosana -850
+R E1->E3: arvosana -850
+R E1->H1: arvosana -850
+R E1->E4: arvosana -850
+R E1->E5: arvosana -655
+  ---------------------------------
+8 | N |   | b |   |   | b |   | r | musta
+  |-------------------------------|
+7 | p | p |   |   |   | k | p | p |
+  |-------------------------------|
+6 |   |   | q |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | p | R |   |   |   |
+  |-------------------------------|
+4 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   | P |
+  |-------------------------------|
+2 | P |   | P | P |   | P |   |   |
+  |-------------------------------|
+1 |   |   | K | R |   |   |   |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 2,281 s.
+
+Odota. Tietokone tekee siirtonsa...
+b C8->D7: arvosana 1429
+b C8->E6: arvosana 1429
+b C8->F5: arvosana 1429
+b C8->G4: arvosana 1429
+b C8->H3: arvosana 1520
+q C6->D6: arvosana 1520
+q C6->C5: arvosana 4990
+q C6->B6: arvosana 4990
+q C6->C7: arvosana 4990
+q C6->E6: arvosana 4990
+q C6->C4: arvosana 4990
+q C6->A6: arvosana 4990
+q C6->F6: arvosana 4990
+q C6->C3: arvosana 4990
+q C6->G6: arvosana 4990
+q C6->C2: arvosana 4990
+q C6->H6: arvosana 4990
+q C6->D7: arvosana 4990
+q C6->B5: arvosana 4990
+q C6->E8: arvosana 4990
+q C6->A4: arvosana 4990
+k F7->G8: arvosana 5079
+k F7->F6: arvosana 5079
+k F7->G6: arvosana 5079
+b F8->E7: arvosana 5079
+b F8->D6: arvosana 5079
+b F8->C5: arvosana 5079
+r H8->G8: arvosana 5079
+p A7->A6: arvosana 5079
+p A7->A5: arvosana 5079
+p B7->B6: arvosana 5079
+p B7->B5: arvosana 5079
+p D5->D4: arvosana 5079
+p G7->G6: arvosana 5079
+p G7->G5: arvosana 5079
+p H7->H6: arvosana 5079
+p H7->H5: arvosana 5079
+  ---------------------------------
+8 | N |   | b |   |   | b | k | r | musta
+  |-------------------------------|
+7 | p | p |   |   |   |   | p | p |
+  |-------------------------------|
+6 |   |   | q |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | p | R |   |   |   |
+  |-------------------------------|
+4 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   | P |
+  |-------------------------------|
+2 | P |   | P | P |   | P |   |   |
+  |-------------------------------|
+1 |   |   | K | R |   |   |   |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 2,920 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A2->A3: arvosana -785
+P A2->A4: arvosana -773
+P C2->C3: arvosana -773
+P C2->C4: arvosana -773
+P D2->D3: arvosana -773
+P D2->D4: arvosana -773
+P F2->F3: arvosana -773
+P F2->F4: arvosana -760
+P H3->H4: arvosana -759
+R D1->E1: arvosana -754
+R D1->F1: arvosana -754
+R D1->G1: arvosana -438
+R D1->H1: arvosana -438
+K C1->B2: arvosana -438
+K C1->B1: arvosana -438
+N A8->C7: arvosana -325
+N A8->B6: arvosana -311
+R E5->F5: arvosana -311
+R E5->E4: arvosana -311
+R E5->D5: arvosana -311
+R E5->E6: arvosana -311
+R E5->G5: arvosana -311
+R E5->E3: arvosana -311
+R E5->E7: arvosana -311
+R E5->H5: arvosana -311
+R E5->E2: arvosana -311
+R E5->E8: arvosana -311
+R E5->E1: arvosana -311
+  ---------------------------------
+8 |   |   | b |   |   | b | k | r | musta
+  |-------------------------------|
+7 | p | p |   |   |   |   | p | p |
+  |-------------------------------|
+6 |   | N | q |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | p | R |   |   |   |
+  |-------------------------------|
+4 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   | P |
+  |-------------------------------|
+2 | P |   | P | P |   | P |   |   |
+  |-------------------------------|
+1 |   |   | K | R |   |   |   |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 2,931 s.
+
+Odota. Tietokone tekee siirtonsa...
+b C8->D7: arvosana 811
+b C8->E6: arvosana 1088
+b C8->F5: arvosana 1088
+b C8->G4: arvosana 1309
+b C8->H3: arvosana 1383
+q C6->D6: arvosana 1383
+q C6->C5: arvosana 1619
+q C6->B6: arvosana 1619
+q C6->C7: arvosana 1619
+q C6->E6: arvosana 1619
+q C6->C4: arvosana 1619
+q C6->F6: arvosana 1619
+q C6->C3: arvosana 1619
+q C6->G6: arvosana 1619
+q C6->C2: arvosana 1619
+q C6->H6: arvosana 1619
+q C6->D7: arvosana 1619
+q C6->B5: arvosana 1619
+q C6->E8: arvosana 1619
+q C6->A4: arvosana 1619
+k G8->F7: arvosana 1619
+b F8->E7: arvosana 1619
+b F8->D6: arvosana 1619
+b F8->C5: arvosana 1619
+p A7->A6: arvosana 1619
+p A7->A5: arvosana 1619
+p A7->B6: arvosana 5333
+p D5->D4: arvosana 5333
+p G7->G6: arvosana 5333
+p G7->G5: arvosana 5333
+p H7->H6: arvosana 5333
+p H7->H5: arvosana 5333
+  ---------------------------------
+8 |   |   | b |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   |   | p | p |
+  |-------------------------------|
+6 |   | p | q |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | p | R |   |   |   |
+  |-------------------------------|
+4 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   | P |
+  |-------------------------------|
+2 | P |   | P | P |   | P |   |   |
+  |-------------------------------|
+1 |   |   | K | R |   |   |   |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 5,125 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A2->A3: arvosana -985
+P A2->A4: arvosana -985
+P C2->C3: arvosana -985
+P C2->C4: arvosana -985
+P D2->D3: arvosana -985
+P D2->D4: arvosana -985
+P F2->F3: arvosana -985
+P F2->F4: arvosana -797
+P H3->H4: arvosana -795
+R D1->E1: arvosana -782
+R D1->F1: arvosana -782
+R D1->G1: arvosana -696
+R D1->H1: arvosana -696
+K C1->B2: arvosana -696
+K C1->B1: arvosana -696
+R E5->F5: arvosana -696
+R E5->E4: arvosana -696
+R E5->D5: arvosana -696
+R E5->E6: arvosana -696
+R E5->G5: arvosana -696
+R E5->E3: arvosana -696
+R E5->E7: arvosana -696
+R E5->H5: arvosana -696
+R E5->E2: arvosana -696
+R E5->E8: arvosana -696
+R E5->E1: arvosana -696
+  ---------------------------------
+8 |   |   | b |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   |   | p | p |
+  |-------------------------------|
+6 |   | p | q |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | p | R |   |   |   |
+  |-------------------------------|
+4 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   | P |
+  |-------------------------------|
+2 | P |   | P | P |   | P |   |   |
+  |-------------------------------|
+1 |   |   | K |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 1,551 s.
+
+Odota. Tietokone tekee siirtonsa...
+b C8->D7: arvosana 1619
+b C8->E6: arvosana 1619
+b C8->F5: arvosana 1619
+b C8->G4: arvosana 1619
+b C8->H3: arvosana 1714
+q C6->D6: arvosana 1714
+q C6->C5: arvosana 1714
+q C6->C7: arvosana 1995
+q C6->E6: arvosana 1995
+q C6->C4: arvosana 1995
+q C6->F6: arvosana 1995
+q C6->C3: arvosana 1995
+q C6->G6: arvosana 1995
+q C6->C2: arvosana 1995
+q C6->H6: arvosana 1995
+q C6->D7: arvosana 1995
+q C6->B5: arvosana 1995
+q C6->E8: arvosana 1995
+q C6->A4: arvosana 1995
+k G8->F7: arvosana 1995
+b F8->E7: arvosana 1995
+b F8->D6: arvosana 1995
+b F8->C5: arvosana 1995
+p B6->B5: arvosana 1995
+p D5->D4: arvosana 1995
+p G7->G6: arvosana 1995
+p G7->G5: arvosana 1995
+p H7->H6: arvosana 1995
+p H7->H5: arvosana 1995
+  ---------------------------------
+8 |   |   | b |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p | q |   |   |   | p | p |
+  |-------------------------------|
+6 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | p | R |   |   |   |
+  |-------------------------------|
+4 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   | P |
+  |-------------------------------|
+2 | P |   | P | P |   | P |   |   |
+  |-------------------------------|
+1 |   |   | K |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 2,166 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A2->A3: arvosana -1266
+P A2->A4: arvosana -1266
+P C2->C3: arvosana -1091
+P C2->C4: arvosana -1091
+P D2->D3: arvosana -1091
+P D2->D4: arvosana -900
+P F2->F3: arvosana -900
+P F2->F4: arvosana -423
+P H3->H4: arvosana -423
+R G1->H1: arvosana -423
+R G1->F1: arvosana -423
+R G1->G2: arvosana -423
+R G1->E1: arvosana -423
+R G1->G3: arvosana -423
+R G1->D1: arvosana -423
+R G1->G4: arvosana -423
+R G1->G5: arvosana -423
+R G1->G6: arvosana -423
+R G1->G7: arvosana -423
+K C1->B2: arvosana -423
+K C1->B1: arvosana -423
+K C1->D1: arvosana -423
+R E5->F5: arvosana -423
+R E5->E4: arvosana -423
+R E5->D5: arvosana -193
+R E5->E6: arvosana -193
+R E5->G5: arvosana -1
+R E5->E3: arvosana -1
+R E5->E7: arvosana -1
+R E5->H5: arvosana -1
+R E5->E2: arvosana -1
+R E5->E8: arvosana -1
+R E5->E1: arvosana -1
+  ---------------------------------
+8 |   |   | b |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p | q |   |   |   | p | p |
+  |-------------------------------|
+6 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | p |   |   | R |   |
+  |-------------------------------|
+4 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   | P |
+  |-------------------------------|
+2 | P |   | P | P |   | P |   |   |
+  |-------------------------------|
+1 |   |   | K |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 3,400 s.
+
+Odota. Tietokone tekee siirtonsa...
+b C8->D7: arvosana 1626
+b C8->E6: arvosana 1628
+b C8->F5: arvosana 1628
+b C8->G4: arvosana 1628
+b C8->H3: arvosana 1712
+q C7->D7: arvosana 1712
+q C7->C6: arvosana 1712
+q C7->E7: arvosana 1712
+q C7->C5: arvosana 1712
+q C7->F7: arvosana 1712
+q C7->C4: arvosana 1712
+q C7->C3: arvosana 1712
+q C7->C2: arvosana 1712
+q C7->D8: arvosana 1712
+q C7->D6: arvosana 1712
+q C7->B8: arvosana 1712
+q C7->E5: arvosana 1712
+q C7->F4: arvosana 1712
+q C7->G3: arvosana 1712
+q C7->H2: arvosana 1712
+k G8->F7: arvosana 1712
+b F8->E7: arvosana 1712
+b F8->D6: arvosana 1712
+b F8->C5: arvosana 1712
+p B6->B5: arvosana 1712
+p D5->D4: arvosana 1712
+p G7->G6: arvosana 1712
+p H7->H6: arvosana 1712
+p H7->H5: arvosana 1712
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p | q |   |   |   | p | p |
+  |-------------------------------|
+6 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | p |   |   | R |   |
+  |-------------------------------|
+4 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+3 |   | P |   |   |   |   |   | b |
+  |-------------------------------|
+2 | P |   | P | P |   | P |   |   |
+  |-------------------------------|
+1 |   |   | K |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 3,381 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A2->A3: arvosana -106
+P A2->A4: arvosana -106
+P C2->C3: arvosana -80
+P C2->C4: arvosana -80
+P D2->D3: arvosana -80
+P D2->D4: arvosana -80
+P F2->F3: arvosana -80
+P F2->F4: arvosana -80
+R G1->H1: arvosana -80
+R G1->F1: arvosana -80
+R G1->G2: arvosana -80
+R G1->E1: arvosana -80
+R G1->G3: arvosana -80
+R G1->D1: arvosana -80
+R G1->G4: arvosana -80
+K C1->B2: arvosana -80
+K C1->B1: arvosana -80
+K C1->D1: arvosana -80
+R G5->H5: arvosana -80
+R G5->G4: arvosana -80
+R G5->F5: arvosana -80
+R G5->G6: arvosana -80
+R G5->G3: arvosana -80
+R G5->E5: arvosana -80
+R G5->G7: arvosana -80
+R G5->G2: arvosana -80
+R G5->D5: arvosana -80
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p | q |   |   |   | p | p |
+  |-------------------------------|
+6 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | p |   |   | R |   |
+  |-------------------------------|
+4 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+3 |   | P | P |   |   |   |   | b |
+  |-------------------------------|
+2 | P |   |   | P |   | P |   |   |
+  |-------------------------------|
+1 |   |   | K |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 1,720 s.
+
+Odota. Tietokone tekee siirtonsa...
+b H3->G2: arvosana 1419
+b H3->G4: arvosana 1419
+b H3->F1: arvosana 1419
+b H3->F5: arvosana 1419
+b H3->E6: arvosana 1723
+b H3->D7: arvosana 1723
+b H3->C8: arvosana 1723
+q C7->D7: arvosana 1723
+q C7->C6: arvosana 1723
+q C7->C8: arvosana 1723
+q C7->E7: arvosana 1723
+q C7->C5: arvosana 1723
+q C7->F7: arvosana 1731
+q C7->C4: arvosana 1731
+q C7->C3: arvosana 1731
+q C7->D8: arvosana 1731
+q C7->D6: arvosana 1731
+q C7->B8: arvosana 1731
+q C7->E5: arvosana 1731
+q C7->F4: arvosana 1731
+q C7->G3: arvosana 1731
+q C7->H2: arvosana 1731
+k G8->F7: arvosana 1731
+b F8->E7: arvosana 1731
+b F8->D6: arvosana 1731
+b F8->C5: arvosana 1731
+p B6->B5: arvosana 1731
+p B4->C3: arvosana 1900
+p D5->D4: arvosana 1900
+p G7->G6: arvosana 1900
+p H7->H6: arvosana 1900
+p H7->H5: arvosana 1900
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p | q |   |   |   | p | p |
+  |-------------------------------|
+6 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | p |   |   | R |   |
+  |-------------------------------|
+4 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+3 |   | P | p |   |   |   |   | b |
+  |-------------------------------|
+2 | P |   |   | P |   | P |   |   |
+  |-------------------------------|
+1 |   |   | K |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 4,653 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A2->A3: arvosana -1406
+P A2->A4: arvosana -1308
+P B3->B4: arvosana -979
+P D2->C3: arvosana -979
+P D2->D3: arvosana -979
+P D2->D4: arvosana -979
+P F2->F3: arvosana -979
+P F2->F4: arvosana -979
+R G1->H1: arvosana -979
+R G1->F1: arvosana -979
+R G1->G2: arvosana -979
+R G1->E1: arvosana -979
+R G1->G3: arvosana -979
+R G1->D1: arvosana -979
+R G1->G4: arvosana -979
+K C1->C2: arvosana -979
+K C1->B1: arvosana -979
+K C1->D1: arvosana -979
+R G5->H5: arvosana -979
+R G5->G4: arvosana -979
+R G5->F5: arvosana -979
+R G5->G6: arvosana -979
+R G5->G3: arvosana -979
+R G5->E5: arvosana -979
+R G5->G7: arvosana -979
+R G5->G2: arvosana -979
+R G5->D5: arvosana -979
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p | q |   |   |   | p | p |
+  |-------------------------------|
+6 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | p |   |   | R |   |
+  |-------------------------------|
+4 |   | P |   |   |   |   |   |   |
+  |-------------------------------|
+3 |   |   | p |   |   |   |   | b |
+  |-------------------------------|
+2 | P |   |   | P |   | P |   |   |
+  |-------------------------------|
+1 |   |   | K |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 3,370 s.
+
+Odota. Tietokone tekee siirtonsa...
+b H3->G2: arvosana 1834
+b H3->G4: arvosana 1845
+b H3->F1: arvosana 1845
+b H3->F5: arvosana 1920
+b H3->E6: arvosana 1920
+b H3->D7: arvosana 1920
+b H3->C8: arvosana 1920
+q C7->D7: arvosana 1920
+q C7->C6: arvosana 1920
+q C7->C8: arvosana 1920
+q C7->E7: arvosana 1920
+q C7->C5: arvosana 1920
+q C7->F7: arvosana 1920
+q C7->C4: arvosana 1920
+q C7->D8: arvosana 1920
+q C7->D6: arvosana 1920
+q C7->B8: arvosana 1920
+q C7->E5: arvosana 1920
+q C7->F4: arvosana 1920
+q C7->G3: arvosana 1920
+q C7->H2: arvosana 1920
+k G8->F7: arvosana 1920
+b F8->E7: arvosana 1920
+b F8->D6: arvosana 1920
+b F8->C5: arvosana 1920
+b F8->B4: arvosana 1920
+p B6->B5: arvosana 1920
+p C3->C2: arvosana 1920
+p C3->D2: arvosana 6425
+p D5->D4: arvosana 6425
+p G7->G6: arvosana 6425
+p H7->H6: arvosana 6425
+p H7->H5: arvosana 6425
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p | q |   |   |   | p | p |
+  |-------------------------------|
+6 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | p |   |   | R |   |
+  |-------------------------------|
+4 |   | P |   |   |   |   |   |   |
+  |-------------------------------|
+3 |   |   |   |   |   |   |   | b |
+  |-------------------------------|
+2 | P |   |   | p |   | P |   |   |
+  |-------------------------------|
+1 |   |   | K |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 9,948 s.
+
+Odota. Tietokone tekee siirtonsa...
+K C1->B2: arvosana -888
+K C1->D2: arvosana -888
+K C1->B1: arvosana -888
+K C1->D1: arvosana -888
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p | q |   |   |   | p | p |
+  |-------------------------------|
+6 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | p |   |   | R |   |
+  |-------------------------------|
+4 |   | P |   |   |   |   |   |   |
+  |-------------------------------|
+3 |   |   |   |   |   |   |   | b |
+  |-------------------------------|
+2 | P | K |   | p |   | P |   |   |
+  |-------------------------------|
+1 |   |   |   |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 0,534 s.
+
+Odota. Tietokone tekee siirtonsa...
+b H3->G2: arvosana 6444
+b H3->G4: arvosana 6444
+b H3->F1: arvosana 6444
+b H3->F5: arvosana 6446
+b H3->E6: arvosana 6455
+b H3->D7: arvosana 6455
+b H3->C8: arvosana 6455
+q C7->D7: arvosana 6455
+q C7->C6: arvosana 6455
+q C7->C8: arvosana 6455
+q C7->E7: arvosana 6455
+q C7->C5: arvosana 6455
+q C7->F7: arvosana 6455
+q C7->C4: arvosana 6455
+q C7->C3: arvosana 6455
+q C7->C2: arvosana 6455
+q C7->C1: arvosana 6455
+q C7->D8: arvosana 6455
+q C7->D6: arvosana 6455
+q C7->B8: arvosana 6455
+q C7->E5: arvosana 6455
+q C7->F4: arvosana 6455
+q C7->G3: arvosana 6455
+q C7->H2: arvosana 6455
+k G8->F7: arvosana 6455
+b F8->E7: arvosana 6455
+b F8->D6: arvosana 6455
+b F8->C5: arvosana 6455
+b F8->B4: arvosana 6455
+p B6->B5: arvosana 6455
+p D2->D1: arvosana 6455
+p D5->D4: arvosana 6455
+p G7->G6: arvosana 6455
+p H7->H6: arvosana 6649
+p H7->H5: arvosana 6649
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p | q |   |   |   | p |   |
+  |-------------------------------|
+6 |   | p |   |   |   |   |   | p |
+  |-------------------------------|
+5 |   |   |   | p |   |   | R |   |
+  |-------------------------------|
+4 |   | P |   |   |   |   |   |   |
+  |-------------------------------|
+3 |   |   |   |   |   |   |   | b |
+  |-------------------------------|
+2 | P | K |   | p |   | P |   |   |
+  |-------------------------------|
+1 |   |   |   |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 3,84 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A2->A3: arvosana -1807
+P A2->A4: arvosana -1807
+P B4->B5: arvosana -1807
+P F2->F3: arvosana -1807
+P F2->F4: arvosana -1785
+R G1->H1: arvosana -1778
+R G1->F1: arvosana -1778
+R G1->G2: arvosana -1778
+R G1->E1: arvosana -1778
+R G1->G3: arvosana -1778
+R G1->D1: arvosana -1770
+R G1->G4: arvosana -1770
+R G1->C1: arvosana -1770
+R G1->B1: arvosana -1770
+R G1->A1: arvosana -1770
+K B2->A3: arvosana -1770
+K B2->B3: arvosana -1770
+K B2->A1: arvosana -1770
+K B2->B1: arvosana -1770
+R G5->H5: arvosana -1216
+R G5->G4: arvosana -1216
+R G5->F5: arvosana -1216
+R G5->G6: arvosana -1216
+R G5->G3: arvosana -1114
+R G5->E5: arvosana -1114
+R G5->G7: arvosana -1114
+R G5->G2: arvosana -1114
+R G5->D5: arvosana -1114
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p | q |   |   |   | p |   |
+  |-------------------------------|
+6 |   | p |   |   |   |   |   | p |
+  |-------------------------------|
+5 |   |   |   | p |   |   |   |   |
+  |-------------------------------|
+4 |   | P |   |   |   |   |   |   |
+  |-------------------------------|
+3 |   |   |   |   |   |   | R | b |
+  |-------------------------------|
+2 | P | K |   | p |   | P |   |   |
+  |-------------------------------|
+1 |   |   |   |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 9,857 s.
+
+Odota. Tietokone tekee siirtonsa...
+b H3->G2: arvosana 6443
+b H3->G4: arvosana 6446
+b H3->F1: arvosana 6446
+b H3->F5: arvosana 6446
+b H3->E6: arvosana 6446
+b H3->D7: arvosana 6446
+b H3->C8: arvosana 6446
+q C7->D7: arvosana 6446
+q C7->C6: arvosana 6446
+q C7->C8: arvosana 6446
+q C7->E7: arvosana 6446
+q C7->C5: arvosana 6446
+q C7->F7: arvosana 6446
+q C7->C4: arvosana 6446
+q C7->C3: arvosana 6446
+q C7->C2: arvosana 6446
+q C7->C1: arvosana 6446
+q C7->D8: arvosana 6446
+q C7->D6: arvosana 6446
+q C7->B8: arvosana 6446
+q C7->E5: arvosana 6446
+q C7->F4: arvosana 6446
+q C7->G3: arvosana 6446
+k G8->F7: arvosana 6446
+k G8->H7: arvosana 6446
+b F8->E7: arvosana 6446
+b F8->D6: arvosana 6446
+b F8->C5: arvosana 6446
+b F8->B4: arvosana 6446
+r H8->H7: arvosana 6446
+p B6->B5: arvosana 6446
+p D2->D1: arvosana 6446
+p D5->D4: arvosana 6446
+p G7->G6: arvosana 6446
+p G7->G5: arvosana 6446
+p H6->H5: arvosana 6446
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p | q |   |   |   | p |   |
+  |-------------------------------|
+6 |   | p |   |   |   |   |   | p |
+  |-------------------------------|
+5 |   |   |   | p |   |   |   |   |
+  |-------------------------------|
+4 |   | P |   |   |   |   | b |   |
+  |-------------------------------|
+3 |   |   |   |   |   |   | R |   |
+  |-------------------------------|
+2 | P | K |   | p |   | P |   |   |
+  |-------------------------------|
+1 |   |   |   |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 4,133 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A2->A3: arvosana -1287
+P A2->A4: arvosana -1287
+P B4->B5: arvosana -1287
+P F2->F3: arvosana -1287
+P F2->F4: arvosana -1229
+R G1->H1: arvosana -1229
+R G1->F1: arvosana -1229
+R G1->G2: arvosana -1229
+R G1->E1: arvosana -1229
+R G1->D1: arvosana -1229
+R G1->C1: arvosana -1229
+R G1->B1: arvosana -1229
+R G1->A1: arvosana -1229
+K B2->A3: arvosana -1229
+K B2->B3: arvosana -1229
+K B2->A1: arvosana -1229
+K B2->B1: arvosana -1229
+R G3->H3: arvosana -1229
+R G3->G2: arvosana -1229
+R G3->F3: arvosana -1229
+R G3->G4: arvosana -985
+R G3->E3: arvosana -985
+R G3->D3: arvosana -985
+R G3->C3: arvosana -985
+R G3->B3: arvosana -985
+R G3->A3: arvosana -985
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p | q |   |   |   | p |   |
+  |-------------------------------|
+6 |   | p |   |   |   |   |   | p |
+  |-------------------------------|
+5 |   |   |   | p |   |   |   |   |
+  |-------------------------------|
+4 |   | P |   |   |   |   | R |   |
+  |-------------------------------|
+3 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 | P | K |   | p |   | P |   |   |
+  |-------------------------------|
+1 |   |   |   |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 4,755 s.
+
+Odota. Tietokone tekee siirtonsa...
+q C7->D7: arvosana 1614
+q C7->C6: arvosana 1668
+q C7->C8: arvosana 1668
+q C7->E7: arvosana 2258
+q C7->C5: arvosana 2258
+q C7->F7: arvosana 2258
+q C7->C4: arvosana 2258
+q C7->C3: arvosana 5207
+q C7->C2: arvosana 5207
+q C7->C1: arvosana 5207
+q C7->D8: arvosana 5207
+q C7->D6: arvosana 5207
+q C7->B8: arvosana 5207
+q C7->E5: arvosana 6004
+q C7->F4: arvosana 6004
+q C7->G3: arvosana 6004
+q C7->H2: arvosana 6004
+k G8->F7: arvosana 6004
+k G8->H7: arvosana 6105
+b F8->E7: arvosana 6105
+b F8->D6: arvosana 6105
+b F8->C5: arvosana 6105
+b F8->B4: arvosana 6105
+r H8->H7: arvosana 6105
+p B6->B5: arvosana 6105
+p D2->D1: arvosana 6105
+p D5->D4: arvosana 6105
+p G7->G6: arvosana 6105
+p G7->G5: arvosana 6123
+p H6->H5: arvosana 6437
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p | q |   |   |   | p |   |
+  |-------------------------------|
+6 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | p |   |   |   | p |
+  |-------------------------------|
+4 |   | P |   |   |   |   | R |   |
+  |-------------------------------|
+3 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 | P | K |   | p |   | P |   |   |
+  |-------------------------------|
+1 |   |   |   |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 3,372 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A2->A3: arvosana -1498
+P A2->A4: arvosana -1498
+P B4->B5: arvosana -1498
+P F2->F3: arvosana -1498
+P F2->F4: arvosana -1498
+R G1->H1: arvosana -1498
+R G1->F1: arvosana -1498
+R G1->G2: arvosana -1498
+R G1->E1: arvosana -1498
+R G1->G3: arvosana -1498
+R G1->D1: arvosana -1454
+R G1->C1: arvosana -1454
+R G1->B1: arvosana -1454
+R G1->A1: arvosana -1454
+K B2->A3: arvosana -1454
+K B2->B3: arvosana -1454
+K B2->A1: arvosana -1454
+K B2->B1: arvosana -1454
+R G4->H4: arvosana -985
+R G4->G3: arvosana -744
+R G4->F4: arvosana -744
+R G4->G5: arvosana -559
+R G4->G2: arvosana -559
+R G4->E4: arvosana -559
+R G4->G6: arvosana -559
+R G4->D4: arvosana -559
+R G4->G7: arvosana -559
+R G4->C4: arvosana -559
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p | q |   |   |   | p |   |
+  |-------------------------------|
+6 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | p |   |   | R | p |
+  |-------------------------------|
+4 |   | P |   |   |   |   |   |   |
+  |-------------------------------|
+3 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 | P | K |   | p |   | P |   |   |
+  |-------------------------------|
+1 |   |   |   |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 5,418 s.
+
+Odota. Tietokone tekee siirtonsa...
+q C7->D7: arvosana 1604
+q C7->C6: arvosana 1668
+q C7->C8: arvosana 1668
+q C7->E7: arvosana 6102
+q C7->C5: arvosana 6102
+q C7->F7: arvosana 6102
+q C7->C4: arvosana 6102
+q C7->C3: arvosana 6102
+q C7->C2: arvosana 6102
+q C7->C1: arvosana 6102
+q C7->D8: arvosana 6102
+q C7->D6: arvosana 6102
+q C7->B8: arvosana 6102
+q C7->E5: arvosana 6102
+q C7->F4: arvosana 6102
+q C7->G3: arvosana 6102
+q C7->H2: arvosana 6102
+k G8->F7: arvosana 6102
+k G8->H7: arvosana 6102
+b F8->E7: arvosana 6102
+b F8->D6: arvosana 6102
+b F8->C5: arvosana 6102
+b F8->B4: arvosana 6102
+r H8->H7: arvosana 6108
+r H8->H6: arvosana 6108
+p B6->B5: arvosana 6114
+p D2->D1: arvosana 6114
+p D5->D4: arvosana 6114
+p G7->G6: arvosana 6114
+p H5->H4: arvosana 6119
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p | q |   |   |   | p |   |
+  |-------------------------------|
+6 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | p |   |   | R |   |
+  |-------------------------------|
+4 |   | P |   |   |   |   |   | p |
+  |-------------------------------|
+3 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 | P | K |   | p |   | P |   |   |
+  |-------------------------------|
+1 |   |   |   |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 2,425 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A2->A3: arvosana -565
+P A2->A4: arvosana -565
+P B4->B5: arvosana -565
+P F2->F3: arvosana -565
+P F2->F4: arvosana -565
+R G1->H1: arvosana -565
+R G1->F1: arvosana -565
+R G1->G2: arvosana -565
+R G1->E1: arvosana -565
+R G1->G3: arvosana -565
+R G1->D1: arvosana -565
+R G1->G4: arvosana -565
+R G1->C1: arvosana -565
+R G1->B1: arvosana -565
+R G1->A1: arvosana -565
+K B2->A3: arvosana -565
+K B2->B3: arvosana -565
+K B2->A1: arvosana -565
+K B2->B1: arvosana -565
+R G5->H5: arvosana -565
+R G5->G4: arvosana -565
+R G5->F5: arvosana -565
+R G5->G6: arvosana -565
+R G5->G3: arvosana -565
+R G5->E5: arvosana -565
+R G5->G7: arvosana -565
+R G5->G2: arvosana -565
+R G5->D5: arvosana -565
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p | q |   |   |   | p |   |
+  |-------------------------------|
+6 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   | p |   |   | R |   |
+  |-------------------------------|
+4 |   | P |   |   |   |   |   | p |
+  |-------------------------------|
+3 | P |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 |   | K |   | p |   | P |   |   |
+  |-------------------------------|
+1 |   |   |   |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 2,570 s.
+
+Odota. Tietokone tekee siirtonsa...
+q C7->D7: arvosana 1520
+q C7->C6: arvosana 1674
+q C7->C8: arvosana 1674
+q C7->E7: arvosana 2021
+q C7->C5: arvosana 2021
+q C7->F7: arvosana 2259
+q C7->C4: arvosana 2259
+q C7->C3: arvosana 5201
+q C7->C2: arvosana 5201
+q C7->C1: arvosana 5201
+q C7->D8: arvosana 5201
+q C7->D6: arvosana 5201
+q C7->B8: arvosana 5201
+q C7->E5: arvosana 5201
+q C7->F4: arvosana 5201
+q C7->G3: arvosana 5201
+q C7->H2: arvosana 5201
+k G8->F7: arvosana 5201
+k G8->H7: arvosana 5201
+b F8->E7: arvosana 5201
+b F8->D6: arvosana 5201
+b F8->C5: arvosana 5201
+b F8->B4: arvosana 5201
+r H8->H7: arvosana 6071
+r H8->H6: arvosana 6074
+r H8->H5: arvosana 6074
+p B6->B5: arvosana 6090
+p D2->D1: arvosana 6090
+p D5->D4: arvosana 6090
+p G7->G6: arvosana 6090
+p H4->H3: arvosana 6090
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p | q |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   | p |   | p |   |   | R |   |
+  |-------------------------------|
+4 |   | P |   |   |   |   |   | p |
+  |-------------------------------|
+3 | P |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 |   | K |   | p |   | P |   |   |
+  |-------------------------------|
+1 |   |   |   |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 3,824 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A3->A4: arvosana -573
+P F2->F3: arvosana -573
+P F2->F4: arvosana -573
+R G1->H1: arvosana -573
+R G1->F1: arvosana -573
+R G1->G2: arvosana -573
+R G1->E1: arvosana -573
+R G1->G3: arvosana -573
+R G1->D1: arvosana -573
+R G1->G4: arvosana -573
+R G1->C1: arvosana -573
+R G1->B1: arvosana -573
+R G1->A1: arvosana -573
+K B2->B3: arvosana -573
+K B2->A2: arvosana -573
+K B2->A1: arvosana -573
+K B2->B1: arvosana -567
+R G5->H5: arvosana -567
+R G5->G4: arvosana -567
+R G5->F5: arvosana -567
+R G5->G6: arvosana -567
+R G5->G3: arvosana -567
+R G5->E5: arvosana -567
+R G5->G7: arvosana -567
+R G5->G2: arvosana -567
+R G5->D5: arvosana -567
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p | q |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   | p |   | p |   |   | R |   |
+  |-------------------------------|
+4 |   | P |   |   |   |   |   | p |
+  |-------------------------------|
+3 | P |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 |   |   |   | p |   | P |   |   |
+  |-------------------------------|
+1 |   | K |   |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 2,494 s.
+
+Odota. Tietokone tekee siirtonsa...
+q C7->D7: arvosana 1505
+q C7->C6: arvosana 1670
+q C7->C8: arvosana 1670
+q C7->E7: arvosana 1670
+q C7->C5: arvosana 1670
+q C7->F7: arvosana 1670
+q C7->C4: arvosana 1670
+q C7->C3: arvosana 1672
+q C7->C2: arvosana 1672
+q C7->C1: arvosana 1672
+q C7->D8: arvosana 1672
+q C7->D6: arvosana 1672
+q C7->B6: arvosana 1672
+q C7->B8: arvosana 1672
+q C7->E5: arvosana 1672
+q C7->A5: arvosana 1672
+q C7->F4: arvosana 1672
+q C7->G3: arvosana 1672
+q C7->H2: arvosana 1672
+k G8->F7: arvosana 1672
+k G8->H7: arvosana 1672
+b F8->E7: arvosana 1672
+b F8->D6: arvosana 1672
+b F8->C5: arvosana 1672
+b F8->B4: arvosana 1672
+r H8->H7: arvosana 1673
+r H8->H6: arvosana 1673
+r H8->H5: arvosana 1673
+p B7->B6: arvosana 1673
+p D2->D1: arvosana 1673
+p D5->D4: arvosana 1675
+p G7->G6: arvosana 1675
+p H4->H3: arvosana 1675
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p | q |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   | p |   |   |   |   | R |   |
+  |-------------------------------|
+4 |   | P |   | p |   |   |   | p |
+  |-------------------------------|
+3 | P |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 |   |   |   | p |   | P |   |   |
+  |-------------------------------|
+1 |   | K |   |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 4,519 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A3->A4: arvosana -583
+P F2->F3: arvosana -583
+P F2->F4: arvosana -583
+R G1->H1: arvosana -583
+R G1->F1: arvosana -583
+R G1->G2: arvosana -583
+R G1->E1: arvosana -583
+R G1->G3: arvosana -583
+R G1->D1: arvosana -583
+R G1->G4: arvosana -583
+R G1->C1: arvosana -583
+K B1->A2: arvosana -583
+K B1->B2: arvosana -583
+K B1->A1: arvosana -583
+R G5->H5: arvosana -583
+R G5->G4: arvosana -579
+R G5->F5: arvosana -574
+R G5->G6: arvosana -571
+R G5->G3: arvosana -571
+R G5->E5: arvosana -571
+R G5->G7: arvosana -571
+R G5->G2: arvosana -571
+R G5->D5: arvosana -571
+R G5->C5: arvosana -571
+R G5->B5: arvosana -571
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p | q |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   | R |   |
+  |-------------------------------|
+5 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   | P |   | p |   |   |   | p |
+  |-------------------------------|
+3 | P |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 |   |   |   | p |   | P |   |   |
+  |-------------------------------|
+1 |   | K |   |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 2,761 s.
+
+Odota. Tietokone tekee siirtonsa...
+q C7->D7: arvosana 1678
+q C7->C6: arvosana 1678
+q C7->C8: arvosana 1678
+q C7->E7: arvosana 1679
+q C7->C5: arvosana 1679
+q C7->F7: arvosana 1679
+q C7->C4: arvosana 1679
+q C7->C3: arvosana 1679
+q C7->C2: arvosana 1679
+q C7->C1: arvosana 1679
+q C7->D8: arvosana 1679
+q C7->D6: arvosana 1679
+q C7->B6: arvosana 1679
+q C7->B8: arvosana 1679
+q C7->E5: arvosana 1679
+q C7->A5: arvosana 1679
+q C7->F4: arvosana 1679
+q C7->G3: arvosana 1679
+q C7->H2: arvosana 1679
+k G8->F7: arvosana 1679
+k G8->H7: arvosana 1679
+b F8->E7: arvosana 1679
+b F8->D6: arvosana 1679
+b F8->C5: arvosana 1679
+b F8->B4: arvosana 1679
+r H8->H7: arvosana 1681
+r H8->H6: arvosana 1681
+r H8->H5: arvosana 1681
+p B7->B6: arvosana 1681
+p D2->D1: arvosana 5084
+p D4->D3: arvosana 5084
+p H4->H3: arvosana 5084
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p | q |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   | R |   |
+  |-------------------------------|
+5 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   | P |   | p |   |   |   | p |
+  |-------------------------------|
+3 | P |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 |   |   |   |   |   | P |   |   |
+  |-------------------------------|
+1 |   | K |   | q |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 4,82 s.
+
+Odota. Tietokone tekee siirtonsa...
+R G1->D1: arvosana -955
+K B1->A2: arvosana -955
+K B1->B2: arvosana -955
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p | q |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   | R |   |
+  |-------------------------------|
+5 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   | P |   | p |   |   |   | p |
+  |-------------------------------|
+3 | P |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 |   |   |   |   |   | P |   |   |
+  |-------------------------------|
+1 |   | K |   | R |   |   |   |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 0,172 s.
+
+Odota. Tietokone tekee siirtonsa...
+q C7->D7: arvosana 1363
+q C7->C6: arvosana 1363
+q C7->C8: arvosana 1435
+q C7->E7: arvosana 1435
+q C7->C5: arvosana 1435
+q C7->F7: arvosana 1975
+q C7->C4: arvosana 5946
+q C7->C3: arvosana 5946
+q C7->C2: arvosana 5946
+q C7->C1: arvosana 5946
+q C7->D8: arvosana 5946
+q C7->D6: arvosana 5946
+q C7->B6: arvosana 5946
+q C7->B8: arvosana 5946
+q C7->E5: arvosana 5947
+q C7->A5: arvosana 5947
+q C7->F4: arvosana 5947
+q C7->G3: arvosana 5947
+q C7->H2: arvosana 5947
+k G8->F7: arvosana 5947
+k G8->H7: arvosana 5947
+b F8->E7: arvosana 5947
+b F8->D6: arvosana 5947
+b F8->C5: arvosana 5947
+b F8->B4: arvosana 5947
+r H8->H7: arvosana 5947
+r H8->H6: arvosana 5947
+r H8->H5: arvosana 5947
+p B7->B6: arvosana 5947
+p D4->D3: arvosana 5947
+p H4->H3: arvosana 5947
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   | R |   |
+  |-------------------------------|
+5 |   | p |   |   | q |   |   |   |
+  |-------------------------------|
+4 |   | P |   | p |   |   |   | p |
+  |-------------------------------|
+3 | P |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 |   |   |   |   |   | P |   |   |
+  |-------------------------------|
+1 |   | K |   | R |   |   |   |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 1,111 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A3->A4: arvosana -1345
+P F2->F3: arvosana -1345
+P F2->F4: arvosana -1345
+R D1->E1: arvosana -1345
+R D1->C1: arvosana -1345
+R D1->D2: arvosana -1335
+R D1->F1: arvosana -1335
+R D1->D3: arvosana -1335
+R D1->G1: arvosana -563
+R D1->D4: arvosana -563
+R D1->H1: arvosana -563
+K B1->A2: arvosana -563
+K B1->B2: arvosana -563
+K B1->C2: arvosana -563
+K B1->A1: arvosana -563
+K B1->C1: arvosana -563
+R G6->H6: arvosana -563
+R G6->G5: arvosana -563
+R G6->F6: arvosana -563
+R G6->G7: arvosana -563
+R G6->G4: arvosana -563
+R G6->E6: arvosana -563
+R G6->G3: arvosana -563
+R G6->D6: arvosana -563
+R G6->G2: arvosana -563
+R G6->C6: arvosana -563
+R G6->G1: arvosana -563
+R G6->B6: arvosana -563
+R G6->A6: arvosana -563
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   | R |   |
+  |-------------------------------|
+5 |   | p |   |   | q |   |   |   |
+  |-------------------------------|
+4 |   | P |   | p |   |   |   | p |
+  |-------------------------------|
+3 | P |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 |   |   |   |   |   | P |   |   |
+  |-------------------------------|
+1 |   | K |   |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 0,546 s.
+
+Odota. Tietokone tekee siirtonsa...
+q E5->F5: arvosana 5964
+q E5->E4: arvosana 5964
+q E5->D5: arvosana 5964
+q E5->E6: arvosana 5964
+q E5->G5: arvosana 5964
+q E5->E3: arvosana 5964
+q E5->C5: arvosana 5964
+q E5->E7: arvosana 5964
+q E5->H5: arvosana 5964
+q E5->E2: arvosana 5964
+q E5->E8: arvosana 5964
+q E5->E1: arvosana 5964
+q E5->F6: arvosana 5964
+q E5->F4: arvosana 5964
+q E5->D6: arvosana 5964
+q E5->G3: arvosana 5964
+q E5->C7: arvosana 5964
+q E5->H2: arvosana 5964
+q E5->B8: arvosana 5964
+k G8->F7: arvosana 5964
+k G8->H7: arvosana 5964
+b F8->E7: arvosana 5964
+b F8->D6: arvosana 5964
+b F8->C5: arvosana 5964
+b F8->B4: arvosana 5964
+r H8->H7: arvosana 5964
+r H8->H6: arvosana 5964
+r H8->H5: arvosana 5964
+p B7->B6: arvosana 5964
+p D4->D3: arvosana 5964
+p H4->H3: arvosana 5964
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   | R |   |
+  |-------------------------------|
+5 |   | p |   |   |   | q |   |   |
+  |-------------------------------|
+4 |   | P |   | p |   |   |   | p |
+  |-------------------------------|
+3 | P |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 |   |   |   |   |   | P |   |   |
+  |-------------------------------|
+1 |   | K |   |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 0,833 s.
+
+Odota. Tietokone tekee siirtonsa...
+K B1->A2: arvosana -955
+K B1->B2: arvosana -679
+K B1->A1: arvosana 3863
+K B1->C1: arvosana 3863
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   | R |   |
+  |-------------------------------|
+5 |   | p |   |   |   | q |   |   |
+  |-------------------------------|
+4 |   | P |   | p |   |   |   | p |
+  |-------------------------------|
+3 | P |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 |   |   |   |   |   | P |   |   |
+  |-------------------------------|
+1 | K |   |   |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 0,662 s.
+
+Odota. Tietokone tekee siirtonsa...
+q F5->G5: arvosana 86
+q F5->F4: arvosana 1476
+q F5->E5: arvosana 1476
+q F5->F6: arvosana 1476
+q F5->H5: arvosana 1476
+q F5->F3: arvosana 1527
+q F5->D5: arvosana 1527
+q F5->F7: arvosana 1537
+q F5->F2: arvosana 1537
+q F5->C5: arvosana 1537
+q F5->G6: arvosana 1537
+q F5->G4: arvosana 1537
+q F5->E4: arvosana 1537
+q F5->E6: arvosana 1537
+q F5->H3: arvosana 1537
+q F5->D3: arvosana 1537
+q F5->D7: arvosana 1537
+q F5->C2: arvosana 1537
+q F5->C8: arvosana 1537
+q F5->B1: arvosana 1537
+k G8->F7: arvosana 1537
+k G8->H7: arvosana 1537
+b F8->E7: arvosana 1537
+b F8->D6: arvosana 1537
+b F8->C5: arvosana 1537
+b F8->B4: arvosana 1537
+r H8->H7: arvosana 1537
+r H8->H6: arvosana 1537
+r H8->H5: arvosana 1537
+p B7->B6: arvosana 1537
+p D4->D3: arvosana 1537
+p H4->H3: arvosana 1537
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   | q | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   | R |   |
+  |-------------------------------|
+5 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   | P |   | p |   |   |   | p |
+  |-------------------------------|
+3 | P |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 |   |   |   |   |   | P |   |   |
+  |-------------------------------|
+1 | K |   |   |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 2,742 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A3->A4: arvosana 3864
+P F2->F3: arvosana 3864
+P F2->F4: arvosana 3929
+R G1->H1: arvosana 3929
+R G1->F1: arvosana 3929
+R G1->G2: arvosana 3965
+R G1->E1: arvosana 3965
+R G1->G3: arvosana 3965
+R G1->D1: arvosana 3965
+R G1->G4: arvosana 3965
+R G1->C1: arvosana 3965
+R G1->G5: arvosana 3965
+R G1->B1: arvosana 3965
+K A1->B2: arvosana 3965
+K A1->B1: arvosana 3965
+R G6->H6: arvosana 3965
+R G6->G5: arvosana 3965
+R G6->F6: arvosana 3965
+R G6->G7: arvosana 3965
+R G6->G4: arvosana 3965
+R G6->E6: arvosana 3965
+R G6->G3: arvosana 3965
+R G6->D6: arvosana 3965
+R G6->G2: arvosana 3966
+R G6->C6: arvosana 3966
+R G6->B6: arvosana 3966
+R G6->A6: arvosana 3966
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   | q | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   | P |   | p |   |   |   | p |
+  |-------------------------------|
+3 | P |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 |   |   |   |   |   | P | R |   |
+  |-------------------------------|
+1 | K |   |   |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 1,221 s.
+
+Odota. Tietokone tekee siirtonsa...
+q F7->F6: arvosana 1477
+q F7->E7: arvosana 1539
+q F7->F5: arvosana 1539
+q F7->D7: arvosana 1539
+q F7->F4: arvosana 1539
+q F7->C7: arvosana 1539
+q F7->F3: arvosana 1539
+q F7->F2: arvosana 1539
+q F7->G6: arvosana 1539
+q F7->E6: arvosana 1539
+q F7->E8: arvosana 1539
+q F7->H5: arvosana 1539
+q F7->D5: arvosana 1539
+q F7->C4: arvosana 1539
+q F7->B3: arvosana 1539
+q F7->A2: arvosana 1539
+k G8->H7: arvosana 1539
+b F8->E7: arvosana 1539
+b F8->D6: arvosana 1539
+b F8->C5: arvosana 1539
+b F8->B4: arvosana 1539
+r H8->H7: arvosana 1539
+r H8->H6: arvosana 1539
+r H8->H5: arvosana 1539
+p B7->B6: arvosana 1539
+p D4->D3: arvosana 5957
+p G7->G6: arvosana 5957
+p G7->G5: arvosana 5957
+p H4->H3: arvosana 5957
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   | q | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   | P |   |   |   |   |   | p |
+  |-------------------------------|
+3 | P |   |   | p |   |   |   |   |
+  |-------------------------------|
+2 |   |   |   |   |   | P | R |   |
+  |-------------------------------|
+1 | K |   |   |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 3,690 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A3->A4: arvosana -77
+P F2->F3: arvosana -77
+P F2->F4: arvosana -77
+R G1->H1: arvosana -77
+R G1->F1: arvosana -77
+R G1->E1: arvosana -77
+R G1->D1: arvosana -77
+R G1->C1: arvosana -77
+R G1->B1: arvosana -77
+K A1->B2: arvosana -74
+K A1->B1: arvosana -74
+R G2->H2: arvosana -74
+R G2->G3: arvosana -74
+R G2->G4: arvosana -68
+R G2->G5: arvosana -68
+R G2->G6: arvosana 3859
+R G2->G7: arvosana 3859
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   | q | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   | R |   |
+  |-------------------------------|
+5 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   | P |   |   |   |   |   | p |
+  |-------------------------------|
+3 | P |   |   | p |   |   |   |   |
+  |-------------------------------|
+2 |   |   |   |   |   | P |   |   |
+  |-------------------------------|
+1 | K |   |   |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 0,581 s.
+
+Odota. Tietokone tekee siirtonsa...
+q F7->F6: arvosana 460
+q F7->E7: arvosana 1386
+q F7->F5: arvosana 1537
+q F7->D7: arvosana 1537
+q F7->F4: arvosana 1537
+q F7->C7: arvosana 5977
+q F7->F3: arvosana 5977
+q F7->F2: arvosana 5977
+q F7->G6: arvosana 5977
+q F7->E6: arvosana 5977
+q F7->E8: arvosana 5977
+q F7->D5: arvosana 5977
+q F7->C4: arvosana 5977
+q F7->B3: arvosana 5977
+q F7->A2: arvosana 5977
+k G8->H7: arvosana 5977
+b F8->E7: arvosana 5977
+b F8->D6: arvosana 5977
+b F8->C5: arvosana 5977
+b F8->B4: arvosana 5977
+r H8->H7: arvosana 5988
+r H8->H6: arvosana 5988
+r H8->H5: arvosana 5989
+p B7->B6: arvosana 5989
+p D3->D2: arvosana 6105
+p H4->H3: arvosana 6105
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   | q | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   | R |   |
+  |-------------------------------|
+5 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   | P |   |   |   |   |   | p |
+  |-------------------------------|
+3 | P |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 |   |   |   | p |   | P |   |   |
+  |-------------------------------|
+1 | K |   |   |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 1,924 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A3->A4: arvosana -1338
+P F2->F3: arvosana -1338
+P F2->F4: arvosana -1338
+R G1->H1: arvosana -1338
+R G1->F1: arvosana -1338
+R G1->G2: arvosana -1338
+R G1->E1: arvosana -1338
+R G1->G3: arvosana -1338
+R G1->D1: arvosana -1338
+R G1->G4: arvosana -1338
+R G1->C1: arvosana -1338
+R G1->G5: arvosana -1338
+R G1->B1: arvosana -1338
+K A1->B2: arvosana 22
+K A1->B1: arvosana 22
+R G6->H6: arvosana 22
+R G6->G5: arvosana 22
+R G6->F6: arvosana 22
+R G6->G7: arvosana 22
+R G6->G4: arvosana 22
+R G6->E6: arvosana 22
+R G6->G3: arvosana 22
+R G6->D6: arvosana 22
+R G6->G2: arvosana 22
+R G6->C6: arvosana 22
+R G6->B6: arvosana 22
+R G6->A6: arvosana 22
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   | q | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   | R |   |
+  |-------------------------------|
+5 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   | P |   |   |   |   |   | p |
+  |-------------------------------|
+3 | P |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 |   | K |   | p |   | P |   |   |
+  |-------------------------------|
+1 |   |   |   |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 1,82 s.
+
+Odota. Tietokone tekee siirtonsa...
+q F7->F6: arvosana 581
+q F7->E7: arvosana 5985
+q F7->F5: arvosana 5985
+q F7->D7: arvosana 5992
+q F7->F4: arvosana 5992
+q F7->C7: arvosana 6080
+q F7->F3: arvosana 6080
+q F7->F2: arvosana 6080
+q F7->G6: arvosana 6343
+q F7->E6: arvosana 6343
+q F7->E8: arvosana 6343
+q F7->D5: arvosana 6343
+q F7->C4: arvosana 6343
+q F7->B3: arvosana 6343
+q F7->A2: arvosana 6343
+k G8->H7: arvosana 6343
+b F8->E7: arvosana 6343
+b F8->D6: arvosana 6343
+b F8->C5: arvosana 6343
+b F8->B4: arvosana 6343
+r H8->H7: arvosana 6343
+r H8->H6: arvosana 6343
+r H8->H5: arvosana 6343
+p B7->B6: arvosana 6343
+p D2->D1: arvosana 6343
+p H4->H3: arvosana 6343
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   | q |   |
+  |-------------------------------|
+5 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   | P |   |   |   |   |   | p |
+  |-------------------------------|
+3 | P |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 |   | K |   | p |   | P |   |   |
+  |-------------------------------|
+1 |   |   |   |   |   |   | R |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 1,189 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A3->A4: arvosana -2617
+P F2->F3: arvosana -2617
+P F2->F4: arvosana -2617
+R G1->H1: arvosana -1495
+R G1->F1: arvosana -1495
+R G1->G2: arvosana -1495
+R G1->E1: arvosana -1495
+R G1->G3: arvosana -1495
+R G1->D1: arvosana -1484
+R G1->G4: arvosana -1484
+R G1->C1: arvosana -1484
+R G1->G5: arvosana -1484
+R G1->B1: arvosana -1484
+R G1->G6: arvosana -1335
+R G1->A1: arvosana -1335
+K B2->B3: arvosana -1335
+K B2->C3: arvosana -1335
+K B2->A2: arvosana -1335
+K B2->A1: arvosana -1335
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   | R |   |
+  |-------------------------------|
+5 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   | P |   |   |   |   |   | p |
+  |-------------------------------|
+3 | P |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 |   | K |   | p |   | P |   |   |
+  |-------------------------------|
+1 |   |   |   |   |   |   |   |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 0,343 s.
+
+Odota. Tietokone tekee siirtonsa...
+k G8->F7: arvosana 1172
+k G8->H7: arvosana 1172
+b F8->E7: arvosana 1172
+b F8->D6: arvosana 1172
+b F8->C5: arvosana 1172
+b F8->B4: arvosana 1172
+r H8->H7: arvosana 1172
+r H8->H6: arvosana 1334
+r H8->H5: arvosana 1334
+p B7->B6: arvosana 1334
+p D2->D1: arvosana 6347
+p H4->H3: arvosana 6347
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   | R |   |
+  |-------------------------------|
+5 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   | P |   |   |   |   |   | p |
+  |-------------------------------|
+3 | P |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 |   | K |   |   |   | P |   |   |
+  |-------------------------------|
+1 |   |   |   | q |   |   |   |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 0,557 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A3->A4: arvosana -1445
+P F2->F3: arvosana -1441
+P F2->F4: arvosana -1353
+R G6->H6: arvosana -1353
+R G6->G5: arvosana -1353
+R G6->F6: arvosana -1353
+R G6->G7: arvosana -1353
+R G6->G4: arvosana -1353
+R G6->E6: arvosana -1353
+R G6->G3: arvosana -1353
+R G6->D6: arvosana -1353
+R G6->G2: arvosana -1352
+R G6->C6: arvosana -1352
+R G6->G1: arvosana -1352
+R G6->B6: arvosana -1352
+R G6->A6: arvosana -1352
+K B2->C3: arvosana -1352
+K B2->A2: arvosana -1352
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   | P |   |   |   |   |   | p |
+  |-------------------------------|
+3 | P |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 |   | K |   |   |   | P | R |   |
+  |-------------------------------|
+1 |   |   |   | q |   |   |   |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 0,547 s.
+
+Odota. Tietokone tekee siirtonsa...
+k G8->F7: arvosana 6317
+k G8->H7: arvosana 6335
+b F8->E7: arvosana 6370
+b F8->D6: arvosana 6379
+b F8->C5: arvosana 6379
+b F8->B4: arvosana 6379
+r H8->H7: arvosana 6379
+r H8->H6: arvosana 6379
+r H8->H5: arvosana 6379
+p B7->B6: arvosana 6379
+q D1->E1: arvosana 6379
+q D1->C1: arvosana 6379
+q D1->D2: arvosana 6433
+q D1->F1: arvosana 6433
+q D1->B1: arvosana 6433
+q D1->D3: arvosana 6433
+q D1->G1: arvosana 6433
+q D1->A1: arvosana 6433
+q D1->D4: arvosana 6433
+q D1->H1: arvosana 6433
+q D1->D5: arvosana 6433
+q D1->D6: arvosana 6433
+q D1->D7: arvosana 6433
+q D1->D8: arvosana 6433
+q D1->E2: arvosana 6447
+q D1->C2: arvosana 6447
+q D1->F3: arvosana 6447
+q D1->B3: arvosana 6447
+q D1->G4: arvosana 6447
+q D1->A4: arvosana 6447
+q D1->H5: arvosana 6447
+p G7->G6: arvosana 6447
+p G7->G5: arvosana 6447
+p H4->H3: arvosana 6447
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   | P |   |   |   |   |   | p |
+  |-------------------------------|
+3 | P |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 |   | K |   |   | q | P | R |   |
+  |-------------------------------|
+1 |   |   |   |   |   |   |   |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 0,959 s.
+
+Odota. Tietokone tekee siirtonsa...
+K B2->B3: arvosana -1828
+K B2->C3: arvosana -1828
+K B2->A1: arvosana -1827
+K B2->B1: arvosana -1826
+K B2->C1: arvosana -1826
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   | P |   |   |   |   |   | p |
+  |-------------------------------|
+3 | P |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 |   |   |   |   | q | P | R |   |
+  |-------------------------------|
+1 |   | K |   |   |   |   |   |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 0,215 s.
+
+Odota. Tietokone tekee siirtonsa...
+k G8->F7: arvosana 6410
+k G8->H7: arvosana 6426
+b F8->E7: arvosana 6446
+b F8->D6: arvosana 6451
+b F8->C5: arvosana 6451
+b F8->B4: arvosana 6451
+r H8->H7: arvosana 6451
+r H8->H6: arvosana 6451
+r H8->H5: arvosana 6451
+p B7->B6: arvosana 6451
+q E2->F2: arvosana 6451
+q E2->E1: arvosana 6451
+q E2->D2: arvosana 6451
+q E2->E3: arvosana 6451
+q E2->C2: arvosana 6451
+q E2->E4: arvosana 6834
+q E2->B2: arvosana 6834
+q E2->E5: arvosana 6834
+q E2->A2: arvosana 6834
+q E2->E6: arvosana 6834
+q E2->E7: arvosana 6834
+q E2->E8: arvosana 6834
+q E2->F3: arvosana 6834
+q E2->F1: arvosana 6834
+q E2->D1: arvosana 6834
+q E2->D3: arvosana 6834
+q E2->G4: arvosana 6834
+q E2->C4: arvosana 6834
+q E2->H5: arvosana 6834
+p G7->G6: arvosana 6834
+p G7->G5: arvosana 6834
+p H4->H3: arvosana 6834
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   | P |   |   | q |   |   | p |
+  |-------------------------------|
+3 | P |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 |   |   |   |   |   | P | R |   |
+  |-------------------------------|
+1 |   | K |   |   |   |   |   |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 0,409 s.
+
+Odota. Tietokone tekee siirtonsa...
+K B1->A2: arvosana -1936
+K B1->B2: arvosana -1936
+K B1->A1: arvosana -1860
+K B1->C1: arvosana -1855
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   | P |   |   | q |   |   | p |
+  |-------------------------------|
+3 | P |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 |   |   |   |   |   | P | R |   |
+  |-------------------------------|
+1 |   |   | K |   |   |   |   |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 0,210 s.
+
+Odota. Tietokone tekee siirtonsa...
+k G8->F7: arvosana 6340
+k G8->H7: arvosana 6360
+b F8->E7: arvosana 6380
+b F8->D6: arvosana 6388
+b F8->C5: arvosana 6390
+b F8->B4: arvosana 6524
+r H8->H7: arvosana 6524
+r H8->H6: arvosana 6524
+r H8->H5: arvosana 6524
+p B7->B6: arvosana 6524
+q E4->F4: arvosana 6524
+q E4->E3: arvosana 6524
+q E4->D4: arvosana 6524
+q E4->E5: arvosana 6524
+q E4->G4: arvosana 6524
+q E4->E2: arvosana 6524
+q E4->C4: arvosana 6524
+q E4->E6: arvosana 6524
+q E4->E1: arvosana 6524
+q E4->B4: arvosana 6524
+q E4->E7: arvosana 6524
+q E4->E8: arvosana 6524
+q E4->F5: arvosana 6524
+q E4->F3: arvosana 6524
+q E4->D3: arvosana 6524
+q E4->D5: arvosana 6524
+q E4->G6: arvosana 6524
+q E4->G2: arvosana 6873
+q E4->C2: arvosana 6873
+q E4->C6: arvosana 6873
+q E4->H7: arvosana 6873
+q E4->B1: arvosana 6873
+p G7->G6: arvosana 6873
+p G7->G5: arvosana 6873
+p H4->H3: arvosana 6873
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   | P |   |   |   |   |   | p |
+  |-------------------------------|
+3 | P |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 |   |   |   |   |   | P | q |   |
+  |-------------------------------|
+1 |   |   | K |   |   |   |   |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 0,723 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A3->A4: arvosana -2046
+P F2->F3: arvosana -1963
+P F2->F4: arvosana -1947
+K C1->B2: arvosana -1947
+K C1->C2: arvosana -1947
+K C1->D2: arvosana -1947
+K C1->B1: arvosana -1947
+K C1->D1: arvosana -1947
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   | P |   |   |   | P |   | p |
+  |-------------------------------|
+3 | P |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 |   |   |   |   |   |   | q |   |
+  |-------------------------------|
+1 |   |   | K |   |   |   |   |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 0,90 s.
+
+Odota. Tietokone tekee siirtonsa...
+k G8->F7: arvosana 6833
+k G8->H7: arvosana 6850
+b F8->E7: arvosana 6885
+b F8->D6: arvosana 6885
+b F8->C5: arvosana 6885
+b F8->B4: arvosana 6885
+r H8->H7: arvosana 6885
+r H8->H6: arvosana 6885
+r H8->H5: arvosana 6885
+p B7->B6: arvosana 6885
+q G2->H2: arvosana 6885
+q G2->G1: arvosana 6885
+q G2->F2: arvosana 6954
+q G2->G3: arvosana 6954
+q G2->E2: arvosana 6954
+q G2->G4: arvosana 6954
+q G2->D2: arvosana 6954
+q G2->G5: arvosana 6954
+q G2->C2: arvosana 6954
+q G2->G6: arvosana 6954
+q G2->B2: arvosana 6954
+q G2->A2: arvosana 6969
+q G2->H3: arvosana 6969
+q G2->H1: arvosana 6969
+q G2->F1: arvosana 6969
+q G2->F3: arvosana 6969
+q G2->E4: arvosana 6969
+q G2->D5: arvosana 6969
+q G2->C6: arvosana 6969
+p G7->G6: arvosana 6969
+p G7->G5: arvosana 6969
+p H4->H3: arvosana 122852
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   | P |   |   |   | P |   |   |
+  |-------------------------------|
+3 | P |   |   |   |   |   |   | p |
+  |-------------------------------|
+2 |   |   |   |   |   |   | q |   |
+  |-------------------------------|
+1 |   |   | K |   |   |   |   |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 0,230 s.
+
+Odota. Tietokone tekee siirtonsa...
+P A3->A4: arvosana -122846
+P F4->F5: arvosana -122846
+K C1->B1: arvosana -122846
+K C1->D1: arvosana -122846
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   | p |   |   |   |   |   |   |
+  |-------------------------------|
+4 | P | P |   |   |   | P |   |   |
+  |-------------------------------|
+3 |   |   |   |   |   |   |   | p |
+  |-------------------------------|
+2 |   |   |   |   |   |   | q |   |
+  |-------------------------------|
+1 |   |   | K |   |   |   |   |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 0,74 s.
+
+Odota. Tietokone tekee siirtonsa...
+k G8->F7: arvosana 122815
+k G8->H7: arvosana 122838
+b F8->E7: arvosana 122855
+b F8->D6: arvosana 122867
+b F8->C5: arvosana 122867
+b F8->B4: arvosana 122867
+r H8->H7: arvosana 122867
+r H8->H6: arvosana 122867
+r H8->H5: arvosana 122867
+r H8->H4: arvosana 122867
+p B5->A4: arvosana 122950
+p B7->B6: arvosana 122950
+q G2->H2: arvosana 122950
+q G2->G1: arvosana 122950
+q G2->F2: arvosana 122950
+q G2->G3: arvosana 122950
+q G2->E2: arvosana 122950
+q G2->G4: arvosana 122950
+q G2->D2: arvosana 122950
+q G2->G5: arvosana 122950
+q G2->C2: arvosana 122950
+q G2->G6: arvosana 122950
+q G2->B2: arvosana 122950
+q G2->A2: arvosana 122950
+q G2->H1: arvosana 122950
+q G2->F1: arvosana 122950
+q G2->F3: arvosana 122950
+q G2->E4: arvosana 122950
+q G2->D5: arvosana 122950
+q G2->C6: arvosana 122950
+p G7->G6: arvosana 122950
+p G7->G5: arvosana 122950
+p H3->H2: arvosana 122950
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+4 | p | P |   |   |   | P |   |   |
+  |-------------------------------|
+3 |   |   |   |   |   |   |   | p |
+  |-------------------------------|
+2 |   |   |   |   |   |   | q |   |
+  |-------------------------------|
+1 |   |   | K |   |   |   |   |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 0,209 s.
+
+Odota. Tietokone tekee siirtonsa...
+P B4->B5: arvosana -122951
+P F4->F5: arvosana -122951
+K C1->B1: arvosana -122951
+K C1->D1: arvosana -122950
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+4 | p | P |   |   |   | P |   |   |
+  |-------------------------------|
+3 |   |   |   |   |   |   |   | p |
+  |-------------------------------|
+2 |   |   |   |   |   |   | q |   |
+  |-------------------------------|
+1 |   |   |   | K |   |   |   |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 0,57 s.
+
+Odota. Tietokone tekee siirtonsa...
+k G8->F7: arvosana 122920
+k G8->H7: arvosana 122940
+b F8->E7: arvosana 122961
+b F8->D6: arvosana 122970
+b F8->C5: arvosana 122970
+b F8->B4: arvosana 122970
+r H8->H7: arvosana 122970
+r H8->H6: arvosana 122970
+r H8->H5: arvosana 122970
+r H8->H4: arvosana 122970
+p A4->A3: arvosana 122970
+p B7->B6: arvosana 122970
+p B7->B5: arvosana 122970
+q G2->H2: arvosana 122970
+q G2->G1: arvosana 122970
+q G2->F2: arvosana 122970
+q G2->G3: arvosana 122970
+q G2->E2: arvosana 122970
+q G2->G4: arvosana 122970
+q G2->D2: arvosana 122970
+q G2->G5: arvosana 122970
+q G2->C2: arvosana 122970
+q G2->G6: arvosana 122970
+q G2->B2: arvosana 122970
+q G2->A2: arvosana 122970
+q G2->H1: arvosana 122970
+q G2->F1: arvosana 122970
+q G2->F3: arvosana 122970
+q G2->E4: arvosana 122970
+q G2->D5: arvosana 122970
+q G2->C6: arvosana 122970
+p G7->G6: arvosana 122970
+p G7->G5: arvosana 122970
+p H3->H2: arvosana 122971
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+4 | p | P |   |   |   | P |   |   |
+  |-------------------------------|
+3 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 |   |   |   |   |   |   | q | p |
+  |-------------------------------|
+1 |   |   |   | K |   |   |   |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 0,173 s.
+
+Odota. Tietokone tekee siirtonsa...
+P B4->B5: arvosana -122973
+P F4->F5: arvosana -122971
+K D1->C1: arvosana -122970
+K D1->E1: arvosana -122970
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+4 | p | P |   |   |   | P |   |   |
+  |-------------------------------|
+3 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 |   |   |   |   |   |   | q | p |
+  |-------------------------------|
+1 |   |   | K |   |   |   |   |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 0,49 s.
+
+Odota. Tietokone tekee siirtonsa...
+k G8->F7: arvosana 122950
+k G8->H7: arvosana 122960
+b F8->E7: arvosana 122971
+b F8->D6: arvosana 122975
+b F8->C5: arvosana 122975
+b F8->B4: arvosana 122975
+r H8->H7: arvosana 122975
+r H8->H6: arvosana 122975
+r H8->H5: arvosana 122975
+r H8->H4: arvosana 122975
+r H8->H3: arvosana 122975
+p A4->A3: arvosana 123000
+p B7->B6: arvosana 123000
+p B7->B5: arvosana 123000
+q G2->G1: arvosana 123000
+q G2->F2: arvosana 123000
+q G2->G3: arvosana 123000
+q G2->E2: arvosana 123000
+q G2->G4: arvosana 123000
+q G2->D2: arvosana 123000
+q G2->G5: arvosana 123000
+q G2->C2: arvosana 123000
+q G2->G6: arvosana 123000
+q G2->B2: arvosana 123000
+q G2->A2: arvosana 123000
+q G2->H3: arvosana 123000
+q G2->H1: arvosana 123000
+q G2->F1: arvosana 123000
+q G2->F3: arvosana 123000
+q G2->E4: arvosana 123000
+q G2->D5: arvosana 123000
+q G2->C6: arvosana 123000
+p G7->G6: arvosana 123000
+p G7->G5: arvosana 123000
+p H2->H1: arvosana 122951
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   | P |   |   |   | P |   |   |
+  |-------------------------------|
+3 | p |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 |   |   |   |   |   |   | q | p |
+  |-------------------------------|
+1 |   |   | K |   |   |   |   |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 0,172 s.
+
+Odota. Tietokone tekee siirtonsa...
+P B4->B5: arvosana -123000
+P F4->F5: arvosana -122995
+K C1->B1: arvosana -122995
+K C1->D1: arvosana -122995
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   |   |   | P |   |   |
+  |-------------------------------|
+4 |   | P |   |   |   |   |   |   |
+  |-------------------------------|
+3 | p |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 |   |   |   |   |   |   | q | p |
+  |-------------------------------|
+1 |   |   | K |   |   |   |   |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 0,46 s.
+
+Odota. Tietokone tekee siirtonsa...
+k G8->F7: arvosana 122932
+k G8->H7: arvosana 122950
+b F8->E7: arvosana 122978
+b F8->D6: arvosana 122978
+b F8->C5: arvosana 122978
+b F8->B4: arvosana 122978
+r H8->H7: arvosana 122978
+r H8->H6: arvosana 122978
+r H8->H5: arvosana 122978
+r H8->H4: arvosana 122978
+r H8->H3: arvosana 122978
+p A3->A2: arvosana 123005
+p B7->B6: arvosana 123005
+p B7->B5: arvosana 123005
+q G2->G1: arvosana 123005
+q G2->F2: arvosana 123005
+q G2->G3: arvosana 123005
+q G2->E2: arvosana 123005
+q G2->G4: arvosana 123005
+q G2->D2: arvosana 123005
+q G2->G5: arvosana 123005
+q G2->C2: arvosana 123005
+q G2->G6: arvosana 123005
+q G2->B2: arvosana 123005
+q G2->A2: arvosana 123005
+q G2->H3: arvosana 123005
+q G2->H1: arvosana 123005
+q G2->F1: arvosana 123005
+q G2->F3: arvosana 123005
+q G2->E4: arvosana 123005
+q G2->D5: arvosana 123005
+q G2->C6: arvosana 123005
+p G7->G6: arvosana 123005
+p G7->G5: arvosana 123005
+p H2->H1: arvosana 122958
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+5 |   |   |   |   |   | P |   |   |
+  |-------------------------------|
+4 |   | P |   |   |   |   |   |   |
+  |-------------------------------|
+3 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 | p |   |   |   |   |   | q | p |
+  |-------------------------------|
+1 |   |   | K |   |   |   |   |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 0,173 s.
+
+Odota. Tietokone tekee siirtonsa...
+P B4->B5: arvosana -123022
+P F5->F6: arvosana -123002
+K C1->D1: arvosana -123002
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   | P |   |   |
+  |-------------------------------|
+5 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   | P |   |   |   |   |   |   |
+  |-------------------------------|
+3 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 | p |   |   |   |   |   | q | p |
+  |-------------------------------|
+1 |   |   | K |   |   |   |   |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 0,26 s.
+
+Odota. Tietokone tekee siirtonsa...
+k G8->F7: arvosana 122883
+k G8->H7: arvosana 122893
+b F8->E7: arvosana 122893
+b F8->D6: arvosana 122911
+b F8->C5: arvosana 122911
+b F8->B4: arvosana 122911
+r H8->H7: arvosana 122911
+r H8->H6: arvosana 122911
+r H8->H5: arvosana 122911
+r H8->H4: arvosana 122911
+r H8->H3: arvosana 122911
+p A2->A1: arvosana 123003
+p B7->B6: arvosana 123003
+p B7->B5: arvosana 123003
+q G2->G1: arvosana 123003
+q G2->F2: arvosana 123003
+q G2->G3: arvosana 123003
+q G2->E2: arvosana 123003
+q G2->G4: arvosana 123003
+q G2->D2: arvosana 123003
+q G2->G5: arvosana 123003
+q G2->C2: arvosana 123003
+q G2->G6: arvosana 123003
+q G2->B2: arvosana 123003
+q G2->H3: arvosana 123003
+q G2->H1: arvosana 123003
+q G2->F1: arvosana 123003
+q G2->F3: arvosana 123003
+q G2->E4: arvosana 123003
+q G2->D5: arvosana 123003
+q G2->C6: arvosana 123003
+p G7->F6: arvosana 123003
+p G7->G6: arvosana 123003
+p G7->G5: arvosana 123003
+p H2->H1: arvosana 123002
+  ---------------------------------
+8 |   |   |   |   |   | b | k | r | musta
+  |-------------------------------|
+7 |   | p |   |   |   |   | p |   |
+  |-------------------------------|
+6 |   |   |   |   |   | P |   |   |
+  |-------------------------------|
+5 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+4 |   | P |   |   |   |   |   |   |
+  |-------------------------------|
+3 |   |   |   |   |   |   |   |   |
+  |-------------------------------|
+2 |   |   |   |   |   |   | q | p |
+  |-------------------------------|
+1 | q |   | K |   |   |   |   |   | VALKOINEN
+  ---------------------------------
+    A   B   C   D   E   F   G   H
+Siirrossa kului aikaa 0,174 s.
+Tietokone voitti mustilla!
+debug-single:
+BUILD SUCCESSFUL (total time: 5 minutes 26 seconds)
+

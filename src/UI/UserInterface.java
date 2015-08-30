@@ -174,23 +174,20 @@ public class UserInterface {
 				System.out.println("Tietokone voitti " + computersColour + "!");
 			}
 			return false;
-		} else if (ChessboardHandler.movePiece(chessboard, move)) {
-			computersColour = ai.getColour() ? "valkoisilla" : "mustilla";
-			long endTime = System.currentTimeMillis();
-			drawBoard(chessboard.getBoardAsCharArray(), move);
-			System.out.println("Siirrossa kului aikaa " + calculateMoveTime(startTime, endTime) + ".");
-			int checkMateValue = ai.getColour() ? 0 : 1;
-			if (ChessboardHandler.isItCheckMate(chessboard) == checkMateValue) {
-				System.out.println("Tietokone voitti " + computersColour + "!");
-				return false;
-			} else {
-				return true;
-			}
-		} else {
-			System.out.println("\n\nTietokoneen siirtovuorolla tapahtui virhe."
-					+ "Peli lopetetaan.");
-			return false;
 		}
+		ChessboardHandler.makeMove(chessboard, move);
+		computersColour = ai.getColour() ? "valkoisilla" : "mustilla";
+		long endTime = System.currentTimeMillis();
+		drawBoard(chessboard.getBoardAsCharArray(), move);
+		System.out.println("Siirrossa kului aikaa " + calculateMoveTime(startTime, endTime) + ".");
+		int checkMateValue = ai.getColour() ? 0 : 1;
+		if (ChessboardHandler.isItCheckMate(chessboard) == checkMateValue) {
+			System.out.println("Tietokone voitti " + computersColour + "!");
+			return false;
+		} else {
+			return true;
+		}
+
 	}
 	
 	/**
