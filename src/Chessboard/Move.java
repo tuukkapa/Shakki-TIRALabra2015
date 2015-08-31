@@ -30,6 +30,13 @@ public class Move {
 		this.capturedPiece = null;
 	}
 	
+	/**
+	 * This constructor sets also the castling piece's start and end position.
+	 * * @param start Integer, starting position of the move.
+	 * @param end Integer, ending position of the move.
+	 * @param castlingRookStart Integer, starting position of the move of the castling piece.
+	 * @param castlingRookEnd Integer, ending position of the move of the castling piece.
+	 */
 	public Move(int start, int end, int castlingRookStart, int castlingRookEnd) {
 		this.start = start;
 		this.end = end;
@@ -53,10 +60,18 @@ public class Move {
 		return end;
 	}
 	
+	/**
+	 * Returns the castling piece's starting position.
+	 * @return Integer, castling piece's position on the board. 0 is top left, 63 is bottom right.
+	 */
 	public int getCastlingRookStart() {
 		return castlingRookStart;
 	}
 	
+	/**
+	 * Returns the castling piece's starting position.
+	 * @return Integer, castling piece's position on the board. 0 is top left, 63 is bottom right.
+	 */
 	public int getCastlingRookEnd() {
 		return castlingRookEnd;
 	}

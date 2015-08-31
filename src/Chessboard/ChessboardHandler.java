@@ -12,43 +12,6 @@ import Chessboard.pieces.*;
 public class ChessboardHandler {
 	
 	/**
-	 * Creates new chessboard from the char-array given as parameter.
-	 * @param newboard Two dimensional char-array representing the chessboard.
-	 * @return New Chessboard-object.
-	 */
-	public static Chessboard setBoard(char[][] newboard) {
-		Chessboard chessboard = new Chessboard();
-		for (int i = 0; i < 64; i++) {
-			if (newboard[i/8][i%8] == 'p') {
-				chessboard.add(new Pawn(false, i));
-			} else if (newboard[i/8][i%8] == 'r') {
-				chessboard.add(new Rook(false, i));
-			} else if (newboard[i/8][i%8] == 'n') {
-				chessboard.add(new Knight(false, i));
-			} else if (newboard[i/8][i%8] == 'b') {
-				chessboard.add(new Bishop(false, i));
-			} else if (newboard[i/8][i%8] == 'q') {
-				chessboard.add(new Queen(false, i));
-			} else if (newboard[i/8][i%8] == 'k') {
-				chessboard.add(new King(false, i));
-			} else if (newboard[i/8][i%8] == 'P') {
-				chessboard.add(new Pawn(true, i));
-			} else if (newboard[i/8][i%8] == 'R') {
-				chessboard.add(new Rook(true, i));
-			} else if (newboard[i/8][i%8] == 'N') {
-				chessboard.add(new Knight(true, i));
-			} else if (newboard[i/8][i%8] == 'B') {
-				chessboard.add(new Bishop(true, i));
-			} else if (newboard[i/8][i%8] == 'Q') {
-				chessboard.add(new Queen(true, i));
-			} else if (newboard[i/8][i%8] == 'K') {
-				chessboard.add(new King(true, i));
-			}
-		}
-		return chessboard;
-	}
-	
-	/**
 	 * Method receives move commands from human user, parses those into coordinates,
 	 * and relays the command to the chessboard, and outputs "true" boolean value.
 	 * @param command String, move command received from the human user, such as "c4e5".
@@ -93,13 +56,7 @@ public class ChessboardHandler {
 		if (piece == null) {
 			return false;
 		}
-		if (isItCastling(chessboard, move)) {
-			if (move.getEnd() > move.getStart()) {
-				move = new Move(move.getStart(), move.getEnd(), move.getStart() + 3, move.getStart() + 1);
-			} else {
-				move = new Move(move.getStart(), move.getEnd(), move.getStart() - 4, move.getStart() - 1);
-			}
-		}
+		move = addRookMoveIfCastling(chessboard, move);
 		if (move.getCastlingRookStart() != -1 && move.getCastlingRookEnd() != -1) {
 			chessboard.updatePiecePosition(move.getCastlingRookStart(), move.getCastlingRookEnd());
 		}
@@ -117,8 +74,8 @@ public class ChessboardHandler {
 	 * This method already trusts that the move command is valid.
 	 * If the piece isn't pawn or the pawn isn't moved to the end row,
 	 * method does nothing.
-	 * @param piece Piece to be moved.
-	 * @param move Move command of the piece.
+	 * @param piece Piece which was moved.
+	 * @param move Move command of the piece, which was just made.
 	 */
 	private static void promotePawnToQueen(Chessboard chessboard, Piece piece, Move move) {
 		int endRow = piece.amIWhite() ? 0 : 7; // the pawn's end row according to it's colour
@@ -136,10 +93,6 @@ public class ChessboardHandler {
 	 */
 	private static boolean movePiece(Chessboard chessboard, Move move) {
 		Piece piece = chessboard.getSquareContents(move.getStart());
-		// if the move is castling, move the rook
-		if (move.getCastlingRookStart() != -1 && move.getCastlingRookEnd() != -1) {
-			chessboard.updatePiecePosition(move.getCastlingRookStart(), move.getCastlingRookEnd());
-		}
 		if (piece.endSquareContainsEnemy(chessboard, move.getEnd())) {
 				Piece capturedPiece = chessboard.getSquareContents(move.getEnd());
 				move.setCapturedPiece(capturedPiece);
@@ -158,7 +111,7 @@ public class ChessboardHandler {
 		Piece capturedPiece = move.getCapturedPiece();
 		chessboard.updatePiecePosition(move.getEnd(), move.getStart());
 		if (capturedPiece != null) {
-			chessboard.capturedPieceBackToBoard(capturedPiece, move.getEnd());
+			chessboard.updatePiecePosition(capturedPiece, move.getEnd());
 		}
 		return true;
 	}
@@ -175,6 +128,7 @@ public class ChessboardHandler {
 		int start = piece.getPosition();
 		boolean hasItMoved = piece.getHasMoved();
 		Move move = new Move(start, end);
+		move = addRookMoveIfCastling(chessboard, move);
 		movePiece(chessboard, move);
 		boolean checkSituation = isItCheck(chessboard, piece.amIWhite());
 		undoMove(chessboard, move);
@@ -378,7 +332,7 @@ public class ChessboardHandler {
 	 * @param move Move-object in question.
 	 * @return True, if the move seems to be castling, false otherwise.
 	 */
-	public static boolean isItCastling(Chessboard chessboard, Move move) {
+	private static boolean isItCastling(Chessboard chessboard, Move move) {
 		int startCol = move.getStart() % 8;
 		int endCol = move.getEnd() % 8;
 		if (chessboard.getSquareContents(move.getStart()) instanceof King && Math.abs(endCol - startCol) > 1) {
@@ -386,6 +340,17 @@ public class ChessboardHandler {
 		} else {
 			return false;
 		}
+	}
+	
+	private static Move addRookMoveIfCastling(Chessboard chessboard, Move move) {
+		if (isItCastling(chessboard, move)) {
+			if (move.getEnd() > move.getStart()) {
+				move = new Move(move.getStart(), move.getEnd(), move.getStart() + 3, move.getStart() + 1);
+			} else {
+				move = new Move(move.getStart(), move.getEnd(), move.getStart() - 4, move.getStart() - 1);
+			}
+		}
+		return move;
 	}
 	
 }

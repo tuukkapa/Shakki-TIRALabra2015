@@ -8,6 +8,7 @@ package Chessboard;
 import Chessboard.pieces.*;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -36,6 +37,236 @@ public class ChessboardHandlerTest {
 	
 	@After
 	public void tearDown() {
+	}
+	
+	/**
+	 * Test of movePiece method, of class Chessboard.
+	 */
+	@Test
+	public void testUserCommandParserWrongInput() {
+		System.out.println("Chessboard, userCommandParser, wrong input");
+		char[][] referenceBoard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		String command = "hello";
+		boolean expResult = false;
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
+		assertEquals(expResult, result);
+		Assert.assertArrayEquals(referenceBoard, chessboard.getBoardAsCharArray());
+	}
+	
+	/**
+	 * Test of movePiece method, of class Chessboard.
+	 */
+	@Test
+	public void testUserCommandParserWrongInputCoords1() {
+		System.out.println("Chessboard, userCommandParser, wrong input coordinates 1");
+		char[][] referenceBoard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		String command = "a0a2";
+		boolean expResult = false;
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
+		assertEquals(expResult, result);
+		Assert.assertArrayEquals(referenceBoard, chessboard.getBoardAsCharArray());
+	}
+	
+	/**
+	 * Test of movePiece method, of class Chessboard.
+	 */
+	@Test
+	public void testUserCommandParserWrongInputCoords2() {
+		System.out.println("Chessboard, userCommandParser, wrong input coordinates 2");
+		char[][] referenceBoard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		String command = "a9a2";
+		boolean expResult = false;
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
+		assertEquals(expResult, result);
+		Assert.assertArrayEquals(referenceBoard, chessboard.getBoardAsCharArray());
+	}
+	
+	/**
+	 * Test of movePiece method, of class Chessboard.
+	 */
+	@Test
+	public void testUserCommandParserWrongInputCoords3() {
+		System.out.println("Chessboard, userCommandParser, wrong input coordinates 3");
+		char[][] referenceBoard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		String command = "a2a0";
+		boolean expResult = false;
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
+		assertEquals(expResult, result);
+		Assert.assertArrayEquals(referenceBoard, chessboard.getBoardAsCharArray());
+	}
+	
+	/**
+	 * Test of movePiece method, of class Chessboard.
+	 */
+	@Test
+	public void testUserCommandParserWrongInputCoords4() {
+		System.out.println("Chessboard, userCommandParser, wrong input coordinates 4");
+		char[][] referenceBoard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		String command = "a2a9";
+		boolean expResult = false;
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
+		assertEquals(expResult, result);
+		Assert.assertArrayEquals(referenceBoard, chessboard.getBoardAsCharArray());
+	}
+	
+	/**
+	 * Test of movePiece method, of class Chessboard.
+	 */
+	@Test
+	public void testUserCommandParserWrongInputCoords5() {
+		System.out.println("Chessboard, userCommandParser, wrong input coordinates 5");
+		char[][] referenceBoard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		String command = "i2a4";
+		boolean expResult = false;
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
+		assertEquals(expResult, result);
+		Assert.assertArrayEquals(referenceBoard, chessboard.getBoardAsCharArray());
+	}
+	
+	/**
+	 * Test of movePiece method, of class Chessboard.
+	 */
+	@Test
+	public void testUserCommandParserWrongInputCoords6() {
+		System.out.println("Chessboard, userCommandParser, wrong input coordinates 6");
+		char[][] referenceBoard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		String command = "a2k4";
+		boolean expResult = false;
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
+		assertEquals(expResult, result);
+		Assert.assertArrayEquals(referenceBoard, chessboard.getBoardAsCharArray());
+	}
+	
+	/**
+	 * Test of movePiece method, of class Chessboard.
+	 */
+	@Test
+	public void testUserCommandParserStartIsEmpty() {
+		System.out.println("Chessboard, userCommandParser, start coordinates is empty");
+		char[][] referenceBoard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		String command = "a3a4";
+		boolean expResult = false;
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
+		assertEquals(expResult, result);
+		Assert.assertArrayEquals(referenceBoard, chessboard.getBoardAsCharArray());
+	}
+	
+	/**
+	 * Test of movePiece method, of class Chessboard.
+	 */
+	@Test
+	public void testUserCommandParserTryMoveBlackCorrectly() {
+		System.out.println("Chessboard, userCommandParser, try to move black correctly");
+		char[][] referenceBoard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		String command = "c7c6";
+		boolean expResult = false;
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
+		assertEquals(expResult, result);
+		Assert.assertArrayEquals(referenceBoard, chessboard.getBoardAsCharArray());
+	}
+	
+	/**
+	 * Test of movePiece method, of class Chessboard.
+	 */
+	@Test
+	public void testUserCommandParserTryMoveBlackIllegally() {
+		System.out.println("Chessboard, userCommandParser, try to move black illegally");
+		char[][] referenceBoard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		String command = "c7b6";
+		boolean expResult = false;
+		boolean result = ChessboardHandler.userCommandParser(command, chessboard);
+		assertEquals(expResult, result);
+		Assert.assertArrayEquals(referenceBoard, chessboard.getBoardAsCharArray());
 	}
 	
 	/**
@@ -592,7 +823,7 @@ public class ChessboardHandlerTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(referenceBoard);
+		chessboard.setBoard(referenceBoard);
 		int start = 8;
 		int end = 17;
 		Move move = new Move(8, 17);
@@ -621,7 +852,7 @@ public class ChessboardHandlerTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(referenceBoard);
+		chessboard.setBoard(referenceBoard);
 		int start = 10;
 		int end = 17;
 		Move move = new Move(10, 17);
@@ -650,7 +881,7 @@ public class ChessboardHandlerTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(referenceBoard);
+		chessboard.setBoard(referenceBoard);
 		int start = 50;
 		int end = 43;
 		Move move = new Move(start, end);
@@ -679,7 +910,7 @@ public class ChessboardHandlerTest {
 			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
 			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
-		chessboard = ChessboardHandler.setBoard(referenceBoard);
+		chessboard.setBoard(referenceBoard);
 		int start = 50;
 		int end = 41;
 		Move move = new Move(start, end);
@@ -730,6 +961,8 @@ public class ChessboardHandlerTest {
 			}
 		}
 		assertTrue(moveResult && kingOk && rookOk);
+		assertNull(chessboard.getSquareContents(60));
+		assertNull(chessboard.getSquareContents(63));
 	}
 	
 	/**
@@ -770,6 +1003,8 @@ public class ChessboardHandlerTest {
 			}
 		}
 		assertTrue(moveResult && kingOk && rookOk);
+		assertNull(chessboard.getSquareContents(60));
+		assertNull(chessboard.getSquareContents(56));
 	}
 	
 	/**
@@ -850,6 +1085,30 @@ public class ChessboardHandlerTest {
 			}
 		}
 		assertTrue(moveResult && kingOk && rookOk);
+	}
+	
+	@Test
+	public void testPromotePawnToQueenWhite() {
+		System.out.println("Chessboard, promotePawnToQueenWhite");
+		char[][] newboard = {
+			{' ', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'P', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', 'r', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', ' ', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		Piece pawn = chessboard.getSquareContents(8);
+		Move move = new Move(8, 0);
+		boolean resultValue = ChessboardHandler.makeMove(chessboard, move);
+		Piece resultPiece = chessboard.getSquareContents(0);
+		assertTrue(resultPiece instanceof Queen);
+		assertTrue(resultValue);
+		assertNull(chessboard.getSquareContents(8));
+		
 	}
 	
 	/**
@@ -1049,6 +1308,30 @@ public class ChessboardHandlerTest {
 		chessboard.setBoard(newboard);
 		Piece piece = chessboard.getSquareContents(12);
 		int end = 28;
+		boolean expResult = false;
+		boolean result = ChessboardHandler.wouldItBeCheck(chessboard, piece, end);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of wouldItBeCheck method, of class Chessboard.
+	 */
+	@Test
+	public void testWouldItBeCheckInNonCheckSituationCastling() {
+		System.out.println("Chessboard, wouldItBeCheck in non check situation when castling");
+		char[][] newboard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', ' ', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', 'r', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'Q', 'P', 'P', 'P'},
+			{'R', 'N', 'B', ' ', 'K', ' ', ' ', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		Piece piece = chessboard.getSquareContents(60);
+		int end = 62;
 		boolean expResult = false;
 		boolean result = ChessboardHandler.wouldItBeCheck(chessboard, piece, end);
 		assertEquals(expResult, result);

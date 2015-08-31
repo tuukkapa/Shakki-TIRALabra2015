@@ -148,10 +148,7 @@ public class Chessboard {
 	 * Add one piece to the chessboard and the correct List.
 	 * @param piece Piece-object, to be added to the board and list.
 	 */
-	protected void add(Piece piece) {
-		if (piece == null) {
-			return;
-		}
+	private void add(Piece piece) {
 		int position = piece.getPosition();
 		int row = piece.getPosition() / 8;
 		int col = piece.getPosition() % 8;
@@ -163,10 +160,6 @@ public class Chessboard {
 			}
 		}
 		Piece oldPiece = null;
-		if (chessboard[row][col] != null) {
-			oldPiece = chessboard[row][col];
-			removeFromList(oldPiece);
-		}
 		chessboard[row][col] = piece;
 		addToList(piece);
 	}
@@ -175,10 +168,18 @@ public class Chessboard {
 	 * Switches piece-object into another. Used in promoting pawn to queen.
 	 * @param oldPiece Piece-object, old piece to be promoted.
 	 * @param newPiece Piece-object, new piece, replaces the old one.
+	 * @return 
 	 */
-	protected void switchPiece(Piece oldPiece, Piece newPiece) {
+	protected boolean switchPiece(Piece oldPiece, Piece newPiece) {
 		if (oldPiece == null || newPiece == null) {
-			return;
+			return false;
+		}
+		if (oldPiece.getPosition() != newPiece.getPosition()) {
+			return false;
+		}
+		// if oldPiece isn't on this board
+		if (!this.getSquareContents(oldPiece.getPosition()).equals(oldPiece)) {
+			return false;
 		}
 		int row = oldPiece.getPosition() / 8;
 		int col = oldPiece.getPosition() % 8;
@@ -188,6 +189,7 @@ public class Chessboard {
 		} else {
 			blackPieces.switchElement(oldPiece, newPiece);
 		}
+		return true;
 	}
 	
 	/**
@@ -195,7 +197,7 @@ public class Chessboard {
 	 * present at the position.
 	 * @param position Integer, 0 = top left, 63 = bottom right.
 	 */
-	protected void remove(int position) {
+	/*protected void remove(int position) {
 		if (position < 0 || position > 63) {
 			return;
 		}
@@ -204,13 +206,13 @@ public class Chessboard {
 		Piece piece = chessboard[row][col];
 		removeFromList(piece);
 		chessboard[row][col] = null;	
-	}
+	}*/
 	
 	/**
 	 * Updates piece's position at the board. Piece to be moved is at the startPosition.
 	 * @param startPosition Integer, position of the piece, 0 = top left, 63 = bottom right.
 	 * @param endPosition Integer, position, where the piece is to be moved. 0 = top left, 63 = bottom right.
-	 * @return 
+	 * @return Boolean, true, if update is successful, false otherwise.
 	 */
 	protected boolean updatePiecePosition(int startPosition, int endPosition) {
 		if (startPosition < 0 || startPosition > 63 || endPosition < 0 || endPosition > 63) {
@@ -248,12 +250,12 @@ public class Chessboard {
 	}
 	
 	/**
-	 * Moves a captured piece back to the board. Used in undoing moves (e.g. wouldItBeCheck()).
-	 * @param piece
+	 * Updates piece's position at the board. Piece to be moved is at the startPosition.
+	 * @param piece Piece-object, which information (e.g. position) is to be updated.
 	 * @param endPosition Integer, position, where the piece is to be moved. 0 = top left, 63 = bottom right.
-	 * @return 
+	 * @return Boolean, true, if update is successful, false otherwise.
 	 */
-	protected boolean capturedPieceBackToBoard(Piece piece, int endPosition) {
+	protected boolean updatePiecePosition(Piece piece, int endPosition) {
 		if (endPosition < 0 || endPosition > 63) {
 			return false;
 		}
@@ -355,25 +357,6 @@ public class Chessboard {
 			blackPieces.add(piece);
 			if (!(piece instanceof Pawn)) {
 				blackOfficers++;
-			}
-		}
-	}
-	
-	/**
-	 * Removes the piece from the list. The correct list is selected by the piece's
-	 * white-attribute.
-	 * @param piece  Piece to be removed from the list.
-	 */
-	private void removeFromList(Piece piece) {
-		if (piece.amIWhite()) {
-			whitePieces.remove(piece);
-			if (!(piece instanceof Pawn)) {
-				whiteOfficers--;
-			}
-		} else {
-			blackPieces.remove(piece);
-			if (!(piece instanceof Pawn)) {
-				blackOfficers--;
 			}
 		}
 	}
