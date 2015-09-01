@@ -57,7 +57,7 @@ public class AI {
 	 */
 	private int max(int alpha, int beta, Chessboard chessboard, int depth, boolean white) throws CloneNotSupportedException {
 		if (depth == 0 || ChessboardHandler.isItCheckMate(chessboard) >= 0) {
-			return Evaluate.evaluate(chessboard, white);
+			return Evaluate.evaluate(chessboard, white, 20);
 		}
 		int score = 0, bestValue = Integer.MIN_VALUE;
 		for (int i = 0; i < chessboard.getListSize(white); i++) {
@@ -114,7 +114,7 @@ public class AI {
 	 */
 	private int min(int alpha, int beta, Chessboard chessboard, int depth, boolean white) throws CloneNotSupportedException {
 		if (depth == 0 || ChessboardHandler.isItCheckMate(chessboard) >= 0) {
-			return Evaluate.evaluate(chessboard, white);
+			return Evaluate.evaluate(chessboard, white, 20);
 		}
 		int score = 0, bestValue = Integer.MAX_VALUE;
 		for (int i = 0; i < chessboard.getListSize(!white); i++) {

@@ -8,7 +8,9 @@ package AI;
 
 import Chessboard.Chessboard;
 import Chessboard.ChessboardHandler;
+import Chessboard.Move;
 import Chessboard.pieces.*;
+import DataStructures.List;
 
 /**
  * Concept of this evaluation method is by Tomasz Michniewski.
@@ -77,7 +79,7 @@ public class Evaluate {
 		{  0,  0,  5,  5,  5,  5,  0, -5},
 		{-10,  5,  5,  5,  5,  5,  0,-10},
 		{-10,  0,  5,  0,  0,  0,  0,-10},
-		{-20,-10,-10, -5, -5,-10,-10,-20}
+		{-20,-10,-10, 50, -5,-10,-10,-20}
 	};
 	private static final int[][] KING_MAP = {
 		{-30,-40,-40,-50,-50,-40,-40,-30},
@@ -86,8 +88,8 @@ public class Evaluate {
 		{-30,-40,-40,-50,-50,-40,-40,-30},
 		{-20,-30,-30,-40,-40,-30,-30,-20},
 		{-10,-20,-20,-20,-20,-20,-20,-10},
-		{ 20, 20,  0,  0,  0,  0, 20, 20},
-		{ 20, 30, 10,  0,  0, 10, 30, 20}
+		{ 20, 20,-20,-20,-20,-20, 20, 20}, // orig { 20, 20,  0,  0,  0,  0, 20, 20},
+		{ 20, 30, 50,  0,  0, 10, 50, 20} // orig { 20, 30, 10,  0,  0, 10, 30, 20}
 	};
 	private static final int[][] KING_END_GAME_MAP = {
 		{-50,-40,-30,-20,-20,-30,-40,-50},
@@ -99,28 +101,26 @@ public class Evaluate {
 		{-30,-30,  0,  0,  0,  0,-30,-30},
 		{-50,-30,-30,-30,-30,-30,-30,-50}
 	};
-	private static boolean endGameForWhite, endGameForBlack;
 	
 	/**
 	 * Determines the game situation's value from the black player's point of view.
 	 * Higher points means better chances to winning.
 	 * @param chessboard Chessboard-object, which game is being evaluated.
+	 * @param white Boolean, from which colour's point of view the position is evaluated.
+	 * @param variance Integer, how much more or less the gameSituationPoints randomly is from the correct value.
 	 * @return Integer, value of the game situation.
 	 */
-	public static int evaluate(Chessboard chessboard, boolean white) {
-		endGameForWhite = isItEndGame(chessboard, true);
-		endGameForBlack = isItEndGame(chessboard, false);
-		
+	public static int evaluate(Chessboard chessboard, boolean white, int variance) {
 		int gameSituationPoints = 0;
 		
 		gameSituationPoints -= calculatePointsFromPieces(chessboard, !white);
 		gameSituationPoints += calculatePointsFromPieces(chessboard, white);
 		
-		// originals, which work
-		//gameSituationPoints -= calculatePointsFromPieces(chessboard, true);
-		//gameSituationPoints += calculatePointsFromPieces(chessboard, false);
+		if (!(isItEndGame(chessboard, true) || isItEndGame(chessboard, false))) {
+			gameSituationPoints += Tools.randInt(variance);
+		}
 		
-		return gameSituationPoints + Tools.randInt(20);
+		return gameSituationPoints;
 	}
 		
 	/**
@@ -132,18 +132,23 @@ public class Evaluate {
 	private static int calculatePointsFromPieces(Chessboard chessboard, boolean white) {
 		int row = 0, col = 0;
 		int gameSituationPoints = 0;
-		boolean isItEndGame = white ? endGameForWhite : endGameForBlack;
+		boolean isItEndGame = white ? isItEndGame(chessboard, true) : isItEndGame(chessboard, false);
 		
 		if (ChessboardHandler.isItCheck(chessboard, white)) {
-			gameSituationPoints -= 5000;
+			gameSituationPoints -= 2000;
 			int thisSideIsCheckmated = white ? 1 : 0;
 			if (ChessboardHandler.isItCheckMate(chessboard) == thisSideIsCheckmated) {
 				return -100000;
 			}
 		}
 		
+		SuperPiece superPiece = new SuperPiece(white, 0);
+		
 		for (int i = 0; i < chessboard.getListSize(white); i++) {
 			Piece piece = chessboard.getFromList(white, i);
+			superPiece.setPosition(piece.getPosition());
+			List<Move> protecting = superPiece.getPossibleMoves(chessboard, true);
+			List<Move> attacking = superPiece.getPossibleMoves(chessboard, false);
 			if (piece.getPosition() == -1) {
 				continue;
 			}
@@ -151,18 +156,45 @@ public class Evaluate {
 			col = piece.getPosition() % 8;
 			if (piece instanceof Pawn) {
 				gameSituationPoints += PAWN_VALUE + PAWN_MAP[row][col];
+				if (!piece.getHasMoved()) {
+					gameSituationPoints -= PAWN_VALUE / 10;
+				}
+				gameSituationPoints += protecting.size() > 0 ? PAWN_VALUE/2 : 0;
+				gameSituationPoints -= protecting.size() == 0 ? PAWN_VALUE/2 : 0;
+				gameSituationPoints -= attacking.size() > 0 ? PAWN_VALUE/2 : 0;
 			}
 			if (piece instanceof Knight) {
 				gameSituationPoints += KNIGHT_VALUE + KNIGHT_MAP[row][col];
+				if (!piece.getHasMoved()) {
+					gameSituationPoints -= KNIGHT_VALUE / 10;
+				}
+				gameSituationPoints += protecting.size() > 0 ? KNIGHT_VALUE/2 : 0;
+				gameSituationPoints -= protecting.size() == 0 ? KNIGHT_VALUE/2 : 0;
+				gameSituationPoints -= attacking.size() > 0 ? KNIGHT_VALUE/2 : 0;
 			}
 			if (piece instanceof Bishop) {
 				gameSituationPoints += BISHOP_VALUE + BISHOP_MAP[row][col];
+				if (!piece.getHasMoved()) {
+					gameSituationPoints -= BISHOP_VALUE / 10;
+				}
+				gameSituationPoints += protecting.size() > 0 ? BISHOP_VALUE/2 : 0;
+				gameSituationPoints -= protecting.size() == 0 ? BISHOP_VALUE/2 : 0;
+				gameSituationPoints -= attacking.size() > 0 ? BISHOP_VALUE/2 : 0;
 			}
 			if (piece instanceof Rook) {
 				gameSituationPoints += ROOK_VALUE + ROOK_MAP[row][col];
+				if (!piece.getHasMoved()) {
+					gameSituationPoints -= ROOK_VALUE / 10;
+				}
+				gameSituationPoints += protecting.size() > 0 ? ROOK_VALUE/2 : 0;
+				gameSituationPoints -= protecting.size() == 0 ? ROOK_VALUE/2 : 0;
+				gameSituationPoints -= attacking.size() > 0 ? ROOK_VALUE/2 : 0;
 			}
 			if (piece instanceof Queen) {
 				gameSituationPoints += QUEEN_VALUE + QUEEN_MAP[row][col];
+				gameSituationPoints += protecting.size() > 0 ? QUEEN_VALUE/2 : 0;
+				gameSituationPoints -= protecting.size() == 0 ? QUEEN_VALUE/2 : 0;
+				gameSituationPoints -= attacking.size() > 0 ? QUEEN_VALUE/2 : 0;
 			}
 			if (piece instanceof King) {
 				if (isItEndGame) {

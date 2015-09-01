@@ -67,13 +67,30 @@ public class ListTest {
 		Piece listResult = instance.get(0);
 		assertTrue(listResult instanceof Pawn && listResult.amIWhite());
 	}
+	
+	/**
+	 * Test of get method, of class List.
+	 */
+	@Test
+	public void testGetAboveIndex() {
+		System.out.println("List, get above index");
+		List<Piece> instance = new List<>();
+		Pawn piece1 = new Pawn(true, 0);
+		Pawn piece2 = new Pawn(true, 1);
+		Pawn piece3 = new Pawn(true, 2);
+		instance.add(piece1);
+		instance.add(piece2);
+		instance.add(piece3);
+		Piece listResult = instance.get(3);
+		assertNull(listResult);
+	}
 
 	/**
 	 * Test of remove method, of class List.
 	 */
 	@Test
 	public void testRemove() {
-		System.out.println("remove");
+		System.out.println("List, remove");
 		Pawn piece = new Pawn(true, 0);
 		List<Piece> instance = new List<>();
 		instance.add(piece);
@@ -87,7 +104,7 @@ public class ListTest {
 	 */
 	@Test
 	public void testSize() {
-		System.out.println("size");
+		System.out.println("List, size");
 		Pawn piece = new Pawn(true, 0);
 		Rook piece2 = new Rook(true, 2);
 		Queen piece3 = new Queen(true, 2);
@@ -150,6 +167,20 @@ public class ListTest {
 			}
 		}
 		assertTrue(move1Ok && move2Ok && move3Ok && newMove1Ok && newMove2Ok && newMove3Ok && instance.size() == 6);
+	}
+	
+	/**
+	 * Test for increaseSize method, of class List.
+	 */
+	@Test
+	public void testIncreaseSize() {
+		System.out.println("List, increaseSize");
+		List<Piece> pieceList = new List<>();
+		for (int i = 0; i < 25; i++) {
+			Piece piece = new Pawn(true, i);
+			pieceList.add(piece);
+		}
+		assertTrue(pieceList.size() == 25);
 	}
 	
 }

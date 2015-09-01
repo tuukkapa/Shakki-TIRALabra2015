@@ -50,7 +50,7 @@ public class AITest {
 	 */
 	@Test
 	public void testMinimaxMaximizingPlayerDepth1() throws Exception {
-		System.out.println("minimax, maximizing, depth 1");
+		System.out.println("AI, minimax, maximizing, depth 1");
 		int depth = 1;
 		boolean maximizingPlayer = true;
 		Move result = ai.getMove(chessboard, depth);
@@ -63,7 +63,7 @@ public class AITest {
 	 */
 	@Test
 	public void testMinimaxMaximizingPlayerDepth2() throws Exception {
-		System.out.println("minimax, maximizing, depth 2");
+		System.out.println("AI, minimax, maximizing, depth 2");
 		int depth = 2;
 		boolean maximizingPlayer = true;
 		Move result = ai.getMove(chessboard, depth);
@@ -76,7 +76,7 @@ public class AITest {
 	 */
 	@Test
 	public void testMinimaxMaximizingPlayerDepth3() throws Exception {
-		System.out.println("minimax, maximizing, depth 3");
+		System.out.println("AI, minimax, maximizing, depth 3");
 		int depth = 3;
 		boolean maximizingPlayer = true;
 		Move result = ai.getMove(chessboard, depth);
@@ -89,7 +89,7 @@ public class AITest {
 	 */
 	@Test
 	public void testMinimaxMaximizingPlayerDepth4() throws Exception {
-		System.out.println("minimax, maximizing, depth 4");
+		System.out.println("AI, minimax, maximizing, depth 4");
 		int depth = 4;
 		boolean maximizingPlayer = true;
 		Move result = ai.getMove(chessboard, depth);
@@ -102,11 +102,22 @@ public class AITest {
 	 */
 	@Test
 	public void testMinimaxMaximizingPlayerDepth5() throws Exception {
-		System.out.println("minimax, maximizing, depth 5");
+		System.out.println("AI, minimax, maximizing, depth 5");
 		int depth = 5;
 		boolean maximizingPlayer = true;
 		Move result = ai.getMove(chessboard, depth);
 		assertNotNull(result);
+	}
+	
+	/**
+	 * Test of getColour method, of class AI.
+	 */
+	@Test
+	public void testGetColour() {
+		System.out.println("AI, getColour");
+		boolean expResult = false;
+		boolean result = ai.getColour();
+		assertEquals(expResult, result);
 	}
 	
 }

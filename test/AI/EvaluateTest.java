@@ -49,8 +49,8 @@ public class EvaluateTest {
 		System.out.println("evaluate, starting position, black POW");
 		boolean white = false;
 		int expResult = 0;
-		int result = Evaluate.evaluate(chessboard, white);
-		assertTrue(expResult + 20 >= result && expResult <= result || expResult - 20 <= result && expResult >= result);
+		int result = Evaluate.evaluate(chessboard, white, 0);
+		assertEquals(expResult, result);
 	}
 	
 	/**
@@ -61,8 +61,8 @@ public class EvaluateTest {
 		System.out.println("evaluate, starting position, black POW");
 		boolean white = true;
 		int expResult = 0;
-		int result = Evaluate.evaluate(chessboard, white);
-		assertTrue(expResult + 20 >= result && expResult <= result || expResult - 20 <= result && expResult >= result);
+		int result = Evaluate.evaluate(chessboard, white, 0);
+		assertEquals(expResult, result);
 	}
 	
 	/**
@@ -83,9 +83,9 @@ public class EvaluateTest {
 		};
 		chessboard.setBoard(newboard);
 		boolean white = true;
-		int expResult = 23905;
-		int result = Evaluate.evaluate(chessboard, white);
-		assertTrue(expResult + 20 >= result && expResult <= result || expResult - 20 <= result && expResult >= result);
+		int expResult = 23320;
+		int result = Evaluate.evaluate(chessboard, white, 0);
+		assertEquals(expResult, result);
 	}
 	
 	/**
@@ -106,9 +106,9 @@ public class EvaluateTest {
 		};
 		chessboard.setBoard(newboard);
 		boolean white = false;
-		int expResult = -23905;
-		int result = Evaluate.evaluate(chessboard, white);
-		assertTrue(expResult + 20 >= result && expResult <= result || expResult - 20 <= result && expResult >= result);
+		int expResult = -23320;
+		int result = Evaluate.evaluate(chessboard, white, 0);
+		assertEquals(expResult, result);
 	}
 	
 	/**
@@ -129,9 +129,9 @@ public class EvaluateTest {
 		};
 		chessboard.setBoard(newboard);
 		boolean white = true;
-		int expResult = 40;
-		int result = Evaluate.evaluate(chessboard, white);
-		assertTrue(expResult + 20 >= result && expResult <= result || expResult - 20 <= result && expResult >= result);
+		int expResult = -60;
+		int result = Evaluate.evaluate(chessboard, white, 0);
+		assertEquals(expResult, result);
 	}
 	
 	/**
@@ -152,9 +152,9 @@ public class EvaluateTest {
 		};
 		chessboard.setBoard(newboard);
 		boolean white = false;
-		int expResult = 40;
-		int result = Evaluate.evaluate(chessboard, white);
-		assertTrue(expResult + 20 >= result && expResult <= result || expResult - 20 <= result && expResult >= result);
+		int expResult = -60;
+		int result = Evaluate.evaluate(chessboard, white, 0);
+		assertEquals(expResult, result);
 	}
 	
 	/**
@@ -175,9 +175,9 @@ public class EvaluateTest {
 		};
 		chessboard.setBoard(newboard);
 		boolean white = true;
-		int expResult = -5000;
-		int result = Evaluate.evaluate(chessboard, white);
-		assertTrue(expResult + 20 >= result && expResult <= result || expResult - 20 <= result && expResult >= result);
+		int expResult = -1580;
+		int result = Evaluate.evaluate(chessboard, white, 0);
+		assertEquals(expResult, result);
 	}
 	
 	/**
@@ -198,9 +198,9 @@ public class EvaluateTest {
 		};
 		chessboard.setBoard(newboard);
 		boolean white = false;
-		int expResult = 5000;
-		int result = Evaluate.evaluate(chessboard, white);
-		assertTrue(expResult + 20 >= result && expResult <= result || expResult - 20 <= result && expResult >= result);
+		int expResult = 1580;
+		int result = Evaluate.evaluate(chessboard, white, 0);
+		assertEquals(expResult, result);
 	}
 	
 	/**
@@ -221,9 +221,9 @@ public class EvaluateTest {
 		};
 		chessboard.setBoard(newboard);
 		boolean white = true;
-		int expResult = 5000;
-		int result = Evaluate.evaluate(chessboard, white);
-		assertTrue(expResult + 20 >= result && expResult <= result || expResult - 20 <= result && expResult >= result);
+		int expResult = 1580;
+		int result = Evaluate.evaluate(chessboard, white, 0);
+		assertEquals(expResult, result);
 	}
 	
 	/**
@@ -244,9 +244,9 @@ public class EvaluateTest {
 		};
 		chessboard.setBoard(newboard);
 		boolean white = false;
-		int expResult = -5000;
-		int result = Evaluate.evaluate(chessboard, white);
-		assertTrue(expResult + 20 >= result && expResult <= result || expResult - 20 <= result && expResult >= result);
+		int expResult = -1580;
+		int result = Evaluate.evaluate(chessboard, white, 0);
+		assertEquals(expResult, result);
 	}
 	
 	/**
@@ -267,9 +267,9 @@ public class EvaluateTest {
 		};
 		chessboard.setBoard(newboard);
 		boolean white = true;
-		int expResult = -122915;
-		int result = Evaluate.evaluate(chessboard, white);
-		assertTrue(expResult + 20 >= result && expResult <= result || expResult - 20 <= result && expResult >= result);
+		int expResult = -123293;
+		int result = Evaluate.evaluate(chessboard, white, 0);
+		assertEquals(expResult, result);
 	}
 	
 	/**
@@ -290,9 +290,9 @@ public class EvaluateTest {
 		};
 		chessboard.setBoard(newboard);
 		boolean white = false;
-		int expResult = 122915;
-		int result = Evaluate.evaluate(chessboard, white);
-		assertTrue(expResult + 20 >= result && expResult <= result || expResult - 20 <= result && expResult >= result);
+		int expResult = 123345;
+		int result = Evaluate.evaluate(chessboard, white, 0);
+		assertEquals(expResult, result);
 	}
 	
 	/**
@@ -313,9 +313,9 @@ public class EvaluateTest {
 		};
 		chessboard.setBoard(newboard);
 		boolean white = true;
-		int expResult = 122915;
-		int result = Evaluate.evaluate(chessboard, white);
-		assertTrue(expResult + 20 >= result && expResult <= result || expResult - 20 <= result && expResult >= result);
+		int expResult = 123345;
+		int result = Evaluate.evaluate(chessboard, white, 0);
+		assertEquals(expResult, result);
 	}
 	
 	/**
@@ -336,9 +336,55 @@ public class EvaluateTest {
 		};
 		chessboard.setBoard(newboard);
 		boolean white = false;
-		int expResult = -122915;
-		int result = Evaluate.evaluate(chessboard, white);
-		assertTrue(expResult + 20 >= result && expResult <= result || expResult - 20 <= result && expResult >= result);
+		int expResult = -123293;
+		int result = Evaluate.evaluate(chessboard, white, 0);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of evaluate method, of class Evaluate.
+	 */
+	@Test
+	public void testEvaluateEndGameForBlack() {
+		System.out.println("evaluate, end game for black, black POW");
+		char[][] newboard = {
+			{'r', 'n', ' ', ' ', 'k', ' ', ' ', 'r'},
+			{'p', 'p', 'p', ' ', ' ', ' ', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', ' ', 'P', 'P', 'P'},
+			{'R', 'N', ' ', 'Q', 'K', ' ', ' ', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		boolean white = false;
+		int expResult = -800;
+		int result = Evaluate.evaluate(chessboard, white, 0);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of evaluate method, of class Evaluate.
+	 */
+	@Test
+	public void testEvaluateWhiteCheckedVarianceBlackPOW() {
+		System.out.println("evaluate, starting position, white checked, with variance, black POW");
+		char[][] newboard = {
+			{' ', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', ' ', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', 'r', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', ' ', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		boolean white = false;
+		int expResult = 5000;
+		int result = Evaluate.evaluate(chessboard, white, 100);
+		assertTrue(expResult != result);
 	}
 	
 }

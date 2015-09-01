@@ -7,6 +7,7 @@ import Chessboard.*;
 import Chessboard.pieces.King;
 import Chessboard.pieces.Piece;
 import Chessboard.pieces.Rook;
+import Chessboard.pieces.SuperPiece;
 import DataStructures.List;
 import UI.UserInterface;
 import java.util.ArrayList;
@@ -23,19 +24,20 @@ public class Test {
 	public static void main(String[] args) throws CloneNotSupportedException {
 		Chessboard chessboard = new Chessboard();
 		char[][] newboard = {
-			{' ', ' ', ' ', ' ', ' ', ' ', 'k', ' '},
-			{'R', ' ', ' ', 'p', ' ', ' ', 'p', ' '},
-			{'b', ' ', ' ', ' ', ' ', ' ', 'n', ' '},
-			{'P', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', 'p', 'P', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', 'p', ' '},
-			{' ', ' ', ' ', 'K', ' ', ' ', ' ', 'r'},
+			{'r', 'B', 'p', 'q', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', 'b', ' ', ' ', ' '},
+			{' ', ' ', 'R', ' ', ' ', 'Q', ' ', ' '},
+			{' ', ' ', ' ', ' ', 'P', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
 		};
 		chessboard.setBoard(newboard);
-		//King king = (King)chessboard.getSquareContents(59);
-		//List<Move> moves = king.getPossibleMoves(chessboard);
-		int value = ChessboardHandler.isItCheckMate(chessboard);
+		SuperPiece superPiece = new SuperPiece(true, 37);
+		List<Move> moves = superPiece.getPossibleMoves(chessboard, false);
+		int amountOfMoves = moves.size();
+		int value = Evaluate.evaluate(chessboard, false, 0);
 	}
 
 }

@@ -1379,7 +1379,471 @@ public class KingTest {
 		boolean result = piece.isMoveValid(chessboard, end);
 		assertEquals(expResult, result);
 	}
+	
+	/**
+	 * Test of isMoveValid method, of class King.
+	 */
+	@Test
+	public void testIsMoveValidWhiteCastleRight() {
+		System.out.println("King: isMoveValid, white, castle right");
+		char[][] newboard = {
+			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
+			{' ', ' ', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'R', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', ' ', ' ', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		int end = 62;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'K') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = true;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of isMoveValid method, of class King.
+	 */
+	@Test
+	public void testIsMoveValidWhiteCastleRightNoRook() {
+		System.out.println("King: isMoveValid, white, castle right, no rook");
+		char[][] newboard = {
+			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
+			{' ', ' ', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'R', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', ' ', ' ', ' '}
+		};
+		chessboard.setBoard(newboard);
+		int end = 62;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'K') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = false;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of isMoveValid method, of class King.
+	 */
+	@Test
+	public void testIsMoveValidWhiteCastleRightRouteBlocked() {
+		System.out.println("King: isMoveValid, white, castle right, route blocked");
+		char[][] newboard = {
+			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
+			{' ', ' ', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'R', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', ' ', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		int end = 62;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'K') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = false;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of isMoveValid method, of class King.
+	 */
+	@Test
+	public void testIsMoveValidWhiteCastleRightCheckOnRoute() {
+		System.out.println("King: isMoveValid, white, castle right, check on route");
+		char[][] newboard = {
+			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
+			{' ', ' ', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'R', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', 'r', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
+			{'P', 'P', 'P', 'P', 'P', ' ', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', ' ', ' ', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		int end = 62;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'K') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = false;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
 
+	/**
+	 * Test of isMoveValid method, of class King.
+	 */
+	@Test
+	public void testIsMoveValidWhiteCastleLeft() {
+		System.out.println("King: isMoveValid, white, castle left");
+		char[][] newboard = {
+			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
+			{' ', ' ', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'R', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', ' ', ' ', ' ', 'K', ' ', ' ', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		int end = 58;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'K') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = true;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of isMoveValid method, of class King.
+	 */
+	@Test
+	public void testIsMoveValidWhiteCastleLeftNoRook() {
+		System.out.println("King: isMoveValid, white, castle right");
+		char[][] newboard = {
+			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
+			{' ', ' ', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'R', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'R', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{' ', ' ', ' ', ' ', 'K', ' ', ' ', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		int end = 58;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'K') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = false;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of isMoveValid method, of class King.
+	 */
+	@Test
+	public void testIsMoveValidWhiteCastleLeftRouteBlocked() {
+		System.out.println("King: isMoveValid, white, castle right");
+		char[][] newboard = {
+			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
+			{' ', ' ', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'R', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', ' ', ' ', 'B', 'K', ' ', ' ', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		int end = 58;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'K') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = false;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of isMoveValid method, of class King.
+	 */
+	@Test
+	public void testIsMoveValidWhiteCastleLeftCheckOnRoute() {
+		System.out.println("King: isMoveValid, white, check on route");
+		char[][] newboard = {
+			{' ', 'n', 'b', 'q', 'k', 'b', 'n', ' '},
+			{' ', ' ', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'b', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', ' ', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', ' ', ' ', 'B', 'K', ' ', ' ', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		int end = 58;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'K') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = false;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of isMoveValid method, of class King.
+	 */
+	@Test
+	public void testIsMoveValidBlackCastleRight() {
+		System.out.println("King: isMoveValid, black, castle right");
+		char[][] newboard = {
+			{' ', 'n', 'b', 'q', 'k', ' ', ' ', 'r'},
+			{' ', ' ', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'R', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', ' ', ' ', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		int end = 6;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'k') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = true;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of isMoveValid method, of class King.
+	 */
+	@Test
+	public void testIsMoveValidBlackCastleRightNoRook() {
+		System.out.println("King: isMoveValid, black, castle right no rook");
+		char[][] newboard = {
+			{' ', 'n', 'b', 'q', 'k', ' ', ' ', ' '},
+			{' ', ' ', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'R', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', ' ', ' ', ' '}
+		};
+		chessboard.setBoard(newboard);
+		int end = 6;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'k') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = false;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of isMoveValid method, of class King.
+	 */
+	@Test
+	public void testIsMoveValidBlackCastleRightRouteBlocked() {
+		System.out.println("King: isMoveValid, black, castle right, route blocked");
+		char[][] newboard = {
+			{' ', 'n', 'b', 'q', 'k', 'b', ' ', 'r'},
+			{' ', ' ', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'R', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', ' ', ' ', ' '}
+		};
+		chessboard.setBoard(newboard);
+		int end = 6;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'k') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = false;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of isMoveValid method, of class King.
+	 */
+	@Test
+	public void testIsMoveValidBlackCastleRightCheckOnRoute() {
+		System.out.println("King: isMoveValid, black, check on route");
+		char[][] newboard = {
+			{' ', 'n', 'b', 'q', 'k', ' ', ' ', 'r'},
+			{' ', ' ', ' ', 'p', 'p', ' ', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'R', ' ', ' ', ' ', 'R', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', 'R'},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', ' ', ' ', ' '}
+		};
+		chessboard.setBoard(newboard);
+		int end = 6;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'k') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = false;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+
+	/**
+	 * Test of isMoveValid method, of class King.
+	 */
+	@Test
+	public void testIsMoveValidBlackCastleLeft() {
+		System.out.println("King: isMoveValid, black, castle left");
+		char[][] newboard = {
+			{'r', ' ', ' ', ' ', 'k', 'b', 'n', ' '},
+			{' ', ' ', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'R', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', ' ', ' ', ' ', 'K', ' ', ' ', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		int end = 2;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'k') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = true;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of isMoveValid method, of class King.
+	 */
+	@Test
+	public void testIsMoveValidBlackCastleLeftNoRook() {
+		System.out.println("King: isMoveValid, black, castle left, no rook");
+		char[][] newboard = {
+			{' ', ' ', ' ', ' ', 'k', 'b', 'n', ' '},
+			{' ', ' ', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{'r', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'R', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'R', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{' ', ' ', ' ', ' ', 'K', ' ', ' ', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		int end = 2;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'k') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = false;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of isMoveValid method, of class King.
+	 */
+	@Test
+	public void testIsMoveValidBlackCastleLeftRouteBlocked() {
+		System.out.println("King: isMoveValid, black, castle left, route blocked");
+		char[][] newboard = {
+			{'r', ' ', ' ', 'q', 'k', 'b', 'n', ' '},
+			{' ', ' ', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', 'R', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'R', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{' ', ' ', ' ', ' ', 'K', ' ', ' ', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		int end = 2;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'k') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = false;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
+	/**
+	 * Test of isMoveValid method, of class King.
+	 */
+	@Test
+	public void testIsMoveValidBlackCastleLeftCheckOnRoute() {
+		System.out.println("King: isMoveValid, black, castle left, check on route");
+		char[][] newboard = {
+			{'r', ' ', ' ', ' ', 'k', 'b', 'n', ' '},
+			{' ', ' ', ' ', 'p', 'p', 'p', 'p', 'p'},
+			{' ', 'B', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'R', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{' ', ' ', ' ', ' ', 'K', ' ', ' ', 'R'}
+		};
+		chessboard.setBoard(newboard);
+		int end = 2;
+		Piece piece = null;
+		for (int i = 0; i < 64; i++) {
+			if (chessboard.getSquareContents(i) != null && chessboard.getSquareContents(i).getSign() == 'k') {
+				piece = chessboard.getSquareContents(i);
+			}
+		}
+		boolean expResult = false;
+		boolean result = piece.isMoveValid(chessboard, end);
+		assertEquals(expResult, result);
+	}
+	
 	/**
 	 * Test of clone method, of class Pawn.
 	 * @throws java.lang.Exception

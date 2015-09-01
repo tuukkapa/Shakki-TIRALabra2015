@@ -43,7 +43,7 @@ public class MoveTest {
 	 */
 	@Test
 	public void testGetStart() {
-		System.out.println("getStart");
+		System.out.println("Move, getStart");
 		Move instance = new Move(52, 44);
 		int expResult = 52;
 		int result = instance.getStart();
@@ -55,7 +55,7 @@ public class MoveTest {
 	 */
 	@Test
 	public void testGetEnd() {
-		System.out.println("getEnd");
+		System.out.println("Move, getEnd");
 		Move instance = new Move(52, 44);
 		int expResult = 44;
 		int result = instance.getEnd();

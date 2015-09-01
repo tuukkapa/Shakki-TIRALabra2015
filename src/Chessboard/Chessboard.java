@@ -27,6 +27,7 @@ public class Chessboard {
 	private List<Piece> whitePieces, blackPieces;
 	private int whiteKingPosition, blackKingPosition;
 	private int blackOfficers, whiteOfficers;
+	private int unmovedWhitePieces, unmovedBlackPieces;
 	
 	/**
 	 * Constructor
@@ -37,6 +38,8 @@ public class Chessboard {
 		blackPieces = new List<>();
 		whiteOfficers = 0;
 		blackOfficers = 0;
+		unmovedWhitePieces = 0;
+		unmovedBlackPieces = 0;
 		char[][] newBoard = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
@@ -68,9 +71,11 @@ public class Chessboard {
 				chessboard[row][col] = clonedPiece;
 				addToList(clonedPiece);
 			}
-			whiteKingPosition = anotherboard.getKingPosition(true);
-			whiteOfficers = anotherboard.getOfficersAmount(true);
 		}
+		whiteKingPosition = anotherboard.getKingPosition(true);
+		whiteOfficers = anotherboard.getOfficersAmount(true);
+		unmovedWhitePieces = anotherboard.unmovedWhitePieces;
+		
 		for (int i = 0; i < anotherboard.getListSize(false); i++) {
 			int row = anotherboard.getFromList(false, i).getPosition()/8;
 			int col = anotherboard.getFromList(false, i).getPosition()%8;
@@ -80,9 +85,10 @@ public class Chessboard {
 				chessboard[row][col] = clonedPiece;
 				addToList(clonedPiece);
 			}
-			blackKingPosition = anotherboard.getKingPosition(false);
-			blackOfficers = anotherboard.getOfficersAmount(false);
 		}
+		blackKingPosition = anotherboard.getKingPosition(false);
+		blackOfficers = anotherboard.getOfficersAmount(false);
+		unmovedBlackPieces = anotherboard.unmovedBlackPieces;
 	}
 	
 	/**
@@ -352,11 +358,13 @@ public class Chessboard {
 			whitePieces.add(piece);
 			if (!(piece instanceof Pawn)) {
 				whiteOfficers++;
+				unmovedWhitePieces++;
 			}
 		} else {
 			blackPieces.add(piece);
 			if (!(piece instanceof Pawn)) {
 				blackOfficers++;
+				unmovedBlackPieces++;
 			}
 		}
 	}

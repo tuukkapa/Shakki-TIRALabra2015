@@ -2,8 +2,6 @@ package Chessboard.pieces;
 
 import Chessboard.*;
 import DataStructures.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Class for King, creates King-objects.

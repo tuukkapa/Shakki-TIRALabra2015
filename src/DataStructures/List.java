@@ -22,7 +22,7 @@ public class List<SomeElement> {
 	 * Constructor
 	 */
 	public List() {
-		this.array = new Object[32];
+		this.array = new Object[20];
 		this.firstEmptySlot = 0;
 	}
 	
