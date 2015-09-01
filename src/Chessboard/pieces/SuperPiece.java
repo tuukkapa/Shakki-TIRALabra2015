@@ -26,7 +26,13 @@ public class SuperPiece extends Piece {
 		boolean colour = own ? this.white : !this.white;
 		
 		moves.addAll(this.createStraightProtectingMoves(chessboard, colour));
+		if (moves.size() > 0) {
+			return moves;
+		}
 		moves.addAll(this.createDiagonalProtectingMoves(chessboard, colour));
+		if (moves.size() > 0) {
+			return moves;
+		}
 		
 		int row = position / 8;
 		int col = position % 8;
@@ -38,32 +44,59 @@ public class SuperPiece extends Piece {
 		int movement = white ? 1 : -1;
 		if (row + movement >= 0 && row + movement < 8 && col - 1 >= 0 && this.endSquareContainsPiece(chessboard, pawn, (row + movement) * 8 + col - 1)) {
 			moves.add(new Move(position, (row + movement) * 8 + col - 1));
+			if (moves.size() > 0) {
+				return moves;
+			}
 		}
 		if (row + movement >= 0 && row + movement < 8 && col + 1 < 8 && this.endSquareContainsPiece(chessboard, pawn, (row + movement) * 8 + col + 1)) {
 			moves.add(new Move(position, (row + movement) * 8 + col + 1));
+			if (moves.size() > 0) {
+				return moves;
+			}
 		}
 		
 		// is knight protecting
 		if (row - 1 >= 0 && col - 2 >= 0 && this.endSquareContainsPiece(chessboard, knight, (row - 1) * 8 + (col - 2))) {
 			moves.add(new Move(position, (row - 1) * 8 + (col - 2)));
+			if (moves.size() > 0) {
+				return moves;
+			}
 		}
 		if (row - 2 >= 0 && col - 1 >= 0 && this.endSquareContainsPiece(chessboard, knight, (row - 2) * 8 + (col - 1))) {
 			moves.add(new Move(position, (row - 2) * 8 + (col - 1)));
+			if (moves.size() > 0) {
+				return moves;
+			}
 		}
 		if (row - 2 >= 0 && col + 1 < 8 && this.endSquareContainsPiece(chessboard, knight, (row - 2) * 8 + (col + 1))) {
 			moves.add(new Move(position, (row - 2) * 8 + (col + 1)));
+			if (moves.size() > 0) {
+				return moves;
+			}
 		}
 		if (row - 1 >= 0 && col + 2 < 8 && this.endSquareContainsPiece(chessboard, knight, (row - 1) * 8 + (col + 2))) {
 			moves.add(new Move(position, (row - 1) * 8 + (col + 2)));
+			if (moves.size() > 0) {
+				return moves;
+			}
 		}
 		if (row + 1 < 8 && col + 2 < 8 && this.endSquareContainsPiece(chessboard, knight, (row + 1) * 8 + (col + 2))) {
 			moves.add(new Move(position, (row + 1) * 8 + (col + 2)));
+			if (moves.size() > 0) {
+				return moves;
+			}
 		}
 		if (row + 2 < 8 && col + 1 < 8 && this.endSquareContainsPiece(chessboard, knight, (row + 2) * 8 + (col + 1))) {
 			moves.add(new Move(position, (row + 2) * 8 + (col + 1)));
+			if (moves.size() > 0) {
+				return moves;
+			}
 		}
 		if (row + 2 < 8 && col - 1 >= 0 && this.endSquareContainsPiece(chessboard, knight, (row + 2) * 8 + (col - 1))) {
 			moves.add(new Move(position, (row + 2) * 8 + (col - 1)));
+			if (moves.size() > 0) {
+				return moves;
+			}
 		}
 		if (row + 1 < 8 && col - 2 >= 0 && this.endSquareContainsPiece(chessboard, knight, (row + 1) * 8 + (col - 2))) {
 			moves.add(new Move(position, (row + 1) * 8 + (col - 2)));
@@ -96,7 +129,8 @@ public class SuperPiece extends Piece {
 					//
 				} else if ((piece instanceof Rook || piece instanceof Queen) && piece.white == colour) {
 					moves.add(new Move(position, end));
-					rightBlocked = true;
+					break;
+					//rightBlocked = true;
 				} else {
 					rightBlocked = true;
 				}
@@ -109,7 +143,8 @@ public class SuperPiece extends Piece {
 					//
 				} else if ((piece instanceof Rook || piece instanceof Queen) && piece.white == colour) {
 					moves.add(new Move(position, end));
-					downBlocked = true;
+					break;
+					//downBlocked = true;
 				} else {
 					downBlocked = true;
 				}
@@ -122,7 +157,8 @@ public class SuperPiece extends Piece {
 					//
 				} else if ((piece instanceof Rook || piece instanceof Queen) && piece.white == colour) {
 					moves.add(new Move(position, end));
-					leftBlocked = true;
+					break;
+					//leftBlocked = true;
 				} else {
 					leftBlocked = true;
 				}
@@ -135,7 +171,8 @@ public class SuperPiece extends Piece {
 					//
 				} else if ((piece instanceof Rook || piece instanceof Queen) && piece.white == colour) {
 					moves.add(new Move(position, end));
-					upBlocked = true;
+					break;
+					//upBlocked = true;
 				} else {
 					upBlocked = true;
 				}
@@ -182,7 +219,8 @@ public class SuperPiece extends Piece {
 					//
 				} else if ((piece instanceof Bishop || piece instanceof Queen) && piece.white == colour) {
 					moves.add(new Move(position, nePosition));
-					neBlocked = true;
+					break;
+					//neBlocked = true;
 				} else {
 					neBlocked = true;
 				}
@@ -194,7 +232,8 @@ public class SuperPiece extends Piece {
 					//
 				} else if ((piece instanceof Bishop || piece instanceof Queen) && piece.white == colour) {
 					moves.add(new Move(position, sePosition));
-					seBlocked = true;
+					break;
+					//seBlocked = true;
 				} else {
 					seBlocked = true;
 				}
@@ -206,7 +245,8 @@ public class SuperPiece extends Piece {
 					//
 				} else if ((piece instanceof Bishop || piece instanceof Queen) && piece.white == colour) {
 					moves.add(new Move(position, swPosition));
-					swBlocked = true;
+					break;
+					//swBlocked = true;
 				} else {
 					swBlocked = true;
 				}
@@ -218,7 +258,8 @@ public class SuperPiece extends Piece {
 					//
 				} else if ((piece instanceof Bishop || piece instanceof Queen) && piece.white == colour) {
 					moves.add(new Move(position, nwPosition));
-					nwBlocked = true;
+					break;
+					//nwBlocked = true;
 				} else {
 					nwBlocked = true;
 				}

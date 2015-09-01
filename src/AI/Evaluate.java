@@ -132,6 +132,7 @@ public class Evaluate {
 	private static int calculatePointsFromPieces(Chessboard chessboard, boolean white) {
 		int row = 0, col = 0;
 		int gameSituationPoints = 0;
+		int noMovePenalty = 5;
 		boolean isItEndGame = white ? isItEndGame(chessboard, true) : isItEndGame(chessboard, false);
 		
 		if (ChessboardHandler.isItCheck(chessboard, white)) {
@@ -157,7 +158,7 @@ public class Evaluate {
 			if (piece instanceof Pawn) {
 				gameSituationPoints += PAWN_VALUE + PAWN_MAP[row][col];
 				if (!piece.getHasMoved()) {
-					gameSituationPoints -= PAWN_VALUE / 10;
+					gameSituationPoints -= PAWN_VALUE / noMovePenalty;
 				}
 				gameSituationPoints += protecting.size() > 0 ? PAWN_VALUE/2 : 0;
 				gameSituationPoints -= protecting.size() == 0 ? PAWN_VALUE/2 : 0;
@@ -166,7 +167,7 @@ public class Evaluate {
 			if (piece instanceof Knight) {
 				gameSituationPoints += KNIGHT_VALUE + KNIGHT_MAP[row][col];
 				if (!piece.getHasMoved()) {
-					gameSituationPoints -= KNIGHT_VALUE / 10;
+					gameSituationPoints -= KNIGHT_VALUE / noMovePenalty;
 				}
 				gameSituationPoints += protecting.size() > 0 ? KNIGHT_VALUE/2 : 0;
 				gameSituationPoints -= protecting.size() == 0 ? KNIGHT_VALUE/2 : 0;
@@ -175,7 +176,7 @@ public class Evaluate {
 			if (piece instanceof Bishop) {
 				gameSituationPoints += BISHOP_VALUE + BISHOP_MAP[row][col];
 				if (!piece.getHasMoved()) {
-					gameSituationPoints -= BISHOP_VALUE / 10;
+					gameSituationPoints -= BISHOP_VALUE / noMovePenalty;
 				}
 				gameSituationPoints += protecting.size() > 0 ? BISHOP_VALUE/2 : 0;
 				gameSituationPoints -= protecting.size() == 0 ? BISHOP_VALUE/2 : 0;
@@ -184,7 +185,7 @@ public class Evaluate {
 			if (piece instanceof Rook) {
 				gameSituationPoints += ROOK_VALUE + ROOK_MAP[row][col];
 				if (!piece.getHasMoved()) {
-					gameSituationPoints -= ROOK_VALUE / 10;
+					gameSituationPoints -= ROOK_VALUE / noMovePenalty;
 				}
 				gameSituationPoints += protecting.size() > 0 ? ROOK_VALUE/2 : 0;
 				gameSituationPoints -= protecting.size() == 0 ? ROOK_VALUE/2 : 0;
