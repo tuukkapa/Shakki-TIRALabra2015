@@ -43,6 +43,7 @@ public class EvaluateTest {
 
 	/**
 	 * Test of evaluate method, of class Evaluate.
+	 * Starting position, black POW
 	 */
 	@Test
 	public void testEvaluateStartingPositionBlackPOW() {
@@ -55,6 +56,7 @@ public class EvaluateTest {
 	
 	/**
 	 * Test of evaluate method, of class Evaluate.
+	 * Starting position, black POW.
 	 */
 	@Test
 	public void testEvaluateStartingPositionWhitePOW() {
@@ -67,9 +69,10 @@ public class EvaluateTest {
 	
 	/**
 	 * Test of evaluate method, of class Evaluate.
+	 * Starting position, white has all, black has none, white POW.
 	 */
 	@Test
-	public void testEvaluateWhiteAllWhiteNoneWhitePOW() {
+	public void testEvaluateWhiteAllBlackNoneWhitePOW() {
 		System.out.println("evaluate, starting position, white has all, black has none, white POW");
 		char[][] newboard = {
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
@@ -83,16 +86,17 @@ public class EvaluateTest {
 		};
 		chessboard.setBoard(newboard);
 		boolean white = true;
-		int expResult = 23320;
+		int expResult = 20000;
 		int result = Evaluate.evaluate(chessboard, white, 0);
-		assertEquals(expResult, result);
+		assertTrue(expResult < result);
 	}
 	
 	/**
 	 * Test of evaluate method, of class Evaluate.
+	 * Starting position, white has all, black has none, black POW.
 	 */
 	@Test
-	public void testEvaluateWhiteAllWhiteNoneBlackPOW() {
+	public void testEvaluateWhiteAllBlackeNoneBlackPOW() {
 		System.out.println("evaluate, starting position, white has all, black has none, black POW");
 		char[][] newboard = {
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
@@ -106,13 +110,14 @@ public class EvaluateTest {
 		};
 		chessboard.setBoard(newboard);
 		boolean white = false;
-		int expResult = -23320;
+		int expResult = -20000;
 		int result = Evaluate.evaluate(chessboard, white, 0);
-		assertEquals(expResult, result);
+		assertTrue(expResult > result);
 	}
 	
 	/**
 	 * Test of evaluate method, of class Evaluate.
+	 * Starting position, white has all, black has none, black POW.
 	 */
 	@Test
 	public void testEvaluateWhitePawnUp() {
@@ -129,13 +134,14 @@ public class EvaluateTest {
 		};
 		chessboard.setBoard(newboard);
 		boolean white = true;
-		int expResult = -60;
+		int expResult = 970;
 		int result = Evaluate.evaluate(chessboard, white, 0);
 		assertEquals(expResult, result);
 	}
 	
 	/**
 	 * Test of evaluate method, of class Evaluate.
+	 * Starting position, white has all, black has none, black POW.
 	 */
 	@Test
 	public void testEvaluateBlackPawnUp() {
@@ -152,13 +158,14 @@ public class EvaluateTest {
 		};
 		chessboard.setBoard(newboard);
 		boolean white = false;
-		int expResult = -60;
+		int expResult = 970;
 		int result = Evaluate.evaluate(chessboard, white, 0);
 		assertEquals(expResult, result);
 	}
 	
 	/**
 	 * Test of evaluate method, of class Evaluate.
+	 * Starting position, white checked, white POW.
 	 */
 	@Test
 	public void testEvaluateWhiteCheckedWhitePOW() {
@@ -166,8 +173,8 @@ public class EvaluateTest {
 		char[][] newboard = {
 			{' ', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', ' ', 'p', 'p', 'p'},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', 'r', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{'P', 'P', 'P', 'P', ' ', 'P', 'P', 'P'},
@@ -175,13 +182,14 @@ public class EvaluateTest {
 		};
 		chessboard.setBoard(newboard);
 		boolean white = true;
-		int expResult = -1580;
+		int expResult = -500;
 		int result = Evaluate.evaluate(chessboard, white, 0);
-		assertEquals(expResult, result);
+		assertTrue(expResult > result);
 	}
 	
 	/**
 	 * Test of evaluate method, of class Evaluate.
+	 * Starting position, white checked, black POW.
 	 */
 	@Test
 	public void testEvaluateWhiteCheckedBlackPOW() {
@@ -189,8 +197,8 @@ public class EvaluateTest {
 		char[][] newboard = {
 			{' ', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', ' ', 'p', 'p', 'p'},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', 'r', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{'P', 'P', 'P', 'P', ' ', 'P', 'P', 'P'},
@@ -198,13 +206,14 @@ public class EvaluateTest {
 		};
 		chessboard.setBoard(newboard);
 		boolean white = false;
-		int expResult = 1580;
+		int expResult = 500;
 		int result = Evaluate.evaluate(chessboard, white, 0);
-		assertEquals(expResult, result);
+		assertTrue(expResult < result);
 	}
 	
 	/**
 	 * Test of evaluate method, of class Evaluate.
+	 * Starting position, black checked, white POW.
 	 */
 	@Test
 	public void testEvaluateBlackCheckedWhitePOW() {
@@ -213,21 +222,22 @@ public class EvaluateTest {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', ' ', 'p', 'p', 'p'},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', 'R', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{'P', 'P', 'P', 'P', ' ', 'P', 'P', 'P'},
 			{' ', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
 		chessboard.setBoard(newboard);
 		boolean white = true;
-		int expResult = 1580;
+		int expResult = 500;
 		int result = Evaluate.evaluate(chessboard, white, 0);
-		assertEquals(expResult, result);
+		assertTrue(expResult < result);
 	}
 	
 	/**
 	 * Test of evaluate method, of class Evaluate.
+	 * Starting position, black checked, black POW.
 	 */
 	@Test
 	public void testEvaluateBlackCheckedBlackPOW() {
@@ -236,21 +246,22 @@ public class EvaluateTest {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', ' ', 'p', 'p', 'p'},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', 'R', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{'P', 'P', 'P', 'P', ' ', 'P', 'P', 'P'},
 			{' ', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
 		};
 		chessboard.setBoard(newboard);
 		boolean white = false;
-		int expResult = -1580;
+		int expResult = -500;
 		int result = Evaluate.evaluate(chessboard, white, 0);
-		assertEquals(expResult, result);
+		assertTrue(expResult > result);
 	}
 	
 	/**
 	 * Test of evaluate method, of class Evaluate.
+	 * Starting position, white check mate, white POW.
 	 */
 	@Test
 	public void testEvaluateWhiteCheckMateWhitePOW() {
@@ -267,13 +278,14 @@ public class EvaluateTest {
 		};
 		chessboard.setBoard(newboard);
 		boolean white = true;
-		int expResult = -123293;
+		int expResult = -120000;
 		int result = Evaluate.evaluate(chessboard, white, 0);
-		assertEquals(expResult, result);
+		assertTrue(expResult > result);
 	}
 	
 	/**
 	 * Test of evaluate method, of class Evaluate.
+	 * Starting position, white check mate, black POW.
 	 */
 	@Test
 	public void testEvaluateWhiteCheckMateBlackPOW() {
@@ -290,17 +302,18 @@ public class EvaluateTest {
 		};
 		chessboard.setBoard(newboard);
 		boolean white = false;
-		int expResult = 123345;
+		int expResult = 120000;
 		int result = Evaluate.evaluate(chessboard, white, 0);
-		assertEquals(expResult, result);
+		assertTrue(expResult < result);
 	}
 	
 	/**
 	 * Test of evaluate method, of class Evaluate.
+	 * Starting position, black check mate, white POW.
 	 */
 	@Test
 	public void testEvaluateBlackCheckMateWhitePOW() {
-		System.out.println("evaluate, starting position, white check mate, black POW");
+		System.out.println("evaluate, starting position, black check mate, white POW");
 		char[][] newboard = {
 			{'r', 'n', ' ', ' ', 'k', ' ', ' ', 'r'},
 			{'p', 'p', 'p', ' ', ' ', ' ', 'p', 'p'},
@@ -313,17 +326,18 @@ public class EvaluateTest {
 		};
 		chessboard.setBoard(newboard);
 		boolean white = true;
-		int expResult = 123345;
+		int expResult = 120000;
 		int result = Evaluate.evaluate(chessboard, white, 0);
-		assertEquals(expResult, result);
+		assertTrue(expResult < result);
 	}
 	
 	/**
 	 * Test of evaluate method, of class Evaluate.
+	 * Starting position, black check mate, black POW.
 	 */
 	@Test
 	public void testEvaluateBlackCheckMateBlackPOW() {
-		System.out.println("evaluate, starting position, white check mate, black POW");
+		System.out.println("evaluate, starting position, black check mate, black POW");
 		char[][] newboard = {
 			{'r', 'n', ' ', ' ', 'k', ' ', ' ', 'r'},
 			{'p', 'p', 'p', ' ', ' ', ' ', 'p', 'p'},
@@ -336,13 +350,14 @@ public class EvaluateTest {
 		};
 		chessboard.setBoard(newboard);
 		boolean white = false;
-		int expResult = -123293;
+		int expResult = -120000;
 		int result = Evaluate.evaluate(chessboard, white, 0);
-		assertEquals(expResult, result);
+		assertTrue(expResult > result);
 	}
 	
 	/**
 	 * Test of evaluate method, of class Evaluate.
+	 * End game for black, black POW.
 	 */
 	@Test
 	public void testEvaluateEndGameForBlack() {
@@ -359,7 +374,7 @@ public class EvaluateTest {
 		};
 		chessboard.setBoard(newboard);
 		boolean white = false;
-		int expResult = -800;
+		int expResult = -1270;
 		int result = Evaluate.evaluate(chessboard, white, 0);
 		assertEquals(expResult, result);
 	}
@@ -373,8 +388,8 @@ public class EvaluateTest {
 		char[][] newboard = {
 			{' ', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', ' ', 'p', 'p', 'p'},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', 'r', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{'P', 'P', 'P', 'P', ' ', 'P', 'P', 'P'},
@@ -382,7 +397,7 @@ public class EvaluateTest {
 		};
 		chessboard.setBoard(newboard);
 		boolean white = false;
-		int expResult = 5000;
+		int expResult = 540;
 		int result = Evaluate.evaluate(chessboard, white, 100);
 		assertTrue(expResult != result);
 	}

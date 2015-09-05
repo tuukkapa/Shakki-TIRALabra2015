@@ -10,7 +10,6 @@ import java.util.Random;
 
 /**
  * This class is a container of general tools for Evaluate-class.
- * @author tuukka
  */
 public class Tools {
 	

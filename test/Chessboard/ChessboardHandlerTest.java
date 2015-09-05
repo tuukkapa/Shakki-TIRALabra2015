@@ -40,7 +40,8 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
+	 * userCommandParser, wrong input.
 	 */
 	@Test
 	public void testUserCommandParserWrongInput() {
@@ -63,7 +64,8 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
+	 * Wrong input coordinates 1.
 	 */
 	@Test
 	public void testUserCommandParserWrongInputCoords1() {
@@ -86,7 +88,8 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
+	 * Wrong input coordinates 2.
 	 */
 	@Test
 	public void testUserCommandParserWrongInputCoords2() {
@@ -109,7 +112,8 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
+	 * Wrong input coordinates 3.
 	 */
 	@Test
 	public void testUserCommandParserWrongInputCoords3() {
@@ -132,7 +136,8 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
+	 * Wrong input coordinates 4.
 	 */
 	@Test
 	public void testUserCommandParserWrongInputCoords4() {
@@ -155,7 +160,8 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
+	 * Wrong input coordinates 5.
 	 */
 	@Test
 	public void testUserCommandParserWrongInputCoords5() {
@@ -178,7 +184,8 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
+	 * Wrong input coordinates 6.
 	 */
 	@Test
 	public void testUserCommandParserWrongInputCoords6() {
@@ -201,7 +208,8 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
+	 * Start coordinates is empty.
 	 */
 	@Test
 	public void testUserCommandParserStartIsEmpty() {
@@ -224,7 +232,8 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
+	 * Try to move black correctly.
 	 */
 	@Test
 	public void testUserCommandParserTryMoveBlackCorrectly() {
@@ -247,7 +256,8 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
+	 * Try to move black illegally.
 	 */
 	@Test
 	public void testUserCommandParserTryMoveBlackIllegally() {
@@ -270,7 +280,8 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
+	 * Move white Pawn illegally 1.
 	 */
 	@Test
 	public void testUserCommandParserMoveWhitePawnIllegally1() {
@@ -282,7 +293,8 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
+	 * Move white Pawn illegally 2.
 	 */
 	@Test
 	public void testUserCommandParserMoveWhitePawnIllegally2() {
@@ -294,7 +306,8 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
+	 * Move white Pawn illegally 3.
 	 */
 	@Test
 	public void testUserCommandParserMoveWhitePawnIllegally3() {
@@ -306,7 +319,8 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
+	 * Move white Pawn illegally 4.
 	 */
 	@Test
 	public void testUserCommandParserMoveWhitePawnIllegally4() {
@@ -318,7 +332,8 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
+	 * Move white Pawn illegally 5.
 	 */
 	@Test
 	public void testUserCommandParserMoveWhitePawnIllegally5() {
@@ -330,7 +345,8 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
+	 * Move white Pawn illegally 6.
 	 */
 	@Test
 	public void testUserCommandParserMoveWhitePawnIllegally6() {
@@ -342,7 +358,8 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
+	 * Move white Pawn illegally 7.
 	 */
 	@Test
 	public void testUserCommandParserMoveWhitePawnIllegally7() {
@@ -354,7 +371,8 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
+	 * Move white Pawn illegally 8.
 	 */
 	@Test
 	public void testUserCommandParserMoveWhitePawnIllegally8() {
@@ -367,6 +385,7 @@ public class ChessboardHandlerTest {
 	
 	/**
 	 * Test of movePiece method, of class Chessboard.
+	 * Move white Pawn illegally 9.
 	 */
 	@Test
 	public void testUserCommandParserMoveWhitePawnIllegally9() {
@@ -378,7 +397,8 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
+	 * Move white Pawn illegally, capture own 1 up.
 	 */
 	@Test
 	public void testUserCommandParserMoveWhitePawnIllegallyCaptureOwn1Up() {
@@ -401,7 +421,8 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
+	 * Move white Pawn illegally, capture own 2 Up.
 	 */
 	@Test
 	public void testtUserCommandParserMoveWhitePawnIllegallyCaptureOwn2Up() {
@@ -424,7 +445,7 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
 	 */
 	@Test
 	public void testUserCommandParserMoveWhitePawnIllegallyCaptureOwnLeft() {
@@ -447,7 +468,7 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
 	 */
 	@Test
 	public void testUserCommandParserMoveWhitePawnIllegallyCaptureOwnRight() {
@@ -470,7 +491,7 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
 	 */
 	@Test
 	public void testUserCommandParserMoveBlackPawnIllegallyCaptureOwn1Up() {
@@ -493,7 +514,7 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
 	 */
 	@Test
 	public void testUserCommandParserMoveBlackPawnIllegallyCaptureOwn2Up() {
@@ -516,7 +537,7 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
 	 */
 	@Test
 	public void testUserCommandParserMoveBlackPawnIllegallyCaptureOwnLeft() {
@@ -539,7 +560,7 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
 	 */
 	@Test
 	public void testUserCommandParserMoveBlackPawnIllegallyCaptureOwnRight() {
@@ -562,7 +583,7 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
 	 */
 	@Test
 	public void testUserCommandParserMoveBlackPawnIllegally1() {
@@ -574,7 +595,7 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
 	 */
 	@Test
 	public void testUserCommandParserMoveBlackPawnIllegally2() {
@@ -586,7 +607,7 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
 	 */
 	@Test
 	public void testUserCommandParserMoveBlackPawnIllegally3() {
@@ -598,7 +619,7 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
 	 */
 	@Test
 	public void testUserCommandParserMoveBlackPawnIllegally4() {
@@ -610,7 +631,7 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
 	 */
 	@Test
 	public void testUserCommandParserMoveBlackPawnIllegally5() {
@@ -622,7 +643,7 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
 	 */
 	@Test
 	public void testUserCommandParserMoveBlackPawnIllegally6() {
@@ -634,7 +655,7 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
 	 */
 	@Test
 	public void testUserCommandParserMoveBlackPawnIllegally7() {
@@ -646,7 +667,7 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
 	 */
 	@Test
 	public void testUserCommandParserMoveBlackPawnIllegally8() {
@@ -658,7 +679,7 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
 	 */
 	@Test
 	public void testUserCommandParserMoveBlackPawnIllegally9() {
@@ -670,7 +691,7 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
 	 */
 	@Test
 	public void testUserCommandParserWhiteIllegallyTryToCaptureKing() {
@@ -693,7 +714,7 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of userCommandParser method, of class Chessboard.
 	 */
 	@Test
 	public void testUserCommandParseBlackIllegallyTryToCaptureKing() {
@@ -724,7 +745,7 @@ public class ChessboardHandlerTest {
     }
 
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of makeMove method, of class Chessboard.
 	 */
 	@Test
 	public void testMakeMoveWhitePawn1Up() {
@@ -736,7 +757,7 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of makeMove method, of class Chessboard.
 	 */
 	@Test
 	public void testMakeMoveWhitePawn2Up() {
@@ -748,7 +769,7 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of makeMove method, of class Chessboard.
 	 */
 	@Test
 	public void testMakeMoveBlackPawn1Up() {
@@ -760,7 +781,7 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of makeMove method, of class Chessboard.
 	 */
 	@Test
 	public void testMakeMoveBlackPawn2Up() {
@@ -772,7 +793,7 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of makeMove method, of class Chessboard.
 	 */
 	@Test
 	public void testMakeMoveWhiteCorrectInputBoardUpdated() {
@@ -790,7 +811,7 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of makeMove method, of class Chessboard.
 	 */
 	@Test
 	public void testMakeMoveBlackCorrectInputBoardUpdated() {
@@ -808,7 +829,7 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of makeMove method, of class Chessboard.
 	 */
 	@Test
 	public void testMoveBlackPawnCaptureRight() {
@@ -837,7 +858,7 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of makeMove method, of class Chessboard.
 	 */
 	@Test
 	public void testMoveBlackPawnCaptureLeft() {
@@ -866,7 +887,7 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of makeMove method, of class Chessboard.
 	 */
 	@Test
 	public void testMoveWhitePawnCaptureRight() {
@@ -895,7 +916,7 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of makeMove method, of class Chessboard.
 	 */
 	@Test
 	public void testMoveWhitePawnCaptureLeft() {
@@ -924,7 +945,7 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of makeMove method, of class Chessboard.
 	 */
 	@Test
 	public void testMoveWhiteCastleRight() {
@@ -966,7 +987,7 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of makeMove method, of class Chessboard.
 	 */
 	@Test
 	public void testMoveWhiteCastleLeft() {
@@ -1008,7 +1029,7 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of makeMove method, of class Chessboard.
 	 */
 	@Test
 	public void testMoveBlackCastleRight() {
@@ -1048,7 +1069,7 @@ public class ChessboardHandlerTest {
 	}
 	
 	/**
-	 * Test of movePiece method, of class Chessboard.
+	 * Test of makeMove method, of class Chessboard.
 	 */
 	@Test
 	public void testMoveBlackCastleLeft() {

@@ -27,7 +27,6 @@ public class Chessboard {
 	private List<Piece> whitePieces, blackPieces;
 	private int whiteKingPosition, blackKingPosition;
 	private int blackOfficers, whiteOfficers;
-	private int unmovedWhitePieces, unmovedBlackPieces;
 	
 	/**
 	 * Constructor
@@ -38,8 +37,6 @@ public class Chessboard {
 		blackPieces = new List<>();
 		whiteOfficers = 0;
 		blackOfficers = 0;
-		unmovedWhitePieces = 0;
-		unmovedBlackPieces = 0;
 		char[][] newBoard = {
 			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
@@ -74,7 +71,6 @@ public class Chessboard {
 		}
 		whiteKingPosition = anotherboard.getKingPosition(true);
 		whiteOfficers = anotherboard.getOfficersAmount(true);
-		unmovedWhitePieces = anotherboard.unmovedWhitePieces;
 		
 		for (int i = 0; i < anotherboard.getListSize(false); i++) {
 			int row = anotherboard.getFromList(false, i).getPosition()/8;
@@ -88,7 +84,6 @@ public class Chessboard {
 		}
 		blackKingPosition = anotherboard.getKingPosition(false);
 		blackOfficers = anotherboard.getOfficersAmount(false);
-		unmovedBlackPieces = anotherboard.unmovedBlackPieces;
 	}
 	
 	/**
@@ -197,22 +192,6 @@ public class Chessboard {
 		}
 		return true;
 	}
-	
-	/**
-	 * Removes piece from the position mentioned in the parameter, if piece is
-	 * present at the position.
-	 * @param position Integer, 0 = top left, 63 = bottom right.
-	 */
-	/*protected void remove(int position) {
-		if (position < 0 || position > 63) {
-			return;
-		}
-		int row = position / 8;
-		int col = position % 8;
-		Piece piece = chessboard[row][col];
-		removeFromList(piece);
-		chessboard[row][col] = null;	
-	}*/
 	
 	/**
 	 * Updates piece's position at the board. Piece to be moved is at the startPosition.
@@ -358,13 +337,11 @@ public class Chessboard {
 			whitePieces.add(piece);
 			if (!(piece instanceof Pawn)) {
 				whiteOfficers++;
-				unmovedWhitePieces++;
 			}
 		} else {
 			blackPieces.add(piece);
 			if (!(piece instanceof Pawn)) {
 				blackOfficers++;
-				unmovedBlackPieces++;
 			}
 		}
 	}

@@ -45,72 +45,67 @@ public class AITest {
 	}
 
 	/**
-	 * Test of minimax method, of class AI.
+	 * Test of minimax method, of class AI, depth 1.
 	 * @throws java.lang.Exception
 	 */
 	@Test
 	public void testMinimaxMaximizingPlayerDepth1() throws Exception {
 		System.out.println("AI, minimax, maximizing, depth 1");
 		int depth = 1;
-		boolean maximizingPlayer = true;
 		Move result = ai.getMove(chessboard, depth);
 		assertNotNull(result);
 	}
 	
 	/**
-	 * Test of minimax method, of class AI.
+	 * Test of minimax method, of class AI, depth 2.
 	 * @throws java.lang.Exception
 	 */
 	@Test
 	public void testMinimaxMaximizingPlayerDepth2() throws Exception {
 		System.out.println("AI, minimax, maximizing, depth 2");
 		int depth = 2;
-		boolean maximizingPlayer = true;
 		Move result = ai.getMove(chessboard, depth);
 		assertNotNull(result);
 	}
 	
 	/**
-	 * Test of minimax method, of class AI.
+	 * Test of minimax method, of class AI, depth 3.
 	 * @throws java.lang.Exception
 	 */
 	@Test
 	public void testMinimaxMaximizingPlayerDepth3() throws Exception {
 		System.out.println("AI, minimax, maximizing, depth 3");
 		int depth = 3;
-		boolean maximizingPlayer = true;
 		Move result = ai.getMove(chessboard, depth);
 		assertNotNull(result);
 	}
 	
 	/**
-	 * Test of minimax method, of class AI.
+	 * Test of minimax method, of class AI, depth 4.
 	 * @throws java.lang.Exception
 	 */
 	@Test
 	public void testMinimaxMaximizingPlayerDepth4() throws Exception {
 		System.out.println("AI, minimax, maximizing, depth 4");
 		int depth = 4;
-		boolean maximizingPlayer = true;
 		Move result = ai.getMove(chessboard, depth);
 		assertNotNull(result);
 	}
 	
 	/**
-	 * Test of minimax method, of class AI.
+	 * Test of minimax method, of class AI, depth 5.
 	 * @throws java.lang.Exception
 	 */
 	@Test
 	public void testMinimaxMaximizingPlayerDepth5() throws Exception {
 		System.out.println("AI, minimax, maximizing, depth 5");
 		int depth = 5;
-		boolean maximizingPlayer = true;
 		Move result = ai.getMove(chessboard, depth);
 		assertNotNull(result);
 	}
 	
 	/**
-	 * Test of getColour method, of class AI.
+	 * Test of getColour method, of class AI, getColour-method.
 	 */
 	@Test
 	public void testGetColour() {

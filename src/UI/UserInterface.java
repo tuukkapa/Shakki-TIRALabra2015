@@ -18,22 +18,11 @@ public class UserInterface {
 	private static Scanner input;
 	private static String userCommand;
 	private static int gameTreeDepth;
+	private static long moveTime; // temp
+	private static int moves;
 	
 	public static void runGame() {
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
-		};
-		chessboard = new Chessboard();
-		chessboard.setBoard(newboard);
-		input = new Scanner(System.in);
-		gameTreeDepth = 0;
+		init();
 		int gameTreeDepthLimit = 8;
 		System.out.println("========================================================\n"
 						 + "======================== SHAKKI ========================\n"
@@ -68,6 +57,31 @@ public class UserInterface {
 		}
 	}
 	
+	/**
+	 * Method initializes the game.
+	 */
+	private static void init() {
+		char[][] newboard = {
+			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
+		};
+		chessboard = new Chessboard();
+		chessboard.setBoard(newboard);
+		input = new Scanner(System.in);
+		gameTreeDepth = 0;
+		moveTime = 0;
+		moves = 0;
+	}
+	
+	/**
+	 * Method is used with computer vs computer game.
+	 */
 	private static void pcVsPC() {
 		AI ai1 = new AI(true);
 		AI ai2 = new AI(false);
@@ -81,7 +95,7 @@ public class UserInterface {
 	}
 	
 	/**
-	 * Method to handle the human vs. PC game.
+	 * Method to handle the human vs. computer game.
 	 */
 	private static void humanVsPC() {
 		AI ai = new AI(false);
@@ -176,10 +190,14 @@ public class UserInterface {
 			return false;
 		}
 		ChessboardHandler.makeMove(chessboard, move);
+		moves++;
 		computersColour = ai.getColour() ? "valkoisilla" : "mustilla";
 		long endTime = System.currentTimeMillis();
 		drawBoard(chessboard.getBoardAsCharArray(), move);
 		System.out.println("Siirrossa kului aikaa " + calculateMoveTime(startTime, endTime) + ".");
+		moveTime += endTime - startTime;
+		System.out.println("MoveTime on nyt: " + moveTime);
+		System.out.println("Moves: " + moves);
 		int checkMateValue = ai.getColour() ? 0 : 1;
 		if (ChessboardHandler.isItCheckMate(chessboard) == checkMateValue) {
 			System.out.println("Tietokone voitti " + computersColour + "!");
