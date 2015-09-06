@@ -1,6 +1,6 @@
 jaco*
 .jacocoverage/
 build/
-dist/*
+dist/
 nbproject/private/
 
