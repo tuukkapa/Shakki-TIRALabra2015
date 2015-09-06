@@ -159,26 +159,41 @@ public class Evaluate {
 				gameSituationPoints += PAWN_VALUE + PAWN_MAP[row][col];
 				gameSituationPoints += pieceProtected ? PAWN_VALUE/2 : 0;
 				gameSituationPoints -= pieceAttacked ? PAWN_VALUE/2 : 0;
+				if (piece.getHasMoved()) {
+					gameSituationPoints -= !pieceProtected && !pieceAttacked ? PAWN_VALUE/2 : 0;
+				}
 			}
 			if (piece instanceof Knight) {
 				gameSituationPoints += KNIGHT_VALUE + KNIGHT_MAP[row][col];
 				gameSituationPoints += pieceProtected ? KNIGHT_VALUE/2 : 0;
 				gameSituationPoints -= pieceAttacked ? KNIGHT_VALUE/2 : 0;
+				if (piece.getHasMoved()) {
+					gameSituationPoints -= !pieceProtected && !pieceAttacked ? KNIGHT_VALUE/2 : 0;
+				}
 			}
 			if (piece instanceof Bishop) {
 				gameSituationPoints += BISHOP_VALUE + BISHOP_MAP[row][col];
 				gameSituationPoints += pieceProtected ? BISHOP_VALUE/2 : 0;
 				gameSituationPoints -= pieceAttacked ? BISHOP_VALUE/2 : 0;
+				if (piece.getHasMoved()) {
+					gameSituationPoints -= !pieceProtected && !pieceAttacked ? BISHOP_VALUE/2 : 0;
+				}
 			}
 			if (piece instanceof Rook) {
 				gameSituationPoints += ROOK_VALUE + ROOK_MAP[row][col];
 				gameSituationPoints += pieceProtected ? ROOK_VALUE/2 : 0;
 				gameSituationPoints -= pieceAttacked ? ROOK_VALUE/2 : 0;
+				if (piece.getHasMoved()) {
+					gameSituationPoints -= !pieceProtected && !pieceAttacked ? ROOK_VALUE/2 : 0;
+				}
 			}
 			if (piece instanceof Queen) {
 				gameSituationPoints += QUEEN_VALUE + QUEEN_MAP[row][col];
 				gameSituationPoints += pieceProtected ? QUEEN_VALUE/2 : 0;
 				gameSituationPoints -= pieceAttacked ? QUEEN_VALUE/2 : 0;
+				if (piece.getHasMoved()) {
+					gameSituationPoints -= !pieceProtected && !pieceAttacked ? QUEEN_VALUE/2 : 0;
+				}
 			}
 			if (piece instanceof King) {
 				if (isItEndGame) {
