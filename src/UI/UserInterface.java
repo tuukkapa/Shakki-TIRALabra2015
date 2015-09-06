@@ -23,8 +23,9 @@ public class UserInterface {
 		init();
 		int gameTreeDepthLimit = 8;
 		System.out.println("========================================================\n"
-						 + "======================== SHAKKItesti ========================\n"
+						 + "======================== SHAKKI ========================\n"
 						 + "============== (c) 2015 Tuukka Paukkunen ===============\n"
+						 + "====================== Versio 1.0 ======================\n"
 						 + "========================================================\n");
 		System.out.println("Anna pelipuun syvyys (1- " + gameTreeDepthLimit + ").\n"
 				+ "Syvempi pelipuu tarkoittaa sekä parempaa tietokoneen\n"
