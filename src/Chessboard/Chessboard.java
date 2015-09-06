@@ -160,7 +160,6 @@ public class Chessboard {
 				blackKingPosition = position;
 			}
 		}
-		Piece oldPiece = null;
 		chessboard[row][col] = piece;
 		addToList(piece);
 	}

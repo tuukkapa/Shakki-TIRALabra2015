@@ -18,8 +18,6 @@ public class UserInterface {
 	private static Scanner input;
 	private static String userCommand;
 	private static int gameTreeDepth;
-	private static long moveTime; // temp
-	private static int moves;
 	
 	public static void runGame() {
 		init();
@@ -47,7 +45,7 @@ public class UserInterface {
 				}
 			}
 		}
-		System.out.println("Haluatko, että tietokone pelaa itseänsä vastaan?\n"
+		System.out.println("Haluatko, että tietokone pelaa itseään vastaan?\n"
 				+ "Vastaa \"k\" tai \"e\".");
 		String command = input.nextLine();
 		if (command.equals("k")) {
@@ -61,22 +59,9 @@ public class UserInterface {
 	 * Method initializes the game.
 	 */
 	private static void init() {
-		char[][] newboard = {
-			{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
-			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
-			{'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}
-		};
 		chessboard = new Chessboard();
-		chessboard.setBoard(newboard);
 		input = new Scanner(System.in);
 		gameTreeDepth = 0;
-		moveTime = 0;
-		moves = 0;
 	}
 	
 	/**
@@ -169,7 +154,7 @@ public class UserInterface {
 	 * @return True, if computer can continue the game, false otherwise.
 	 */
 	private static boolean computersTurn(AI ai, boolean humanVsPC) {
-		String computersColour = ai.getColour() ? "mustilla" : "valkoisilla";
+		String computersColour;
 		System.out.println("\nOdota. Tietokone tekee siirtonsa...");
 		long startTime = System.currentTimeMillis();
 		Move move = null;
@@ -185,21 +170,18 @@ public class UserInterface {
 			if (humanVsPC) {
 				System.out.println("Sinä voitit!");
 			} else {
+				computersColour = ai.getColour() ? "mustilla" : "valkoisilla";
 				System.out.println("Tietokone voitti " + computersColour + "!");
 			}
 			return false;
 		}
 		ChessboardHandler.makeMove(chessboard, move);
-		moves++;
-		computersColour = ai.getColour() ? "valkoisilla" : "mustilla";
 		long endTime = System.currentTimeMillis();
 		drawBoard(chessboard.getBoardAsCharArray(), move);
 		System.out.println("Siirrossa kului aikaa " + calculateMoveTime(startTime, endTime) + ".");
-		moveTime += endTime - startTime;
-		System.out.println("MoveTime on nyt: " + moveTime);
-		System.out.println("Moves: " + moves);
 		int checkMateValue = ai.getColour() ? 0 : 1;
 		if (ChessboardHandler.isItCheckMate(chessboard) == checkMateValue) {
+			computersColour = ai.getColour() ? "valkoisilla" : "mustilla";
 			System.out.println("Tietokone voitti " + computersColour + "!");
 			return false;
 		} else {
@@ -212,8 +194,9 @@ public class UserInterface {
 	 * Method uses the char-array of this class as an input and outputs human
 	 * readable ASCII-character version of the chess board.
 	 * @param chessboard Two dimensional char-array, the board to be drawn.
+	 * @param move Move-object's information is used to highlight computers last moved piece.
 	 */
-	public static void drawBoard(char[][] chessboard, Move move/*, Chessboard board*/) {
+	public static void drawBoard(char[][] chessboard, Move move) {
 		for (int i = 0; i < 17; i++) {
 			for (int j = 0; j < 33; j++) {
 				// Draw chess board's top and bottom edge
@@ -251,6 +234,7 @@ public class UserInterface {
 								    j-2/4 equals chessboard's equivalent colnumber
 								*/
 								if (move != null && move.getEnd()/8 == (i-1)/2 && move.getEnd()%8 == (j-2)/4) {
+									// Highlights computer's last moved piece.
 									System.out.print("\033[32m" + chessboard[(i-1)/2][(j-2)/4] + "\033[0m");
 								} else {
 									System.out.print(chessboard[(i-1)/2][(j-2)/4]);

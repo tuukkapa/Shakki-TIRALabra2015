@@ -126,13 +126,16 @@ public class ChessboardHandler {
 	 */
 	public static boolean wouldItBeCheck(Chessboard chessboard, Piece piece, int end) {
 		int start = piece.getPosition();
-		boolean hasItMoved = piece.getHasMoved();
+		boolean movingStatus = piece.getHasMoved();
 		Move move = new Move(start, end);
 		move = addRookMoveIfCastling(chessboard, move);
 		movePiece(chessboard, move);
+		
 		boolean checkSituation = isItCheck(chessboard, piece.amIWhite());
+		
 		undoMove(chessboard, move);
-		piece.setHasMoved(hasItMoved);
+		piece.setHasMoved(movingStatus);
+		
 		return checkSituation;
 	}
 	
@@ -305,7 +308,7 @@ public class ChessboardHandler {
 			}
 			possibleMovesForWhite += piece.getPossibleMoves(chessboard).size();
 		}	
-		// are there any moves left for any piece
+		// are there any moves left for any white piece
 		if (possibleMovesForWhite == 0) {
 			return 1;
 		}

@@ -2,7 +2,6 @@ package Chessboard.pieces;
 
 import Chessboard.*;
 import DataStructures.List;
-import java.util.ArrayList;
 
 /**
  * Piece-class from which other pieces are extended.

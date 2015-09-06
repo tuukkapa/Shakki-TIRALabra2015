@@ -73,7 +73,8 @@ public class AI {
 				Chessboard cloneBoard = new Chessboard(chessboard);
 				ChessboardHandler.makeMove(cloneBoard, moves.get(j));
 				score = min(alpha, beta, cloneBoard, depth - 1, white);
-				/*if (depth == originalDepth) {
+				/* if you want to see computer's move options and points of those during it's turn, uncomment this
+				if (depth == originalDepth) {
 					System.out.println(piece.getSign() + " " + (char)(piece.getPosition()%8+65) + (8-(piece.getPosition()/8)) + 
 							"->" + (char)(moves.get(j).getEnd()%8+65) + (8-(moves.get(j).getEnd()/8)) + ": arvosana " + score);
 				}*/

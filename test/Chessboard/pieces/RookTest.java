@@ -7,7 +7,6 @@ package Chessboard.pieces;
 
 import Chessboard.Move;
 import Chessboard.Chessboard;
-import Chessboard.ChessboardHandler;
 import DataStructures.List;
 import org.junit.After;
 import org.junit.AfterClass;

@@ -374,7 +374,7 @@ public class EvaluateTest {
 		};
 		chessboard.setBoard(newboard);
 		boolean white = false;
-		int expResult = -1270;
+		int expResult = -1320;
 		int result = Evaluate.evaluate(chessboard, white, 0);
 		assertEquals(expResult, result);
 	}

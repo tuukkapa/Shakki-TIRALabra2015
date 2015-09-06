@@ -17,8 +17,8 @@ import Chessboard.pieces.*;
  * status.
  * (https://chessprogramming.wikispaces.com/Simplified+evaluation+function)
  * 
- * Method determines the game situations value from black pieces' point of view.
- * Higher value means higher chances to winning the game.
+ * Method determines the game situation's value from black pieces' point of view.
+ * Higher value means higher chances at winning the game.
  * 
  * @author Tuukka Paukkunen <tuukka.paukkunen@cs.helsinki.fi>
  */
@@ -80,7 +80,7 @@ public class Evaluate {
 		{  0,  0,  5,  5,  5,  5,  0, -5},
 		{-10,  5,  5,  5,  5,  5,  0,-10},
 		{-10,  0,  5,  0,  0,  0,  0,-10},
-		{-20,-10,-10, 50, -5,-10,-10,-20}
+		{-20,-10,-10,100, -5,-10,-10,-20}
 	};
 	private static final int[][] KING_MAP = {
 		{-30,-40,-40,-50,-50,-40,-40,-30},
@@ -104,7 +104,7 @@ public class Evaluate {
 	};
 	
 	/**
-	 * Determines the game situation's value from the black player's point of view.
+	 * Determines the game situation's value from the point of view given as a parameter.
 	 * Higher points means better chances to winning.
 	 * @param chessboard Chessboard-object, which game is being evaluated.
 	 * @param white Boolean, from which colour's point of view the position is evaluated.
@@ -117,6 +117,7 @@ public class Evaluate {
 		gameSituationPoints -= calculatePointsFromPieces(chessboard, !white);
 		gameSituationPoints += calculatePointsFromPieces(chessboard, white);
 		
+		// If it's not end game, add random number to gameSituationPoints to give variety to the game.
 		if (!(isItEndGame(chessboard, true) || isItEndGame(chessboard, false))) {
 			gameSituationPoints += Tools.randInt(variance);
 		}
@@ -190,9 +191,10 @@ public class Evaluate {
 			if (piece instanceof Queen) {
 				gameSituationPoints += QUEEN_VALUE + QUEEN_MAP[row][col];
 				gameSituationPoints += pieceProtected ? QUEEN_VALUE/2 : 0;
-				gameSituationPoints -= pieceAttacked ? QUEEN_VALUE/2 : 0;
+				// Queen gets more severe penalty if left attacked or unprotected
+				gameSituationPoints -= pieceAttacked ? QUEEN_VALUE : 0;
 				if (piece.getHasMoved()) {
-					gameSituationPoints -= !pieceProtected && !pieceAttacked ? QUEEN_VALUE/2 : 0;
+					gameSituationPoints -= !pieceProtected && !pieceAttacked ? QUEEN_VALUE : 0;
 				}
 			}
 			if (piece instanceof King) {

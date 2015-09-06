@@ -7,8 +7,7 @@
 package DataStructures;
 
 /**
- * Instances of this class contain a list of objects. Idea borrowed from Elias
- * Annila.
+ * Instances of this class contain a list of objects.
  * 
  * @author Tuukka Paukkunen <tuukka.paukkunen@cs.helsinki.fi>
  * @param <SomeElement> 

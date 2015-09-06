@@ -32,7 +32,6 @@ public class Move {
 	
 	/**
 	 * This constructor sets also the castling piece's start and end position.
-	 * * @param start Integer, starting position of the move.
 	 * @param start Integer, starting position of the move.
 	 * @param end Integer, ending position of the move.
 	 * @param castlingRookStart Integer, starting position of the move of the castling piece.

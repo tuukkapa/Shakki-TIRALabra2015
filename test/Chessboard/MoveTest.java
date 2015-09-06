@@ -5,7 +5,6 @@
  */
 package Chessboard;
 
-import Chessboard.Move;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
