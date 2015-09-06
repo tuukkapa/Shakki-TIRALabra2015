@@ -23,7 +23,7 @@ public class UserInterface {
 		init();
 		int gameTreeDepthLimit = 8;
 		System.out.println("========================================================\n"
-						 + "======================== SHAKKI ========================\n"
+						 + "======================== SHAKKItesti ========================\n"
 						 + "============== (c) 2015 Tuukka Paukkunen ===============\n"
 						 + "========================================================\n");
 		System.out.println("Anna pelipuun syvyys (1- " + gameTreeDepthLimit + ").\n"
